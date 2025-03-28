@@ -1,25 +1,72 @@
-# Graph_Agentic_Network
+# Graph Agentic Network (GAN)
+
 Node is Agent!
 
-graph_agentic_network/
-├── README.md                 # Project documentation
-├── setup.sh                  # Environment setup script
-├── download_data.sh          # Dataset download script
-├── requirements.txt          # Python dependencies
-├── gan/
-│   ├── __init__.py
-│   ├── actions.py            # Action classes for node agents
-│   ├── llm.py                # LLM interface for decision making
-│   ├── node.py               # Node agent implementation
-│   ├── graph.py              # Graph and network implementation
-│   └── utils.py              # Utility functions
-├── data/
-│   └── dataset.py            # Data loading utilities
-├── baselines/
-│   ├── __init__.py
-│   └── gcn.py                # GCN baseline implementation
-├── experiments/
-│   ├── __init__.py
-│   ├── node_classification.py # Node classification experiment
-│   └── visualize.py          # Visualization utilities
-└── config.py                 # Configuration parameters
+A novel approach to graph learning where each node functions as an autonomous agent, powered by large language models for decision-making. This framework replaces traditional message passing in graph neural networks with agent-based decision making.
+
+## Features
+
+- 🧠 **LLM-powered node agents**: Each node uses an LLM to make decisions based on its current state
+- 🔄 **Flexible communication patterns**: Nodes can choose which neighbors to interact with
+- 🤔 **Autonomous decision-making**: Nodes decide when to retrieve information, broadcast messages, or update their state
+- 📊 **Support for graph ML tasks**: Node classification, link prediction, and more
+
+## Setup
+
+1. Clone this repository:
+```bash
+git clone https://github.com/yourusername/graph-agentic-network.git
+cd graph-agentic-network
+```
+
+2. Set up the environment:
+```bash
+bash setup.sh
+conda activate gan
+```
+
+3. Download the datasets:
+```bash
+bash download_data.sh
+```
+
+## Quick Start
+
+Run a node classification experiment on the OGB-Arxiv dataset:
+
+```bash
+python -m experiments.node_classification
+```
+
+## Project Structure
+
+- `gan/`: Core framework components
+  - `actions.py`: Action classes for node agents
+  - `node.py`: Node agent implementation
+  - `graph.py`: Graph and network implementation
+  - `llm.py`: LLM interface
+- `data/`: Data handling utilities
+- `baselines/`: Baseline implementations (e.g., GCN)
+- `experiments/`: Experiment scripts
+
+## Configuration
+
+Edit `config.py` to adjust experiment parameters and model settings.
+
+## Citation
+
+If you use this code in your research, please cite our work:
+```
+@misc{graph-agentic-network,
+  author = {Your Name},
+  title = {Graph Agentic Network: LLM-powered Decision Making for Graph Learning},
+  year = {2025},
+  publisher = {GitHub},
+  journal = {GitHub repository},
+  howpublished = {\url{https://github.com/yourusername/graph-agentic-network}}
+}
+```
+
+## License
+
+MIT License
