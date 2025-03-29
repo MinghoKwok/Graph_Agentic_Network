@@ -1,0 +1,23 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Dataset files (large raw and processed data)
+data/ogbn-arxiv/ogbn_arxiv/raw/
+data/ogbn-arxiv/ogbn_arxiv/processed/
+
+# Dataset cache / metadata
+*.pt
+*.csv.gz
+
+# VSCode or IDE files
+.vscode/
+.idea/
+
+# Results and logs
+results/
+logs/
+
+# OS generated files
+.DS_Store
+Thumbs.db
