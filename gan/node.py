@@ -7,6 +7,7 @@ from typing import Dict, List, Any, Optional, Tuple, Set, Union
 from dataclasses import dataclass, field
 
 from gan.actions import Action, RetrieveAction, BroadcastAction, UpdateAction, NoOpAction
+from config import DEBUG_STEP_SUMMARY, DEBUG_MESSAGE_TRACE  # 从 config 模块导入 DEBUG_STEP_SUMMARY 和 DEBUG_MESSAGE_TRACE
 
 
 @dataclass
@@ -66,6 +67,8 @@ class NodeAgent:
         self.llm = llm_interface
         self.retrieved_data = {}
     
+
+
     def step(self, graph: 'AgenticGraph', layer: int) -> None:
         """
         Perform one step of decision-making and action execution.
@@ -76,24 +79,70 @@ class NodeAgent:
         """
         # Prepare context
         context = self._prepare_context(graph)
-        
+
         # Get decision from LLM
         decision = self.llm.decide_action(context)
-        
+
         # Convert decision to action
         action = self._create_action(decision)
-        
+
         # Execute action and store result
         if action:
             result = action.execute(self, graph)
-            
-            # Store action in memory
             self.state.memory.append({
                 "layer": layer,
                 "action": result.get("action", "unknown"),
                 "result": result
             })
-    
+
+        # Print debug summaries
+        if (DEBUG_STEP_SUMMARY or DEBUG_MESSAGE_TRACE) and self.state.memory:
+            last = self.state.memory[-1]
+            action_type = last.get("action", "unknown")
+            result = last.get("result", {})
+            pred_label = (
+                self.state.predicted_label.item()
+                if self.state.predicted_label is not None else None
+            )
+
+            print(f"\n🧠 Agent Step | Node {self.state.node_id} | Layer {layer}")
+            print(f"  ├─ 🏷️  Action: {action_type}")
+            print(f"  ├─ 🎯 Predicted Label: {pred_label}")
+            print(f"  ├─ 🧠 Memory size: {len(self.state.memory)}")
+            print(f"  └─ 👥 Total neighbors: {len(context.get('neighbors', []))}")
+
+        # Print detailed message trace
+        if DEBUG_MESSAGE_TRACE and self.state.memory:
+            print(f"\n🔍 Message Trace | Node {self.state.node_id} | Layer {layer}")
+            
+            if action_type == "retrieve":
+                targets = result.get("target_nodes", [])
+                results = result.get("results", {})
+                print(f"  📥 Retrieved from {len(targets)} neighbor(s):")
+                for tid in targets:
+                    if tid in results:
+                        preview = results[tid]
+                        preview_str = self._format_preview(preview)
+                        print(f"    ↳ Node {tid} ✅ {preview_str}")
+                    else:
+                        print(f"    ↳ Node {tid} ⛔ not found")
+
+            elif action_type == "broadcast":
+                targets = result.get("target_nodes", [])
+                message = result.get("message", None)
+                print(f"  📤 Broadcasted to {len(targets)} node(s): {targets}")
+                if message is not None:
+                    preview = str(message[:5].tolist()) + ("..." if len(message) > 5 else "")
+                    print(f"    ↳ Message: {preview} (dim={len(message)})")
+
+            elif action_type == "update":
+                updated = result.get("updated_fields", [])
+                print(f"  🛠️  Updated fields: {updated}")
+
+            else:
+                print("  ⚠️  No message or state updates in this step.")
+        
+
     def receive_message(self, from_node: int, message: torch.Tensor) -> None:
         """
         Receive a message from another node.
@@ -195,3 +244,33 @@ class NodeAgent:
         
         # Default to no-op
         return NoOpAction()
+
+    def _format_preview(self, obj: Any, max_len: int = 60) -> str:
+        """
+        Format a preview string from any object for display.
+        
+        Args:
+            obj: The object to preview
+            max_len: Max number of characters
+        
+        Returns:
+            Truncated string representation
+        """
+        try:
+            if isinstance(obj, torch.Tensor):
+                return str(obj.tolist()[:5]) + ("..." if obj.numel() > 5 else "")
+            elif isinstance(obj, (list, tuple)):
+                return str(obj[:5]) + ("..." if len(obj) > 5 else "")
+            elif isinstance(obj, dict):
+                keys = list(obj.keys())[:3]
+                preview = {k: obj[k] for k in keys}
+                return str(preview) + ("..." if len(obj) > 3 else "")
+            elif isinstance(obj, (str, int, float, bool)):
+                return str(obj)[:max_len] + ("..." if len(str(obj)) > max_len else "")
+            elif obj is None:
+                return "None"
+            else:
+                return str(type(obj))  # fallback: just print type name
+        except Exception as e:
+            return f"[Preview error: {e}]"
+

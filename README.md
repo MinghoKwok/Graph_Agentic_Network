@@ -38,6 +38,11 @@ Run a node classification experiment on the OGB-Arxiv dataset:
 python -m experiments.node_classification
 ```
 
+
+```bash
+python scripts/debug_single_node.py --node_id 100 --layer 0 --subgraph_size 10000
+```
+
 ## Project Structure
 
 - `gan/`: Core framework components

@@ -45,3 +45,8 @@ DATASET_NAME = "ogbn-arxiv"  # Default dataset
 # Logging
 VERBOSE = True
 LOG_INTERVAL = 10
+
+# Debug settings
+DEBUG_LLM = True    #  Whether to print the prompt and response for debugging
+DEBUG_STEP_SUMMARY = True  # 是否打印每个节点每层的 step summary
+DEBUG_MESSAGE_TRACE = True       # 打印消息传递详情（仅在 retrieve / broadcast 时）

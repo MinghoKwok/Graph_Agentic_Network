@@ -5,13 +5,16 @@ LLM interface for decision making in the Graph Agentic Network
 import json
 import torch
 import os
+import re
+import random
 from typing import Dict, Any, List, Optional
 from transformers import AutoTokenizer, AutoModelForCausalLM
 
 import config
+from config import DEBUG_LLM
 
 
-class LLMInterface:
+class LLMInterface: 
     """Interface for communicating with the LLM for agent decision making."""
     
     def __init__(self, model_name: str = config.LLM_MODEL, device: Optional[str] = None):
@@ -60,12 +63,28 @@ class LLMInterface:
         """
         # Format the prompt
         prompt = self._format_action_prompt(context)
+
+        # Print the prompt for debugging
+        if DEBUG_LLM:
+            print(f"\n================ LLM Prompt for Node {context['node_id']} Layer {context['layer']} ================\n")
+            print(prompt)
+            print("============================================================================\n")
+
         
         # Generate response from LLM
         response = self.generate_response(prompt)
+
+        # Debug: print raw LLM response
+        if DEBUG_LLM:
+            print(f"\n🧠 LLM raw response:\n{response}\n")
+
         
         # Parse the action from the response
         action = self._parse_action(response)
+
+        # Debug: print parsed action
+        if DEBUG_LLM:
+            print(f"✅ Parsed action:\n{action}\n")
         
         return action
     
@@ -284,9 +303,8 @@ class MockLLMInterface(LLMInterface):
     
     def __init__(self):
         """Initialize the mock interface."""
-        # No need to load a model
         self.initialized = True
-    
+
     def generate_response(self, prompt: str) -> str:
         """
         Generate a mock response.
@@ -297,17 +315,30 @@ class MockLLMInterface(LLMInterface):
         Returns:
             A mock response
         """
-        # Return a dummy response based on the prompt content
         if "action" in prompt.lower():
-            if "layer: 0" in prompt:
-                # First layer - retrieve from neighbors
-                return '{"action_type": "retrieve", "target_nodes": [1, 2, 3], "info_type": "features"}'
+            if "Current Layer: 0" in prompt:
+                # 🧠 从 prompt 中提取邻居节点
+                neighbor_match = re.search(r"Your Neighbors: \[(.*?)\]", prompt)
+                if neighbor_match:
+                    neighbor_str = neighbor_match.group(1)
+                    neighbors = [int(n.strip()) for n in neighbor_str.split(",") if n.strip().isdigit()]
+                    target_nodes = random.sample(neighbors, min(3, len(neighbors))) if neighbors else []
+                    
+                    return json.dumps({
+                        "action_type": "retrieve",
+                        "target_nodes": target_nodes,
+                        "info_type": "features"
+                    })
+                else:
+                    return '{"action_type": "no_op"}'
             else:
-                # Other layers - update with a random label
-                import random
-                return f'{{"action_type": "update", "predicted_label": {random.randint(0, 9)}}}'
+                # 后续层做 update
+                return json.dumps({
+                    "action_type": "update",
+                    "predicted_label": random.randint(0, 39)  # 假设有 40 类
+                })
+        
         elif "layer" in prompt.lower():
-            # Always continue to next layer
             return "continue"
-        else:
-            return "No specific action needed."
+        
+        return "no_op"
