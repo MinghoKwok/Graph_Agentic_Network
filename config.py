@@ -20,10 +20,10 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 MULTI_GPU = torch.cuda.device_count() > 1
 
 # LLM settings
-LLM_MODEL = "meta-llama/Llama-2-7b-chat-hf"  # Change to your preferred model
-LLM_TOKENIZER = LLM_MODEL
-USE_LOCAL_LLM = False  # Set to True to use a local model
-LOCAL_LLM_PATH = os.path.join(MODEL_DIR, "llama-2-7b-chat")
+LLM_BACKEND = "remote"  # Options: "remote", "mock"
+LLM_MODEL = "llama-3.1-8b-instruct"
+REMOTE_LLM_ENDPOINT = "http://localhost:8001/v1/chat/completions"
+
 
 # Experiment settings
 RANDOM_SEED = 42

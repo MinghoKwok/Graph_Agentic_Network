@@ -9,7 +9,7 @@ import re
 import random
 from typing import Dict, Any, List, Optional
 from transformers import AutoTokenizer, AutoModelForCausalLM
-
+import requests
 import config
 from config import DEBUG_LLM
 
@@ -297,6 +297,50 @@ Respond with either "continue" or "end".
         # Fallback: return empty JSON
         return "{}"
 
+class RemoteLLMInterface(LLMInterface):
+    """LLM interface for using remote OpenAI-compatible API (e.g., vLLM server)"""
+
+    def __init__(self, endpoint: str = "http://localhost:8001/v1/chat/completions", model_name: str = "llama-3.1-8b-instruct"):
+        """
+        Initialize the RemoteLLMInterface.
+
+        Args:
+            endpoint: URL to the OpenAI-compatible chat completion endpoint
+            model_name: Model name registered in the endpoint (for vLLM it’s the folder name)
+        """
+        self.endpoint = endpoint
+        self.model_name = model_name
+        self.initialized = True  # No need to load local models
+
+    def generate_response(self, prompt: str) -> str:
+        """
+        Generate a response by querying the remote LLM API.
+
+        Args:
+            prompt: The input prompt
+
+        Returns:
+            Response string from the model
+        """
+        payload = {
+            "model": self.model_name,
+            "messages": [{"role": "user", "content": prompt}],
+            "temperature": 0.2,
+            "top_p": 0.95
+        }
+
+        headers = {
+            "Content-Type": "application/json"
+        }
+
+        try:
+            response = requests.post(self.endpoint, headers=headers, json=payload)
+            response.raise_for_status()
+            result = response.json()
+            return result["choices"][0]["message"]["content"].strip()
+        except Exception as e:
+            print(f"[RemoteLLMInterface] Request failed: {e}")
+            return "no_op"
 
 class MockLLMInterface(LLMInterface):
     """A mock LLM interface for testing without actual LLM calls."""

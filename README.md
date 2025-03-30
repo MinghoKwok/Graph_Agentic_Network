@@ -43,6 +43,19 @@ python -m experiments.node_classification
 python scripts/debug_single_node.py --node_id 100 --layer 0 --subgraph_size 10000
 ```
 
+
+## vLLM
+```bash
+python3 -m vllm.entrypoints.openai.api_server \
+  --model /common/home/mg1998/Graph/GAN/Graph_Agentic_Network/models/llama-3.1-8b-instruct \
+  --tokenizer /common/home/mg1998/Graph/GAN/Graph_Agentic_Network/models/llama-3.1-8b-instruct \
+  --port 8001 \
+  --dtype auto \
+  --max-model-len 1024 \
+  --gpu-memory-utilization 0.95 \
+  --served-model-name llama-3.1-8b-instruct
+```
+
 ## Project Structure
 
 - `gan/`: Core framework components

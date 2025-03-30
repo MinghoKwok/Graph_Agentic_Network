@@ -16,6 +16,7 @@ from gan.graph import GraphAgenticNetwork
 from gan.llm import MockLLMInterface
 from data.dataset import load_or_create_dataset
 import config
+from gan.llm import MockLLMInterface, RemoteLLMInterface
 
 
 def debug_single_node(node_id: int, layer: int, subgraph_size: int = 100):
@@ -26,8 +27,16 @@ def debug_single_node(node_id: int, layer: int, subgraph_size: int = 100):
     node_features = dataset['node_features']
     labels = dataset['labels']
 
-    # Use mock LLM for debugging
-    llm_interface = MockLLMInterface()
+    # Choose LLM backend
+    if config.LLM_BACKEND == "mock":
+        llm_interface = MockLLMInterface()
+    elif config.LLM_BACKEND == "remote":
+        llm_interface = RemoteLLMInterface(
+            endpoint=config.REMOTE_LLM_ENDPOINT,
+            model_name=config.LLM_MODEL
+        )
+    else:
+        raise ValueError(f"Unknown LLM_BACKEND: {config.LLM_BACKEND}")
 
     # Init GAN
     gan = GraphAgenticNetwork(

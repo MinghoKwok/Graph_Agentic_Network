@@ -2,22 +2,22 @@
 __pycache__/
 *.py[cod]
 
-# Dataset files (large raw and processed data)
+# Dataset files
 data/ogbn-arxiv/ogbn_arxiv/raw/
 data/ogbn-arxiv/ogbn_arxiv/processed/
-
-# Dataset cache / metadata
 *.pt
 *.csv.gz
 
-# VSCode or IDE files
-.vscode/
-.idea/
+# Model weights and checkpoints
+models/*
+!models/.gitkeep   # 如果你想保留空目录，可以放个占位符
 
 # Results and logs
 results/
 logs/
 
-# OS generated files
+# IDE / OS junk
+.vscode/
+.idea/
 .DS_Store
 Thumbs.db
