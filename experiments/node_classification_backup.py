@@ -227,6 +227,6 @@ if __name__ == "__main__":
         use_subgraph=False,
         subgraph_size=1000,
         use_mock_llm=False,  # Set to False to use actual LLM
-        num_layers=1,
+        num_layers=2,
         batch_size=64
     )

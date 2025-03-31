@@ -66,6 +66,7 @@ class NodeAgent:
         self.state = state
         self.llm = llm_interface
         self.retrieved_data = {}
+        self.memory = {}  # {node_id: {"features": ..., "label": ..., "messages": [...], "source_layer": int}}
     
 
 

@@ -66,6 +66,13 @@ class RetrieveAction(Action):
                         "label": neighbor.state.label.clone().detach() if neighbor.state.label is not None else None
                     }
         
+        for node_id, data in results.items():
+            agent.memory[node_id] = {
+                "features": data.get("features"),
+                "label": data.get("label"),
+                "source_layer": agent.state.layer_count
+            }
+        
         return {
             "action": "retrieve",
             "info_type": self.info_type,
@@ -103,6 +110,9 @@ class BroadcastAction(Action):
             if node_id in graph.get_neighbors(agent.state.node_id):
                 neighbor = graph.get_node(node_id)
                 neighbor.receive_message(agent.state.node_id, self.message)
+                if node_id not in agent.memory:
+                    agent.memory[node_id] = {"messages": [], "source_layer": agent.state.layer_count}
+                agent.memory[node_id]["messages"].append(self.message.tolist())
         
         return {
             "action": "broadcast",
