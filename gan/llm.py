@@ -194,8 +194,11 @@ Total Neighbors: {total_neighbors}
             prompt += "\n"
         
         # Action menu
-        prompt += """Available actions:
-1. retrieve - Retrieve information from neighbors
+        prompt += """You may retrieve information from any node in the graph (not just your neighbors).
+You are more likely to have relevant knowledge about your neighbors, but you're free to query any node.
+        
+Available actions:
+1. retrieve - Retrieve information from any nodes
    Example: {"action_type": "retrieve", "target_nodes": [1, 2, 3], "info_type": "features"}
    - info_type can be "features", "label", or "both"
 

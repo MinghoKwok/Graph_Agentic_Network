@@ -8,7 +8,7 @@ import sys
 import os
 
 import config
-from experiments.node_classification import run_node_classification
+from experiments.node_classification_backup import run_node_classification
 
 
 def parse_args():
