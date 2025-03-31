@@ -46,6 +46,7 @@ python scripts/debug_single_node.py --node_id 100 --layer 0 --subgraph_size 1000
 
 ## vLLM
 ```bash
+conda activate vllm_env
 python3 -m vllm.entrypoints.openai.api_server \
   --model /common/home/mg1998/Graph/GAN/Graph_Agentic_Network/models/llama-3.1-8b-instruct \
   --tokenizer /common/home/mg1998/Graph/GAN/Graph_Agentic_Network/models/llama-3.1-8b-instruct \

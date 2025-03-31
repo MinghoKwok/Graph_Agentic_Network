@@ -71,12 +71,8 @@ def run_node_classification(
     num_classes = dataset['num_classes']
     
     # Initialize LLM interface
-    if use_mock_llm:
-        print("Using mock LLM for testing")
-        llm_interface = MockLLMInterface()
-    else:
-        print(f"Initializing LLM interface with model: {config.LLM_MODEL}")
-        llm_interface = LLMInterface(model_name=config.LLM_MODEL)
+    config.LLM_BACKEND = "mock" if use_mock_llm else "remote"
+    llm_interface = LLMInterface(model_name=config.LLM_MODEL)
     
     # Create GAN model
     print(f"Creating Graph Agentic Network with {num_layers} layers")
@@ -228,9 +224,9 @@ if __name__ == "__main__":
     # If run directly, execute the node classification experiment
     # For faster testing, use a subgraph and mock LLM
     run_node_classification(
-        use_subgraph=True,
+        use_subgraph=False,
         subgraph_size=1000,
-        use_mock_llm=True,  # Set to False to use actual LLM
-        num_layers=2,
+        use_mock_llm=False,  # Set to False to use actual LLM
+        num_layers=1,
         batch_size=64
     )
