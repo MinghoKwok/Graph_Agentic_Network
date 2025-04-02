@@ -40,7 +40,7 @@ GCN_WEIGHT_DECAY = 5e-4
 GCN_EPOCHS = 200
 
 # Dataset settings
-DATASET_NAME = "ogbn-arxiv"  # Default dataset
+DATASET_NAME = "cora"  # Default dataset
 
 # Logging
 VERBOSE = True

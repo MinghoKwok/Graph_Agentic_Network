@@ -8,9 +8,10 @@ import os
 from typing import Dict, List, Any, Optional, Tuple, Union
 from ogb.nodeproppred import PygNodePropPredDataset
 import networkx as nx
-
+import json
 import config
 from gan.utils import seed_everything
+from data.cora.label_vocab import label_vocab
 
 
 def load_ogb_arxiv(root: str = os.path.join(config.DATA_DIR, 'ogbn-arxiv')) -> Dict[str, Any]:
@@ -61,6 +62,49 @@ def load_ogb_arxiv(root: str = os.path.join(config.DATA_DIR, 'ogbn-arxiv')) -> D
         'val_idx': val_idx,
         'test_idx': test_idx,
         'num_classes': labels.max().item() + 1,
+        'num_nodes': num_nodes
+    }
+
+def load_cora(jsonl_path: str = "data/cora/cora_text_graph_simplified.jsonl") -> Dict[str, Any]:
+    """
+    Load Cora dataset from a preprocessed JSONL file with text and labels.
+    Assumes file format: {"node_id": int, "text": str, "label": int}
+    """
+    print(f"Loading Cora text dataset from {jsonl_path}")
+    with open(jsonl_path, 'r') as f:
+        lines = f.readlines()
+
+    node_texts = {}
+    labels = {}
+    for line in lines:
+        item = json.loads(line)
+        node_id = int(item["node_id"])
+        node_texts[node_id] = item["text"]
+        labels[node_id] = item["label"]
+
+    num_nodes = len(node_texts)
+    labels_tensor = torch.tensor([label_vocab[labels[i]] for i in range(num_nodes)], dtype=torch.long)
+
+
+    # Dummy adjacency: fully connected graph or empty — replace if you have real edges
+    adj_matrix = torch.eye(num_nodes)
+
+    # Train/val/test split (e.g., 60/20/20)
+    perm = torch.randperm(num_nodes)
+    train_size = int(0.6 * num_nodes)
+    val_size = int(0.2 * num_nodes)
+    train_idx = perm[:train_size]
+    val_idx = perm[train_size:train_size + val_size]
+    test_idx = perm[train_size + val_size:]
+
+    return {
+        'adj_matrix': adj_matrix,
+        'node_features': torch.zeros((num_nodes, 1)),  # Dummy for GCN baseline
+        'labels': labels_tensor,
+        'train_idx': train_idx,
+        'val_idx': val_idx,
+        'test_idx': test_idx,
+        'num_classes': labels_tensor.max().item() + 1,
         'num_nodes': num_nodes
     }
 
@@ -151,6 +195,8 @@ def load_or_create_dataset(name: str = config.DATASET_NAME,
     """
     if name == 'ogbn-arxiv':
         dataset = load_ogb_arxiv()
+    elif name == 'cora':
+        dataset = load_cora()
     else:
         raise ValueError(f"Unknown dataset: {name}")
     

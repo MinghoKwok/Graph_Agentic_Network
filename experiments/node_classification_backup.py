@@ -2,6 +2,12 @@
 Node classification experiment for Graph Agentic Network
 """
 
+import sys
+import os
+
+# Add parent directory to path
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
 import torch
 import os
 import json
@@ -65,6 +71,12 @@ def run_node_classification(
     adj_matrix = dataset['adj_matrix']
     node_features = dataset['node_features']
     labels = dataset['labels']
+    # Load node texts from jsonl
+    with open("data/cora/cora_text_graph_simplified.jsonl") as f:
+        node_texts = {
+            int(json.loads(line)["node_id"]): json.loads(line)["text"]
+            for line in f
+        }
     train_idx = dataset['train_idx']
     val_idx = dataset['val_idx']
     test_idx = dataset['test_idx']
@@ -78,9 +90,9 @@ def run_node_classification(
     print(f"Creating Graph Agentic Network with {num_layers} layers")
     gan = GraphAgenticNetwork(
         adj_matrix=adj_matrix,
-        node_features=node_features,
         llm_interface=llm_interface,
         labels=labels,
+        node_texts=node_texts,
         num_layers=num_layers
     )
     
@@ -225,7 +237,7 @@ if __name__ == "__main__":
     # For faster testing, use a subgraph and mock LLM
     run_node_classification(
         use_subgraph=False,
-        subgraph_size=1000,
+        subgraph_size=100,
         use_mock_llm=False,  # Set to False to use actual LLM
         num_layers=2,
         batch_size=64

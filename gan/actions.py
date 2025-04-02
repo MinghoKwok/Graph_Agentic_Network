@@ -52,24 +52,18 @@ class RetrieveAction(Action):
         for node_id in self.target_nodes:
             if node_id in graph.get_neighbors(agent.state.node_id):
                 neighbor = graph.get_node(node_id)
-                if self.info_type == "features":
-                    results[node_id] = {
-                        "features": neighbor.state.features.clone().detach()
-                    }
-                elif self.info_type == "label":
-                    results[node_id] = {
-                        "label": neighbor.state.label.clone().detach() if neighbor.state.label is not None else None
-                    }
-                elif self.info_type == "both":
-                    results[node_id] = {
-                        "features": neighbor.state.features.clone().detach(),
-                        "label": neighbor.state.label.clone().detach() if neighbor.state.label is not None else None
-                    }
+                entry = {}
+                
+                if self.info_type in ("features", "both"):
+                    entry["text"] = neighbor.state.text  # 使用 text 替代 features
+                if self.info_type in ("label", "both"):
+                    entry["label"] = neighbor.state.label.item() if neighbor.state.label is not None else None
+                
+                results[node_id] = entry
         
         for node_id, data in results.items():
             agent.memory[node_id] = {
-                "features": data.get("features"),
-                "label": data.get("label"),
+                 **data,
                 "source_layer": agent.state.layer_count
             }
         
@@ -147,10 +141,7 @@ class UpdateAction(Action):
         updated_fields = []
         
         for key, value in self.updates.items():
-            if key == "features" and isinstance(value, torch.Tensor):
-                agent.state.features = value
-                updated_fields.append("features")
-            elif key == "hidden_state" and isinstance(value, torch.Tensor):
+            if key == "hidden_state" and isinstance(value, torch.Tensor):
                 agent.state.hidden_state = value
                 updated_fields.append("hidden_state")
             elif key == "predicted_label" and isinstance(value, (torch.Tensor, int)):
@@ -159,6 +150,9 @@ class UpdateAction(Action):
                 else:
                     agent.state.predicted_label = value
                 updated_fields.append("predicted_label")
+            elif key == "text" and isinstance(value, str):
+                agent.state.text = value
+                updated_fields.append("text")
         
         return {
             "action": "update",

@@ -8,6 +8,7 @@ from dataclasses import dataclass, field
 
 from gan.actions import Action, RetrieveAction, BroadcastAction, UpdateAction, NoOpAction
 from config import DEBUG_STEP_SUMMARY, DEBUG_MESSAGE_TRACE  # 从 config 模块导入 DEBUG_STEP_SUMMARY 和 DEBUG_MESSAGE_TRACE
+from data.cora.label_vocab import label_vocab  # 自定义标签映射
 
 
 @dataclass
@@ -15,8 +16,7 @@ class NodeState:
     """Represents the internal state of a node agent."""
     
     node_id: int
-    features: torch.Tensor
-    hidden_state: Optional[torch.Tensor] = None
+    text: str  # 取代 features
     label: Optional[torch.Tensor] = None
     predicted_label: Optional[torch.Tensor] = None
     message_queue: List[Dict[str, Any]] = field(default_factory=list)
@@ -25,8 +25,7 @@ class NodeState:
     
     def __post_init__(self):
         """Initialize hidden state if not provided."""
-        if self.hidden_state is None:
-            self.hidden_state = torch.zeros_like(self.features)
+        pass  # 移除 hidden_state 初始化逻辑
     
     def add_message(self, from_node: int, message: torch.Tensor, layer: int):
         """
@@ -167,11 +166,6 @@ class NodeAgent:
         # Get neighbors
         neighbors = graph.get_neighbors(self.state.node_id)
         
-        # Format feature tensor for LLM consumption
-        features_list = self.state.features.tolist() 
-        if len(features_list) > 10:  # Truncate if too large
-            features_list = features_list[:10] + ["..."]
-            
         # Prepare messages
         messages = []
         for msg in self.state.message_queue[-5:]:  # Last 5 messages only
@@ -187,8 +181,7 @@ class NodeAgent:
         return {
             "node_id": self.state.node_id,
             "layer": self.state.layer_count,
-            "features": features_list,
-            "hidden_state": self.state.hidden_state.tolist() if len(self.state.hidden_state) < 10 else self.state.hidden_state[:10].tolist() + ["..."],
+            "text": self.state.text,  # 添加这一行
             "label": self.state.label.item() if self.state.label is not None else None,
             "predicted_label": self.state.predicted_label.item() if self.state.predicted_label is not None else None,
             "neighbors": neighbors,
@@ -233,13 +226,12 @@ class NodeAgent:
         elif action_type == "update":
             updates = {}
             
-            if "hidden_state" in decision:
-                if isinstance(decision["hidden_state"], list):
-                    updates["hidden_state"] = torch.tensor(decision["hidden_state"], dtype=torch.float)
-            
             if "predicted_label" in decision:
-                updates["predicted_label"] = decision["predicted_label"]
-                
+                label_str = decision.get("predicted_label")
+                label_id = label_vocab.get(label_str, -1)
+                if label_id != -1:
+                    updates["predicted_label"] = torch.tensor(label_id)
+            
             if updates:
                 return UpdateAction(updates)
         

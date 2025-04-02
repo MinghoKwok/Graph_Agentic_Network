@@ -6,6 +6,7 @@ import torch
 import numpy as np
 from typing import Dict, List, Any, Optional, Tuple, Union
 from tqdm import tqdm
+import json
 
 import config
 from gan.node import NodeState, NodeAgent
@@ -14,27 +15,31 @@ from gan.node import NodeState, NodeAgent
 class AgenticGraph:
     """Represents the graph with node agents."""
     
-    def __init__(self, adj_matrix: torch.Tensor, node_features: torch.Tensor, 
-                 llm_interface: 'LLMInterface', labels: Optional[torch.Tensor] = None):
+    def __init__(self, adj_matrix: torch.Tensor, llm_interface: 'LLMInterface', labels: Optional[torch.Tensor] = None):
         """
         Initialize the agentic graph.
         
         Args:
             adj_matrix: Adjacency matrix of shape (num_nodes, num_nodes)
-            node_features: Feature matrix of shape (num_nodes, feature_dim)
             llm_interface: Interface to the large language model
             labels: Optional tensor of node labels
         """
         self.adj_matrix = adj_matrix
         self.num_nodes = adj_matrix.shape[0]
         
+        # Load node texts from JSONL
+        with open("data/cora/cora_text_graph_simplified.jsonl") as f:
+            records = [json.loads(l) for l in f]
+        node_texts = {r["node_id"]: r["text"] for r in records}
+        
         # Initialize node agents
         self.nodes = {}
         for i in range(self.num_nodes):
             node_label = labels[i] if labels is not None else None
+            text = node_texts.get(i, "")  # 从 JSONL 加载
             state = NodeState(
                 node_id=i,
-                features=node_features[i],
+                text=text,
                 label=node_label
             )
             self.nodes[i] = NodeAgent(state, llm_interface)
@@ -95,7 +100,7 @@ class AgenticGraph:
 class GraphAgenticNetwork:
     """Main class for the Graph Agentic Network framework."""
     
-    def __init__(self, adj_matrix: torch.Tensor, node_features: torch.Tensor,
+    def __init__(self, adj_matrix: torch.Tensor, node_texts: List[str],
                  llm_interface: 'LLMInterface', labels: Optional[torch.Tensor] = None,
                  num_layers: int = config.NUM_LAYERS):
         """
@@ -103,12 +108,12 @@ class GraphAgenticNetwork:
         
         Args:
             adj_matrix: Adjacency matrix of shape (num_nodes, num_nodes)
-            node_features: Feature matrix of shape (num_nodes, feature_dim)
+            node_texts: List of node texts
             llm_interface: Interface to the large language model
             labels: Optional tensor of node labels
             num_layers: Number of layers to process
         """
-        self.graph = AgenticGraph(adj_matrix, node_features, llm_interface, labels)
+        self.graph = AgenticGraph(adj_matrix, llm_interface, labels)
         self.num_layers = num_layers
         self.llm_interface = llm_interface
         self.current_layer = 0

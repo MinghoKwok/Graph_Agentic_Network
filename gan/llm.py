@@ -55,7 +55,7 @@ class RemoteLLMInterface(BaseLLMInterface):
     def _format_action_prompt(self, context: Dict[str, Any]) -> str:
         node_id = context["node_id"]
         layer = context["layer"]
-        features = context["features"]
+        text = context.get("text", "")
         neighbors = context["neighbors"][:10] if len(context["neighbors"]) > 10 else context["neighbors"]
         total_neighbors = context["total_neighbors"]
         messages = context.get("messages", [])
@@ -66,7 +66,7 @@ class RemoteLLMInterface(BaseLLMInterface):
     Based on your current state and observations, you need to decide what action to take.
 
     Current Layer: {layer}
-    Your Features: {features}
+    Your Text: {text}
     Your Neighbors: {neighbors}{' (truncated)' if total_neighbors > len(neighbors) else ''}
     Total Neighbors: {total_neighbors}
 
