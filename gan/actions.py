@@ -26,13 +26,13 @@ class Action:
 class RetrieveAction(Action):
     """Action to retrieve information from selected neighbors."""
     
-    def __init__(self, target_nodes: List[int], info_type: str = "features"):
+    def __init__(self, target_nodes: List[int], info_type: str = "text"):
         """
         Initialize a retrieve action.
         
         Args:
             target_nodes: List of node IDs to retrieve from
-            info_type: Type of information to retrieve ("features" or "label")
+            info_type: Type of information to retrieve ("text" or "label")
         """
         self.target_nodes = target_nodes
         self.info_type = info_type
@@ -50,16 +50,15 @@ class RetrieveAction(Action):
         """
         results = {}
         for node_id in self.target_nodes:
-            if node_id in graph.get_neighbors(agent.state.node_id):
-                neighbor = graph.get_node(node_id)
-                entry = {}
-                
-                if self.info_type in ("features", "both"):
-                    entry["text"] = neighbor.state.text  # 使用 text 替代 features
-                if self.info_type in ("label", "both"):
-                    entry["label"] = neighbor.state.label.item() if neighbor.state.label is not None else None
-                
-                results[node_id] = entry
+            neighbor = graph.get_node(node_id)
+            if neighbor is None:
+                continue
+            entry = {}
+            if self.info_type in ("text", "both"):
+                entry["text"] = neighbor.state.text
+            if self.info_type in ("label", "both"):
+                entry["label"] = neighbor.state.label.item() if neighbor.state.label is not None else None
+            results[node_id] = entry
         
         for node_id, data in results.items():
             agent.memory[node_id] = {
@@ -92,11 +91,11 @@ class BroadcastAction(Action):
     def execute(self, agent: 'NodeAgent', graph: 'AgenticGraph') -> Dict[str, Any]:
         """
         Execute the broadcast action.
-        
+
         Args:
             agent: The node agent executing the action
             graph: The graph environment
-            
+
         Returns:
             Dictionary containing broadcast results
         """
@@ -104,10 +103,15 @@ class BroadcastAction(Action):
             if node_id in graph.get_neighbors(agent.state.node_id):
                 neighbor = graph.get_node(node_id)
                 neighbor.receive_message(agent.state.node_id, self.message)
+
                 if node_id not in agent.memory:
                     agent.memory[node_id] = {"messages": [], "source_layer": agent.state.layer_count}
+                else:
+                    if "messages" not in agent.memory[node_id]:
+                        agent.memory[node_id]["messages"] = []
+
                 agent.memory[node_id]["messages"].append(self.message.tolist())
-        
+
         return {
             "action": "broadcast",
             "target_nodes": self.target_nodes,

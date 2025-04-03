@@ -196,45 +196,47 @@ class NodeAgent:
     def _create_action(self, decision: Dict[str, Any]) -> Optional[Action]:
         """
         Create an action based on the LLM decision.
-        
+
         Args:
             decision: Decision dictionary from the LLM
-            
+
         Returns:
             An action object or None for no-op
         """
         action_type = decision.get("action_type", "no_op")
-        
+
         if action_type == "retrieve":
             target_nodes = decision.get("target_nodes", [])
-            info_type = decision.get("info_type", "features")
+            info_type = decision.get("info_type", "text")
             return RetrieveAction(target_nodes, info_type)
-            
+
         elif action_type == "broadcast":
             target_nodes = decision.get("target_nodes", [])
             message_data = decision.get("message", [0.0])
-            
+
             # Convert message to tensor
-            if isinstance(message_data, list):
+            if isinstance(message_data, list) and all(isinstance(x, (int, float)) for x in message_data):
                 message = torch.tensor(message_data, dtype=torch.float)
+            elif isinstance(message_data, (int, float)):
+                message = torch.tensor([message_data], dtype=torch.float)
             else:
-                # Default to a simple scalar message
-                message = torch.tensor([float(message_data)], dtype=torch.float)
-                
+                # Fallback: encode string (or dict etc.) as its length
+                message = torch.tensor([len(str(message_data))], dtype=torch.float)
+
             return BroadcastAction(target_nodes, message)
-            
+
         elif action_type == "update":
             updates = {}
-            
+
             if "predicted_label" in decision:
                 label_str = decision.get("predicted_label")
                 label_id = label_vocab.get(label_str, -1)
                 if label_id != -1:
                     updates["predicted_label"] = torch.tensor(label_id)
-            
+
             if updates:
                 return UpdateAction(updates)
-        
+
         # Default to no-op
         return NoOpAction()
 

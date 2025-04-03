@@ -1,7 +1,3 @@
-"""
-Refactored LLM interface that selects backend (mock or remote) based on config.
-"""
-
 import json
 import random
 import re
@@ -60,83 +56,86 @@ class RemoteLLMInterface(BaseLLMInterface):
         total_neighbors = context["total_neighbors"]
         messages = context.get("messages", [])
         retrieved_data = context.get("retrieved_data", {})
-        memory = context.get("memory", {})
+        memory = context.get("memory", [])
 
-        prompt = f"""You are an intelligent node agent (Node {node_id}) in a graph neural network.
-    Based on your current state and observations, you need to decide what action to take.
+        prompt = f"""
+    You are an intelligent agent representing Node {node_id} in a graph.
 
-    Current Layer: {layer}
-    Your Text: {text}
-    Your Neighbors: {neighbors}{' (truncated)' if total_neighbors > len(neighbors) else ''}
-    Total Neighbors: {total_neighbors}
+    ## Your Task:
+    Based on your current state, decide your next action. Each action affects how you interact with the graph or update your knowledge.
 
+    ## Your State:
+    - Layer: {layer}
+    - Your Text: "{text}"
+    - Neighbors (can receive your broadcast): {neighbors}{' (truncated)' if total_neighbors > len(neighbors) else ''}
+    - Total Neighbors: {total_neighbors}
     """
+
+        # Seen nodes = retrieved + memory results
+        seen_nodes = set(retrieved_data.keys())
+        for m in memory:
+            if isinstance(m, dict):
+                result = m.get("result", {})
+                target_nodes = result.get("target_nodes", [])
+                if isinstance(target_nodes, int):
+                    seen_nodes.add(target_nodes)
+                elif isinstance(target_nodes, list):
+                    seen_nodes.update(target_nodes)
+
+        if seen_nodes:
+            flat_seen_nodes = list(sorted(seen_nodes))
+            prompt += f"\n## Seen Nodes:\nYou have already seen or interacted with {len(flat_seen_nodes)} nodes: {flat_seen_nodes[:10]}"
+            if len(flat_seen_nodes) > 10:
+                prompt += f" (truncated)"
 
         if retrieved_data:
-            prompt += "Retrieved data from previous actions:\n"
-            preview_count = min(3, len(retrieved_data))
-            previewed_items = list(retrieved_data.items())[:preview_count]
-            for neighbor_id, data in previewed_items:
-                prompt += f"- Node {neighbor_id}: {data}\n"
-            if len(retrieved_data) > preview_count:
-                prompt += f"(and {len(retrieved_data) - preview_count} more nodes)\n"
-            prompt += "\n"
+            prompt += "\n\n## Retrieved Data (from previous steps):\n"
+            for nid, val in list(retrieved_data.items())[:3]:
+                prompt += f"- Node {nid}: {val}\n"
+            if len(retrieved_data) > 3:
+                prompt += f"(and {len(retrieved_data) - 3} more)\n"
 
         if messages:
-            prompt += "Recent messages:\n"
+            prompt += "\n\n## Messages Received:\n"
             for msg in messages:
                 preview = msg.get("content_preview", "[no preview]")
-                prompt += f"- From Node {msg['from']} (Layer {msg['layer']}): content preview {preview}\n"
-            prompt += "\n"
+                prompt += f"- From Node {msg['from']} (Layer {msg['layer']}): {preview}\n"
 
         if memory:
-            prompt += "Memory from previous layers:\n"
-            for node_id, content in list(memory.items())[:3]:  # limit preview
-                prompt += f"- Node {node_id} (Layer {content['source_layer']}): "
-                if "features" in content:
-                    prompt += f"features: {content['features'][:5]}... "
+            prompt += "\n\n## Memory:\n"
+            for i, content in enumerate(memory[:3]):
+                prompt += f"- Memory #{i} (Layer {content.get('layer', '?')}):"
                 if "label" in content:
-                    prompt += f"label: {content['label']} "
+                    prompt += f" label={content['label']}"
+                if "action" in content:
+                    prompt += f" action={content['action']}"
+                if "result" in content and isinstance(content["result"], dict):
+                    preview = str(content["result"])[:60].replace("\n", " ")
+                    prompt += f" result={preview}"
                 prompt += "\n"
-            prompt += "\n"
 
-        prompt += """            
-    Available actions:
-    1. retrieve - Retrieve information from any nodes
-    Example: {"action_type": "retrieve", "target_nodes": [some_node_ids], "info_type": "features"}
-    - info_type can be "features", "label", or "both"
-    - You may retrieve information from any node in the graph (not just your neighbors).
-    -You are more likely to have relevant knowledge about your neighbors, but you're free to query any node.
+        prompt += """
 
+    ## Available Actions (Respond with a JSON object):
+    1. "retrieve": get information from other nodes
+    - Format: {"action_type": "retrieve", "target_nodes": [IDs], "info_type": "text"}
+    2. "broadcast": send a message to neighbors
+    - Format: {"action_type": "broadcast", "target_nodes": [IDs], "message": "some message"}
+    3. "update": decide your label
+    - Format: {"action_type": "update", "predicted_label": label_id}
+    4. "no_op": take no action
+    - Format: {"action_type": "no_op"}
 
-    2. broadcast - Send a message to neighbors
-    Example: {"action_type": "broadcast", "target_nodes": [some_node_ids], "message": [0.5, 0.3, 0.7]}
-
-    3. update - Update your own state
-    Example: {"action_type": "update", "predicted_label": some_label}
-    - When deciding to `update`, make sure you have enough evidence to predict your label.
-    - You should compare your own features with those from other nodes (retrieved or in memory). Try to find the most similar ones based on vector similarity (e.g., cosine similarity or Euclidean distance).
-    - Choose the label from the most similar node(s) if they appear trustworthy or consistent.
-    - You also have access to your internal memory. Memory stores information from earlier steps, such as:
-        - features retrieved from other nodes
-        - labels or messages you've seen before
-    - Use memory to accumulate evidence over time. For example, if you retrieved 3 neighbors' features in Layer 0 and 2 more in Layer 1, you should consider all 5 before updating.
-    - You can rely on both memory and newly retrieved data to make a confident prediction.
-    - If the evidence is strong (e.g., several similar nodes with the same label), you can safely update. Otherwise, retrieve more or choose `no_op` to wait.
-    * Summary:
-    - Use your features + memory + retrieved features.
-    - Compare vectors.
-    - Pick the most likely label.
-    - If unsure, wait or retrieve again, don't guess and update randomly.
-
-
-    4. no_op - Do nothing
-    Example: {"action_type": "no_op"}
-    If you think you have enough information, you can choose to do nothing.
-
-    Choose the action that best fits your current situation and goals. Respond with a valid JSON object.
+    ## Instructions:
+    - You may **retrieve from any node** in the graph (not limited to neighbors).
+    - You may **broadcast only to your neighbors**.
+    - Use retrieved texts and memory to reason.
+    - If you're confident based on the available data, you can update.
+    - If unsure, retrieve or no_op is safer.
+    - Keep your output strictly as a valid JSON.
     """
         return prompt
+
 
 
     def _format_layer_prompt(self, context: Dict[str, Any]) -> str:
@@ -160,7 +159,7 @@ class MockLLMInterface(BaseLLMInterface):
     def decide_action(self, context: Dict[str, Any]) -> Dict[str, Any]:
         if context.get("layer", 0) == 0 and context.get("neighbors"):
             sample = random.sample(context["neighbors"], min(3, len(context["neighbors"])))
-            return {"action_type": "retrieve", "target_nodes": sample, "info_type": "features"}
+            return {"action_type": "retrieve", "target_nodes": sample, "info_type": "text"}
         return {"action_type": "update", "predicted_label": random.randint(0, 39)}
 
     def determine_next_layer(self, context: Dict[str, Any]) -> bool:
@@ -180,7 +179,7 @@ class LLMInterface(BaseLLMInterface):
             raise ValueError(f"Unsupported LLM_BACKEND: {self.backend}")
 
     def generate_response(self, prompt: str) -> str:
-        print("📤 [DEBUG] Prompt being sent to vLLM:\n", prompt) 
+        print("📤 [DEBUG] Prompt being sent to vLLM:\n", prompt)
         return self.impl.generate_response(prompt)
 
     def decide_action(self, context: Dict[str, Any]) -> Dict[str, Any]:
