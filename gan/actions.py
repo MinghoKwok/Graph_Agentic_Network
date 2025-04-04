@@ -63,10 +63,13 @@ class RetrieveAction(Action):
 
                 if entry:
                     results[node_id] = entry
-                    agent.memory[node_id] = {
-                        **entry,
-                        "source_layer": agent.state.layer_count
-                    }
+                    if "label" in entry and entry["label"] is not None:
+                        agent.memory[node_id] = {
+                            **entry,
+                            "source_layer": agent.state.layer_count
+                        }
+                    else:
+                        print(f"⛔ Skipped adding Node {node_id} to memory (no label)")
                 else:
                     not_found.append(node_id)
             else:
