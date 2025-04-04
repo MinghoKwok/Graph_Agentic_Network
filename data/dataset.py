@@ -65,31 +65,46 @@ def load_ogb_arxiv(root: str = os.path.join(config.DATA_DIR, 'ogbn-arxiv')) -> D
         'num_nodes': num_nodes
     }
 
-def load_cora(jsonl_path: str = "data/cora/cora_text_graph_simplified.jsonl") -> Dict[str, Any]:
+def load_cora(
+    jsonl_path: str = "data/cora/cora_text_graph_simplified.jsonl",
+    edge_path: str = "data/cora/cora.cites"
+) -> Dict[str, Any]:
     """
-    Load Cora dataset from a preprocessed JSONL file with text and labels.
-    Assumes file format: {"node_id": int, "text": str, "label": int}
+    Load Cora dataset using simplified JSONL + true citation edges.
     """
-    print(f"Loading Cora text dataset from {jsonl_path}")
+    print(f"🔄 Loading Cora dataset from {jsonl_path} and {edge_path}")
+
+    # Step 1: 加载节点信息
     with open(jsonl_path, 'r') as f:
         lines = f.readlines()
 
     node_texts = {}
+    paperid_to_nodeid = {}
     labels = {}
+
     for line in lines:
         item = json.loads(line)
-        node_id = int(item["node_id"])
-        node_texts[node_id] = item["text"]
-        labels[node_id] = item["label"]
+        nid = int(item["node_id"])
+        pid = int(item["paper_id"])
+        node_texts[nid] = item["text"]
+        labels[nid] = label_vocab[item["label"]]
+        paperid_to_nodeid[pid] = nid
 
     num_nodes = len(node_texts)
-    labels_tensor = torch.tensor([label_vocab[labels[i]] for i in range(num_nodes)], dtype=torch.long)
+    labels_tensor = torch.tensor([labels[i] for i in range(num_nodes)], dtype=torch.long)
 
+    # Step 2: 构建邻接矩阵（真实边）
+    adj_matrix = torch.zeros((num_nodes, num_nodes))
+    with open(edge_path, "r") as f:
+        for line in f:
+            src_pid, tgt_pid = map(int, line.strip().split())
+            if src_pid in paperid_to_nodeid and tgt_pid in paperid_to_nodeid:
+                src = paperid_to_nodeid[src_pid]
+                tgt = paperid_to_nodeid[tgt_pid]
+                adj_matrix[src, tgt] = 1
+                adj_matrix[tgt, src] = 1  # 无向边
 
-    # Dummy adjacency: fully connected graph or empty — replace if you have real edges
-    adj_matrix = torch.eye(num_nodes)
-
-    # Train/val/test split (e.g., 60/20/20)
+    # Step 3: 划分 train/val/test
     perm = torch.randperm(num_nodes)
     train_size = int(0.6 * num_nodes)
     val_size = int(0.2 * num_nodes)
@@ -99,7 +114,7 @@ def load_cora(jsonl_path: str = "data/cora/cora_text_graph_simplified.jsonl") ->
 
     return {
         'adj_matrix': adj_matrix,
-        'node_features': torch.zeros((num_nodes, 1)),  # Dummy for GCN baseline
+        'node_features': torch.zeros((num_nodes, 1)),  # Dummy feature
         'labels': labels_tensor,
         'train_idx': train_idx,
         'val_idx': val_idx,

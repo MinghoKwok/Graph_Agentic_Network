@@ -49,28 +49,41 @@ class RetrieveAction(Action):
             Dictionary containing retrieved information
         """
         results = {}
+        not_found = []
+
         for node_id in self.target_nodes:
             neighbor = graph.get_node(node_id)
-            if neighbor is None:
-                continue
-            entry = {}
-            if self.info_type in ("text", "both"):
-                entry["text"] = neighbor.state.text
-            if self.info_type in ("label", "both"):
-                entry["label"] = neighbor.state.label.item() if neighbor.state.label is not None else None
-            results[node_id] = entry
-        
-        for node_id, data in results.items():
-            agent.memory[node_id] = {
-                 **data,
-                "source_layer": agent.state.layer_count
-            }
-        
+
+            if neighbor is not None:
+                entry = {}
+                if self.info_type in ("text", "both") and neighbor.state.text:
+                    entry["text"] = neighbor.state.text
+                if self.info_type in ("label", "both"):
+                    entry["label"] = neighbor.state.label.item() if neighbor.state.label is not None else None
+
+                if entry:
+                    results[node_id] = entry
+                    agent.memory[node_id] = {
+                        **entry,
+                        "source_layer": agent.state.layer_count
+                    }
+                else:
+                    not_found.append(node_id)
+            else:
+                mem_data = agent.memory.get(node_id)
+                if mem_data and self.info_type in mem_data:
+                    results[node_id] = {
+                        k: mem_data[k] for k in ("text", "label") if k in mem_data
+                    }
+                else:
+                    not_found.append(node_id)
+
         return {
             "action": "retrieve",
             "info_type": self.info_type,
             "target_nodes": self.target_nodes,
-            "results": results
+            "results": results,
+            "not_found": not_found
         }
 
 

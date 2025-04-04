@@ -92,7 +92,9 @@ class NodeAgent:
             self.state.memory.append({
                 "layer": layer,
                 "action": result.get("action", "unknown"),
-                "result": result
+                "result": result,
+                "text": self.state.text,
+                "label": self.state.label.item() if self.state.label is not None else None
             })
 
         # Print debug summaries
@@ -118,7 +120,7 @@ class NodeAgent:
             if action_type == "retrieve":
                 targets = result.get("target_nodes", [])
                 results = result.get("results", {})
-                print(f"  📥 Retrieved from {len(targets)} neighbor(s):")
+                print(f"  📥 Retrieved from {len(targets)} target(s):")
                 for tid in targets:
                     if tid in results:
                         preview = results[tid]
@@ -164,7 +166,8 @@ class NodeAgent:
             Dictionary containing context information
         """
         # Get neighbors
-        neighbors = graph.get_neighbors(self.state.node_id)
+        neighbors = [nid for nid in graph.get_neighbors(self.state.node_id) if nid != self.state.node_id]
+        print(f"🔍 Neighbors in prepare_context: {neighbors}")
         
         # Prepare messages
         messages = []
