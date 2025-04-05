@@ -63,105 +63,97 @@ class RemoteLLMInterface(BaseLLMInterface):
         messages = context.get("messages", [])
         retrieved_data = context.get("retrieved_data", {})
         memory = context.get("memory", [])
-        print(f"🔍 Neighbors: {neighbors}")
 
-        # Build seen node set
         seen_nodes = set(retrieved_data.keys())
         for m in memory:
             if isinstance(m, dict):
                 result = m.get("result", {})
-                targets = result.get("target_nodes", [])
-                if isinstance(targets, int):
-                    seen_nodes.add(targets)
-                elif isinstance(targets, list):
-                    seen_nodes.update(targets)
+                target_nodes = result.get("target_nodes", [])
+                if isinstance(target_nodes, int):
+                    seen_nodes.add(target_nodes)
+                elif isinstance(target_nodes, list):
+                    seen_nodes.update(target_nodes)
 
-        # Compute available candidates for retrieve
         available_nodes = sorted(set(neighbors) - seen_nodes)
 
         prompt = f"""
-    You are Node {node_id} at Layer {layer}. Decide your next action.
+You are an intelligent agent for Node {node_id} in a graph.
 
-    ## Your Text
-    "{text}"
+Your goal is to decide the best next action based on the current layer and known information.
 
-    ## Neighbors ({len(neighbors)} total)
-    {neighbors[:10]}{' (truncated)' if len(neighbors) > 10 else ''}
+## Node Info:
+- Layer: {layer}
+- Text: \"{text}\"
+- Neighbors: {neighbors}
+- Available nodes to retrieve from (excluding already seen): {available_nodes}
+"""
 
-    ## Seen Nodes ({len(seen_nodes)})
-    {list(seen_nodes)[:10]}{' (truncated)' if len(seen_nodes) > 10 else ''}
+        if retrieved_data:
+            prompt += "\n## Retrieved Data:\n"
+            for nid, val in list(retrieved_data.items())[:3]:
+                prompt += f"- Node {nid}: {val}\n"
+            if len(retrieved_data) > 3:
+                prompt += f"(and {len(retrieved_data) - 3} more)\n"
 
-    ## Available Nodes for Retrieve
-    {available_nodes[:10] if available_nodes else 'None'}{' (truncated)' if len(available_nodes) > 10 else ''}
+        if messages:
+            prompt += "\n## Messages Received:\n"
+            for msg in messages:
+                preview = msg.get("content_preview", "[no preview]")
+                prompt += f"- From Node {msg['from']} (Layer {msg['layer']}): {preview}\n"
 
-    ## Retrieved Data (max 3 shown)
-    """ + "\n".join([
-        f"- Node {nid}: {retrieved_data[nid]}"
-        for nid in list(retrieved_data)[:3]
-    ]) + ("\n...(truncated)" if len(retrieved_data) > 3 else "") + """
+        if memory:
+            prompt += "\n## Memory:\n"
+            for i, content in enumerate(memory[:3]):
+                prompt += f"- Memory #{i} (Layer {content.get('layer', '?')}):"
+                if "label" in content:
+                    prompt += f" label={content['label']}"
+                if "action" in content:
+                    prompt += f" action={content['action']}"
+                if "result" in content and isinstance(content["result"], dict):
+                    preview = str(content["result"])[:60].replace("\n", " ")
+                    prompt += f" result={preview}"
+                prompt += "\n"
 
-    ## Messages Received (max 3)
-    """ + "\n".join([
-        f"- From Node {m['from']}: {m.get('content_preview', '[no preview]')}"
-        for m in messages[:3]
-    ]) + ("\n...(truncated)" if len(messages) > 3 else "") + """
+        prompt += """
 
-    ## Memory (max 2)
-    """ + "\n".join([
-        f"- Layer {m.get('layer', '?')} | Action={m.get('action')} | Label={m.get('label', '-')}"
-        for m in memory[:2]
-    ]) + ("\n...(truncated)" if len(memory) > 2 else "") + """
+## Question:
+Can you now classify this node? If yes, choose `update`. If more info is needed, choose `retrieve`. If unsure, choose `no_op`.
 
-    ## Action Options (reply with JSON only)
-    1. 📥 Retrieve    
-    - Retrieve all nodes from {neighbors} list (integer IDs)
-    - Syntax: {{ "action_type": "retrieve", "target_nodes": [Retrieve IDs], "info_type": "text" }}
+## Label Index Mapping:
+0: Case_Based
+1: Genetic_Algorithms
+2: Neural_Networks
+3: Probabilistic_Methods
+4: Reinforcement_Learning
+5: Rule_Learning
+6: Theory
 
-    2. 📢 Broadcast
-    - Broadcast message to all {neighbors} (integer IDs)
-    - Syntax: {{ "action_type": "broadcast", "target_nodes": [Broadcast IDs], "message": "..." }}  
-
-    3. 🎯 Update  
-    - Syntax: {{ "action_type": "update", "predicted_label": label_id }}
-
-    4. 💤 No Operation  
-    - Syntax: {{ "action_type": "no_op" }}
-
-    ### 🔍 Retrieve Tips
-    - Choose from **Available Nodes for Retrieve**
-    - Only use **integer node IDs**
-    - Avoid any node in **Seen Nodes**
-
-    Reply with:
-    {"action_type": "...", "target_nodes": [...], ...}
-    """
-
+## Action Options (respond with JSON only):
+1. Retrieve → {"action_type": "retrieve", "target_nodes": [IDs], "info_type": "text"}
+2. Broadcast → {"action_type": "broadcast", "target_nodes": [IDs], "message": "..."}
+3. Update label → {"action_type": "update", "predicted_label": label_id}
+4. No-op → {"action_type": "no_op"}
+"""
         return prompt
 
     def _format_layer_prompt(self, context: Dict[str, Any]) -> str:
-        return f"""You are the controller for a graph neural network.\n\nThe network has completed layer {context['current_layer']} of processing.\n\nMax layers: {context['max_layers']}\nCurrent layer: {context['current_layer']}\n\nBased on the progress, decide whether to:\n1. Continue to the next layer\n2. End processing and output final results\n\nRespond with either \"continue\" or \"end\".\n"""
+        return f"""You are the controller for a graph neural network.\n\nThe network has completed layer {context['current_layer']} of processing.\n\nMax layers: {context['max_layers']}\nCurrent layer: {context['current_layer']}\n\nBased on the progress, decide whether to:\n1. Continue to the next layer\n2. End processing and output final results\n\nRespond with either \"continue\" or \"end\"."""
 
     def _parse_action(self, response: str) -> Dict[str, Any]:
-        import re, json
         try:
-            # 尝试从 ```json\n{...}\n``` 或纯 {...} 中提取
             code_blocks = re.findall(r"```json\s*({.*?})\s*```", response, re.DOTALL)
             if not code_blocks:
                 code_blocks = re.findall(r"({.*?})", response, re.DOTALL)
-
             for block in code_blocks:
                 try:
-                    cleaned = re.sub(r"//.*", "", block)  # 去掉注释
+                    cleaned = re.sub(r"//.*", "", block)
                     parsed = json.loads(cleaned)
-
-                    # 清洗 target_nodes
                     if parsed.get("action_type") == "retrieve":
                         parsed["target_nodes"] = [
                             int(re.sub(r"[^\d]", "", str(nid)))
                             for nid in parsed.get("target_nodes", [])
                             if re.sub(r"[^\d]", "", str(nid)).isdigit()
                         ]
-
                     return parsed
                 except Exception:
                     continue
@@ -178,7 +170,7 @@ class MockLLMInterface(BaseLLMInterface):
         if context.get("layer", 0) == 0 and context.get("neighbors"):
             sample = random.sample(context["neighbors"], min(3, len(context["neighbors"])))
             return {"action_type": "retrieve", "target_nodes": sample, "info_type": "text"}
-        return {"action_type": "update", "predicted_label": random.randint(0, 39)}
+        return {"action_type": "update", "predicted_label": random.randint(0, 6)}
 
     def determine_next_layer(self, context: Dict[str, Any]) -> bool:
         return True
