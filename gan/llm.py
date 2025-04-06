@@ -2,7 +2,7 @@ import json
 import random
 import re
 import requests
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
 import config
 
 
@@ -171,6 +171,34 @@ Based on your text and memory, you should select one of the following actions:
             print(f"[RemoteLLMInterface] Failed to parse response: {e}")
         return {"action_type": "no_op"}
 
+    def _format_fallback_label_prompt(self, node_text: str, memory: List[Dict[str, Any]]) -> str:
+        """
+        Format a prompt for fallback label prediction using labeled examples from memory.
+        
+        Args:
+            node_text: The text to classify
+            memory: List of memory entries containing labeled examples
+            
+        Returns:
+            Formatted prompt string
+        """
+        from data.cora.label_vocab import inv_label_vocab
+        
+        prompt = "You are given a scientific paper text and several labeled examples. Predict the most likely label.\n\n"
+        prompt += f"Text to classify:\n\"{node_text}\"\n\n"
+        prompt += "Labeled examples:\n"
+        
+        # Filter memory entries that have valid labels
+        labeled_examples = [m for m in memory if m.get("label") is not None]
+        
+        for m in labeled_examples[:5]:  # Use at most 5 examples
+            lbl = inv_label_vocab.get(m["label"], "?")
+            txt = m["text"][:60] + "..." if len(m["text"]) > 60 else m["text"]
+            prompt += f"- [{lbl}] \"{txt}\"\n"
+            
+        prompt += "\nRespond with:\n{\"action_type\": \"update\", \"predicted_label\": \"label_string\"}\n"
+        return prompt
+
 
 class MockLLMInterface(BaseLLMInterface):
     def generate_response(self, prompt: str) -> str:
@@ -207,3 +235,9 @@ class LLMInterface(BaseLLMInterface):
 
     def determine_next_layer(self, context: Dict[str, Any]) -> bool:
         return self.impl.determine_next_layer(context)
+
+    def _format_fallback_label_prompt(self, node_text: str, memory: List[Dict[str, Any]]) -> str:
+        return self.impl._format_fallback_label_prompt(node_text, memory)
+
+    def parse_action(self, response: str) -> Dict[str, Any]:
+        return self.impl._parse_action(response)

@@ -37,6 +37,9 @@ Run a node classification experiment on the OGB-Arxiv dataset:
 ```bash
 python -m experiments.node_classification
 ```
+```bash
+CUDA_VISIBLE_DEVICES=2 python experiments/node_classification_backup.py   --config configs/gan_v2.yaml   --output-dir results/gan_v2/
+```
 
 
 ```bash

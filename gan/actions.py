@@ -108,30 +108,43 @@ class BroadcastAction(Action):
         """
         Execute the broadcast action.
 
-        Args:
-            agent: The node agent executing the action
-            graph: The graph environment
-
-        Returns:
-            Dictionary containing broadcast results
+        Rules:
+        1. If the current node has predicted_label:
+            - Broadcast {"text": text, "predicted_label": int}
+        2. Else if the current node has memory:
+            - Broadcast the entire memory (e.g. a list of dicts)
+        3. Else:
+            - Fallback to no_op
         """
+        message_payload = None
+
+        if agent.state.predicted_label is not None:
+            message_payload = {
+                "text": agent.state.text,
+                "predicted_label": agent.state.predicted_label.item()
+            }
+        elif agent.memory:
+            message_payload = list(agent.memory.values())
+
+        if message_payload is None:
+            return {"action": "no_op"}
+
         for node_id in self.target_nodes:
             if node_id in graph.get_neighbors(agent.state.node_id):
                 neighbor = graph.get_node(node_id)
-                neighbor.receive_message(agent.state.node_id, self.message)
+                neighbor.receive_message(agent.state.node_id, torch.tensor([0.0]))  # dummy message
 
                 if node_id not in agent.memory:
                     agent.memory[node_id] = {"messages": [], "source_layer": agent.state.layer_count}
-                else:
-                    if "messages" not in agent.memory[node_id]:
-                        agent.memory[node_id]["messages"] = []
+                if "messages" not in agent.memory[node_id]:
+                    agent.memory[node_id]["messages"] = []
 
-                agent.memory[node_id]["messages"].append(self.message.tolist())
+                agent.memory[node_id]["messages"].append(message_payload)
 
         return {
             "action": "broadcast",
             "target_nodes": self.target_nodes,
-            "message_size": self.message.size()
+            "message": message_payload
         }
 
 
