@@ -66,7 +66,11 @@ class RemoteLLMInterface(BaseLLMInterface):
         retrieved_data = context.get("retrieved_data", {})
         memory = context.get("memory", [])
 
-        # Seen nodes = retrieved + memory results
+        # NEW: label & broadcast status
+        node_label = context.get("label") or context.get("predicted_label")
+        has_broadcasted = context.get("has_broadcasted", False)
+
+        # Build seen & available nodes
         seen_nodes = set(retrieved_data.keys())
         for m in memory:
             if isinstance(m, dict):
@@ -76,30 +80,30 @@ class RemoteLLMInterface(BaseLLMInterface):
                     seen_nodes.add(target_nodes)
                 elif isinstance(target_nodes, list):
                     seen_nodes.update(target_nodes)
-
         flat_seen_nodes = list(sorted(seen_nodes))
         available_nodes = sorted(set(neighbors) - seen_nodes)
 
+        # Instruction
         prompt = f"""
-You are an intelligent node agent responsible for predicting the correct label for a node in a scientific graph.
+    You are an intelligent node agent responsible for predicting the correct label for a node in a scientific graph.
 
-## Your State:
-- Node ID: {node_id}
-- Layer: {layer}
-- Your Text:
-"{text}"
-- Neighbors: {neighbors if neighbors else 'None'}
-- Available nodes to retrieve (excluding seen): {available_nodes if available_nodes else 'None'}
-        """
+    ## Your State:
+    - Node ID: {node_id}
+    - Layer: {layer}
+    - Your Text:
+    \"{text}\"
+    - Neighbors: {neighbors if neighbors else 'None'}
+    - Available nodes to retrieve (excluding seen): {available_nodes if available_nodes else 'None'}
+    """
 
         # Label prediction section
         label_list = ", ".join([f"{i}. {label}" for i, label in inv_label_vocab.items()])
         prompt += f"""
 
-## Label Categories:
-You must classify the node into one of the following categories:
-{label_list}
-"""
+    ## Label Categories:
+    You must classify the node into one of the following categories:
+    {label_list}
+    """
 
         # Memory examples with label
         labeled_examples = [m for m in memory if m.get("label") is not None and m.get("text")]
@@ -124,25 +128,32 @@ You must classify the node into one of the following categories:
             if len(retrieved_data) > 3:
                 prompt += f"(and {len(retrieved_data) - 3} more)\n"
 
+        # ✅ NEW SECTION: encourage broadcasting if node has label and hasn't broadcasted yet
+        if node_label is not None and not has_broadcasted:
+            prompt += f"""
+
+    ⚠️ You already have a label: "{node_label}". You may consider broadcasting this label and your text to your neighbors to help them in their predictions.
+    """
+
         # Final instruction
         prompt += """
 
-## Decide Your Next Action
-Based on your text and memory, you should select one of the following actions:
+    ## Decide Your Next Action
+    Based on your text and memory, you should select one of the following actions:
 
-1. "retrieve": get information from other nodes
-   - Format: {"action_type": "retrieve", "target_nodes": [IDs], "info_type": "text"}
+    1. "retrieve": get information from other nodes
+    - Format: {"action_type": "retrieve", "target_nodes": [IDs], "info_type": "text"}
 
-2. "broadcast": send a message to neighbors
-   - Format: {"action_type": "broadcast", "target_nodes": [IDs], "message": "some message"}
+    2. "broadcast": send a message to neighbors
+    - Format: {"action_type": "broadcast", "target_nodes": [IDs], "message": "some message"}
 
-3. "update": decide your label
-   - Format: {"action_type": "update", "predicted_label": "label_string"}
-   - ⚠️ Only use memory to infer your label. You **must** base the prediction only on nodes in memory with known labels.
+    3. "update": decide your label
+    - Format: {"action_type": "update", "predicted_label": "label_string"}
+    - ⚠️ Only use memory to infer your label. You **must** base the prediction only on nodes in memory with known labels.
 
-4. "no_op": take no action
-   - Format: {"action_type": "no_op"}
-"""
+    4. "no_op": take no action
+    - Format: {"action_type": "no_op"}
+    """
 
         return prompt
 

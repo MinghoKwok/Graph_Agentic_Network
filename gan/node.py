@@ -61,8 +61,9 @@ class NodeAgent:
                 "label": self.state.label.item() if self.state.label is not None else None
             })
 
-        # Fallback update logic
-        if (self.state.predicted_label is None and 
+        # Fallback update logic - only trigger in the last layer
+        if (layer == NUM_LAYERS - 1 and  # Only in last layer
+            self.state.predicted_label is None and 
             result.get("action") != "update" and 
             any(m.get("label") is not None for m in self.state.memory)):
             
@@ -73,7 +74,7 @@ class NodeAgent:
             )
             
             # Get fallback decision from LLM
-            fallback_decision = self.llm.parse_action(
+            fallback_decision = self.llm._parse_action(
                 self.llm.generate_response(fallback_prompt)
             )
             

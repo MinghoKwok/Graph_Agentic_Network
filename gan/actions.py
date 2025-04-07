@@ -91,7 +91,7 @@ class RetrieveAction(Action):
 
 
 class BroadcastAction(Action):
-    """Action to broadcast information to selected neighbors."""
+    """Broadcast message to target nodes."""
     
     def __init__(self, target_nodes: List[int], message: torch.Tensor):
         """
@@ -106,45 +106,70 @@ class BroadcastAction(Action):
         
     def execute(self, agent: 'NodeAgent', graph: 'AgenticGraph') -> Dict[str, Any]:
         """
-        Execute the broadcast action.
-
-        Rules:
-        1. If the current node has predicted_label:
-            - Broadcast {"text": text, "predicted_label": int}
-        2. Else if the current node has memory:
-            - Broadcast the entire memory (e.g. a list of dicts)
-        3. Else:
-            - Fallback to no_op
+        Execute broadcast action to target nodes.
+        
+        Args:
+            agent: The node agent executing the action
+            graph: The graph containing all nodes
+            
+        Returns:
+            Dictionary containing action results
         """
+        if not self.target_nodes:
+            return {"action": "no_op", "message": None, "target_nodes": []}
+            
+        # Prepare message payload based on available information
         message_payload = None
-
+        
+        # Case 1: Broadcast predicted label if available
         if agent.state.predicted_label is not None:
             message_payload = {
                 "text": agent.state.text,
                 "predicted_label": agent.state.predicted_label.item()
             }
-        elif agent.memory:
-            message_payload = list(agent.memory.values())
-
+        # Case 2: Broadcast labeled examples from memory if available
+        elif agent.state.memory:
+            labeled_examples = [
+                m for m in agent.state.memory 
+                if m.get("label") is not None
+            ]
+            if labeled_examples:
+                message_payload = labeled_examples
+                
+        # If no valid message payload, return no_op
         if message_payload is None:
-            return {"action": "no_op"}
-
-        for node_id in self.target_nodes:
-            if node_id in graph.get_neighbors(agent.state.node_id):
-                neighbor = graph.get_node(node_id)
-                neighbor.receive_message(agent.state.node_id, torch.tensor([0.0]))  # dummy message
-
-                if node_id not in agent.memory:
-                    agent.memory[node_id] = {"messages": [], "source_layer": agent.state.layer_count}
-                if "messages" not in agent.memory[node_id]:
-                    agent.memory[node_id]["messages"] = []
-
-                agent.memory[node_id]["messages"].append(message_payload)
-
+            return {"action": "no_op", "message": None, "target_nodes": []}
+            
+        # Send message to target nodes
+        for target_id in self.target_nodes:
+            target_agent = graph.get_node(target_id)
+            if target_agent:
+                # Check for duplicate messages in target's memory
+                is_duplicate = False
+                for m in target_agent.state.memory:
+                    if isinstance(m, dict) and m.get("action") == "broadcast":
+                        if (isinstance(message_payload, dict) and 
+                            m.get("result", {}).get("message") == message_payload):
+                            is_duplicate = True
+                            break
+                        elif (isinstance(message_payload, list) and 
+                              m.get("result", {}).get("message") == message_payload):
+                            is_duplicate = True
+                            break
+                            
+                if not is_duplicate:
+                    target_agent.state.memory.append({
+                        "action": "broadcast",
+                        "result": {
+                            "message": message_payload,
+                            "source": agent.state.node_id
+                        }
+                    })
+                    
         return {
             "action": "broadcast",
-            "target_nodes": self.target_nodes,
-            "message": message_payload
+            "message": message_payload,
+            "target_nodes": self.target_nodes
         }
 
 
