@@ -2,7 +2,7 @@ import json
 import random
 import re
 import requests
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, List
 import config
 
 
@@ -55,6 +55,8 @@ class RemoteLLMInterface(BaseLLMInterface):
         return "continue" in response.lower()
 
     def _format_action_prompt(self, context: Dict[str, Any]) -> str:
+        from data.cora.label_vocab import inv_label_vocab
+
         node_id = context["node_id"]
         layer = context["layer"]
         text = context.get("text", "")
@@ -64,6 +66,11 @@ class RemoteLLMInterface(BaseLLMInterface):
         retrieved_data = context.get("retrieved_data", {})
         memory = context.get("memory", [])
 
+        # NEW: label & broadcast status
+        node_label = context.get("label") or context.get("predicted_label")
+        has_broadcasted = context.get("has_broadcasted", False)
+
+        # Build seen & available nodes
         seen_nodes = set(retrieved_data.keys())
         for m in memory:
             if isinstance(m, dict):
@@ -73,67 +80,81 @@ class RemoteLLMInterface(BaseLLMInterface):
                     seen_nodes.add(target_nodes)
                 elif isinstance(target_nodes, list):
                     seen_nodes.update(target_nodes)
-
+        flat_seen_nodes = list(sorted(seen_nodes))
         available_nodes = sorted(set(neighbors) - seen_nodes)
 
+        # Instruction
         prompt = f"""
-You are an intelligent agent for Node {node_id} in a graph.
+    You are an intelligent node agent responsible for predicting the correct label for a node in a scientific graph.
 
-Your goal is to decide the best next action based on the current layer and known information.
+    ## Your State:
+    - Node ID: {node_id}
+    - Layer: {layer}
+    - Your Text:
+    \"{text}\"
+    - Neighbors: {neighbors if neighbors else 'None'}
+    - Available nodes to retrieve (excluding seen): {available_nodes if available_nodes else 'None'}
+    """
 
-## Node Info:
-- Layer: {layer}
-- Text: \"{text}\"
-- Neighbors: {neighbors}
-- Available nodes to retrieve from (excluding already seen): {available_nodes}
-"""
+        # Label prediction section
+        label_list = ", ".join([f"{i}. {label}" for i, label in inv_label_vocab.items()])
+        prompt += f"""
+
+    ## Label Categories:
+    You must classify the node into one of the following categories:
+    {label_list}
+    """
+
+        # Memory examples with label
+        labeled_examples = [m for m in memory if m.get("label") is not None and m.get("text")]
+        if labeled_examples:
+            prompt += "\n## Memory Examples with Known Labels:\n"
+            prompt += "Refer to the following labeled nodes to help predict the label of the current node:\n"
+            for i, ex in enumerate(labeled_examples[:5]):
+                lbl = inv_label_vocab.get(ex["label"], "?")
+                prompt += f"{i+1}. [{lbl}] \"{ex['text'][:60]}\"\n"
+
+        # Received messages summary
+        if messages:
+            prompt += "\n## Messages Received:\n"
+            for msg in messages:
+                preview = msg.get("content_preview", "[no preview]")
+                prompt += f"- From Node {msg['from']} (Layer {msg['layer']}): Preview={preview}\n"
 
         if retrieved_data:
-            prompt += "\n## Retrieved Data:\n"
+            prompt += "\n## Retrieved Data (from previous steps):\n"
             for nid, val in list(retrieved_data.items())[:3]:
                 prompt += f"- Node {nid}: {val}\n"
             if len(retrieved_data) > 3:
                 prompt += f"(and {len(retrieved_data) - 3} more)\n"
 
-        if messages:
-            prompt += "\n## Messages Received:\n"
-            for msg in messages:
-                preview = msg.get("content_preview", "[no preview]")
-                prompt += f"- From Node {msg['from']} (Layer {msg['layer']}): {preview}\n"
+        # ✅ NEW SECTION: encourage broadcasting if node has label and hasn't broadcasted yet
+        if node_label is not None and not has_broadcasted:
+            prompt += f"""
 
-        if memory:
-            prompt += "\n## Memory:\n"
-            for i, content in enumerate(memory[:3]):
-                prompt += f"- Memory #{i} (Layer {content.get('layer', '?')}):"
-                if "label" in content:
-                    prompt += f" label={content['label']}"
-                if "action" in content:
-                    prompt += f" action={content['action']}"
-                if "result" in content and isinstance(content["result"], dict):
-                    preview = str(content["result"])[:60].replace("\n", " ")
-                    prompt += f" result={preview}"
-                prompt += "\n"
+    ⚠️ You already have a label: "{node_label}". You may consider broadcasting this label and your text to your neighbors to help them in their predictions.
+    """
 
+        # Final instruction
         prompt += """
 
-## Question:
-Can you now classify this node? If yes, choose `update`. If more info is needed, choose `retrieve`. If unsure, choose `no_op`.
+    ## Decide Your Next Action
+    Based on your text and memory, you should select one of the following actions:
 
-## Label Index Mapping:
-0: Case_Based
-1: Genetic_Algorithms
-2: Neural_Networks
-3: Probabilistic_Methods
-4: Reinforcement_Learning
-5: Rule_Learning
-6: Theory
+    1. "retrieve": get information from other nodes
+    - Format: {"action_type": "retrieve", "target_nodes": [IDs], "info_type": "text"}
 
-## Action Options (respond with JSON only):
-1. Retrieve → {"action_type": "retrieve", "target_nodes": [IDs], "info_type": "text"}
-2. Broadcast → {"action_type": "broadcast", "target_nodes": [IDs], "message": "..."}
-3. Update label → {"action_type": "update", "predicted_label": label_id}
-4. No-op → {"action_type": "no_op"}
-"""
+    2. "broadcast": send a message to neighbors
+    - Format: {"action_type": "broadcast", "target_nodes": [IDs], "message": "some message"}
+
+    3. "update": decide your label
+    - Format: {"action_type": "update", "predicted_label": "label_string"}
+    - ⚠️ Only use memory to infer your label. You **must** base the prediction only on nodes in memory with known labels.
+
+    4. "no_op": take no action
+    - Format: {"action_type": "no_op"}
+    """
+
         return prompt
 
     def _format_layer_prompt(self, context: Dict[str, Any]) -> str:
@@ -160,6 +181,34 @@ Can you now classify this node? If yes, choose `update`. If more info is needed,
         except Exception as e:
             print(f"[RemoteLLMInterface] Failed to parse response: {e}")
         return {"action_type": "no_op"}
+
+    def _format_fallback_label_prompt(self, node_text: str, memory: List[Dict[str, Any]]) -> str:
+        """
+        Format a prompt for fallback label prediction using labeled examples from memory.
+        
+        Args:
+            node_text: The text to classify
+            memory: List of memory entries containing labeled examples
+            
+        Returns:
+            Formatted prompt string
+        """
+        from data.cora.label_vocab import inv_label_vocab
+        
+        prompt = "You are given a scientific paper text and several labeled examples. Predict the most likely label.\n\n"
+        prompt += f"Text to classify:\n\"{node_text}\"\n\n"
+        prompt += "Labeled examples:\n"
+        
+        # Filter memory entries that have valid labels
+        labeled_examples = [m for m in memory if m.get("label") is not None]
+        
+        for m in labeled_examples[:5]:  # Use at most 5 examples
+            lbl = inv_label_vocab.get(m["label"], "?")
+            txt = m["text"][:60] + "..." if len(m["text"]) > 60 else m["text"]
+            prompt += f"- [{lbl}] \"{txt}\"\n"
+            
+        prompt += "\nRespond with:\n{\"action_type\": \"update\", \"predicted_label\": \"label_string\"}\n"
+        return prompt
 
 
 class MockLLMInterface(BaseLLMInterface):
@@ -197,3 +246,9 @@ class LLMInterface(BaseLLMInterface):
 
     def determine_next_layer(self, context: Dict[str, Any]) -> bool:
         return self.impl.determine_next_layer(context)
+
+    def _format_fallback_label_prompt(self, node_text: str, memory: List[Dict[str, Any]]) -> str:
+        return self.impl._format_fallback_label_prompt(node_text, memory)
+
+    def parse_action(self, response: str) -> Dict[str, Any]:
+        return self.impl._parse_action(response)

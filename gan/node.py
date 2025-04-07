@@ -61,22 +61,41 @@ class NodeAgent:
                 "label": self.state.label.item() if self.state.label is not None else None
             })
 
-        if layer == NUM_LAYERS - 1 and self.state.predicted_label is None:
-            print(f"[Fallback Update] Node {self.state.node_id} had no prediction, forcing update")
-            context = self._prepare_context(graph)
-            fallback_decision = self.llm.decide_action(context)
-            if fallback_decision.get("action_type") != "update":
-                fallback_decision = {"action_type": "update", "predicted_label": "Theory"}  # 默认 fallback 类别
-            fallback_action = self._create_action(fallback_decision)
-            if fallback_action:
-                fallback_result = fallback_action.execute(self, graph)
-                self.state.memory.append({
-                    "layer": layer,
-                    "action": fallback_result.get("action", "fallback_update"),
-                    "result": fallback_result,
-                    "text": self.state.text,
-                    "label": self.state.label.item() if self.state.label is not None else None
-                })
+        # Fallback update logic - only trigger in the last layer
+        if (layer == NUM_LAYERS - 1 and  # Only in last layer
+            self.state.predicted_label is None and 
+            result.get("action") != "update" and 
+            any(m.get("label") is not None for m in self.state.memory)):
+            
+            # Create fallback prompt using labeled examples from memory
+            fallback_prompt = self.llm._format_fallback_label_prompt(
+                self.state.text,
+                self.state.memory
+            )
+            
+            # Get fallback decision from LLM
+            fallback_decision = self.llm._parse_action(
+                self.llm.generate_response(fallback_prompt)
+            )
+            
+            # Ensure the decision is an update action
+            if fallback_decision.get("action_type") == "update":
+                fallback_action = self._create_action(fallback_decision)
+                if fallback_action:
+                    fallback_result = fallback_action.execute(self, graph)
+                    # Append fallback result to memory
+                    self.state.memory.append({
+                        "layer": layer,
+                        "action": "fallback_update",
+                        "result": fallback_result,
+                        "text": self.state.text,
+                        "label": self.state.label.item() if self.state.label is not None else None
+                    })
+                    
+                    if DEBUG_STEP_SUMMARY:
+                        print(f"\n🔄 Fallback Update | Node {self.state.node_id}")
+                        print(f"  ├─ 🎯 New Label: {self.state.predicted_label}")
+                        print(f"  └─ 📝 Based on {len([m for m in self.state.memory if m.get('label') is not None])} labeled examples")
 
         if (DEBUG_STEP_SUMMARY or DEBUG_MESSAGE_TRACE) and self.state.memory:
             last = self.state.memory[-1]
@@ -107,8 +126,8 @@ class NodeAgent:
                 message = result.get("message", None)
                 print(f"  📤 Broadcasted to {len(targets)} node(s): {targets}")
                 if message is not None:
-                    preview = str(message[:5].tolist()) + ("..." if len(message) > 5 else "")
-                    print(f"    ↳ Message: {preview} (dim={len(message)})")
+                    preview = self._format_preview(message)
+                    print(f"    ↳ Message: {preview}")
             elif action_type == "update":
                 updated = result.get("updated_fields", [])
                 print(f"  🛠️  Updated fields: {updated}")
@@ -164,17 +183,33 @@ class NodeAgent:
                 label_str = decision.get("predicted_label")
                 label_id = label_vocab.get(label_str, -1)
                 if label_id != -1:
+                    print(f"✅ Label string '{label_str}' mapped to ID {label_id}")
                     updates["predicted_label"] = torch.tensor(label_id)
+                else:
+                    print(f"⚠️ Unknown predicted label: {label_str}")
             if updates:
                 return UpdateAction(updates)
 
         return NoOpAction()
 
     def _format_preview(self, obj: Any, max_len: int = 60) -> str:
+        """
+        Format a preview string from any object for display.
+        
+        Args:
+            obj: The object to preview
+            max_len: Max number of characters
+            
+        Returns:
+            Truncated string representation
+        """
         try:
             if isinstance(obj, torch.Tensor):
                 return str(obj.tolist()[:5]) + ("..." if obj.numel() > 5 else "")
             elif isinstance(obj, (list, tuple)):
+                if all(isinstance(i, dict) for i in obj):
+                    preview_list = [{k: v for k, v in item.items() if k in ("text", "predicted_label", "label")} for item in obj[:2]]
+                    return str(preview_list) + ("..." if len(obj) > 2 else "")
                 return str(obj[:5]) + ("..." if len(obj) > 5 else "")
             elif isinstance(obj, dict):
                 keys = list(obj.keys())[:3]
@@ -185,6 +220,6 @@ class NodeAgent:
             elif obj is None:
                 return "None"
             else:
-                return str(type(obj))
+                return str(type(obj))  # fallback: just print type name
         except Exception as e:
             return f"[Preview error: {e}]"

@@ -13,36 +13,44 @@ from gan.node import NodeState, NodeAgent
 
 
 class AgenticGraph:
-    """Represents the graph with node agents."""
-    
-    def __init__(self, adj_matrix: torch.Tensor, llm_interface: 'LLMInterface', labels: Optional[torch.Tensor] = None):
+    """Graph structure for agentic network."""
+
+    def __init__(self, adj_matrix, llm_interface, labels=None, train_idx=None):
         """
-        Initialize the agentic graph.
+        Initialize the graph with adjacency matrix and node agents.
         
         Args:
-            adj_matrix: Adjacency matrix of shape (num_nodes, num_nodes)
-            llm_interface: Interface to the large language model
+            adj_matrix: Adjacency matrix of the graph
+            llm_interface: LLM interface for node agents
             labels: Optional tensor of node labels
+            train_idx: Optional tensor of training node indices
         """
         self.adj_matrix = adj_matrix
         self.num_nodes = adj_matrix.shape[0]
         
-        # Load node texts from JSONL
-        with open("data/cora/cora_text_graph_simplified.jsonl") as f:
+        # Load node texts from JSONL file
+        with open(f"data/{config.DATASET_NAME}/cora_text_graph_simplified.jsonl") as f:
             records = [json.loads(l) for l in f]
         node_texts = {r["node_id"]: r["text"] for r in records}
         
+        # Create train mask if train_idx is provided
+        train_mask = torch.zeros(self.num_nodes, dtype=torch.bool)
+        if train_idx is not None:
+            train_mask[train_idx] = True
+            
         # Initialize node agents
         self.nodes = {}
         for i in range(self.num_nodes):
-            node_label = labels[i] if labels is not None else None
-            text = node_texts.get(i, "")  # 从 JSONL 加载
+            # Only keep labels for training nodes
+            node_label = labels[i] if labels is not None and train_mask[i] else None
+            text = node_texts.get(i, "")
             state = NodeState(
                 node_id=i,
                 text=text,
                 label=node_label
             )
             self.nodes[i] = NodeAgent(state, llm_interface)
+
     
     def get_node(self, node_id: int) -> NodeAgent:
         """
