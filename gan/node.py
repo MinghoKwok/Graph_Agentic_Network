@@ -180,13 +180,54 @@ class NodeAgent:
         elif action_type == "update":
             updates = {}
             if "predicted_label" in decision:
-                label_str = decision.get("predicted_label")
-                label_id = label_vocab.get(label_str, -1)
-                if label_id != -1:
-                    print(f"✅ Label string '{label_str}' mapped to ID {label_id}")
-                    updates["predicted_label"] = torch.tensor(label_id)
-                else:
-                    print(f"⚠️ Unknown predicted label: {label_str}")
+                label_value = decision.get("predicted_label")
+                
+                # Direct integer label
+                if isinstance(label_value, int) and 0 <= label_value < 7:
+                    updates["predicted_label"] = torch.tensor(label_value)
+                    print(f"✅ Using direct integer label: {label_value}")
+                
+                # String label handling
+                elif isinstance(label_value, str):
+                    # Try parsing as integer first
+                    try:
+                        label_id = int(label_value)
+                        if 0 <= label_id < 7:
+                            updates["predicted_label"] = torch.tensor(label_id)
+                            print(f"✅ Parsed label string to integer: {label_value} -> {label_id}")
+                    except ValueError:
+                        # Try exact match with vocabulary
+                        label_id = label_vocab.get(label_value, -1)
+                        if label_id != -1:
+                            updates["predicted_label"] = torch.tensor(label_id)
+                            print(f"✅ Mapped label string to ID: {label_value} -> {label_id}")
+                        else:
+                            # Try fuzzy matching
+                            normalized = label_value.lower().strip()
+                            if any(kw in normalized for kw in ["case", "based"]):
+                                updates["predicted_label"] = torch.tensor(0)
+                                print(f"✅ Fuzzy match: {label_value} -> Case_Based (0)")
+                            elif any(kw in normalized for kw in ["genetic", "algorithm", "evolution"]):
+                                updates["predicted_label"] = torch.tensor(1)
+                                print(f"✅ Fuzzy match: {label_value} -> Genetic_Algorithms (1)")
+                            elif any(kw in normalized for kw in ["neural", "network", "neuron"]):
+                                updates["predicted_label"] = torch.tensor(2)
+                                print(f"✅ Fuzzy match: {label_value} -> Neural_Networks (2)")
+                            elif any(kw in normalized for kw in ["probabilistic", "probability", "bayes"]):
+                                updates["predicted_label"] = torch.tensor(3)
+                                print(f"✅ Fuzzy match: {label_value} -> Probabilistic_Methods (3)")
+                            elif any(kw in normalized for kw in ["reinforcement", "reinforce"]):
+                                updates["predicted_label"] = torch.tensor(4)
+                                print(f"✅ Fuzzy match: {label_value} -> Reinforcement_Learning (4)")
+                            elif any(kw in normalized for kw in ["rule", "rule learning"]):
+                                updates["predicted_label"] = torch.tensor(5)
+                                print(f"✅ Fuzzy match: {label_value} -> Rule_Learning (5)")
+                            elif any(kw in normalized for kw in ["theory", "theoretical"]):
+                                updates["predicted_label"] = torch.tensor(6)
+                                print(f"✅ Fuzzy match: {label_value} -> Theory (6)")
+                            else:
+                                print(f"⚠️ Failed to map label string: {label_value}")
+            
             if updates:
                 return UpdateAction(updates)
 

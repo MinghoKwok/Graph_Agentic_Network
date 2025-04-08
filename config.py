@@ -29,7 +29,7 @@ REMOTE_LLM_ENDPOINT = "http://localhost:8001/v1/chat/completions"
 RANDOM_SEED = 42
 NUM_LAYERS = 4  # Number of GAN layers to run
 BATCH_SIZE = 16  # Batch size for processing nodes
-MAX_NEIGHBORS = 10  # Maximum number of neighbors to consider
+MAX_NEIGHBORS = 20  # Maximum number of neighbors to consider
 
 # GCN baseline settings
 GCN_HIDDEN_DIM = 256

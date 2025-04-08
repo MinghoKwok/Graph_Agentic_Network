@@ -85,7 +85,7 @@ class RemoteLLMInterface(BaseLLMInterface):
 
         # Instruction
         prompt = f"""
-    You are an intelligent node agent responsible for predicting the correct label for a node in a scientific graph.
+You are Node {node_id} in a scientific citation network. Your task is to classify yourself into the correct research category based on your text and connections.
 
     ## Your State:
     - Node ID: {node_id}
