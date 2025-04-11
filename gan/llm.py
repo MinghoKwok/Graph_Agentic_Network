@@ -4,6 +4,8 @@ import re
 import requests
 from typing import Dict, Any, Optional, List
 import config
+from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
+import torch
 
 
 class BaseLLMInterface:
@@ -225,10 +227,72 @@ class MockLLMInterface(BaseLLMInterface):
         return True
 
 
+class FlanT5Interface(BaseLLMInterface):
+    def __init__(self, model_name: str):
+        print(f"[FlanT5Interface] Loading model: {model_name}")
+        self.tokenizer = AutoTokenizer.from_pretrained(model_name)
+        self.model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+        if torch.cuda.is_available():
+            self.model = self.model.cuda()
+            print("[FlanT5Interface] Model moved to GPU")
+        self.model.eval()
+
+    def generate_response(self, prompt: str) -> str:
+        inputs = self.tokenizer(prompt, return_tensors="pt", padding=True, truncation=True, max_length=512)
+        if torch.cuda.is_available():
+            inputs = {k: v.cuda() for k, v in inputs.items()}
+        
+        with torch.no_grad():
+            outputs = self.model.generate(
+                **inputs,
+                max_length=512,
+                num_beams=5,
+                temperature=0.2,
+                top_p=0.95,
+                do_sample=True
+            )
+        
+        response = self.tokenizer.decode(outputs[0], skip_special_tokens=True)
+        print("🔁 Raw response from Flan-T5:", response)
+        return response.strip()
+
+    def decide_action(self, context: Dict[str, Any]) -> Dict[str, Any]:
+        response = self.generate_response(self._format_action_prompt(context))
+        parsed = self._parse_action(response)
+        if parsed.get("action_type") == "retrieve":
+            parsed["target_nodes"] = [
+                int(re.sub(r"[^\d]", "", str(nid))) for nid in parsed.get("target_nodes", [])
+            ]
+        return parsed
+
+    def determine_next_layer(self, context: Dict[str, Any]) -> bool:
+        response = self.generate_response(self._format_layer_prompt(context))
+        return "continue" in response.lower()
+
+    def _format_action_prompt(self, context: Dict[str, Any]) -> str:
+        # 复用 RemoteLLMInterface 的 _format_action_prompt 逻辑
+        return RemoteLLMInterface._format_action_prompt(self, context)
+
+    def _format_layer_prompt(self, context: Dict[str, Any]) -> str:
+        # 复用 RemoteLLMInterface 的 _format_layer_prompt 逻辑
+        return RemoteLLMInterface._format_layer_prompt(self, context)
+
+    def _parse_action(self, response: str) -> Dict[str, Any]:
+        # 复用 RemoteLLMInterface 的 _parse_action 逻辑
+        return RemoteLLMInterface._parse_action(self, response)
+
+    def _format_fallback_label_prompt(self, node_text: str, memory: List[Dict[str, Any]]) -> str:
+        # 复用 RemoteLLMInterface 的 _format_fallback_label_prompt 逻辑
+        return RemoteLLMInterface._format_fallback_label_prompt(self, node_text, memory)
+
+
 class LLMInterface(BaseLLMInterface):
     def __init__(self, model_name: str = config.LLM_MODEL):
         self.backend = config.LLM_BACKEND
-        if self.backend == "mock":
+        if model_name.startswith("google/flan-t5"):
+            print(f"[LLMInterface] Using Flan-T5 LLM backend: {model_name}")
+            self.impl = FlanT5Interface(model_name)
+        elif self.backend == "mock":
             print("[LLMInterface] Using Mock LLM backend.")
             self.impl = MockLLMInterface()
         elif self.backend == "remote":
@@ -238,7 +302,7 @@ class LLMInterface(BaseLLMInterface):
             raise ValueError(f"Unsupported LLM_BACKEND: {self.backend}")
 
     def generate_response(self, prompt: str) -> str:
-        print("📤 [DEBUG] Prompt being sent to vLLM:\n", prompt)
+        print("📤 [DEBUG] Prompt being sent to LLM:\n", prompt)
         return self.impl.generate_response(prompt)
 
     def decide_action(self, context: Dict[str, Any]) -> Dict[str, Any]:

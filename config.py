@@ -21,9 +21,8 @@ MULTI_GPU = torch.cuda.device_count() > 1
 
 # LLM settings
 LLM_BACKEND = "remote"  # Options: "remote", "mock"
-LLM_MODEL = "llama-3.1-8b-instruct"
+LLM_MODEL = "llama-3.1-8b-instruct"  # or "flan-t5-xl"
 REMOTE_LLM_ENDPOINT = "http://localhost:8001/v1/chat/completions"
-
 
 # Experiment settings
 RANDOM_SEED = 42
@@ -39,8 +38,35 @@ GCN_LEARNING_RATE = 0.01
 GCN_WEIGHT_DECAY = 5e-4
 GCN_EPOCHS = 200
 
+# GAT baseline settings
+GAT_HIDDEN_DIM = 256
+GAT_NUM_LAYERS = 2
+GAT_DROPOUT = 0.6
+GAT_LEARNING_RATE = 0.005
+GAT_WEIGHT_DECAY = 5e-4
+GAT_EPOCHS = 200
+
+# GraphSAGE baseline settings
+SAGE_HIDDEN_DIM = 256
+SAGE_NUM_LAYERS = 2
+SAGE_DROPOUT = 0.5
+SAGE_LEARNING_RATE = 0.01
+SAGE_WEIGHT_DECAY = 5e-4
+SAGE_EPOCHS = 200
+
 # Dataset settings
 DATASET_NAME = "cora"  # Default dataset
+
+# Task type
+TASK_TYPE = "node_classification"  # or "link_prediction"
+
+# Baseline GNN model type
+BASELINE_TYPES = ["GCN", "GAT", "GraphSAGE"]  # "GCN", "GAT", "GraphSAGE"
+
+# Agent control settings
+ALLOW_TEST_BROADCAST = True  # Allow test nodes to broadcast predicted labels
+ALLOW_FALLBACK_UPDATE = True  # Enable fallback label update mechanism
+SHOW_LABEL_LIST_IN_PROMPT = True  # Whether to show label names in LLM prompt
 
 # Logging
 VERBOSE = True
