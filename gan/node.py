@@ -160,12 +160,14 @@ class NodeAgent:
 
     def _create_action(self, decision: Dict[str, Any]) -> Optional[Action]:
         action_type = decision.get("action_type", "no_op")
-
+        
         if action_type == "retrieve":
             target_nodes = decision.get("target_nodes", [])
             info_type = decision.get("info_type", "text")
+            # 确保 info_type 是支持的类型
+            if info_type not in ["text", "label", "both", "memory", "all"]:
+                info_type = "text"  # 默认使用 "text"
             return RetrieveAction(target_nodes, info_type)
-
         elif action_type == "broadcast":
             target_nodes = decision.get("target_nodes", [])
             message_data = decision.get("message", [0.0])
