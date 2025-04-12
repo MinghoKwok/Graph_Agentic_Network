@@ -218,6 +218,6 @@ if __name__ == "__main__":
         use_mock_llm=False,
         num_layers=config.NUM_LAYERS,
         batch_size=64,
-        run_gan=False,
+        run_gan=True,
         run_baselines=True
     )

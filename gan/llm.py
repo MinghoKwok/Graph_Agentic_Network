@@ -231,7 +231,7 @@ class FlanT5Interface(BaseLLMInterface):
     def __init__(self, model_name: str):
         print(f"[FlanT5Interface] Loading model: {model_name}")
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        self.model = AutoModelForSeq2SeqLM.from_pretrained(model_name)
+        self.model = AutoModelForSeq2SeqLM.from_pretrained(model_name, use_safetensors=False)
         if torch.cuda.is_available():
             self.model = self.model.cuda()
             print("[FlanT5Interface] Model moved to GPU")
@@ -278,9 +278,42 @@ class FlanT5Interface(BaseLLMInterface):
         return RemoteLLMInterface._format_layer_prompt(self, context)
 
     def _parse_action(self, response: str) -> Dict[str, Any]:
-        # 复用 RemoteLLMInterface 的 _parse_action 逻辑
-        return RemoteLLMInterface._parse_action(self, response)
+        from data.cora.label_vocab import label_vocab
 
+        print("🧪 [FlanT5Interface] >>> ENTERED CUSTOM PARSER")
+
+        response_clean = response.strip().lower().rstrip(".")
+        print("🧪 [FlanT5Interface] Cleaned response:", repr(response_clean))
+
+        # ✅ 强化 JSON 解析过滤
+        try:
+            parsed = RemoteLLMInterface._parse_action(self, response)
+            atype = parsed.get("action_type", "").lower()
+            if atype in {"retrieve", "broadcast", "update", "no_op"}:
+                print("🧪 [FlanT5Interface] Parsed valid JSON action:", parsed)
+                return parsed
+        except Exception as e:
+            print("⚠️ JSON parse failed:", e)
+
+        # ✅ 匹配 label 名
+        for label_name, label_id in label_vocab.items():
+            if label_name.lower() in response_clean:
+                print(f"🟢 Matched label name: {label_name} → {label_id}")
+                return {"action_type": "update", "predicted_label": label_id}
+
+        # ✅ 匹配 label index
+        try:
+            label_id = int(response_clean)
+            if label_id in label_vocab.values():
+                print(f"🟢 Matched label id: {label_id}")
+                return {"action_type": "update", "predicted_label": label_id}
+        except Exception as e:
+            print(f"⚠️ Could not parse label id: {e}")
+
+        print("🔴 [FlanT5Interface] No valid action detected.")
+        return {"action_type": "no_op"}
+
+    
     def _format_fallback_label_prompt(self, node_text: str, memory: List[Dict[str, Any]]) -> str:
         # 复用 RemoteLLMInterface 的 _format_fallback_label_prompt 逻辑
         return RemoteLLMInterface._format_fallback_label_prompt(self, node_text, memory)
@@ -289,7 +322,7 @@ class FlanT5Interface(BaseLLMInterface):
 class LLMInterface(BaseLLMInterface):
     def __init__(self, model_name: str = config.LLM_MODEL):
         self.backend = config.LLM_BACKEND
-        if model_name.startswith("google/flan-t5"):
+        if model_name.startswith("google/flan-t5") or self.backend == "flan_local":  # ✅ 修改此处
             print(f"[LLMInterface] Using Flan-T5 LLM backend: {model_name}")
             self.impl = FlanT5Interface(model_name)
         elif self.backend == "mock":
