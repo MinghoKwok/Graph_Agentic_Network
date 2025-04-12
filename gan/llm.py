@@ -6,6 +6,8 @@ from typing import Dict, Any, Optional, List
 import config
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import torch
+from typing import Dict, Any, Optional, List, Union
+
 
 
 class BaseLLMInterface:
@@ -405,8 +407,16 @@ You are Node {node_id} in a scientific citation network. Your task is to classif
         # Final instruction
         prompt += """
 
-    ## Decide Your Next Action
-    Based on your text and memory, you should select one of the following actions:
+    ## Decide Your Next Action(s)
+    You may perform **one or more** of the following actions in sequence. Respond with a list of actions in JSON format. Example:
+    ```json
+    [
+      {"action_type": "update", "predicted_label": "Neural_Networks"},
+      {"action_type": "broadcast"}
+    ]
+    ```
+
+    ### Available Actions:
 
     1. "retrieve": get information from other nodes
     - Format: {"action_type": "retrieve", "target_nodes": [IDs], "info_type": "text"}
@@ -418,51 +428,39 @@ You are Node {node_id} in a scientific citation network. Your task is to classif
     - Format: {"action_type": "update", "predicted_label": "label_string"}
     - ⚠️ Only use memory to infer your label. You **must** base the prediction only on nodes in memory with known labels.
 
-    4. "no_op": take no action
+    4. "rag_query": search globally for similar labeled nodes
+    - Format: {"action_type": "rag_query", "query": "some query text", "top_k": 5}
+
+    5. "no_op": take no action
     - Format: {"action_type": "no_op"}
     """
 
         return prompt
 
+
     def _format_layer_prompt(self, context: Dict[str, Any]) -> str:
         # 复用 RemoteLLMInterface 的 _format_layer_prompt 逻辑
         return RemoteLLMInterface._format_layer_prompt(self, context)
 
-    def _parse_action(self, response: str) -> Dict[str, Any]:
-        from data.cora.label_vocab import label_vocab
-
-        print("🧪 [FlanT5Interface] >>> ENTERED CUSTOM PARSER")
-
-        response_clean = response.strip().lower().rstrip(".")
-        print("🧪 [FlanT5Interface] Cleaned response:", repr(response_clean))
-
-        # ✅ 强化 JSON 解析过滤
+    def _parse_action(self, response: str) -> Union[Dict[str, Any], List[Dict[str, Any]]]:
         try:
-            parsed = RemoteLLMInterface._parse_action(self, response)
-            atype = parsed.get("action_type", "").lower()
-            if atype in {"retrieve", "broadcast", "update", "no_op"}:
-                print("🧪 [FlanT5Interface] Parsed valid JSON action:", parsed)
-                return parsed
+            code_blocks = re.findall(r"```json\\s*([\\s\\S]*?)\\s*```", response, re.DOTALL)
+            if not code_blocks:
+                code_blocks = re.findall(r"\\[?\\{[\\s\\S]*?\\}?\\]?", response, re.DOTALL)
+
+            for block in code_blocks:
+                try:
+                    cleaned = re.sub(r"//.*", "", block.strip())
+                    parsed = json.loads(cleaned)
+                    if isinstance(parsed, dict):
+                        return [parsed]
+                    elif isinstance(parsed, list):
+                        return parsed
+                except Exception:
+                    continue
         except Exception as e:
-            print("⚠️ JSON parse failed:", e)
-
-        # ✅ 匹配 label 名
-        for label_name, label_id in label_vocab.items():
-            if label_name.lower() in response_clean:
-                print(f"🟢 Matched label name: {label_name} → {label_id}")
-                return {"action_type": "update", "predicted_label": label_id}
-
-        # ✅ 匹配 label index
-        try:
-            label_id = int(response_clean)
-            if label_id in label_vocab.values():
-                print(f"🟢 Matched label id: {label_id}")
-                return {"action_type": "update", "predicted_label": label_id}
-        except Exception as e:
-            print(f"⚠️ Could not parse label id: {e}")
-
-        print("🔴 [FlanT5Interface] No valid action detected.")
-        return {"action_type": "no_op"}
+            print(f"[RemoteLLMInterface] Failed to parse response: {e}")
+        return [{"action_type": "no_op"}]
 
     
     def _format_fallback_label_prompt(self, node_text: str, memory: List[Dict[str, Any]]) -> str:

@@ -160,6 +160,25 @@ class RetrieveAction(Action):
             "not_found": not_found
         }
 
+class RAGAction(Action):
+    """Action to retrieve similar labeled nodes from a global knowledge base."""
+
+    def __init__(self, query_text: str = None, top_k: int = 5):
+        self.query_text = query_text
+        self.top_k = top_k
+
+    def execute(self, agent: 'NodeAgent', graph: 'AgenticGraph') -> Dict[str, Any]:
+        # For now, just log the action
+        query = self.query_text or agent.state.text
+        print(f"[RAGAction] Node {agent.state.node_id} would query top-{self.top_k} similar labeled nodes using query: {query}")
+
+        # Simulate a response for compatibility
+        return {
+            "action": "rag_query",
+            "query": query,
+            "results": []  # Placeholder for future retrieved labeled examples
+        }
+
 
 class BroadcastAction(Action):
     """Broadcast message to target nodes."""
