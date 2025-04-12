@@ -71,6 +71,16 @@ def load_cora(
 ) -> Dict[str, Any]:
     """
     Load Cora dataset using simplified JSONL + true citation edges.
+    
+    Returns:
+        Dictionary containing:
+        - adj_matrix: Adjacency matrix for graph structure
+        - node_features: One-hot node features for GNN
+        - node_texts: Node text descriptions for GAN
+        - labels: Node labels
+        - train_idx, val_idx, test_idx: Dataset splits
+        - num_classes: Number of label classes
+        - num_nodes: Total number of nodes
     """
     print(f"🔄 Loading Cora dataset from {jsonl_path} and {edge_path}")
 
@@ -104,7 +114,10 @@ def load_cora(
                 adj_matrix[src, tgt] = 1
                 adj_matrix[tgt, src] = 1  # 无向边
 
-    # Step 3: 划分 train/val/test
+    # Step 3: 创建 GNN 输入特征（one-hot）
+    node_features = torch.eye(num_nodes)
+
+    # Step 4: 划分 train/val/test
     perm = torch.randperm(num_nodes)
     train_size = int(0.6 * num_nodes)
     val_size = int(0.2 * num_nodes)
@@ -112,9 +125,14 @@ def load_cora(
     val_idx = perm[train_size:train_size + val_size]
     test_idx = perm[train_size + val_size:]
 
+    print(f"Loaded {num_nodes} nodes with {adj_matrix.sum().item()/2:.0f} edges")
+    print(f"Feature dimension: {node_features.size(1)}")
+    print(f"Split sizes: Train={len(train_idx)}, Val={len(val_idx)}, Test={len(test_idx)}")
+
     return {
         'adj_matrix': adj_matrix,
-        'node_features': torch.zeros((num_nodes, 1)),  # Dummy feature
+        'node_features': node_features,  # GNN 输入
+        'node_texts': node_texts,        # GAN 输入
         'labels': labels_tensor,
         'train_idx': train_idx,
         'val_idx': val_idx,
@@ -136,7 +154,14 @@ def create_subgraph(adj_matrix: torch.Tensor, node_features: torch.Tensor,
         subset_size: Size of the subgraph to create
         
     Returns:
-        Dictionary containing subgraph components
+        Dictionary containing:
+        - adj_matrix: Subgraph adjacency matrix
+        - node_features: Subgraph node features
+        - labels: Subgraph labels
+        - train_idx, val_idx, test_idx: Subgraph splits
+        - num_classes: Number of classes
+        - num_nodes: Number of nodes in subgraph
+        - original_indices: Original node indices in full graph
     """
     num_nodes = adj_matrix.size(0)
     
@@ -161,6 +186,8 @@ def create_subgraph(adj_matrix: torch.Tensor, node_features: torch.Tensor,
     test_idx = perm[train_size+val_size:]
     
     print(f"Created subgraph with {subset_size} nodes and {sub_adj.sum().item()/2:.0f} edges")
+    print(f"Feature dimension: {sub_features.size(1)}")
+    print(f"Split sizes: Train={len(train_idx)}, Val={len(val_idx)}, Test={len(test_idx)}")
     
     return {
         'adj_matrix': sub_adj,
@@ -171,7 +198,7 @@ def create_subgraph(adj_matrix: torch.Tensor, node_features: torch.Tensor,
         'test_idx': test_idx,
         'num_classes': labels.max().item() + 1,
         'num_nodes': subset_size,
-        'original_indices': chosen_indices
+        'original_indices': chosen_indices  # 用于映射回原始图的 node_texts
     }
 
 
@@ -201,26 +228,70 @@ def load_or_create_dataset(name: str = config.DATASET_NAME,
     Load a dataset or create a subgraph from it.
     
     Args:
-        name: Dataset name
+        name: Dataset name ('cora' or 'ogbn-arxiv')
         use_subgraph: Whether to create a subgraph
         subgraph_size: Size of the subgraph
         
     Returns:
-        Dictionary containing dataset components
+        Dictionary containing:
+        - adj_matrix: Adjacency matrix
+        - node_features: Node features for GNN
+        - node_texts: Node texts for GAN
+        - labels: Node labels
+        - train_idx, val_idx, test_idx: Dataset splits
+        - num_classes: Number of classes
+        - num_nodes: Number of nodes
     """
     if name == 'ogbn-arxiv':
         dataset = load_ogb_arxiv()
+        # OGB-Arxiv 已经有 node_features，但需要添加 node_texts
+        dataset['node_texts'] = {i: f"Paper {i}" for i in range(dataset['num_nodes'])}
     elif name == 'cora':
         dataset = load_cora()
     else:
         raise ValueError(f"Unknown dataset: {name}")
     
     if use_subgraph:
-        return create_subgraph(
+        # 创建子图时保持 node_texts 的映射
+        subgraph = create_subgraph(
             dataset['adj_matrix'], 
             dataset['node_features'], 
             dataset['labels'], 
             subgraph_size
         )
+        # 更新 node_texts 映射
+        original_indices = subgraph['original_indices']
+        subgraph['node_texts'] = {
+            new_idx: dataset['node_texts'][old_idx]
+            for new_idx, old_idx in enumerate(original_indices)
+        }
+        return subgraph
     
     return dataset
+
+def load_graph_data(dataset_name: str):
+    """
+    Return PyG-compatible graph data (edge_index, x, etc.) for link prediction tasks.
+    """
+    import torch
+    from torch_geometric.data import Data
+
+    if dataset_name == "cora":
+        dataset = load_cora()
+    elif dataset_name == "ogbn-arxiv":
+        dataset = load_ogb_arxiv()
+    else:
+        raise ValueError(f"Unsupported dataset for link prediction: {dataset_name}")
+
+    # Extract edge_index from adjacency matrix
+    edge_index = dataset['adj_matrix'].nonzero().t().contiguous()
+
+    # Build PyG Data object
+    data = Data(
+        edge_index=edge_index,
+        x=dataset['node_features'],
+        y=dataset['labels']
+    )
+    data.num_nodes = dataset['num_nodes']
+
+    return data
