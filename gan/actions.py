@@ -168,15 +168,30 @@ class RAGAction(Action):
         self.top_k = top_k
 
     def execute(self, agent: 'NodeAgent', graph: 'AgenticGraph') -> Dict[str, Any]:
-        # For now, just log the action
+        # 如果没有提供查询文本，使用节点的文本
         query = self.query_text or agent.state.text
-        print(f"[RAGAction] Node {agent.state.node_id} would query top-{self.top_k} similar labeled nodes using query: {query}")
-
-        # Simulate a response for compatibility
+        
+        # 执行 RAG 查询
+        results = graph.rag_query(query, self.top_k)
+        
+        # 将结果写入节点的记忆中
+        for node_id, node_info in results.items():
+            # 确保节点信息包含必要的字段
+            if all(key in node_info for key in ['text', 'label']):
+                agent.state.memory.append({
+                    'action': 'rag_query',
+                    'result': {
+                        'node_id': node_id,
+                        'text': node_info['text'],
+                        'label': node_info['label'],
+                        'similarity_score': node_info.get('similarity_score', 0.0)
+                    }
+                })
+        
         return {
             "action": "rag_query",
             "query": query,
-            "results": []  # Placeholder for future retrieved labeled examples
+            "results": results
         }
 
 

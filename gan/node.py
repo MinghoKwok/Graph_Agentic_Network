@@ -6,7 +6,7 @@ import torch
 from typing import Dict, List, Any, Optional, Tuple, Set, Union
 from dataclasses import dataclass, field
 
-from gan.actions import Action, RetrieveAction, BroadcastAction, UpdateAction, NoOpAction
+from gan.actions import Action, RetrieveAction, RAGAction, BroadcastAction, UpdateAction, NoOpAction
 from config import DEBUG_STEP_SUMMARY, DEBUG_MESSAGE_TRACE, NUM_LAYERS, DEBUG_FORCE_FALLBACK  # 加入 NUM_LAYERS 以判断是否为最后一层
 from data.cora.label_vocab import label_vocab  # 自定义标签映射
 
@@ -202,6 +202,12 @@ class NodeAgent:
             if info_type not in ["text", "label", "both", "memory", "all"]:
                 info_type = "text"  # 默认使用 "text"
             return RetrieveAction(target_nodes, info_type)
+        
+        elif action_type == "rag_query":
+            query = decision.get("query", str(self.state.node_id))  # 默认使用节点ID作为查询
+            top_k = decision.get("top_k", 5)  # 默认获取5个相似节点
+            query = str(self.state.node_id)  # 👈 强制使用节点自身的 ID 作为 query
+            return RAGAction(query, top_k)
 
         elif action_type == "broadcast":
             target_nodes = decision.get("target_nodes", [])
