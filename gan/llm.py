@@ -89,7 +89,7 @@ class RemoteLLMInterface(BaseLLMInterface):
 
         # Instruction
         prompt = f"""
-You are Node {node_id} in a scientific citation network. Your task is to classify yourself into the correct research category based on your text and connections.
+    You are Node {node_id} in a scientific citation network. Your task is to classify yourself into the correct research category based on your text and connections.
 
     ## Your State:
     - Node ID: {node_id}
@@ -167,22 +167,57 @@ You are Node {node_id} in a scientific citation network. Your task is to classif
 
         # Final instruction
         prompt += """
+    You are an autonomous agent with planning capabilities. You may perform multiple actions in sequence to achieve better results.
 
-    ## Decide Your Next Action
-    Based on your text and memory, you should select one of the following actions:
+    ## Decide Your Next Action(s)
+    Important: You are allowed and encouraged to return MULTIPLE actions in sequence. You MUST respond with a JSON array even if there's only one action. 
+    Example of a valid response:
+    ```json
+    [
+      {"action_type": "update", "predicted_label": "Neural_Networks"},
+      {"action_type": "broadcast"}
+    ]
+    ```
+    ```json
+    [
+      {"action_type": "retrieve", "target_nodes": [1, 2, 3], "info_type": "text"},
+      {"action_type": "rag_query", "query": "machine learning", "top_k": 10}
+    ]
+    ```
+    Invalid response:
+    ```json
+    {"action_type": "update", "predicted_label": "Neural_Networks"}
+    ```
+
+    ### Available Actions:
 
     1. "retrieve": get information from other nodes
     - Format: {"action_type": "retrieve", "target_nodes": [IDs], "info_type": "text"}
 
     2. "broadcast": send a message to neighbors
     - Format: {"action_type": "broadcast", "target_nodes": [IDs], "message": "some message"}
+    - Use this when you already have a label or predicted label to share it with neighbors. So it always works with "update" action.
 
-    3. "update": decide your label
+    3. "update": decide your label when the memory has enough information(labeled nodes)
     - Format: {"action_type": "update", "predicted_label": "label_string"}
-    - ⚠️ Only use memory to infer your label. You **must** base the prediction only on nodes in memory with known labels.
+    - Only use memory to infer your label. You **must** base the prediction only on nodes in memory with known labels. So after you use "update" action, you always should use "broadcast" action.
 
-    4. "no_op": take no action
+    4. "rag_query": search globally for similar labeled nodes, can make up "retrieve" action
+    - Format: {"action_type": "rag_query", "query": "key words of your text", "top_k": number of nodes to retrieve}
+    - Use this when you don't have enough informative neighbors or memory, and need global examples.
+
+    5. "no_op": take no action
     - Format: {"action_type": "no_op"}
+    
+
+    ## Planning Your Steps
+    Think like a planner: first gather evidence (retrieve, rag_query), then make a decision (update), and finally help others (broadcast).
+    Think about the following:
+    - Do you need more context to predict your label? → `retrieve`, `rag_query`
+    - Are you confident to predict your label? → `update`
+    - Have you shared your label or predicted label with neighbors? → `broadcast`
+    - If you cannot predict your label yet, first retrieve or rag_query to collect more labeled examples.
+
     """
 
         return prompt
@@ -408,12 +443,17 @@ You are Node {node_id} in a scientific citation network. Your task is to classif
         prompt += """
 
     ## Decide Your Next Action(s)
-    You may perform **one or more** of the following actions in sequence. Respond with a list of actions in JSON format. Example:
+    Important: You are allowed and encouraged to return MULTIPLE actions in sequence. You MUST respond with a JSON array even if there's only one action. 
+    Example of a valid response:
     ```json
     [
       {"action_type": "update", "predicted_label": "Neural_Networks"},
       {"action_type": "broadcast"}
     ]
+    ```
+    Invalid response:
+    ```json
+    {"action_type": "update", "predicted_label": "Neural_Networks"}
     ```
 
     ### Available Actions:
@@ -424,15 +464,23 @@ You are Node {node_id} in a scientific citation network. Your task is to classif
     2. "broadcast": send a message to neighbors
     - Format: {"action_type": "broadcast", "target_nodes": [IDs], "message": "some message"}
 
-    3. "update": decide your label
+    3. "update": decide your label when the memory has enough information(labeled nodes)
     - Format: {"action_type": "update", "predicted_label": "label_string"}
     - ⚠️ Only use memory to infer your label. You **must** base the prediction only on nodes in memory with known labels.
 
-    4. "rag_query": search globally for similar labeled nodes
+    4. "rag_query": search globally for similar labeled nodes, can make up "retrieve" action
     - Format: {"action_type": "rag_query", "query": "some query text", "top_k": 5}
 
     5. "no_op": take no action
     - Format: {"action_type": "no_op"}
+    
+
+    ## Planning Your Steps
+    Think about the following:
+    - Do you need more context to predict your label? → `retrieve`, `rag_query`
+    - Are you confident to predict your label? → `update`
+    - Have you shared your label or predicted label with neighbors? → `broadcast`
+
     """
 
         return prompt
