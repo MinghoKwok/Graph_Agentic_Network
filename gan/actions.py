@@ -208,6 +208,14 @@ class BroadcastAction(Action):
         if not self.target_nodes:
             return {"action": "no_op", "message": None, "target_nodes": []}
             
+        # ✅ 在 BroadcastAction.execute 中添加 debug log，确认是否正确发送消息
+        print(f"📤 [Broadcast] Node {agent.state.node_id} → {self.target_nodes}")
+        for nid in self.target_nodes:
+            if graph.has_node(nid):
+                print(f"    ↳ ✅ Sending to Node {nid}")
+            else:
+                print(f"    ↳ ⛔ Node {nid} not found in graph")
+            
         # Prepare message payload based on available information
         message_payload = None
         

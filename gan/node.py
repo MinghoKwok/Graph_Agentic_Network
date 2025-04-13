@@ -7,7 +7,7 @@ from typing import Dict, List, Any, Optional, Tuple, Set, Union
 from dataclasses import dataclass, field
 
 from gan.actions import Action, RetrieveAction, BroadcastAction, UpdateAction, NoOpAction
-from config import DEBUG_STEP_SUMMARY, DEBUG_MESSAGE_TRACE, NUM_LAYERS  # 加入 NUM_LAYERS 以判断是否为最后一层
+from config import DEBUG_STEP_SUMMARY, DEBUG_MESSAGE_TRACE, NUM_LAYERS, DEBUG_FORCE_FALLBACK  # 加入 NUM_LAYERS 以判断是否为最后一层
 from data.cora.label_vocab import label_vocab  # 自定义标签映射
 
 
@@ -50,6 +50,13 @@ class NodeAgent:
         context = self._prepare_context(graph)
         decisions = self.llm.decide_action(context)
 
+        # ✅ 插入在 step() 函数最开始，打印每个节点当前计划的完整 action 列表
+        print(f"\n📋 Multi-Action Plan | Node {self.state.node_id} | Layer {layer}")
+        if isinstance(decisions, dict):
+            decisions = [decisions]
+        for idx, d in enumerate(decisions):
+            print(f"  {idx+1}. {d}")
+
         # Ensure decisions is a list
         # Normalize the action output to a list to support multiple sequential actions per node step.
         # This enables LLMs to plan a sequence like: [retrieve → update → broadcast]
@@ -60,6 +67,8 @@ class NodeAgent:
             action = self._create_action(decision)
             if action:
                 result = action.execute(self, graph)
+                # ✅ 插入在每次执行 action 之后，确认其执行结果是否有效
+                print(f"✅ Executed {decision.get('action_type')} with result: {result}")
                 self.state.memory.append({
                     "layer": layer,
                     "action": result.get("action", "unknown"),
@@ -74,18 +83,17 @@ class NodeAgent:
         # - no predicted label yet,
         # - no prior update action occurred,
         # - but memory contains labeled examples.
-        if (layer == NUM_LAYERS - 1 and  # Only in last layer
+        if (layer == NUM_LAYERS - 1 and (DEBUG_FORCE_FALLBACK or (
             self.state.predicted_label is None and 
             not any(m.get("action") == "update" for m in self.state.memory) and 
-            any(m.get("label") is not None for m in self.state.memory)):
+            any(m.get("label") is not None for m in self.state.memory)))):
 
-            fallback_prompt = self.llm._format_fallback_label_prompt(
-                self.state.text,
-                self.state.memory
-            )
-            fallback_decision = self.llm._parse_action(
-                self.llm.generate_response(fallback_prompt)
-            )
+            # 打印 fallback label 推理的 prompt 和结果
+            fallback_prompt = self.llm._format_fallback_label_prompt(self.state.text, self.state.memory)
+            print(f"\n📦 [Fallback Prompt for Node {self.state.node_id}]:\n{fallback_prompt}")
+            fallback_decision = self.llm._parse_action(self.llm.generate_response(fallback_prompt))
+            print(f"🎯 [Fallback Result]: {fallback_decision}")
+
             if isinstance(fallback_decision, dict) and fallback_decision.get("action_type") == "update":
                 fallback_action = self._create_action(fallback_decision)
                 if fallback_action:
@@ -150,11 +158,21 @@ class NodeAgent:
 
 
     def receive_message(self, from_node: int, message: torch.Tensor) -> None:
+        # ✅ 在 receive_message 或 receive_broadcast 中也加入一行确认接收
+        print(f"📨 Node {self.state.node_id} received message from Node {from_node}")
         self.state.add_message(from_node, message, self.state.layer_count)
 
     def _prepare_context(self, graph: 'AgenticGraph') -> Dict[str, Any]:
         neighbors = [nid for nid in graph.get_neighbors(self.state.node_id) if nid != self.state.node_id]
         print(f"🔍 Neighbors in prepare_context: {neighbors}")
+        
+        # 找出已 update 的邻居（即有 predicted_label 的邻居）
+        updated_neighbors = [
+            nid for nid in neighbors
+            if graph.get_node(nid).state.predicted_label is not None
+        ]
+        print(f"📊 Updated neighbors (with predicted labels): {updated_neighbors}")
+        
         messages = [{"from": msg["from"], "content_preview": msg["content"].mean().item(), "layer": msg["layer"]}
                     for msg in self.state.message_queue[-5:]]
         recent_memory = self.state.memory[-3:] if self.state.memory else []
@@ -166,6 +184,7 @@ class NodeAgent:
             "predicted_label": self.state.predicted_label.item() if self.state.predicted_label is not None else None,
             "neighbors": neighbors,
             "total_neighbors": len(neighbors),
+            "updated_neighbors": updated_neighbors,  # 添加已更新邻居列表
             "messages": messages,
             "total_messages": len(self.state.message_queue),
             "memory": recent_memory,

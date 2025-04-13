@@ -69,6 +69,7 @@ class RemoteLLMInterface(BaseLLMInterface):
         messages = context.get("messages", [])
         retrieved_data = context.get("retrieved_data", {})
         memory = context.get("memory", [])
+        updated_neighbors = context.get("updated_neighbors", [])  # 获取已更新邻居列表
 
         # NEW: label & broadcast status
         node_label = context.get("label") or context.get("predicted_label")
@@ -98,6 +99,7 @@ class RemoteLLMInterface(BaseLLMInterface):
     \"{text}\"
     - Neighbors: {neighbors if neighbors else 'None'}
     - Available nodes to retrieve (excluding seen): {available_nodes if available_nodes else 'None'}
+    - Neighbors with predicted labels: {updated_neighbors if updated_neighbors else 'None'}
     """
 
         # Label prediction section
@@ -217,7 +219,7 @@ class RemoteLLMInterface(BaseLLMInterface):
     - Are you confident to predict your label? → `update`
     - Have you shared your label or predicted label with neighbors? → `broadcast`
     - If you cannot predict your label yet, first retrieve or rag_query to collect more labeled examples.
-
+    - If any neighbors already have predicted labels, it is recommended to retrieve from them first.
     """
 
         return prompt
@@ -343,6 +345,7 @@ class FlanT5Interface(BaseLLMInterface):
         messages = context.get("messages", [])
         retrieved_data = context.get("retrieved_data", {})
         memory = context.get("memory", [])
+        updated_neighbors = context.get("updated_neighbors", [])  # 获取已更新邻居列表
 
         # NEW: label & broadcast status
         node_label = context.get("label") or context.get("predicted_label")
@@ -372,6 +375,7 @@ You are Node {node_id} in a scientific citation network. Your task is to classif
     \"{text}\"
     - Neighbors: {neighbors if neighbors else 'None'}
     - Available nodes to retrieve (excluding seen): {available_nodes if available_nodes else 'None'}
+    - Neighbors with predicted labels: {updated_neighbors if updated_neighbors else 'None'}
     """
 
         # Label prediction section
