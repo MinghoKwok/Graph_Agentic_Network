@@ -51,6 +51,8 @@ class NodeAgent:
         decisions = self.llm.decide_action(context)
 
         # Ensure decisions is a list
+        # Normalize the action output to a list to support multiple sequential actions per node step.
+        # This enables LLMs to plan a sequence like: [retrieve → update → broadcast]
         if isinstance(decisions, dict):
             decisions = [decisions]
 
@@ -67,6 +69,11 @@ class NodeAgent:
                 })
 
         # Fallback update logic - only trigger in the last layer
+        # Trigger fallback update only if:
+        # - in the last layer,
+        # - no predicted label yet,
+        # - no prior update action occurred,
+        # - but memory contains labeled examples.
         if (layer == NUM_LAYERS - 1 and  # Only in last layer
             self.state.predicted_label is None and 
             not any(m.get("action") == "update" for m in self.state.memory) and 
@@ -112,6 +119,9 @@ class NodeAgent:
             last = self.state.memory[-1]
             action_type = last.get("action", "unknown")
             result = last.get("result", {})
+            # Show agent's most recent action result for debugging and traceability.
+            # Useful for layer-wise inspection of node behavior.
+
 
             if action_type == "retrieve":
                 targets = result.get("target_nodes", [])
@@ -173,15 +183,30 @@ class NodeAgent:
             if info_type not in ["text", "label", "both", "memory", "all"]:
                 info_type = "text"  # 默认使用 "text"
             return RetrieveAction(target_nodes, info_type)
+
         elif action_type == "broadcast":
             target_nodes = decision.get("target_nodes", [])
-            message_data = decision.get("message", [0.0])
+
+            # ✅ fallback message logic
+            message_data = decision.get("message", None)
+
+            if message_data is None:
+                # fallback to predicted_label + text
+                # If LLM does not provide a broadcast message, fallback to a default message combining predicted_label + text.
+                # This ensures all broadcast actions remain valid and meaningful for downstream nodes.
+                plabel = self.state.predicted_label.item() if self.state.predicted_label is not None else "unknown"
+                text = self.state.text[:60] + "..." if len(self.state.text) > 60 else self.state.text
+                fallback_message = f"[Label: {plabel}] {text}"
+                print(f"⚠️ Broadcast message missing — fallback to: {fallback_message}")
+                message_data = fallback_message
+
             if isinstance(message_data, list) and all(isinstance(x, (int, float)) for x in message_data):
                 message = torch.tensor(message_data, dtype=torch.float)
             elif isinstance(message_data, (int, float)):
                 message = torch.tensor([message_data], dtype=torch.float)
             else:
                 message = torch.tensor([len(str(message_data))], dtype=torch.float)
+
             return BroadcastAction(target_nodes, message)
 
         elif action_type == "update":
