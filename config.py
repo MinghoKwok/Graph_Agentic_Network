@@ -20,15 +20,15 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 MULTI_GPU = torch.cuda.device_count() > 1
 
 # LLM settings
-LLM_BACKEND = "flan-local"  # Options: "remote", "mock", "flan-local"
-LLM_MODEL = "google/flan-t5-xl" # "llama-3.1-8b-instruct" or "google/flan-t5-xl"
+LLM_BACKEND = "remote"  # Options: "remote", "mock", "flan-local"
+LLM_MODEL = "llama-3.1-8b-instruct" # "llama-3.1-8b-instruct" or "google/flan-t5-xl"
 REMOTE_LLM_ENDPOINT = "http://localhost:8001/v1/chat/completions"
 
 # Experiment settings
 RANDOM_SEED = 42
 NUM_LAYERS = 4  # Number of GAN layers to run
 BATCH_SIZE = 16  # Batch size for processing nodes
-MAX_NEIGHBORS = 20  # Maximum number of neighbors to consider
+MAX_NEIGHBORS = 30  # Maximum number of neighbors to consider
 
 # GCN baseline settings
 GCN_HIDDEN_DIM = 256
@@ -76,3 +76,4 @@ LOG_INTERVAL = 10
 DEBUG_LLM = True    #  Whether to print the prompt and response for debugging
 DEBUG_STEP_SUMMARY = True  # 是否打印每个节点每层的 step summary
 DEBUG_MESSAGE_TRACE = True       # 打印消息传递详情（仅在 retrieve / broadcast 时）
+DEBUG_FORCE_FALLBACK = False  # 添加 DEBUG_FORCE_FALLBACK 变量

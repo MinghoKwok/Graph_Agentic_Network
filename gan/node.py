@@ -7,7 +7,7 @@ from typing import Dict, List, Any, Optional, Tuple, Set, Union
 from dataclasses import dataclass, field
 
 from gan.actions import Action, RetrieveAction, BroadcastAction, UpdateAction, NoOpAction
-from config import DEBUG_STEP_SUMMARY, DEBUG_MESSAGE_TRACE, NUM_LAYERS  # 加入 NUM_LAYERS 以判断是否为最后一层
+from config import DEBUG_STEP_SUMMARY, DEBUG_MESSAGE_TRACE, NUM_LAYERS, DEBUG_FORCE_FALLBACK  # 加入 NUM_LAYERS 以判断是否为最后一层
 from data.cora.label_vocab import label_vocab  # 自定义标签映射
 
 
@@ -48,42 +48,56 @@ class NodeAgent:
 
     def step(self, graph: 'AgenticGraph', layer: int) -> None:
         context = self._prepare_context(graph)
-        decision = self.llm.decide_action(context)
-        action = self._create_action(decision)
+        decisions = self.llm.decide_action(context)
 
-        if action:
-            result = action.execute(self, graph)
-            self.state.memory.append({
-                "layer": layer,
-                "action": result.get("action", "unknown"),
-                "result": result,
-                "text": self.state.text,
-                "label": self.state.label.item() if self.state.label is not None else None
-            })
+        # ✅ 插入在 step() 函数最开始，打印每个节点当前计划的完整 action 列表
+        print(f"\n📋 Multi-Action Plan | Node {self.state.node_id} | Layer {layer}")
+        if isinstance(decisions, dict):
+            decisions = [decisions]
+        for idx, d in enumerate(decisions):
+            print(f"  {idx+1}. {d}")
+
+        # Ensure decisions is a list
+        # Normalize the action output to a list to support multiple sequential actions per node step.
+        # This enables LLMs to plan a sequence like: [retrieve → update → broadcast]
+        if isinstance(decisions, dict):
+            decisions = [decisions]
+
+        for decision in decisions:
+            action = self._create_action(decision)
+            if action:
+                result = action.execute(self, graph)
+                # ✅ 插入在每次执行 action 之后，确认其执行结果是否有效
+                print(f"✅ Executed {decision.get('action_type')} with result: {result}")
+                self.state.memory.append({
+                    "layer": layer,
+                    "action": result.get("action", "unknown"),
+                    "result": result,
+                    "text": self.state.text,
+                    "label": self.state.label.item() if self.state.label is not None else None
+                })
 
         # Fallback update logic - only trigger in the last layer
-        if (layer == NUM_LAYERS - 1 and  # Only in last layer
+        # Trigger fallback update only if:
+        # - in the last layer,
+        # - no predicted label yet,
+        # - no prior update action occurred,
+        # - but memory contains labeled examples.
+        if (layer == NUM_LAYERS - 1 and (DEBUG_FORCE_FALLBACK or (
             self.state.predicted_label is None and 
-            result.get("action") != "update" and 
-            any(m.get("label") is not None for m in self.state.memory)):
-            
-            # Create fallback prompt using labeled examples from memory
-            fallback_prompt = self.llm._format_fallback_label_prompt(
-                self.state.text,
-                self.state.memory
-            )
-            
-            # Get fallback decision from LLM
-            fallback_decision = self.llm._parse_action(
-                self.llm.generate_response(fallback_prompt)
-            )
-            
-            # Ensure the decision is an update action
-            if fallback_decision.get("action_type") == "update":
+            not any(m.get("action") == "update" for m in self.state.memory) and 
+            any(m.get("label") is not None for m in self.state.memory)))):
+
+            # 打印 fallback label 推理的 prompt 和结果
+            fallback_prompt = self.llm._format_fallback_label_prompt(self.state.text, self.state.memory)
+            print(f"\n📦 [Fallback Prompt for Node {self.state.node_id}]:\n{fallback_prompt}")
+            fallback_decision = self.llm._parse_action(self.llm.generate_response(fallback_prompt))
+            print(f"🎯 [Fallback Result]: {fallback_decision}")
+
+            if isinstance(fallback_decision, dict) and fallback_decision.get("action_type") == "update":
                 fallback_action = self._create_action(fallback_decision)
                 if fallback_action:
                     fallback_result = fallback_action.execute(self, graph)
-                    # Append fallback result to memory
                     self.state.memory.append({
                         "layer": layer,
                         "action": "fallback_update",
@@ -91,7 +105,6 @@ class NodeAgent:
                         "text": self.state.text,
                         "label": self.state.label.item() if self.state.label is not None else None
                     })
-                    
                     if DEBUG_STEP_SUMMARY:
                         print(f"\n🔄 Fallback Update | Node {self.state.node_id}")
                         print(f"  ├─ 🎯 New Label: {self.state.predicted_label}")
@@ -111,6 +124,13 @@ class NodeAgent:
 
         if DEBUG_MESSAGE_TRACE and self.state.memory:
             print(f"\n🔍 Message Trace | Node {self.state.node_id} | Layer {layer}")
+            last = self.state.memory[-1]
+            action_type = last.get("action", "unknown")
+            result = last.get("result", {})
+            # Show agent's most recent action result for debugging and traceability.
+            # Useful for layer-wise inspection of node behavior.
+
+
             if action_type == "retrieve":
                 targets = result.get("target_nodes", [])
                 results = result.get("results", {})
@@ -121,6 +141,8 @@ class NodeAgent:
                         print(f"    ↳ Node {tid} ✅ {preview_str}")
                     else:
                         print(f"    ↳ Node {tid} ⛔ not found")
+            elif action_type == "rag_query":
+                print(f"  🔍 RAG Query issued: {result.get('query')} (top-k: {len(result.get('results', []))})")
             elif action_type == "broadcast":
                 targets = result.get("target_nodes", [])
                 message = result.get("message", None)
@@ -134,12 +156,23 @@ class NodeAgent:
             else:
                 print("  ⚠️  No message or state updates in this step.")
 
+
     def receive_message(self, from_node: int, message: torch.Tensor) -> None:
+        # ✅ 在 receive_message 或 receive_broadcast 中也加入一行确认接收
+        print(f"📨 Node {self.state.node_id} received message from Node {from_node}")
         self.state.add_message(from_node, message, self.state.layer_count)
 
     def _prepare_context(self, graph: 'AgenticGraph') -> Dict[str, Any]:
         neighbors = [nid for nid in graph.get_neighbors(self.state.node_id) if nid != self.state.node_id]
         print(f"🔍 Neighbors in prepare_context: {neighbors}")
+        
+        # 找出已 update 的邻居（即有 predicted_label 的邻居）
+        updated_neighbors = [
+            nid for nid in neighbors
+            if graph.get_node(nid).state.predicted_label is not None
+        ]
+        print(f"📊 Updated neighbors (with predicted labels): {updated_neighbors}")
+        
         messages = [{"from": msg["from"], "content_preview": msg["content"].mean().item(), "layer": msg["layer"]}
                     for msg in self.state.message_queue[-5:]]
         recent_memory = self.state.memory[-3:] if self.state.memory else []
@@ -151,6 +184,7 @@ class NodeAgent:
             "predicted_label": self.state.predicted_label.item() if self.state.predicted_label is not None else None,
             "neighbors": neighbors,
             "total_neighbors": len(neighbors),
+            "updated_neighbors": updated_neighbors,  # 添加已更新邻居列表
             "messages": messages,
             "total_messages": len(self.state.message_queue),
             "memory": recent_memory,
@@ -160,21 +194,38 @@ class NodeAgent:
 
     def _create_action(self, decision: Dict[str, Any]) -> Optional[Action]:
         action_type = decision.get("action_type", "no_op")
-
+        
         if action_type == "retrieve":
             target_nodes = decision.get("target_nodes", [])
             info_type = decision.get("info_type", "text")
+            # 确保 info_type 是支持的类型
+            if info_type not in ["text", "label", "both", "memory", "all"]:
+                info_type = "text"  # 默认使用 "text"
             return RetrieveAction(target_nodes, info_type)
 
         elif action_type == "broadcast":
             target_nodes = decision.get("target_nodes", [])
-            message_data = decision.get("message", [0.0])
+
+            # ✅ fallback message logic
+            message_data = decision.get("message", None)
+
+            if message_data is None:
+                # fallback to predicted_label + text
+                # If LLM does not provide a broadcast message, fallback to a default message combining predicted_label + text.
+                # This ensures all broadcast actions remain valid and meaningful for downstream nodes.
+                plabel = self.state.predicted_label.item() if self.state.predicted_label is not None else "unknown"
+                text = self.state.text[:60] + "..." if len(self.state.text) > 60 else self.state.text
+                fallback_message = f"[Label: {plabel}] {text}"
+                print(f"⚠️ Broadcast message missing — fallback to: {fallback_message}")
+                message_data = fallback_message
+
             if isinstance(message_data, list) and all(isinstance(x, (int, float)) for x in message_data):
                 message = torch.tensor(message_data, dtype=torch.float)
             elif isinstance(message_data, (int, float)):
                 message = torch.tensor([message_data], dtype=torch.float)
             else:
                 message = torch.tensor([len(str(message_data))], dtype=torch.float)
+
             return BroadcastAction(target_nodes, message)
 
         elif action_type == "update":

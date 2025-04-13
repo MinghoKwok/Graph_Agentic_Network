@@ -56,13 +56,84 @@ class RetrieveAction(Action):
 
             if neighbor is not None:
                 entry = {}
-                if self.info_type in ("text", "both") and neighbor.state.text:
+                # 获取基本信息
+                if self.info_type in ("text", "both", "all") and neighbor.state.text:
                     entry["text"] = neighbor.state.text
-                if self.info_type in ("label", "both"):
+                if self.info_type in ("label", "both", "all"):
                     entry["label"] = neighbor.state.label.item() if neighbor.state.label is not None else None
+                
+                # 新增: 检索邻居记忆中的所有有价值的节点信息
+                if self.info_type in ("memory", "all"):
+                    # 创建一个字典来收集所有节点信息，避免重复
+                    collected_nodes = {}
+                    
+                    # 遍历邻居的记忆
+                    for mem_entry in neighbor.state.memory:
+                        if not isinstance(mem_entry, dict):
+                            continue
+                            
+                        # 处理 retrieve 操作记录中的信息
+                        if mem_entry.get("action") == "retrieve":
+                            result = mem_entry.get("result", {})
+                            retrieved_results = result.get("results", {})
+                            
+                            for other_node_id, other_node_info in retrieved_results.items():
+                                if other_node_id not in collected_nodes:
+                                    collected_nodes[other_node_id] = {}
+                                
+                                # 合并信息
+                                for key, value in other_node_info.items():
+                                    collected_nodes[other_node_id][key] = value
+                        
+                        # 处理 broadcast 操作记录中的信息
+                        elif mem_entry.get("action") == "broadcast":
+                            # 从对方接收到的广播消息
+                            result = mem_entry.get("result", {})
+                            message = result.get("message")
+                            source = result.get("source")
+                            
+                            if isinstance(message, dict) and "text" in message:
+                                # 直接的文本和标签信息
+                                if source not in collected_nodes:
+                                    collected_nodes[source] = {}
+                                
+                                if "text" in message:
+                                    collected_nodes[source]["text"] = message["text"]
+                                if "predicted_label" in message:
+                                    collected_nodes[source]["predicted_label"] = message["predicted_label"]
+                            
+                            elif isinstance(message, list):
+                                # 可能是标记示例列表
+                                for item in message:
+                                    if isinstance(item, dict) and "label" in item and "text" in item:
+                                        # 可能是从其他节点传来的标记示例
+                                        # 这里我们可能没有节点ID，但我们可以根据内容创建唯一标识
+                                        if "node_id" in item:
+                                            example_id = item["node_id"]
+                                        else:
+                                            # 创建一个假ID作为占位符
+                                            example_id = f"example_{hash(item['text'])}"
+                                        
+                                        if example_id not in collected_nodes:
+                                            collected_nodes[example_id] = {}
+                                        
+                                        collected_nodes[example_id]["text"] = item["text"]
+                                        collected_nodes[example_id]["label"] = item["label"]
+                    
+                    # 压缩文本以节省空间
+                    for node_id, node_info in collected_nodes.items():
+                        if "text" in node_info and isinstance(node_info["text"], str):
+                            # 截断长文本
+                            text = node_info["text"]
+                            if len(text) > 100:  # 可以调整截断长度
+                                node_info["text"] = text[:100] + "..."
+                    
+                    if collected_nodes:
+                        entry["collected_nodes"] = collected_nodes
 
                 if entry:
                     results[node_id] = entry
+                    # 保存到当前节点的记忆中
                     if "label" in entry and entry["label"] is not None:
                         agent.memory[node_id] = {
                             **entry,
@@ -87,6 +158,25 @@ class RetrieveAction(Action):
             "target_nodes": self.target_nodes,
             "results": results,
             "not_found": not_found
+        }
+
+class RAGAction(Action):
+    """Action to retrieve similar labeled nodes from a global knowledge base."""
+
+    def __init__(self, query_text: str = None, top_k: int = 5):
+        self.query_text = query_text
+        self.top_k = top_k
+
+    def execute(self, agent: 'NodeAgent', graph: 'AgenticGraph') -> Dict[str, Any]:
+        # For now, just log the action
+        query = self.query_text or agent.state.text
+        print(f"[RAGAction] Node {agent.state.node_id} would query top-{self.top_k} similar labeled nodes using query: {query}")
+
+        # Simulate a response for compatibility
+        return {
+            "action": "rag_query",
+            "query": query,
+            "results": []  # Placeholder for future retrieved labeled examples
         }
 
 
@@ -117,6 +207,14 @@ class BroadcastAction(Action):
         """
         if not self.target_nodes:
             return {"action": "no_op", "message": None, "target_nodes": []}
+            
+        # ✅ 在 BroadcastAction.execute 中添加 debug log，确认是否正确发送消息
+        print(f"📤 [Broadcast] Node {agent.state.node_id} → {self.target_nodes}")
+        for nid in self.target_nodes:
+            if graph.has_node(nid):
+                print(f"    ↳ ✅ Sending to Node {nid}")
+            else:
+                print(f"    ↳ ⛔ Node {nid} not found in graph")
             
         # Prepare message payload based on available information
         message_payload = None
