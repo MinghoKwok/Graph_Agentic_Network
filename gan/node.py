@@ -46,24 +46,76 @@ class NodeAgent:
         self.retrieved_data = {}
         self.memory = {}
 
-    def step(self, graph: 'AgenticGraph', layer: int) -> None:
-        context = self._prepare_context(graph)
-        decisions = self.llm.decide_action(context)
+    def step(self, graph: 'AgenticGraph', layer: int):
+        """Execute one step of the agent's decision-making process."""
+        # 准备上下文信息
+        context = {
+            "node_id": self.state.node_id,
+            "text": self.state.text,
+            "label": self.state.label.item() if self.state.label is not None else None,
+            "layer": layer,
+            "memory": self.state.memory,
+            "neighbors": graph.get_neighbors(self.state.node_id)
+        }
+        
+        # 获取动作提示
+        action_prompt = self.llm._format_action_prompt(context, graph)
+        
+        try:
+            # 生成响应并解析动作
+            response = self.llm.generate_response(action_prompt)
+            action = self.llm.parse_action(response)
+            
+            # 如果解析失败，使用备用决策
+            if action is None:
+                print(f"⚠️ Failed to parse action from response: {response}")
+                fallback_prompt = f"""Based on the following context, choose the most appropriate action:
+Context: {context}
+Available actions: retrieve, broadcast, update, rag_query
+Choose one action and provide parameters."""
+                fallback_decision = self.llm.parse_action(self.llm.generate_response(fallback_prompt))
+                if fallback_decision is None:
+                    print("⚠️ Fallback decision also failed. Using default update action.")
+                    action = UpdateAction()
+                else:
+                    action = fallback_decision
+            
+            # 执行动作
+            result = action.execute(self, graph)
+            
+            # 更新记忆
+            self.state.memory.append({
+                "layer": layer,
+                "action": action.__class__.__name__,
+                "result": result
+            })
+            
+        except Exception as e:
+            print(f"⚠️ Error in agent step: {e}")
+            # 使用默认的更新动作
+            action = UpdateAction()
+            result = action.execute(self, graph)
+            self.state.memory.append({
+                "layer": layer,
+                "action": "UpdateAction",
+                "result": result,
+                "error": str(e)
+            })
 
         # ✅ 插入在 step() 函数最开始，打印每个节点当前计划的完整 action 列表
         print(f"\n📋 Multi-Action Plan | Node {self.state.node_id} | Layer {layer}")
-        if isinstance(decisions, dict):
-            decisions = [decisions]
-        for idx, d in enumerate(decisions):
+        if isinstance(action, dict):
+            action = [action]
+        for idx, d in enumerate(action):
             print(f"  {idx+1}. {d}")
 
         # Ensure decisions is a list
         # Normalize the action output to a list to support multiple sequential actions per node step.
         # This enables LLMs to plan a sequence like: [retrieve → update → broadcast]
-        if isinstance(decisions, dict):
-            decisions = [decisions]
+        if isinstance(action, dict):
+            action = [action]
 
-        for decision in decisions:
+        for decision in action:
             action = self._create_action(decision)
             if action:
                 result = action.execute(self, graph)

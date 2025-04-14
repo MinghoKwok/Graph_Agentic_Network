@@ -104,26 +104,27 @@ class RemoteLLMInterface(BaseLLMInterface):
     {label_list}
     """
 
-        labeled_examples = [m for m in memory if m.get("label") is not None and m.get("text")]
-        if labeled_examples:
-            prompt += "\n## Memory Examples with Known Labels:\n"
-            prompt += "Refer to the following labeled nodes to help predict the label of the current node:\n"
-            for i, ex in enumerate(labeled_examples[:5]):
-                lbl = inv_label_vocab.get(ex["label"], "?")
-                prompt += f"{i+1}. [{lbl}] \"{ex['text'][:60]}\"\n"
+        # ✅ 使用精炼后的 labeled memory：text + label_text
+        memory_labeled_examples = [
+            m for m in memory if m.get("label_text") and m.get("text")
+        ]
+        if memory_labeled_examples:
+            prompt += "\n## Here are memory you have! Use such label-text pairs to predict your label:\n"
+            for i, ex in enumerate(memory_labeled_examples[:10]):
+                prompt += f"{i+1}. [Label: {ex['label_text']}] \"{ex['text'][:50]}\"\n"
 
-        if messages:
-            prompt += "\n## Messages Received:\n"
-            for msg in messages:
-                preview = msg.get("content_preview", "[no preview]")
-                prompt += f"- From Node {msg['from']} (Layer {msg['layer']}): Preview={preview}\n"
+        # if messages:  # Received from broadcast 暂时不考虑单独列出，因为理论上memory里有了，但别删除
+        #     prompt += "\n## Messages Received:\n"
+        #     for msg in messages:
+        #         preview = msg.get("content_preview", "[no preview]")
+        #         prompt += f"- From Node {msg['from']} (Layer {msg['layer']}): Preview={preview}\n"
 
-        if retrieved_data:
-            prompt += "\n## Retrieved Data (from previous steps):\n"
-            for nid, val in list(retrieved_data.items())[:3]:
-                prompt += f"- Node {nid}: {val}\n"
-            if len(retrieved_data) > 3:
-                prompt += f"(and {len(retrieved_data) - 3} more)\n"
+        # if retrieved_data:    # 暂时不考虑单独列出，因为理论上memory里有了，但别删除
+        #     prompt += "\n## Retrieved Data (from previous steps):\n"
+        #     for nid, val in list(retrieved_data.items())[:3]:
+        #         prompt += f"- Node {nid}: {val}\n"
+        #     if len(retrieved_data) > 3:
+        #         prompt += f"(and {len(retrieved_data) - 3} more)\n"
 
         if retrieved_data:
             collected_nodes = {}
@@ -206,7 +207,7 @@ class RemoteLLMInterface(BaseLLMInterface):
     - If you cannot predict your label yet, first retrieve or rag_query to collect more labeled examples.
     - If any neighbors already have predicted labels, it is recommended to retrieve from them first.
     """
-
+        print("📤 [DEBUG] Prompt being sent to LLM:\n", prompt)
         return prompt
 
     def _format_layer_prompt(self, context: Dict[str, Any]) -> str:

@@ -4,6 +4,7 @@ Action classes for node agents in the Graph Agentic Network
 
 import torch
 from typing import Dict, List, Any, Optional, Union
+from data.cora.label_vocab import inv_label_vocab  # label_id → label_name 的映射
 
 
 class Action:
@@ -29,22 +30,22 @@ class RetrieveAction(Action):
     def __init__(self, target_nodes: List[int], info_type: str = "text"):
         """
         Initialize a retrieve action.
-        
+
         Args:
             target_nodes: List of node IDs to retrieve from
-            info_type: Type of information to retrieve ("text" or "label")
+            info_type: Type of information to retrieve ("text", "label", "both", or "all")
         """
         self.target_nodes = target_nodes
         self.info_type = info_type
-        
+
     def execute(self, agent: 'NodeAgent', graph: 'AgenticGraph') -> Dict[str, Any]:
         """
         Execute the retrieve action.
-        
+
         Args:
             agent: The node agent executing the action
             graph: The graph environment
-            
+
         Returns:
             Dictionary containing retrieved information
         """
@@ -53,104 +54,35 @@ class RetrieveAction(Action):
 
         for node_id in self.target_nodes:
             neighbor = graph.get_node(node_id)
+            if neighbor is None:
+                not_found.append(node_id)
+                continue
 
-            if neighbor is not None:
-                entry = {}
-                # 获取基本信息
-                if self.info_type in ("text", "both", "all") and neighbor.state.text:
-                    entry["text"] = neighbor.state.text
-                if self.info_type in ("label", "both", "all"):
-                    entry["label"] = neighbor.state.label.item() if neighbor.state.label is not None else None
-                
-                # 新增: 检索邻居记忆中的所有有价值的节点信息
-                if self.info_type in ("memory", "all"):
-                    # 创建一个字典来收集所有节点信息，避免重复
-                    collected_nodes = {}
-                    
-                    # 遍历邻居的记忆
-                    for mem_entry in neighbor.state.memory:
-                        if not isinstance(mem_entry, dict):
-                            continue
-                            
-                        # 处理 retrieve 操作记录中的信息
-                        if mem_entry.get("action") == "retrieve":
-                            result = mem_entry.get("result", {})
-                            retrieved_results = result.get("results", {})
-                            
-                            for other_node_id, other_node_info in retrieved_results.items():
-                                if other_node_id not in collected_nodes:
-                                    collected_nodes[other_node_id] = {}
-                                
-                                # 合并信息
-                                for key, value in other_node_info.items():
-                                    collected_nodes[other_node_id][key] = value
-                        
-                        # 处理 broadcast 操作记录中的信息
-                        elif mem_entry.get("action") == "broadcast":
-                            # 从对方接收到的广播消息
-                            result = mem_entry.get("result", {})
-                            message = result.get("message")
-                            source = result.get("source")
-                            
-                            if isinstance(message, dict) and "text" in message:
-                                # 直接的文本和标签信息
-                                if source not in collected_nodes:
-                                    collected_nodes[source] = {}
-                                
-                                if "text" in message:
-                                    collected_nodes[source]["text"] = message["text"]
-                                if "predicted_label" in message:
-                                    collected_nodes[source]["predicted_label"] = message["predicted_label"]
-                            
-                            elif isinstance(message, list):
-                                # 可能是标记示例列表
-                                for item in message:
-                                    if isinstance(item, dict) and "label" in item and "text" in item:
-                                        # 可能是从其他节点传来的标记示例
-                                        # 这里我们可能没有节点ID，但我们可以根据内容创建唯一标识
-                                        if "node_id" in item:
-                                            example_id = item["node_id"]
-                                        else:
-                                            # 创建一个假ID作为占位符
-                                            example_id = f"example_{hash(item['text'])}"
-                                        
-                                        if example_id not in collected_nodes:
-                                            collected_nodes[example_id] = {}
-                                        
-                                        collected_nodes[example_id]["text"] = item["text"]
-                                        collected_nodes[example_id]["label"] = item["label"]
-                    
-                    # 压缩文本以节省空间
-                    for node_id, node_info in collected_nodes.items():
-                        if "text" in node_info and isinstance(node_info["text"], str):
-                            # 截断长文本
-                            text = node_info["text"]
-                            if len(text) > 100:  # 可以调整截断长度
-                                node_info["text"] = text[:100] + "..."
-                    
-                    if collected_nodes:
-                        entry["collected_nodes"] = collected_nodes
+            entry = {}
+            # 获取 text 和 label
+            if self.info_type in ("text", "both", "all") and neighbor.state.text:
+                entry["text"] = neighbor.state.text
+            if self.info_type in ("label", "both", "all"):
+                entry["label"] = neighbor.state.label.item() if neighbor.state.label is not None else None
 
-                if entry:
-                    results[node_id] = entry
-                    # 保存到当前节点的记忆中
-                    if "label" in entry and entry["label"] is not None:
-                        agent.memory[node_id] = {
-                            **entry,
-                            "source_layer": agent.state.layer_count
-                        }
-                    else:
-                        print(f"⛔ Skipped adding Node {node_id} to memory (no label)")
-                else:
-                    not_found.append(node_id)
+            if entry:
+                results[node_id] = entry
             else:
-                mem_data = agent.memory.get(node_id)
-                if mem_data and self.info_type in mem_data:
-                    results[node_id] = {
-                        k: mem_data[k] for k in ("text", "label") if k in mem_data
-                    }
-                else:
-                    not_found.append(node_id)
+                not_found.append(node_id)
+
+        # ✅ 将 labeled entries 写入当前节点 memory，加入 label_text（自然语言标签）
+        for node_id, entry in results.items():
+            if "text" in entry and "label" in entry and entry["label"] is not None:
+                label_text = inv_label_vocab.get(entry["label"], str(entry["label"]))
+                agent.state.memory.append({
+                    "layer": agent.state.layer_count,  # 当前层数
+                    "action": "RetrieveExample",
+                    "text": entry["text"],
+                    "label": entry["label"],           # 数值标签
+                    "label_text": label_text,          # 文本标签
+                    "source": node_id,
+                    "source_type": "retrieved"
+                })
 
         return {
             "action": "retrieve",
