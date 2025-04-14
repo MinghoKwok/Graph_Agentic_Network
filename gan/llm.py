@@ -33,16 +33,26 @@ class RemoteLLMInterface(BaseLLMInterface):
 
     def generate_response(self, prompt: str) -> str:
         assert isinstance(prompt, str) and len(prompt.strip()) > 30, "Prompt seems too short or empty!"
+
+        # 自动估算 prompt token 长度（粗略：单词数 × 1.3）
+        approx_prompt_tokens = int(len(prompt.strip().split()) * 1.3)
+
+        # 与你启动时设置的 max_model_len 保持一致
+        max_model_len = config.MAX_MODEL_LEN
+        max_tokens = max(min(max_model_len - approx_prompt_tokens, 512), 64)  # 最多 512，最少保留 64
+
         payload = {
             "model": self.model_name,
             "messages": [{"role": "user", "content": prompt}],
             "temperature": 0.2,
-            "top_p": 0.95
+            "top_p": 0.95,
+            "max_tokens": max_tokens,
         }
         headers = {"Content-Type": "application/json"}
+
         try:
             response = requests.post(self.endpoint, headers=headers, json=payload)
-            print("🔁 Raw response from vLLM:", response.text)
+            print(f"🔁 Raw response from vLLM: {response.text[:200]}...")  # 前200字节预览，避免爆屏
             response.raise_for_status()
             result = response.json()
             return result["choices"][0]["message"]["content"].strip()
@@ -99,13 +109,15 @@ class RemoteLLMInterface(BaseLLMInterface):
     - Neighbors with predicted labels: {updated_neighbors if updated_neighbors else 'None'}
     """
 
-        label_list = ", ".join([f"{i}. {label}" for i, label in inv_label_vocab.items()])
-        prompt += f"""
+        label_list = ", ".join(f'"{v}"' for v in inv_label_vocab.values())
+        update_action_block = f"""
+        3. "update": decide your label *only* when the memory has enough information(labeled nodes, with text and label)
+        - Format: {{"action_type": "update", "predicted_label": choose one of allowed labels: [{label_list}]}}
+        - You MUST choose one of the allowed label strings exactly as listed.
+        - You MUST base your decision only on memory nodes with known labels.
+        - You should ALWAYS follow this action with a "broadcast" to share your label with neighbors.
+"""
 
-    ## Label Categories:
-    You must classify the node into one of the following categories:
-    {label_list}
-    """
 
         # 使用精炼后的 labeled memory：text + label_text
         memory_examples = get_labeled_examples(memory, top_k=10)
@@ -146,14 +158,22 @@ class RemoteLLMInterface(BaseLLMInterface):
     1. "retrieve": get information from other nodes
     - Format: {"action_type": "retrieve", "target_nodes": [IDs], "info_type": "text"}
 
-    2. "broadcast": send a message to neighbors
+    2. "broadcast": send a message to neighbors if and *only* if you already have a label or predicted label
     - Format: {"action_type": "broadcast", "target_nodes": [IDs], "message": "some message"}
-    - Use this when you already have a label or predicted label to share it with neighbors. So it always works with "update" action.
+    - Use this *only* when you already have a label or predicted label to share it with neighbors. 
+    - You MUST NOT use "broadcast" unless you already have a label orpredicted label (i.e., after an "update" action).
+    - So "update" action always works before "broadcast" in the same layer.
 
     3. "update": decide your label when the memory has enough information(labeled nodes)
-    - Format: {"action_type": "update", "predicted_label": "label_string"}
-    - Only use memory to infer your label. You **must** base the prediction only on nodes in memory with known labels. So after you use "update" action, you always should use "broadcast" action.
+    - Format: {"action_type": "update", "predicted_label": [one of labels in My_Label_List]}
+    - Only use memory to infer your label. You **must** base the prediction only on nodes in memory with known labels. 
+    - So after "update" action, you always should use "broadcast" action.
 
+    """
+
+        prompt += update_action_block
+
+        prompt += """
     4. "rag_query": search globally for similar labeled nodes, can make up "retrieve" action
     - Format: {"action_type": "rag_query", "query": [Your node ID, e.g. 13/57], "top_k": number of nodes to retrieve}
     - Use this when you don't have enough informative neighbors or memory, and need global examples.
@@ -162,13 +182,17 @@ class RemoteLLMInterface(BaseLLMInterface):
     5. "no_op": take no action
     - Format: {"action_type": "no_op"}
 
+    """
+
+        prompt += """
+
     ## Planning Your Steps
     Think like a planner: first gather evidence (retrieve, rag_query), then make a decision (update), and finally help others (broadcast).
     Think about the following:
-    - Do you need more context to predict your label? → `retrieve`, `rag_query`
+    - If you cannot predict your label yet, need more context to predict your label → `retrieve`, `rag_query`
     - Are you confident to predict your label? → `update`
     - Have you shared your label or predicted label with neighbors? → `broadcast`
-    - If you cannot predict your label yet, first retrieve or rag_query to collect more labeled examples.
+    - If you don't have a predicted label, DO NOT broadcast. Instead, choose "retrieve" or "rag_query" first.
     - If any neighbors already have predicted labels, it is recommended to retrieve from them first.
     """
         print("📤 [DEBUG] Prompt being sent to LLM:\n", prompt)
@@ -489,6 +513,6 @@ class LLMInterface(BaseLLMInterface):
 
     def parse_action(self, response: str) -> Dict[str, Any]:
         return self.impl._parse_action(response)
-        
+
     def _format_action_prompt(self, context: Dict[str, Any], graph: 'AgenticGraph' = None) -> str:
         return self.impl._format_action_prompt(context, graph)

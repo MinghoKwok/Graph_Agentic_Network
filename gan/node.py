@@ -82,7 +82,10 @@ Choose one action and provide parameters."""
                     action = fallback_decision
             
             # 执行动作
-            result = action.execute(self, graph)
+            if isinstance(action, dict):
+                action = self._create_action(action)
+            if action:
+                result = action.execute(self, graph)
             
             # 更新记忆
             self.state.memory.append({
@@ -105,7 +108,11 @@ Choose one action and provide parameters."""
             else:
                 action = NoOpAction()  # 最坏情况也不要直接 new UpdateAction()
 
-            result = action.execute(self, graph)
+            if isinstance(action, dict):
+                action = self._create_action(action)
+            if action:
+                result = action.execute(self, graph)
+
             self.state.memory.append({
                 "layer": layer,
                 "action": action.__class__.__name__,
@@ -138,9 +145,8 @@ Choose one action and provide parameters."""
         for decision in action_list:
             action = self._create_action(decision)
             if action:
+                action_type = decision.get("action_type") if isinstance(decision, dict) else action.__class__.__name__
                 result = action.execute(self, graph)
-                # ✅ 插入在每次执行 action 之后，确认其执行结果是否有效
-                action_type = decision.get("action_type") if isinstance(decision, dict) else decision.__class__.__name__
                 print(f"✅ Executed {action_type} with result: {result}")
                 self.state.memory.append({
                     "layer": layer,
