@@ -7,7 +7,11 @@ import config
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import torch
 from typing import Dict, Any, Optional, List, Union
-from utils import get_labeled_examples
+
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from gan.utils import get_labeled_examples
 
 
 
@@ -485,3 +489,6 @@ class LLMInterface(BaseLLMInterface):
 
     def parse_action(self, response: str) -> Dict[str, Any]:
         return self.impl._parse_action(response)
+        
+    def _format_action_prompt(self, context: Dict[str, Any], graph: 'AgenticGraph' = None) -> str:
+        return self.impl._format_action_prompt(context, graph)

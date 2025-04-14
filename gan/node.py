@@ -55,7 +55,8 @@ class NodeAgent:
             "label": self.state.label.item() if self.state.label is not None else None,
             "layer": layer,
             "memory": self.state.memory,
-            "neighbors": graph.get_neighbors(self.state.node_id)
+            "neighbors": graph.get_neighbors(self.state.node_id),
+            "total_neighbors": len(graph.get_neighbors(self.state.node_id))
         }
         
         # 获取动作提示
@@ -92,35 +93,55 @@ Choose one action and provide parameters."""
             
         except Exception as e:
             print(f"⚠️ Error in agent step: {e}")
-            # 使用默认的更新动作
-            action = UpdateAction()
+            # 使用 fallback update 动作结构，确保含有合法参数
+            fallback_prompt = self.llm._format_fallback_label_prompt(self.state.text, self.state.memory)
+            print(f"\n📦 [Exception Fallback Prompt for Node {self.state.node_id}]:\n{fallback_prompt}")
+            fallback_response = self.llm.generate_response(fallback_prompt)
+            fallback_decision = self.llm.parse_action(fallback_response)
+            print(f"🎯 [Exception Fallback Result]: {fallback_decision}")
+
+            if isinstance(fallback_decision, dict) and fallback_decision.get("action_type") == "update":
+                action = self._create_action(fallback_decision)
+            else:
+                action = NoOpAction()  # 最坏情况也不要直接 new UpdateAction()
+
             result = action.execute(self, graph)
             self.state.memory.append({
                 "layer": layer,
-                "action": "UpdateAction",
+                "action": action.__class__.__name__,
                 "result": result,
                 "error": str(e)
             })
 
+
         # ✅ 插入在 step() 函数最开始，打印每个节点当前计划的完整 action 列表
         print(f"\n📋 Multi-Action Plan | Node {self.state.node_id} | Layer {layer}")
+
+        # ✅ 统一包成 list，无论是 dict 还是 Action 实例
         if isinstance(action, dict):
-            action = [action]
-        for idx, d in enumerate(action):
+            action_list = [action]
+        elif isinstance(action, Action):
+            action_list = [action]
+        elif isinstance(action, list):
+            action_list = action
+        else:
+            action_list = [NoOpAction()]  # fallback
+
+        for idx, d in enumerate(action_list):
             print(f"  {idx+1}. {d}")
+
 
         # Ensure decisions is a list
         # Normalize the action output to a list to support multiple sequential actions per node step.
         # This enables LLMs to plan a sequence like: [retrieve → update → broadcast]
-        if isinstance(action, dict):
-            action = [action]
 
-        for decision in action:
+        for decision in action_list:
             action = self._create_action(decision)
             if action:
                 result = action.execute(self, graph)
                 # ✅ 插入在每次执行 action 之后，确认其执行结果是否有效
-                print(f"✅ Executed {decision.get('action_type')} with result: {result}")
+                action_type = decision.get("action_type") if isinstance(decision, dict) else decision.__class__.__name__
+                print(f"✅ Executed {action_type} with result: {result}")
                 self.state.memory.append({
                     "layer": layer,
                     "action": result.get("action", "unknown"),
@@ -129,7 +150,7 @@ Choose one action and provide parameters."""
                     "label": self.state.label.item() if self.state.label is not None else None
                 })
 
-        # Fallback update logic - only trigger in the last layer
+        # === Fallback update logic: only trigger at the last layer ===
         # Trigger fallback update only if:
         # - in the last layer,
         # - no predicted label yet,
@@ -140,10 +161,11 @@ Choose one action and provide parameters."""
             not any(m.get("action") == "update" for m in self.state.memory) and 
             any(m.get("label") is not None for m in self.state.memory)))):
 
-            # 打印 fallback label 推理的 prompt 和结果
+            # 构造 fallback prompt 并推理
             fallback_prompt = self.llm._format_fallback_label_prompt(self.state.text, self.state.memory)
             print(f"\n📦 [Fallback Prompt for Node {self.state.node_id}]:\n{fallback_prompt}")
-            fallback_decision = self.llm._parse_action(self.llm.generate_response(fallback_prompt))
+            fallback_response = self.llm.generate_response(fallback_prompt)
+            fallback_decision = self.llm.parse_action(fallback_response)
             print(f"🎯 [Fallback Result]: {fallback_decision}")
 
             if isinstance(fallback_decision, dict) and fallback_decision.get("action_type") == "update":
@@ -161,6 +183,8 @@ Choose one action and provide parameters."""
                         print(f"\n🔄 Fallback Update | Node {self.state.node_id}")
                         print(f"  ├─ 🎯 New Label: {self.state.predicted_label}")
                         print(f"  └─ 📝 Based on {len([m for m in self.state.memory if m.get('label') is not None])} labeled examples")
+            else:
+                print(f"⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.")
 
         if (DEBUG_STEP_SUMMARY or DEBUG_MESSAGE_TRACE) and self.state.memory:
             last = self.state.memory[-1]
@@ -245,7 +269,13 @@ Choose one action and provide parameters."""
         }
 
     def _create_action(self, decision: Dict[str, Any]) -> Optional[Action]:
-        action_type = decision.get("action_type", "no_op")
+        if isinstance(decision, dict):
+            action_type = decision.get("action_type", "no_op")
+        elif isinstance(decision, Action):
+            return decision  # 已经是构造好的 Action，直接返回
+        else:
+            print(f"⚠️ Unsupported decision type: {type(decision)}. Fallback to NoOp.")
+            return NoOpAction()
         
         if action_type == "retrieve":
             target_nodes = decision.get("target_nodes", [])
@@ -339,6 +369,8 @@ Choose one action and provide parameters."""
             
             if updates:
                 return UpdateAction(updates)
+            else:
+                print(f"⚠️ No valid predicted_label found in update decision: {decision}")
 
         return NoOpAction()
 
