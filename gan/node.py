@@ -298,15 +298,16 @@ Choose one action and provide parameters."""
             return RAGAction(query, top_k)
 
         elif action_type == "broadcast":
-            target_nodes = decision.get("target_nodes", [])
+            target_nodes = decision.get("target_nodes")
+            if not target_nodes:
+                target_nodes = graph.get_neighbors(self.state.node_id)
+                print(f"⚠️ Broadcast targets missing — fallback to all neighbors: {target_nodes}")
 
             # ✅ fallback message logic
             message_data = decision.get("message", None)
 
             if message_data is None:
                 # fallback to predicted_label + text
-                # If LLM does not provide a broadcast message, fallback to a default message combining predicted_label + text.
-                # This ensures all broadcast actions remain valid and meaningful for downstream nodes.
                 plabel = self.state.predicted_label.item() if self.state.predicted_label is not None else "unknown"
                 text = self.state.text[:60] + "..." if len(self.state.text) > 60 else self.state.text
                 fallback_message = f"[Label: {plabel}] {text}"

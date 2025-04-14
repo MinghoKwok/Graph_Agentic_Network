@@ -211,3 +211,8 @@ def get_labeled_examples(
             break
 
     return examples
+
+
+def truncate_text(text: str, max_words: int = 80) -> str:
+    words = re.split(r'\s+', text.strip())
+    return ' '.join(words[:max_words]) + ('...' if len(words) > max_words else '')

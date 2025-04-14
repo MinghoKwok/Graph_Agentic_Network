@@ -120,11 +120,13 @@ class RemoteLLMInterface(BaseLLMInterface):
 
 
         # 使用精炼后的 labeled memory：text + label_text
-        memory_examples = get_labeled_examples(memory, top_k=10)
+        memory_examples = get_labeled_examples(memory, top_k=5)
         if memory_examples:
             prompt += "\n## Here are memory you have! Use such label-text pairs to predict your label:\n"
             for i, ex in enumerate(memory_examples):
-                prompt += f"{i+1}. {ex}\n"
+                if isinstance(ex, str):
+                    truncated = truncate_text(ex, max_words=20)
+                    prompt += f"{i+1}. {truncated}\n"
 
 
         if node_label is not None and not has_broadcasted:
