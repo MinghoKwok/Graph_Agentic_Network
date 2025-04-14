@@ -182,3 +182,32 @@ def compare_results(gan_metrics: Dict[str, float],
         plt.close()
     else:
         plt.show()
+
+def get_labeled_examples(
+    memory: List[Dict[str, Any]],
+    top_k: int = 5,
+    max_text_len: int = 60,
+    dedup: bool = True
+) -> List[str]:
+    seen_sources = set()
+    examples = []
+
+    for m in memory:
+        label = m.get("label_text")
+        text = m.get("text", "")
+        source = m.get("source")
+
+        if not label or not text:
+            continue
+        if dedup and source is not None and source in seen_sources:
+            continue
+
+        seen_sources.add(source)
+
+        snippet = text[:max_text_len] + "..." if len(text) > max_text_len else text
+        examples.append(f"[Label: {label}] \"{snippet}\"")
+
+        if len(examples) >= top_k:
+            break
+
+    return examples

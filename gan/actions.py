@@ -83,6 +83,22 @@ class RetrieveAction(Action):
                     "source": node_id,
                     "source_type": "retrieved"
                 })
+        # 将邻居 memory 中的 labeled 示例也写入 memory
+        for node_id, entry in results.items():
+            retrieve_memory = entry.get("retrieve_memory", {})
+            for cid, info in retrieve_memory.items():
+                if "text" in info and "label" in info:
+                    label_text = inv_label_vocab.get(info["label"], str(info["label"]))
+                    agent.state.memory.append({
+                        "layer": agent.state.layer_count,
+                        "action": "RetrieveExample",
+                        "text": info["text"],
+                        "label": info["label"],
+                        "label_text": label_text,
+                        "source": cid,
+                        "source_type": "collected"
+                    })
+
 
         return {
             "action": "retrieve",
