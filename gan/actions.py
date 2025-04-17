@@ -5,6 +5,7 @@ Action classes for node agents in the Graph Agentic Network
 import torch
 from typing import Dict, List, Any, Optional, Union
 from data.cora.label_vocab import inv_label_vocab  # label_id → label_name 的映射
+from gan.utils import has_memory_entry
 
 
 class Action:
@@ -39,16 +40,6 @@ class RetrieveAction(Action):
         self.info_type = info_type
 
     def execute(self, agent: 'NodeAgent', graph: 'AgenticGraph') -> Dict[str, Any]:
-        """
-        Execute the retrieve action.
-
-        Args:
-            agent: The node agent executing the action
-            graph: The graph environment
-
-        Returns:
-            Dictionary containing retrieved information
-        """
         results = {}
         not_found = []
 
@@ -59,37 +50,47 @@ class RetrieveAction(Action):
                 continue
 
             entry = {}
-            # 获取 text 和 label
+            # 获取 text
             if self.info_type in ("text", "both", "all") and neighbor.state.text:
                 entry["text"] = neighbor.state.text
+
+            # 获取 label（包括 0）
             if self.info_type in ("label", "both", "all"):
-                entry["label"] = neighbor.state.label.item() if neighbor.state.label is not None else None
+                label_tensor = neighbor.state.label if neighbor.state.label is not None else neighbor.state.predicted_label
+                if label_tensor is not None:
+                    try:
+                        entry["label"] = label_tensor.item() if isinstance(label_tensor, torch.Tensor) else int(label_tensor)
+                    except Exception:
+                        entry["label"] = None
 
             if entry:
                 results[node_id] = entry
             else:
                 not_found.append(node_id)
 
-        # ✅ 将 labeled entries 写入当前节点 memory，加入 label_text（自然语言标签）
+        # ✅ 写入 memory
         for node_id, entry in results.items():
             if "text" in entry and "label" in entry and entry["label"] is not None:
                 label_text = inv_label_vocab.get(entry["label"], str(entry["label"]))
-                agent.state.memory.append({
-                    "layer": agent.state.layer_count,  # 当前层数
+                memory_entry = {
+                    "layer": agent.state.layer_count,
                     "action": "RetrieveExample",
                     "text": entry["text"],
-                    "label": entry["label"],           # 数值标签
-                    "label_text": label_text,          # 文本标签
+                    "label": entry["label"],
+                    "label_text": label_text,
                     "source": node_id,
                     "source_type": "retrieved"
-                })
-        # 将邻居 memory 中的 labeled 示例也写入 memory
+                }
+                if not has_memory_entry(agent, memory_entry):
+                    agent.state.memory.append(memory_entry)
+
+        # 收集邻居 memory 中的 labeled 示例（如果有）
         for node_id, entry in results.items():
             retrieve_memory = entry.get("retrieve_memory", {})
             for cid, info in retrieve_memory.items():
                 if "text" in info and "label" in info:
                     label_text = inv_label_vocab.get(info["label"], str(info["label"]))
-                    agent.state.memory.append({
+                    memory_entry = {
                         "layer": agent.state.layer_count,
                         "action": "RetrieveExample",
                         "text": info["text"],
@@ -97,8 +98,9 @@ class RetrieveAction(Action):
                         "label_text": label_text,
                         "source": cid,
                         "source_type": "collected"
-                    })
-
+                    }
+                    if not has_memory_entry(agent, memory_entry):
+                        agent.state.memory.append(memory_entry)
 
         return {
             "action": "retrieve",
@@ -121,27 +123,31 @@ class RAGAction(Action):
         
         # 执行 RAG 查询
         results = graph.rag_query(query, self.top_k)
-        
-        # 将结果写入节点的记忆中
+
+        # ✅ 将每个结果写入 memory，格式统一为可用于 label 推理的样例
         for node_id, node_info in results.items():
-            # 确保节点信息包含必要的字段
             if all(key in node_info for key in ['text', 'label']):
-                agent.state.memory.append({
-                    'action': 'rag_query',
-                    'result': {
-                        'node_id': node_id,
-                        'text': node_info['text'],
-                        'label': node_info['label'],
-                        'similarity_score': node_info.get('similarity_score', 0.0)
-                    }
-                })
-        
+                label = node_info['label']
+                text = node_info['text']
+                sim = node_info.get('similarity_score', 0.0)
+                memory_entry = {
+                    "layer": agent.state.layer_count,
+                    "action": "RAGResult",
+                    "text": text,
+                    "label": label,
+                    "label_text": inv_label_vocab.get(label, str(label)),
+                    "source": node_id,
+                    "source_type": "rag",
+                    "similarity_score": sim
+                }
+                if not has_memory_entry(agent, memory_entry):
+                    agent.state.memory.append(memory_entry)
+
         return {
             "action": "rag_query",
             "query": query,
             "results": results
         }
-
 
 class BroadcastAction(Action):
     """Broadcast message to target nodes."""
@@ -168,65 +174,76 @@ class BroadcastAction(Action):
         Returns:
             Dictionary containing action results
         """
+        from data.cora.label_vocab import inv_label_vocab  # 本地导入，防止循环
+
         if not self.target_nodes:
             return {"action": "no_op", "message": None, "target_nodes": []}
-            
-        # ✅ 在 BroadcastAction.execute 中添加 debug log，确认是否正确发送消息
-        print(f"📤 [Broadcast] Node {agent.state.node_id} → {self.target_nodes}")
-        for nid in self.target_nodes:
-            if graph.has_node(nid):
-                print(f"    ↳ ✅ Sending to Node {nid}")
-            else:
-                print(f"    ↳ ⛔ Node {nid} not found in graph")
-            
-        # Prepare message payload based on available information
+
+        print(f"📤 [Action: Broadcast] Node {agent.state.node_id} → {self.target_nodes}")
+
+        # Step 1: 构造消息
         message_payload = None
-        
-        # Case 1: Broadcast predicted label if available
-        if agent.state.predicted_label is not None:
+        label_tensor = agent.state.predicted_label or agent.state.label
+        if label_tensor is not None:
             message_payload = {
                 "text": agent.state.text,
-                "predicted_label": agent.state.predicted_label.item()
+                "predicted_label": label_tensor.item()
             }
-        # Case 2: Broadcast labeled examples from memory if available
         elif agent.state.memory:
             labeled_examples = [
-                m for m in agent.state.memory 
-                if m.get("label") is not None
+                m for m in agent.state.memory if m.get("label") is not None
             ]
             if labeled_examples:
                 message_payload = labeled_examples
-                
-        # If no valid message payload, return no_op
+
         if message_payload is None:
             return {"action": "no_op", "message": None, "target_nodes": []}
-            
-        # Send message to target nodes
+
+        # Step 2: 发送给每个目标节点
         for target_id in self.target_nodes:
             target_agent = graph.get_node(target_id)
-            if target_agent:
-                # Check for duplicate messages in target's memory
-                is_duplicate = False
-                for m in target_agent.state.memory:
-                    if isinstance(m, dict) and m.get("action") == "broadcast":
-                        if (isinstance(message_payload, dict) and 
-                            m.get("result", {}).get("message") == message_payload):
-                            is_duplicate = True
-                            break
-                        elif (isinstance(message_payload, list) and 
-                              m.get("result", {}).get("message") == message_payload):
-                            is_duplicate = True
-                            break
-                            
-                if not is_duplicate:
-                    target_agent.state.memory.append({
-                        "action": "broadcast",
-                        "result": {
-                            "message": message_payload,
-                            "source": agent.state.node_id
-                        }
-                    })
-                    
+            if not target_agent:
+                print(f"    ⛔ Node {target_id} not found in graph")
+                continue
+
+            # Step 2.1: 防止重复写入
+            already_seen = False
+            for m in target_agent.state.memory:
+                if m.get("action") == "broadcast":
+                    if m.get("result", {}).get("message") == message_payload:
+                        already_seen = True
+                        break
+            if already_seen:
+                continue
+
+            # Step 2.2: 写入原始广播信息
+            memory_entry = {
+                "action": "broadcast",
+                "result": {
+                    "message": message_payload,
+                    "source": agent.state.node_id
+                }
+            }
+            if not has_memory_entry(target_agent, memory_entry):
+                target_agent.state.memory.append(memory_entry)
+
+            # Step 2.3: 如果 message 是带标签的 dict，则额外写入可用 labeled 示例
+            if isinstance(message_payload, dict) and "predicted_label" in message_payload:
+                label_id = message_payload["predicted_label"]
+                text = message_payload["text"]
+                label_text = inv_label_vocab.get(label_id, str(label_id))
+                memory_entry = {
+                    "layer": agent.state.layer_count,
+                    "action": "BroadcastLabel",
+                    "text": text,
+                    "label": label_id,
+                    "label_text": label_text,
+                    "source": agent.state.node_id,
+                    "source_type": "broadcast"
+                }
+                if not has_memory_entry(target_agent, memory_entry):
+                    target_agent.state.memory.append(memory_entry)
+
         return {
             "action": "broadcast",
             "message": message_payload,

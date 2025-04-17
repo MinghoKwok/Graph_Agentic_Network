@@ -9,7 +9,7 @@ from dataclasses import dataclass, field
 from gan.actions import Action, RetrieveAction, RAGAction, BroadcastAction, UpdateAction, NoOpAction
 from config import DEBUG_STEP_SUMMARY, DEBUG_MESSAGE_TRACE, NUM_LAYERS, DEBUG_FORCE_FALLBACK  # 加入 NUM_LAYERS 以判断是否为最后一层
 from data.cora.label_vocab import label_vocab  # 自定义标签映射
-
+from gan.utils import has_memory_entry
 
 @dataclass
 class NodeState:
@@ -58,9 +58,13 @@ class NodeAgent:
             "neighbors": graph.get_neighbors(self.state.node_id),
             "total_neighbors": len(graph.get_neighbors(self.state.node_id))
         }
+
+        # 如果一个节点本身已经有 label，且是 training node，就不让它进行 update（因为我们不需要 predicted_label）
+        self.skip_update = hasattr(graph, "train_idx") and self.state.node_id in graph.train_idx
+
         
         # 获取动作提示
-        action_prompt = self.llm._format_action_prompt(context, graph)
+        action_prompt = self.llm._format_action_prompt(context)
         
         try:
             # 生成响应并解析动作
@@ -83,16 +87,17 @@ Choose one action and provide parameters."""
             
             # 执行动作
             if isinstance(action, dict):
-                action = self._create_action(action)
+                action = self._create_action(action, graph)
             if action:
                 result = action.execute(self, graph)
             
             # 更新记忆
-            self.state.memory.append({
-                "layer": layer,
-                "action": action.__class__.__name__,
-                "result": result
-            })
+            if not has_memory_entry(self, result):
+                self.state.memory.append({
+                    "layer": layer,
+                    "action": action.__class__.__name__,
+                    "result": result
+                })
             
         except Exception as e:
             print(f"⚠️ Error in agent step: {e}")
@@ -104,21 +109,22 @@ Choose one action and provide parameters."""
             print(f"🎯 [Exception Fallback Result]: {fallback_decision}")
 
             if isinstance(fallback_decision, dict) and fallback_decision.get("action_type") == "update":
-                action = self._create_action(fallback_decision)
+                action = self._create_action(fallback_decision, graph)
             else:
                 action = NoOpAction()  # 最坏情况也不要直接 new UpdateAction()
 
             if isinstance(action, dict):
-                action = self._create_action(action)
+                action = self._create_action(action, graph)
             if action:
                 result = action.execute(self, graph)
 
-            self.state.memory.append({
-                "layer": layer,
-                "action": action.__class__.__name__,
-                "result": result,
-                "error": str(e)
-            })
+            if not has_memory_entry(self, result):
+                self.state.memory.append({
+                    "layer": layer,
+                    "action": action.__class__.__name__,
+                    "result": result,
+                    "error": str(e)
+                })
 
 
         # ✅ 插入在 step() 函数最开始，打印每个节点当前计划的完整 action 列表
@@ -143,18 +149,19 @@ Choose one action and provide parameters."""
         # This enables LLMs to plan a sequence like: [retrieve → update → broadcast]
 
         for decision in action_list:
-            action = self._create_action(decision)
+            action = self._create_action(decision, graph)
             if action:
                 action_type = decision.get("action_type") if isinstance(decision, dict) else action.__class__.__name__
                 result = action.execute(self, graph)
                 print(f"✅ Executed {action_type} with result: {result}")
-                self.state.memory.append({
-                    "layer": layer,
-                    "action": result.get("action", "unknown"),
-                    "result": result,
-                    "text": self.state.text,
-                    "label": self.state.label.item() if self.state.label is not None else None
-                })
+                if not has_memory_entry(self, result):
+                    self.state.memory.append({
+                        "layer": layer,
+                        "action": result.get("action", "unknown"),
+                        "result": result,
+                        "text": self.state.text,
+                        "label": self.state.label.item() if self.state.label is not None else None
+                    })
 
         # === Fallback update logic: only trigger at the last layer ===
         # Trigger fallback update only if:
@@ -175,16 +182,17 @@ Choose one action and provide parameters."""
             print(f"🎯 [Fallback Result]: {fallback_decision}")
 
             if isinstance(fallback_decision, dict) and fallback_decision.get("action_type") == "update":
-                fallback_action = self._create_action(fallback_decision)
+                fallback_action = self._create_action(fallback_decision, graph)
                 if fallback_action:
                     fallback_result = fallback_action.execute(self, graph)
-                    self.state.memory.append({
-                        "layer": layer,
-                        "action": "fallback_update",
-                        "result": fallback_result,
-                        "text": self.state.text,
-                        "label": self.state.label.item() if self.state.label is not None else None
-                    })
+                    if not has_memory_entry(self, fallback_result):
+                        self.state.memory.append({
+                            "layer": layer,
+                            "action": "fallback_update",
+                            "result": fallback_result,
+                            "text": self.state.text,
+                            "label": self.state.label.item() if self.state.label is not None else None
+                        })
                     if DEBUG_STEP_SUMMARY:
                         print(f"\n🔄 Fallback Update | Node {self.state.node_id}")
                         print(f"  ├─ 🎯 New Label: {self.state.predicted_label}")
@@ -248,13 +256,19 @@ Choose one action and provide parameters."""
         neighbors = [nid for nid in graph.get_neighbors(self.state.node_id) if nid != self.state.node_id]
         print(f"🔍 Neighbors in prepare_context: {neighbors}")
         
-        # 找出已 update 的邻居（即有 predicted_label 的邻居）
         updated_neighbors = [
             nid for nid in neighbors
             if graph.get_node(nid).state.predicted_label is not None
         ]
         print(f"📊 Updated neighbors (with predicted labels): {updated_neighbors}")
-        
+
+        # ✅ 添加 labeled_neighbors
+        labeled_neighbors = [
+            nid for nid in neighbors
+            if graph.get_node(nid).state.label is not None
+        ]
+        print(f"🏷️ Labeled neighbors: {labeled_neighbors}")
+
         messages = [{"from": msg["from"], "content_preview": msg["content"].mean().item(), "layer": msg["layer"]}
                     for msg in self.state.message_queue[-5:]]
         recent_memory = self.state.memory[-3:] if self.state.memory else []
@@ -266,7 +280,8 @@ Choose one action and provide parameters."""
             "predicted_label": self.state.predicted_label.item() if self.state.predicted_label is not None else None,
             "neighbors": neighbors,
             "total_neighbors": len(neighbors),
-            "updated_neighbors": updated_neighbors,  # 添加已更新邻居列表
+            "updated_neighbors": updated_neighbors,
+            "labeled_neighbors": labeled_neighbors,  # ✅ 新增字段
             "messages": messages,
             "total_messages": len(self.state.message_queue),
             "memory": recent_memory,
@@ -274,7 +289,7 @@ Choose one action and provide parameters."""
             "retrieved_data": self.retrieved_data
         }
 
-    def _create_action(self, decision: Dict[str, Any]) -> Optional[Action]:
+    def _create_action(self, decision: Dict[str, Any], graph: 'AgenticGraph') -> Optional[Action]:
         if isinstance(decision, dict):
             action_type = decision.get("action_type", "no_op")
         elif isinstance(decision, Action):
@@ -283,6 +298,12 @@ Choose one action and provide parameters."""
             print(f"⚠️ Unsupported decision type: {type(decision)}. Fallback to NoOp.")
             return NoOpAction()
         
+        # 如果一个节点本身已经有 label，且是 training node，就不让它进行 update（因为我们不需要 predicted_label）
+        if getattr(self, "skip_update", False) and action_type == "update":
+            print(f"🛑 Node {self.state.node_id} is in training set. Skipping update.")
+            return NoOpAction()
+
+
         if action_type == "retrieve":
             target_nodes = decision.get("target_nodes", [])
             info_type = decision.get("info_type", "text")

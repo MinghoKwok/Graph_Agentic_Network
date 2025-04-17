@@ -42,7 +42,10 @@ class AgenticGraph:
         self.nodes = {}
         for i in range(self.num_nodes):
             # Only keep labels for training nodes
-            node_label = labels[i] if labels is not None and train_mask[i] else None
+            if labels is not None and train_mask[i]:
+                node_label = torch.tensor(int(labels[i]))
+            else:
+                node_label = None
             text = node_texts.get(i, "")
             state = NodeState(
                 node_id=i,
