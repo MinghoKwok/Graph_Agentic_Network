@@ -182,3 +182,68 @@ def compare_results(gan_metrics: Dict[str, float],
         plt.close()
     else:
         plt.show()
+
+def get_labeled_examples(
+    memory: List[Dict[str, Any]],
+    top_k: int = 5,
+    max_text_len: int = 60,
+    dedup: bool = True
+) -> List[str]:
+    seen_sources = set()
+    examples = []
+
+    for m in memory:
+        label = m.get("label_text")
+        text = m.get("text", "")
+        source = m.get("source")
+
+        if not label or not text:
+            continue
+        if dedup and source is not None and source in seen_sources:
+            continue
+
+        seen_sources.add(source)
+
+        snippet = text[:max_text_len] + "..." if len(text) > max_text_len else text
+        examples.append(f"[Label: {label}] \"{snippet}\"")
+
+        if len(examples) >= top_k:
+            break
+
+    return examples
+
+
+def truncate_text(text: str, max_words: int = 20) -> str:
+    words = text.strip().split()
+    return ' '.join(words[:max_words]) + ('...' if len(words) > max_words else '')
+
+
+def has_memory_entry(agent_or_state, result: Dict[str, Any]) -> bool:
+    """
+    Check if a memory entry with same source + label + text already exists.
+    Supports more robust deduplication.
+    """
+    memory = agent_or_state.state.memory if hasattr(agent_or_state, "state") else agent_or_state.memory
+
+    # 提取核心信息用于比对
+    new_text = result.get("text", "")
+    new_label = result.get("label", None)
+    new_source = result.get("source", None)
+    new_action = result.get("action", result.get("action_type", ""))
+
+    for m in memory:
+        # 基于 Broadcast、Retrieve、RAG 写入
+        if m.get("action") in {"RetrieveExample", "BroadcastLabel", "RAGResult"}:
+            if (
+                m.get("text") == new_text and
+                m.get("label") == new_label and
+                m.get("source") == new_source
+            ):
+                return True
+
+        # 对于 update/fallback update 动作的结果也可以排重（可选）
+        if m.get("action") == new_action and m.get("result") == result:
+            return True
+
+    return False
+
