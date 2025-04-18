@@ -131,7 +131,7 @@ class RemoteLLMInterface(BaseLLMInterface):
             prompt_memory += "\n## Here are memory you have! Use such label-text pairs to predict your label:\n"
             for i, ex in enumerate(memory_examples):
                 if isinstance(ex, str):
-                    truncated = truncate_text(ex, max_words=20)
+                    truncated = truncate_text(ex, max_words=50)
                     prompt_memory += f"{i+1}. {truncated}\n"
 
         prompt += prompt_memory
