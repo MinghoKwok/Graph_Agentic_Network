@@ -42,13 +42,22 @@ class RemoteLLMInterface(BaseLLMInterface):
         max_model_len = config.MAX_MODEL_LEN
         max_tokens = max(min(max_model_len - approx_prompt_tokens, 512), 64)  # 最多 512，最少保留 64
 
-        payload = {
-            "model": self.model_name,
-            "messages": [{"role": "user", "content": prompt}],
-            "temperature": 0.2,
-            "top_p": 0.95,
-            "max_tokens": max_tokens,
-        }
+        if "chat" in self.endpoint:
+            payload = {
+                "model": self.model_name,
+                "messages": [{"role": "user", "content": prompt}],
+                "temperature": 0.2,
+                "top_p": 0.95,
+                "max_tokens": max_tokens,
+            }
+        else:
+            payload = {
+                "model": self.model_name,
+                "prompt": prompt,
+                "max_tokens": max_tokens,
+                "temperature": 0.2,
+                "top_p": 0.95,
+            }
         headers = {"Content-Type": "application/json"}
 
         try:
@@ -56,7 +65,10 @@ class RemoteLLMInterface(BaseLLMInterface):
             print(f"🔁 Raw response from vLLM: {response.text[:200]}...")  # 前200字节预览，避免爆屏
             response.raise_for_status()
             result = response.json()
-            return result["choices"][0]["message"]["content"].strip()
+            if "chat" in self.endpoint:
+                return result["choices"][0]["message"]["content"].strip()
+            else:
+                return result["choices"][0]["text"].strip()
         except Exception as e:
             print(f"[RemoteLLMInterface] Request failed: {e}")
             return "no_op"
@@ -129,11 +141,18 @@ class RemoteLLMInterface(BaseLLMInterface):
         memory_examples = get_labeled_examples(memory, top_k=5)
         if memory_examples:
             prompt_memory += "\n## Here are memory you have! Use such label-text pairs to predict your label:\n"
-            for i, ex in enumerate(memory_examples):
-                if isinstance(ex, str):
-                    truncated = truncate_text(ex, max_words=50)
-                    prompt_memory += f"{i+1}. {truncated}\n"
+            # for i, ex in enumerate(memory_examples):
+            #     if isinstance(ex, str):
+            #         truncated = truncate_text(ex, max_words=config.MEMORY_MAX_WORDS)
+            #         prompt_memory += f"{i+1}. {truncated}\n"
 
+            for i, ex in enumerate(memory_examples):
+                if isinstance(ex, dict):
+                    label = inv_label_vocab.get(ex["label"], str(ex["label"]))
+                    text = truncate_text(ex["text"], max_words=config.MEMORY_MAX_WORDS)
+                    prompt_memory += f'{i+1}. [Label: {label}] "{text}"\n'
+                    
+        print(f"🧠 [Prompt Memory] Injected {len(memory_examples)} examples into Node {node_id} prompt.")
         prompt += prompt_memory
         if node_label is not None and not has_broadcasted:
             prompt += f"""⚠️ You already have a label: \"{node_label}\". You may consider broadcasting this label and your text to your neighbors to help them in their predictions."""
@@ -204,27 +223,39 @@ class RemoteLLMInterface(BaseLLMInterface):
     def _format_layer_prompt(self, context: Dict[str, Any]) -> str:
         return f"""You are the controller for a graph neural network.\n\nThe network has completed layer {context['current_layer']} of processing.\n\nMax layers: {context['max_layers']}\nCurrent layer: {context['current_layer']}\n\nBased on the progress, decide whether to:\n1. Continue to the next layer\n2. End processing and output final results\n\nRespond with either \"continue\" or \"end\"."""
 
-    def _parse_action(self, response: str) -> Dict[str, Any]:
+    def _parse_action(self, response: str) -> list[dict]:
         try:
-            code_blocks = re.findall(r"```json\s*({.*?})\s*```", response, re.DOTALL)
+            # Step 1: 如果是 chat 模型返回的完整 JSON 字符串
+            if isinstance(response, dict) and "choices" in response:
+                response = response["choices"][0]["message"]["content"]
+
+            # Step 2: 查找 JSON block（以 array 为主）
+            code_blocks = re.findall(r"```json\s*(\[.*?\])\s*```", response, re.DOTALL)
             if not code_blocks:
-                code_blocks = re.findall(r"({.*?})", response, re.DOTALL)
+                code_blocks = re.findall(r"(\[.*?\])", response, re.DOTALL)
+
             for block in code_blocks:
                 try:
                     cleaned = re.sub(r"//.*", "", block)
                     parsed = json.loads(cleaned)
-                    if parsed.get("action_type") == "retrieve":
-                        parsed["target_nodes"] = [
-                            int(re.sub(r"[^\d]", "", str(nid)))
-                            for nid in parsed.get("target_nodes", [])
-                            if re.sub(r"[^\d]", "", str(nid)).isdigit()
-                        ]
-                    return parsed
-                except Exception:
+
+                    # 修正 retrieve 中的 target_nodes 字段
+                    for action in parsed:
+                        if action.get("action_type") == "retrieve":
+                            action["target_nodes"] = [
+                                int(re.sub(r"[^\d]", "", str(nid)))
+                                for nid in action.get("target_nodes", [])
+                                if re.sub(r"[^\d]", "", str(nid)).isdigit()
+                            ]
+                    return parsed  # ✅ 成功返回多个 action
+                except Exception as inner:
+                    print(f"[ActionParse] JSON decode error: {inner}")
                     continue
+
         except Exception as e:
             print(f"[RemoteLLMInterface] Failed to parse response: {e}")
-        return {"action_type": "no_op"}
+
+        return [{"action_type": "no_op"}]
 
     def _format_fallback_label_prompt(self, node_text: str, memory: List[Dict[str, Any]]) -> str:
 

@@ -186,36 +186,44 @@ def compare_results(gan_metrics: Dict[str, float],
 def get_labeled_examples(
     memory: List[Dict[str, Any]],
     top_k: int = 5,
-    max_text_len: int = 60,
     dedup: bool = True
-) -> List[str]:
+) -> List[Dict[str, Any]]:
     seen_sources = set()
     examples = []
 
     for m in memory:
-        label = m.get("label_text")
-        text = m.get("text", "")
-        source = m.get("source")
-
-        if not label or not text:
+        if not m.get("label") or not m.get("text"):
             continue
-        if dedup and source is not None and source in seen_sources:
+        if dedup and m.get("source") in seen_sources:
             continue
-
-        seen_sources.add(source)
-
-        snippet = text[:max_text_len] + "..." if len(text) > max_text_len else text
-        examples.append(f"[Label: {label}] \"{snippet}\"")
-
+        seen_sources.add(m.get("source"))
+        examples.append({"label": m["label"], "text": m["text"]})
         if len(examples) >= top_k:
             break
-
     return examples
 
 
-def truncate_text(text: str, max_words: int = 20) -> str:
-    words = text.strip().split()
-    return ' '.join(words[:max_words]) + ('...' if len(words) > max_words else '')
+# def truncate_text(text: str, max_words: int = 20) -> str:
+#     words = text.strip().split()
+#     return ' '.join(words[:max_words]) + ('...' if len(words) > max_words else '')
+
+from config import USE_TOKEN_TRUNCATE, MEMORY_MAX_WORDS
+try:
+    from transformers import AutoTokenizer
+    tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen1.5-14B-Chat")  # default fallback
+except:
+    tokenizer = None  # 在 DeepSeek 场景中可为空
+
+def truncate_text(text: str, max_words: int = MEMORY_MAX_WORDS) -> str:
+    if USE_TOKEN_TRUNCATE and tokenizer:
+        tokens = tokenizer.tokenize(text)
+        truncated = tokenizer.convert_tokens_to_string(tokens[:max_words])
+        return truncated + ("..." if len(tokens) > max_words else "")
+    else:
+        words = text.strip().split()
+        return ' '.join(words[:max_words]) + ('...' if len(words) > max_words else '')
+
+
 
 
 def has_memory_entry(agent_or_state, result: Dict[str, Any]) -> bool:
