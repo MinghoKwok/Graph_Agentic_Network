@@ -105,6 +105,25 @@ def run_node_classification(
             'batch_size': batch_size
         }
 
+        total = len(gan.graph.nodes)
+        predicted = sum(1 for n in gan.graph.nodes.values() if n.state.predicted_label is not None)
+        print(f"📊 Predicted Labels: {predicted}/{total}")
+        empty_memory = sum(1 for n in gan.graph.nodes.values() if len(n.state.memory) == 0)
+        print(f"🧠 Nodes with empty memory: {empty_memory}/{total}")
+
+        # ⏬ 分析 predicted_label 分布
+        from collections import Counter
+        label_counter = Counter()
+        for n in gan.graph.nodes.values():
+            if n.state.predicted_label is not None:
+                label_counter[int(n.state.predicted_label)] += 1
+
+        print(f"🔍 Predicted label distribution:")
+        for label_id, count in sorted(label_counter.items()):
+            print(f"  Label {label_id}: {count} nodes")
+
+
+
     if run_baselines:
         edge_index = adj_matrix.nonzero().t().contiguous()
         baseline_results = {}

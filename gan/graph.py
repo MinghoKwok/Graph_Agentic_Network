@@ -246,19 +246,32 @@ class AgenticGraph:
             layer: Layer number
             node_indices: Optional subset of nodes to process (for batching)
         """
-        # Process only specified nodes or all nodes
         if node_indices is None:
             node_indices = list(self.nodes.keys())
-        
         for node_id in tqdm(node_indices, desc=f"Processing layer {layer}"):
             agent = self.nodes[node_id]
             agent.step(self, layer)
-        
-        # After all nodes have executed actions, prepare for next layer
         for node_id in node_indices:
             agent = self.nodes[node_id]
             agent.state.increment_layer()
-            agent.state.clear_messages()  # Clear messages to avoid memory buildup
+            agent.state.clear_messages()
+
+        # ✅ 添加分层统计
+        layer_nodes = [n for n in self.nodes.values() if n.state.layer_count == layer + 1]
+        num_nodes = len(layer_nodes)
+        with_memory = sum(1 for n in layer_nodes if len(n.state.memory) > 0)
+        with_prediction = sum(1 for n in layer_nodes if n.state.predicted_label is not None)
+        with_broadcast = sum(1 for n in layer_nodes if any(m.get("action") == "broadcast" for m in n.state.memory))
+        with_update = sum(1 for n in layer_nodes if any(m.get("action") == "update" for m in n.state.memory))
+        with_fallback = sum(1 for n in layer_nodes if any("fallback" in m.get("action", "") for m in n.state.memory))
+
+        print(f"\n📊 Layer {layer} Summary:")
+        print(f"  Total Nodes: {num_nodes}")
+        print(f"  Nodes with Memory: {with_memory}")
+        print(f"  Nodes with Prediction: {with_prediction}")
+        print(f"  Nodes with Broadcast: {with_broadcast}")
+        print(f"  Nodes with Update: {with_update}")
+        print(f"  Nodes with Fallback Update: {with_fallback}")
 
     def initialize_labels_and_index(self, train_idx: List[int], labels: torch.Tensor):
         """

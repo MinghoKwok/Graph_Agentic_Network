@@ -226,32 +226,64 @@ def truncate_text(text: str, max_words: int = MEMORY_MAX_WORDS) -> str:
 
 
 
-def has_memory_entry(agent_or_state, result: Dict[str, Any]) -> bool:
-    """
-    Check if a memory entry with same source + label + text already exists.
-    Supports more robust deduplication.
-    """
-    memory = agent_or_state.state.memory if hasattr(agent_or_state, "state") else agent_or_state.memory
+# def has_memory_entry(agent_or_state, result: Dict[str, Any]) -> bool:
+#     """
+#     Check if a memory entry with same source + label + text already exists.
+#     Supports more robust deduplication.
+#     """
+#     memory = agent_or_state.state.memory if hasattr(agent_or_state, "state") else agent_or_state.memory
 
-    # 提取核心信息用于比对
-    new_text = result.get("text", "")
+#     # 提取核心信息用于比对
+#     new_text = result.get("text", "")
+#     new_label = result.get("label", None)
+#     new_source = result.get("source", None)
+#     new_action = result.get("action", result.get("action_type", ""))
+
+#     for m in memory:
+#         # 对于广播消息，检查原始消息
+#         if m.get("action") == "broadcast":
+#             if m.get("result", {}).get("message") == result.get("message"):
+#                 return True
+#         # 基于 Broadcast、Retrieve、RAG 写入
+#         if m.get("action") in {"RetrieveExample", "BroadcastLabel", "RAGResult"}:
+#             if (
+#                 m.get("text") == new_text and
+#                 m.get("label") == new_label and
+#                 m.get("source") == new_source
+#             ):
+#                 return True
+
+#         # 对于 update/fallback update 动作的结果也可以排重（可选）
+#         if m.get("action") == new_action and m.get("result") == result:
+#             return True
+
+#     return False
+
+
+def normalize_text(text: str) -> str:
+    if not isinstance(text, str):
+        return str(text)
+    return text.strip().lower()
+
+def has_memory_entry(agent_or_state, result: Dict[str, Any]) -> bool:
+    memory = agent_or_state.state.memory if hasattr(agent_or_state, "state") else agent_or_state.memory
+    
+    # 提取并规范化核心信息
+    new_text = normalize_text(result.get("text", ""))
     new_label = result.get("label", None)
     new_source = result.get("source", None)
     new_action = result.get("action", result.get("action_type", ""))
-
+    
     for m in memory:
-        # 基于 Broadcast、Retrieve、RAG 写入
         if m.get("action") in {"RetrieveExample", "BroadcastLabel", "RAGResult"}:
             if (
-                m.get("text") == new_text and
+                normalize_text(m.get("text", "")) == new_text and
                 m.get("label") == new_label and
                 m.get("source") == new_source
             ):
                 return True
-
-        # 对于 update/fallback update 动作的结果也可以排重（可选）
+                
         if m.get("action") == new_action and m.get("result") == result:
             return True
-
+            
     return False
-
