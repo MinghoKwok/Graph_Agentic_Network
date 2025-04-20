@@ -265,25 +265,60 @@ def normalize_text(text: str) -> str:
         return str(text)
     return text.strip().lower()
 
-def has_memory_entry(agent_or_state, result: Dict[str, Any]) -> bool:
-    memory = agent_or_state.state.memory if hasattr(agent_or_state, "state") else agent_or_state.memory
+# def has_memory_entry(agent_or_state, result: Dict[str, Any]) -> bool:
+#     memory = agent_or_state.state.memory if hasattr(agent_or_state, "state") else agent_or_state.memory
     
-    # 提取并规范化核心信息
-    new_text = normalize_text(result.get("text", ""))
-    new_label = result.get("label", None)
+#     # 提取并规范化核心信息
+#     new_text = normalize_text(result.get("text", ""))
+#     new_label = result.get("label", None)
+#     new_source = result.get("source", None)
+#     new_action = result.get("action", result.get("action_type", ""))
+    
+#     for m in memory:
+#         if m.get("action") in {"RetrieveExample", "BroadcastLabel", "RAGResult"}:
+#             if (
+#                 normalize_text(m.get("text", "")) == new_text and
+#                 m.get("label") == new_label and
+#                 m.get("source") == new_source
+#             ):
+#                 return True
+                
+#         if m.get("action") == new_action and m.get("result") == result:
+#             return True
+            
+#     return False
+
+
+def has_memory_entry(agent_or_state, result: Dict[str, Any]) -> bool:
+    """
+    Check if a memory entry with same content already exists.
+    Covers broadcast, retrieve, rag, and fallback update styles.
+    """
+    memory = agent_or_state.state.memory if hasattr(agent_or_state, "state") else agent_or_state.memory
+
+    new_text = result.get("text", "")
+    new_label = result.get("label", result.get("label_text", None))
     new_source = result.get("source", None)
     new_action = result.get("action", result.get("action_type", ""))
-    
+
     for m in memory:
+        # Broadcast message content dedup
+        if m.get("action") == "broadcast":
+            if m.get("result", {}).get("message") == result.get("message"):
+                return True
+
+        # Retrieve / RAG / BroadcastLabel dedup
         if m.get("action") in {"RetrieveExample", "BroadcastLabel", "RAGResult"}:
+            mem_label = m.get("label", m.get("label_text", None))
             if (
-                normalize_text(m.get("text", "")) == new_text and
-                m.get("label") == new_label and
+                m.get("text") == new_text and
+                mem_label == new_label and
                 m.get("source") == new_source
             ):
                 return True
-                
+
+        # fallback update full match
         if m.get("action") == new_action and m.get("result") == result:
             return True
-            
+
     return False
