@@ -101,7 +101,7 @@ class NodeAgent:
                     })
 
         # fallback update 仅在最后一层触发
-        if (layer == NUM_LAYERS - 1 and (DEBUG_FORCE_FALLBACK or (
+        if (self.skip_update == False and layer == NUM_LAYERS - 1 and (DEBUG_FORCE_FALLBACK or (
             self.state.predicted_label is None and 
             not any(m.get("action") == "update" for m in self.state.memory) and 
             any(m.get("label") is not None for m in self.state.memory)))):
