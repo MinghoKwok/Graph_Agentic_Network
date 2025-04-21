@@ -129,10 +129,11 @@ class RemoteLLMInterface(BaseLLMInterface):
         label_list = ", ".join(f'"{v}"' for v in inv_label_vocab.values())
         update_action_block = f"""
         3. "update": decide your label *only* when the memory has enough information(labeled nodes, with text and label)
-        - Format: {{"action_type": "update", "predicted_label": choose one of allowed labels: [{label_list}]}}
+        - Format: {{"action_type": "update", "predicted_label": "<choose one from: {label_list}>", "reason": "<short explanation based on memory>"}}
         - You MUST choose one of the allowed label strings exactly as listed.
         - You MUST base your decision only on memory nodes with known labels.
         - You should ALWAYS follow this action with a "broadcast" to share your label with neighbors.
+        - In addition to the predicted label, include a short explanation (1-2 sentences) under the key "reason" to justify your choice, based on your memory.
 """
 
 
@@ -247,6 +248,8 @@ class RemoteLLMInterface(BaseLLMInterface):
                                 for nid in action.get("target_nodes", [])
                                 if re.sub(r"[^\d]", "", str(nid)).isdigit()
                             ]
+                            # 保留 reason 字段，如果存在
+                            # UpdateAction 会在后续 action.create() 里接收并使用
                     return parsed  # ✅ 成功返回多个 action
                 except Exception as inner:
                     print(f"[ActionParse] JSON decode error: {inner}")

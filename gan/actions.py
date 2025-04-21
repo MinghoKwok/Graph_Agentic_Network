@@ -248,7 +248,7 @@ class BroadcastAction(Action):
 class UpdateAction(Action):
     """Action to update the node's own state."""
     
-    def __init__(self, updates: Dict[str, Union[torch.Tensor, Any]]):
+    def __init__(self, updates: Dict[str, Union[torch.Tensor, Any]], reason: str):
         """
         Initialize an update action.
         
@@ -256,6 +256,7 @@ class UpdateAction(Action):
             updates: Dictionary of state updates with keys like "features", "hidden_state", "label"
         """
         self.updates = updates
+        self.reason = reason
         
     def execute(self, agent: 'NodeAgent', graph: 'AgenticGraph') -> Dict[str, Any]:
         """
@@ -286,7 +287,8 @@ class UpdateAction(Action):
         
         return {
             "action": "update",
-            "updated_fields": updated_fields
+            "updated_fields": updated_fields,
+            "reason": self.reason
         }
 
 

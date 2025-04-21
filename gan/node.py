@@ -47,6 +47,9 @@ class NodeAgent:
         self.memory = {}
 
     def step(self, graph: 'AgenticGraph', layer: int):
+        import os
+        os.makedirs("outputs", exist_ok=True)
+
         context = {
             "node_id": self.state.node_id,
             "text": self.state.text,
@@ -90,6 +93,15 @@ class NodeAgent:
             if action:
                 action_type = decision.get("action_type") if isinstance(decision, dict) else action.__class__.__name__
                 result = action.execute(self, graph)
+                # 写入预测结果和理由
+                if "predicted_label" in result:
+                    output = {
+                        "node_id": self.state.node_id,
+                        "predicted_label": int(self.state.predicted_label.item()),
+                        "reason": result.get("reason", ""),
+                    }
+                    with open("outputs/predictions_with_reason.jsonl", "a") as f:
+                        f.write(json.dumps(output) + "\n")
                 print(f"✅ Executed {action_type} with result: {result}")
                 if not has_memory_entry(self, result):
                     self.state.memory.append({
@@ -117,6 +129,17 @@ class NodeAgent:
                     fallback_action = self._create_action(decision, graph)
                     if fallback_action:
                         fallback_result = fallback_action.execute(self, graph)
+                        # ✅ 写入 fallback 预测结果和理由
+                        if "predicted_label" in fallback_result:
+                            output = {
+                                "node_id": self.state.node_id,
+                                "predicted_label": int(self.state.predicted_label.item()),
+                                "reason": fallback_result.get("reason", ""),
+                                "via": "fallback"
+                            }
+                            os.makedirs("outputs", exist_ok=True)  # 确保目录存在
+                            with open("outputs/predictions_with_reason.jsonl", "a") as f:
+                                f.write(json.dumps(output) + "\n")
                         if not has_memory_entry(self, fallback_result):
                             self.state.memory.append({
                                 "layer": layer,
@@ -280,7 +303,8 @@ class NodeAgent:
                                 print(f"⚠️ Failed to map label string: {label_value}")
             
             if updates:
-                return UpdateAction(updates)
+                reason = decision.get("reason", "")
+                return UpdateAction(updates=updates, reason=reason)
             else:
                 print(f"⚠️ No valid predicted_label found in update decision: {decision}")
 
