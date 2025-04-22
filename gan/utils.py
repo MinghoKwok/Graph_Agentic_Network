@@ -186,84 +186,37 @@ def compare_results(gan_metrics: Dict[str, float],
 def get_labeled_examples(
     memory: List[Dict[str, Any]],
     top_k: int = 5,
+    max_text_len: int = 60,
     dedup: bool = True
-) -> List[Dict[str, Any]]:
+) -> List[str]:
     seen_sources = set()
     examples = []
 
     for m in memory:
-        if not m.get("label") or not m.get("text"):
+        label = m.get("label_text")
+        text = m.get("text", "")
+        source = m.get("source")
+
+        if not label or not text:
             continue
-        if dedup and m.get("source") in seen_sources:
+        if dedup and source is not None and source in seen_sources:
             continue
-        seen_sources.add(m.get("source"))
-        examples.append({"label": m["label"], "text": m["text"]})
+
+        seen_sources.add(source)
+
+        snippet = text[:max_text_len] + "..." if len(text) > max_text_len else text
+        examples.append(f"[Label: {label}] \"{snippet}\"")
+
         if len(examples) >= top_k:
             break
+
     return examples
 
 
-# def truncate_text(text: str, max_words: int = 20) -> str:
-#     words = text.strip().split()
-#     return ' '.join(words[:max_words]) + ('...' if len(words) > max_words else '')
+def truncate_text(text: str, max_words: int = 20) -> str:
+    words = text.strip().split()
+    return ' '.join(words[:max_words]) + ('...' if len(words) > max_words else '')
 
-from config import USE_TOKEN_TRUNCATE, MEMORY_MAX_WORDS
-try:
-    from transformers import AutoTokenizer
-    tokenizer = AutoTokenizer.from_pretrained("Qwen/Qwen1.5-14B-Chat")  # default fallback
-except:
-    tokenizer = None  # 在 DeepSeek 场景中可为空
-
-def truncate_text(text: str, max_words: int = MEMORY_MAX_WORDS) -> str:
-    if USE_TOKEN_TRUNCATE and tokenizer:
-        tokens = tokenizer.tokenize(text)
-        truncated = tokenizer.convert_tokens_to_string(tokens[:max_words])
-        return truncated + ("..." if len(tokens) > max_words else "")
-    else:
-        words = text.strip().split()
-        return ' '.join(words[:max_words]) + ('...' if len(words) > max_words else '')
-
-
-
-
-# def has_memory_entry(agent_or_state, result: Dict[str, Any]) -> bool:
-#     """
-#     Check if a memory entry with same source + label + text already exists.
-#     Supports more robust deduplication.
-#     """
-#     memory = agent_or_state.state.memory if hasattr(agent_or_state, "state") else agent_or_state.memory
-
-#     # 提取核心信息用于比对
-#     new_text = result.get("text", "")
-#     new_label = result.get("label", None)
-#     new_source = result.get("source", None)
-#     new_action = result.get("action", result.get("action_type", ""))
-
-#     for m in memory:
-#         # 对于广播消息，检查原始消息
-#         if m.get("action") == "broadcast":
-#             if m.get("result", {}).get("message") == result.get("message"):
-#                 return True
-#         # 基于 Broadcast、Retrieve、RAG 写入
-#         if m.get("action") in {"RetrieveExample", "BroadcastLabel", "RAGResult"}:
-#             if (
-#                 m.get("text") == new_text and
-#                 m.get("label") == new_label and
-#                 m.get("source") == new_source
-#             ):
-#                 return True
-
-#         # 对于 update/fallback update 动作的结果也可以排重（可选）
-#         if m.get("action") == new_action and m.get("result") == result:
-#             return True
-
-#     return False
-
-
-def normalize_text(text: str) -> str:
-    if not isinstance(text, str):
-        return str(text)
-    return text.strip().lower()
 
 def has_memory_entry(agent_or_state, result: Dict[str, Any]) -> bool:
     """
@@ -294,36 +247,3 @@ def has_memory_entry(agent_or_state, result: Dict[str, Any]) -> bool:
 
     return False
 
-# def has_memory_entry(agent_or_state, result: Dict[str, Any]) -> bool:
-#     """
-#     Check if a memory entry with same content already exists.
-#     Covers broadcast, retrieve, rag, and fallback update styles.
-#     """
-#     memory = agent_or_state.state.memory if hasattr(agent_or_state, "state") else agent_or_state.memory
-
-#     new_text = result.get("text", "")
-#     new_label = result.get("label", result.get("label_text", None))
-#     new_source = result.get("source", None)
-#     new_action = result.get("action", result.get("action_type", ""))
-
-#     for m in memory:
-#         # Broadcast message content dedup
-#         if m.get("action") == "broadcast":
-#             if m.get("result", {}).get("message") == result.get("message"):
-#                 return True
-
-#         # Retrieve / RAG / BroadcastLabel dedup
-#         if m.get("action") in {"RetrieveExample", "BroadcastLabel", "RAGResult"}:
-#             mem_label = m.get("label", m.get("label_text", None))
-#             if (
-#                 m.get("text") == new_text and
-#                 mem_label == new_label and
-#                 m.get("source") == new_source
-#             ):
-#                 return True
-
-#         # fallback update full match
-#         if m.get("action") == new_action and m.get("result") == result:
-#             return True
-
-#     return False

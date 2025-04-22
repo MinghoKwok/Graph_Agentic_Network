@@ -181,7 +181,7 @@ class BroadcastAction(Action):
 
         print(f"📤 [Action: Broadcast] Node {agent.state.node_id} → {self.target_nodes}")
 
-        # Step 1: 构造消息内容（优先使用 predicted_label + text）
+        # Step 1: 构造消息
         message_payload = None
         label_tensor = agent.state.predicted_label or agent.state.label
         if label_tensor is not None:
@@ -199,44 +199,50 @@ class BroadcastAction(Action):
         if message_payload is None:
             return {"action": "no_op", "message": None, "target_nodes": []}
 
-        # Step 2: 对每个目标节点执行广播
+        # Step 2: 发送给每个目标节点
         for target_id in self.target_nodes:
             target_agent = graph.get_node(target_id)
             if not target_agent:
                 print(f"    ⛔ Node {target_id} not found in graph")
                 continue
 
-            # Step 2.1: 写入原始广播信息，避免重复
-            memory_entry_basic = {
+            # Step 2.1: 防止重复写入
+            already_seen = False
+            for m in target_agent.state.memory:
+                if m.get("action") == "broadcast":
+                    if m.get("result", {}).get("message") == message_payload:
+                        already_seen = True
+                        break
+            if already_seen:
+                continue
+
+            # Step 2.2: 写入原始广播信息
+            memory_entry = {
                 "action": "broadcast",
                 "result": {
                     "message": message_payload,
                     "source": agent.state.node_id
                 }
             }
-            if not has_memory_entry(target_agent, memory_entry_basic):
-                target_agent.state.memory.append(memory_entry_basic)
+            if not has_memory_entry(target_agent, memory_entry):
+                target_agent.state.memory.append(memory_entry)
 
-            # Step 2.2: 如果是结构化带 label 的消息，写入标准 BroadcastLabel 示例
-            if isinstance(message_payload, dict) and "predicted_label" in message_payload and "text" in message_payload:
+            # Step 2.3: 如果 message 是带标签的 dict，则额外写入可用 labeled 示例
+            if isinstance(message_payload, dict) and "predicted_label" in message_payload:
                 label_id = message_payload["predicted_label"]
                 text = message_payload["text"]
                 label_text = inv_label_vocab.get(label_id, str(label_id))
-                memory_entry_struct = {
+                memory_entry = {
                     "layer": agent.state.layer_count,
                     "action": "BroadcastLabel",
                     "text": text,
                     "label": label_id,
                     "label_text": label_text,
                     "source": agent.state.node_id,
-                    "source_type": "broadcast",
-                    "result": {
-                        "message": message_payload,
-                        "source": agent.state.node_id
-                    }
+                    "source_type": "broadcast"
                 }
-                if not has_memory_entry(target_agent, memory_entry_struct):
-                    target_agent.state.memory.append(memory_entry_struct)
+                if not has_memory_entry(target_agent, memory_entry):
+                    target_agent.state.memory.append(memory_entry)
 
         return {
             "action": "broadcast",
@@ -248,7 +254,7 @@ class BroadcastAction(Action):
 class UpdateAction(Action):
     """Action to update the node's own state."""
     
-    def __init__(self, updates: Dict[str, Union[torch.Tensor, Any]], reason: str):
+    def __init__(self, updates: Dict[str, Union[torch.Tensor, Any]]):
         """
         Initialize an update action.
         
@@ -256,7 +262,6 @@ class UpdateAction(Action):
             updates: Dictionary of state updates with keys like "features", "hidden_state", "label"
         """
         self.updates = updates
-        self.reason = reason
         
     def execute(self, agent: 'NodeAgent', graph: 'AgenticGraph') -> Dict[str, Any]:
         """
@@ -287,8 +292,7 @@ class UpdateAction(Action):
         
         return {
             "action": "update",
-            "updated_fields": updated_fields,
-            "reason": self.reason
+            "updated_fields": updated_fields
         }
 
 

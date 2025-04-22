@@ -111,6 +111,15 @@ def run_node_classification(
         empty_memory = sum(1 for n in gan.graph.nodes.values() if len(n.state.memory) == 0)
         print(f"🧠 Nodes with empty memory: {empty_memory}/{total}")
 
+        # 检查训练节点是否误做更新操作
+        num_updated_train = sum(
+            node.state.predicted_label is not None
+            for node in gan.graph.nodes
+            if node.state.node_id in train_idx
+        )
+        print(f"🔍 Train nodes with predicted_label: {num_updated_train}/{len(train_idx)}")
+
+
         # ⏬ 分析 predicted_label 分布
         from collections import Counter
         label_counter = Counter()
