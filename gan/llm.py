@@ -81,6 +81,7 @@ class RemoteLLMInterface(BaseLLMInterface):
         node_id = context["node_id"]
         layer = context["layer"]
         text = context.get("text", "")
+        aggregated_text = context.get("aggregated_text", "")
         neighbors = context["neighbors"]
         total_neighbors = context["total_neighbors"]
         messages = context.get("messages", [])
@@ -93,7 +94,14 @@ class RemoteLLMInterface(BaseLLMInterface):
 
         # 只选择有标签的邻居
         labeled_neighbors = context.get("labeled_neighbors", [])
-        
+        labeled_neighbors_text_list = [
+            graph.get_node(nid).state.text
+            for nid in labeled_neighbors
+            if graph.get_node(nid) is not None and graph.get_node(nid).state.text
+        ]
+        labeled_neighbors_text = "\n".join(labeled_neighbors_text_list)
+
+        # Start prompt construction
         prompt = ""
 
         prompt_intro = f"""
@@ -105,8 +113,10 @@ class RemoteLLMInterface(BaseLLMInterface):
     ## Your State:
     - Node ID: {node_id}
     - Layer: {layer}
-    - Your Text:
+    - Original Text Feature:
     \"{text}\"
+    - Aggregated Neighbor Text Feature:
+    \"{aggregated_text}\"
     - Neighbors: {neighbors if neighbors else 'None'}
     - Available labeled neighbors to retrieve from: {labeled_neighbors if labeled_neighbors else 'None'}
     - Neighbors with predicted labels: {updated_neighbors if updated_neighbors else 'None'}
@@ -115,11 +125,24 @@ class RemoteLLMInterface(BaseLLMInterface):
         prompt += prompt_node_state
 
         label_list = ", ".join(f'"{v}"' for v in inv_label_vocab.values())
+
+        retrieve_action_block = f"""
+        1. "retrieve": retrieve the label,text feature and memory of your neighboring nodes, and aggregate features
+        - "aggregated_text": Generate a summary of your original text feature and target neighbor text feature {labeled_neighbors_text}
+          * Example:
+            - Original Text: Evaluates neural network predictors using a bootstrap-inspired approach
+            - Aggregated Neighbor Text: 
+              A comparison of some error estimates for neural network models
+              The Observer-Observation Dilemma in Neuro-Forecasting: Reliable Models From Unreliable Data Through CLEARNING.
+            - Generated "aggregated_text": Reliable neural network predictions with bootstrap error control
+        - Format: {{"action_type": "retrieve", "target_nodes": [IDs from {labeled_neighbors}], "info_type": "text", "aggregated_text": Summary of your original text and target neighbor text}}
+        """
         update_action_block = f"""
         3. "update": decide your label *only* when the memory has enough information(labeled nodes, with text and label)
         - Format: {{"action_type": "update", "predicted_label": choose one of allowed labels: [{label_list}]}}
         - You MUST choose one of the allowed label strings exactly as listed.
         - You MUST base your decision only on memory nodes with known labels.
+        - The feature you have is your "original text feature" and "aggregated neighbor text feature". Use them to compare with the labeled memory nodes to decide your label.
         - You should ALWAYS follow this action with a "broadcast" to share your label with neighbors.
 """
 
@@ -162,10 +185,10 @@ class RemoteLLMInterface(BaseLLMInterface):
     ```
 
     ### Available Actions:
+    """
+        prompt += retrieve_action_block
 
-    1. "retrieve": get information from other nodes
-    - Format: {"action_type": "retrieve", "target_nodes": [IDs], "info_type": "text"}
-
+        prompt += """
     2. "broadcast": send a message to neighbors if and *only* if you already have a label or predicted label
     - Format: {"action_type": "broadcast", "target_nodes": [IDs], "message": "some message"}
     - Use this *only* when you already have a label or predicted label to share it with neighbors. 

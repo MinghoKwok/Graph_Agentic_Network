@@ -28,7 +28,7 @@ class Action:
 class RetrieveAction(Action):
     """Action to retrieve information from selected neighbors."""
     
-    def __init__(self, target_nodes: List[int], info_type: str = "text"):
+    def __init__(self, target_nodes: List[int], info_type: str = "text", aggregated_text: str = ""):
         """
         Initialize a retrieve action.
 
@@ -38,7 +38,7 @@ class RetrieveAction(Action):
         """
         self.target_nodes = target_nodes
         self.info_type = info_type
-
+        self.aggregated_text = aggregated_text
     def execute(self, agent: 'NodeAgent', graph: 'AgenticGraph') -> Dict[str, Any]:
         results = {}
         not_found = []
@@ -101,6 +101,13 @@ class RetrieveAction(Action):
                     }
                     if not has_memory_entry(agent, memory_entry):
                         agent.state.memory.append(memory_entry)
+
+        # ✅ 更新 agent.state 的 aggregated_text（如果有）
+        if self.aggregated_text:
+            agent.state.aggregated_text = self.aggregated_text
+            print(f"🧠 [Retrieve] Node {agent.state.node_id} updated aggregated_text:\n{self.aggregated_text[:100]}...")
+        else:
+            print(f"⚠️ [Retrieve] Node {agent.state.node_id} missing aggregated_text from LLM. Consider fallback or debug prompt.")
 
         return {
             "action": "retrieve",

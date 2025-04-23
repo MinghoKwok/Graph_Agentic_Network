@@ -17,6 +17,7 @@ class NodeState:
     
     node_id: int
     text: str  # 取代 features
+    aggregated_text: str = ""
     label: Optional[torch.Tensor] = None
     predicted_label: Optional[torch.Tensor] = None
     message_queue: List[Dict[str, Any]] = field(default_factory=list)
@@ -24,8 +25,8 @@ class NodeState:
     layer_count: int = 0
     
     def __post_init__(self):
-        """Initialize hidden state if not provided."""
-        pass
+        """Initialize aggregated text."""
+        self.aggregated_text = self.text
 
     def add_message(self, from_node: int, message: torch.Tensor, layer: int):
         self.message_queue.append({"from": from_node, "content": message, "layer": layer})
@@ -276,6 +277,7 @@ Choose one action and provide parameters."""
             "node_id": self.state.node_id,
             "layer": self.state.layer_count,
             "text": self.state.text,
+            "aggregated_text": self.state.aggregated_text,
             "label": self.state.label.item() if self.state.label is not None else None,
             "predicted_label": self.state.predicted_label.item() if self.state.predicted_label is not None else None,
             "neighbors": neighbors,
@@ -310,7 +312,10 @@ Choose one action and provide parameters."""
             # 确保 info_type 是支持的类型
             if info_type not in ["text", "label", "both", "memory", "all"]:
                 info_type = "text"  # 默认使用 "text"
-            return RetrieveAction(target_nodes, info_type)
+
+            aggregated_text = decision.get("aggregated_text", "")
+            
+            return RetrieveAction(target_nodes, info_type, aggregated_text)
         
         elif action_type == "rag_query":
             query = decision.get("query", str(self.state.node_id))  # 默认使用节点ID作为查询
