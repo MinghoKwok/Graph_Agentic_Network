@@ -101,6 +101,47 @@ class RemoteLLMInterface(BaseLLMInterface):
     """
         prompt += prompt_intro
 
+        # 添加few-shot示例
+        prompt += """
+    ## Few-shot Examples of Label Prediction:
+
+    Example 1:
+    Memory:
+    1. [Neural_Networks] "A novel deep learning approach for image classification..."
+    2. [Reinforcement_Learning] "Q-learning based algorithm for game playing..."
+    3. [Neural_Networks] "Convolutional neural networks for computer vision tasks..."
+
+    Current Node Text:
+    "Deep learning models for visual recognition tasks..."
+
+    Prediction: Neural_Networks
+    Reasoning: The current text focuses on deep learning and visual recognition, which closely matches the Neural_Networks examples in memory.
+
+    Example 2:
+    Memory:
+    1. [Probabilistic_Methods] "Bayesian networks for uncertainty modeling..."
+    2. [Neural_Networks] "Recurrent neural networks for sequence prediction..."
+    3. [Probabilistic_Methods] "Markov models for time series analysis..."
+
+    Current Node Text:
+    "Hidden Markov models for speech recognition..."
+
+    Prediction: Probabilistic_Methods
+    Reasoning: The text discusses Markov models, which is a probabilistic method, matching the Probabilistic_Methods examples in memory.
+
+    Example 3:
+    Memory:
+    1. [Neural_Networks] "Deep learning architectures for natural language processing..."
+    2. [Theory] "Theoretical analysis of algorithm complexity..."
+    3. [Neural_Networks] "Transformer models for sequence modeling..."
+
+    Current Node Text:
+    "Attention mechanisms in deep learning models for text understanding..."
+
+    Prediction: Neural_Networks
+    Reasoning: Although the text mentions theoretical concepts like attention mechanisms, the focus is on deep learning models and their application to text understanding, which closely matches the Neural_Networks examples in memory.
+    """
+
         prompt_node_state = f"""
     ## Your State:
     - Node ID: {node_id}
@@ -168,13 +209,13 @@ class RemoteLLMInterface(BaseLLMInterface):
 
     2. "broadcast": send a message to neighbors if and *only* if you already have a label or predicted label
     - Format: {"action_type": "broadcast", "target_nodes": [IDs], "message": "some message"}
-    - Use this *only* when you already have a label or predicted label to share it with neighbors. 
+    - Use this *only* when you already have a label orpredicted label to share it with neighbors. 
     - You MUST NOT use "broadcast" unless you already have a label orpredicted label (i.e., after an "update" action).
     - So "update" action always works before "broadcast" in the same layer.
 
     """
-
-        prompt += update_action_block
+        if context.get("label") is None:
+            prompt += update_action_block
 
         prompt += """
     4. "rag_query": search globally for similar labeled nodes, can make up "retrieve" action
