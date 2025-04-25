@@ -201,7 +201,7 @@ if __name__ == "__main__":
         use_subgraph=False,
         subgraph_size=100,
         use_mock_llm=False,
-        num_layers=0,
+        num_layers=config.NUM_LAYERS,
         batch_size=64,
         run_gan=True,
         run_baselines=True

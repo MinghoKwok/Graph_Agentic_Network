@@ -160,10 +160,64 @@ class RemoteLLMInterface(BaseLLMInterface):
         3. "update": decide your label *only* when the memory has enough information(labeled nodes, with text and label)
         - Format: {{"action_type": "update", "predicted_label": choose one of allowed labels: [{label_list}]}}
         - You MUST choose one of the allowed label strings exactly as listed.
-        - You MUST base your decision only on memory nodes with known labels.
+        - You MUST base your decision only on the definitions of the labels and the memory nodes with known labels.
         - You should ALWAYS follow this action with a "broadcast" to share your label with neighbors.
 """
 
+        # 注入标签定义
+        label_definition = """
+Here are the definitions of the labels, which are helpful for you to predict your label:
+
+[label=Theory]
+- Focuses on foundational models and algorithms underlying machine learning.
+- Explores formal frameworks like PAC learning, VC dimension, and computational complexity.
+- Addresses theoretical limitations and generalization guarantees.
+- Includes studies on learnability and approximation strategies.
+- Emphasizes conceptual clarity and rigorous analysis.
+
+[label=Neural_Networks]
+- Investigates layered architectures for pattern recognition and learning.
+- Covers models like CNNs, RNNs, and feedforward networks.
+- Learns via backpropagation and activation tuning.
+- Applied in tasks such as vision, sequence modeling, and signal processing.
+- Inspired by biological systems and deep representations.
+
+[label=Case_Based]
+- Solves problems by referencing past similar examples.
+- Stores and retrieves previous cases for reasoning.
+- Adapts old solutions to new problems.
+- Applies to diagnosis, design support, and decision-making.
+- Emphasizes example-driven and explainable inference.
+
+[label=Genetic_Algorithms]
+- Uses evolution-inspired methods to optimize solutions.
+- Operates with selection, crossover, and mutation.
+- Evolves rule sets, classifiers, or architectures over time.
+- Excels in complex search spaces with rugged landscapes.
+- Highlights robustness and adaptive search behavior.
+
+[label=Probabilistic_Methods]
+- Models uncertainty through probability and Bayesian reasoning.
+- Includes graphical models, sampling, and inference.
+- Handles noisy or incomplete data in decision-making.
+- Applied in diagnosis, prediction, and structured reasoning.
+- Combines interpretability with statistical rigor.
+
+[label=Reinforcement_Learning]
+- Learns from interactions with environment via rewards.
+- Balances exploration and exploitation to find optimal policies.
+- Formalized as MDPs with agents and states.
+- Used in robotics, control, and game-playing systems.
+- Focuses on long-term decision-making under uncertainty.
+
+[label=Rule_Learning]
+- Extracts symbolic rules like "if-then" from training data.
+- Produces interpretable and compact decision logic.
+- Applies logical reasoning for classification tasks.
+- Suitable for expert systems and knowledge discovery.
+- Optimizes rule accuracy, generality, and simplicity.
+
+        """
 
         # 使用精炼后的 labeled memory：text + label_text
         prompt_memory = ""
