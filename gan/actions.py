@@ -59,48 +59,17 @@ class RetrieveAction(Action):
                 label_tensor = neighbor.state.label if neighbor.state.label is not None else neighbor.state.predicted_label
                 if label_tensor is not None:
                     try:
-                        entry["label"] = label_tensor.item() if isinstance(label_tensor, torch.Tensor) else int(label_tensor)
+                        if isinstance(label_tensor, torch.Tensor):
+                            entry["label"] = label_tensor.item()
+                        elif isinstance(label_tensor, (int, float)):
+                            entry["label"] = int(label_tensor)
+                        else:
+                            entry["label"] = None
                     except Exception:
                         entry["label"] = None
 
             if entry:
                 results[node_id] = entry
-            else:
-                not_found.append(node_id)
-
-        # ✅ 写入 memory
-        for node_id, entry in results.items():
-            if "text" in entry and "label" in entry and entry["label"] is not None:
-                label_text = inv_label_vocab.get(entry["label"], str(entry["label"]))
-                memory_entry = {
-                    "layer": agent.state.layer_count,
-                    "action": "RetrieveExample",
-                    "text": entry["text"],
-                    "label": entry["label"],
-                    "label_text": label_text,
-                    "source": node_id,
-                    "source_type": "retrieved"
-                }
-                if not has_memory_entry(agent, memory_entry):
-                    agent.state.memory.append(memory_entry)
-
-        # 收集邻居 memory 中的 labeled 示例（如果有）
-        for node_id, entry in results.items():
-            retrieve_memory = entry.get("retrieve_memory", {})
-            for cid, info in retrieve_memory.items():
-                if "text" in info and "label" in info:
-                    label_text = inv_label_vocab.get(info["label"], str(info["label"]))
-                    memory_entry = {
-                        "layer": agent.state.layer_count,
-                        "action": "RetrieveExample",
-                        "text": info["text"],
-                        "label": info["label"],
-                        "label_text": label_text,
-                        "source": cid,
-                        "source_type": "collected"
-                    }
-                    if not has_memory_entry(agent, memory_entry):
-                        agent.state.memory.append(memory_entry)
 
         return {
             "action": "retrieve",
@@ -123,7 +92,7 @@ class RAGAction(Action):
         
         # 执行 RAG 查询
         results = graph.rag_query(query, self.top_k)
-
+        
         # 返回结果，不在这里写入memory，让NodeAgent统一处理
         return {
             "action": "rag_query",
