@@ -205,23 +205,23 @@ class NodeAgent:
         else:
             prompt += "Memory items: (No memory available)\n"
 
-        prompt += "\nOfficial Label Definitions:\n"
-        prompt += """
-[label=Theory]
-- Development of abstract models.
-[label=Neural_Networks]
-- Multi-layered network models.
-[label=Case_Based]
-- Reasoning by past examples.
-[label=Genetic_Algorithms]
-- Evolutionary optimization methods.
-[label=Probabilistic_Methods]
-- Probability and Bayesian methods.
-[label=Reinforcement_Learning]
-- Learning from rewards and actions.
-[label=Rule_Learning]
-- Extracting if-then symbolic rules.
-"""
+        # prompt += "\nOfficial Label Definitions:\n"
+#         prompt += """
+# [label=Label_6]
+# - Development of abstract models.
+# [label=Neural_Networks]
+# - Multi-layered network models.
+# [label=Case_Based]
+# - Reasoning by past examples.
+# [label=Genetic_Algorithms]
+# - Evolutionary optimization methods.
+# [label=Probabilistic_Methods]
+# - Probability and Bayesian methods.
+# [label=Reinforcement_Learning]
+# - Learning from rewards and actions.
+# [label=Rule_Learning]
+# - Extracting if-then symbolic rules.
+# """
         prompt += "\nRespond strictly in JSON format:\n{\"action_type\": \"update\", \"predicted_label\": \"label_string\"}\n"
         label_list = ", ".join(f'\"{v}\"' for v in inv_label_vocab.values())
         prompt += f"Allowed labels: [{label_list}]\n"
