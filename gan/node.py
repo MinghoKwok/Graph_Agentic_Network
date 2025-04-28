@@ -154,14 +154,34 @@ Choose one action and provide parameters."""
                 action_type = decision.get("action_type") if isinstance(decision, dict) else action.__class__.__name__
                 result = action.execute(self, graph)
                 print(f"✅ Executed {action_type} with result: {result}")
+                
+                # 统一处理memory写入
                 if not has_memory_entry(self, result):
-                    self.state.memory.append({
-                        "layer": layer,
-                        "action": result.get("action", "unknown"),
-                        "result": result,
-                        "text": self.state.text,
-                        "label": self.state.label.item() if self.state.label is not None else None
-                    })
+                    if action_type == "rag_query":
+                        # 处理RAG查询结果
+                        for node_id, node_info in result.get("results", {}).items():
+                            if all(key in node_info for key in ['text', 'label']):
+                                memory_entry = {
+                                    "layer": layer,
+                                    "action": "RAGResult",
+                                    "text": node_info['text'],
+                                    "label": node_info['label'],
+                                    "label_text": inv_label_vocab.get(node_info['label'], str(node_info['label'])),
+                                    "source": node_id,
+                                    "source_type": "rag",
+                                    "similarity_score": node_info.get('similarity_score', 0.0)
+                                }
+                                if not has_memory_entry(self, memory_entry):
+                                    self.state.memory.append(memory_entry)
+                    else:
+                        # 处理其他类型的结果
+                        self.state.memory.append({
+                            "layer": layer,
+                            "action": result.get("action", "unknown"),
+                            "result": result,
+                            "text": self.state.text,
+                            "label": self.state.label.item() if self.state.label is not None else None
+                        })
 
         # === Fallback update logic: only trigger at the last layer ===
         # Trigger fallback update only if:

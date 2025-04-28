@@ -8,7 +8,7 @@ LABELS = [
     "Probabilistic_Methods",
     "Reinforcement_Learning",
     "Rule_Learning",
-    "Theory"
+    "Label_6"
 ]
 
 # 映射：字符串 → 整数

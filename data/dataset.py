@@ -97,7 +97,19 @@ def load_cora(
         nid = int(item["node_id"])
         pid = int(item["paper_id"])
         node_texts[nid] = item["text"]
-        labels[nid] = label_vocab[item["label"]]
+        legacy_label_mapping = {
+            "Case_Based": "Case_Based",
+            "Genetic_Algorithms": "Genetic_Algorithms",
+            "Neural_Networks": "Neural_Networks",
+            "Probabilistic_Methods": "Probabilistic_Methods",   # 旧 -> 新
+            "Reinforcement_Learning": "Reinforcement_Learning",
+            "Rule_Learning": "Rule_Learning",
+            "Theory": "Label_6"                   # 旧 -> 新
+        }
+        # 然后在处理 label 时加：
+        label_name = legacy_label_mapping.get(item["label"], item["label"])  # 先映射一遍
+
+        labels[nid] = label_vocab[label_name]
         paperid_to_nodeid[pid] = nid
 
     num_nodes = len(node_texts)

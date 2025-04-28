@@ -124,25 +124,7 @@ class RAGAction(Action):
         # 执行 RAG 查询
         results = graph.rag_query(query, self.top_k)
 
-        # ✅ 将每个结果写入 memory，格式统一为可用于 label 推理的样例
-        for node_id, node_info in results.items():
-            if all(key in node_info for key in ['text', 'label']):
-                label = node_info['label']
-                text = node_info['text']
-                sim = node_info.get('similarity_score', 0.0)
-                memory_entry = {
-                    "layer": agent.state.layer_count,
-                    "action": "RAGResult",
-                    "text": text,
-                    "label": label,
-                    "label_text": inv_label_vocab.get(label, str(label)),
-                    "source": node_id,
-                    "source_type": "rag",
-                    "similarity_score": sim
-                }
-                if not has_memory_entry(agent, memory_entry):
-                    agent.state.memory.append(memory_entry)
-
+        # 返回结果，不在这里写入memory，让NodeAgent统一处理
         return {
             "action": "rag_query",
             "query": query,

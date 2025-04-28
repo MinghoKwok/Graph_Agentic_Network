@@ -323,20 +323,156 @@ Here are the definitions of the labels, which are helpful for you to predict you
 
     def _format_fallback_label_prompt(self, node_text: str, memory: List[Dict[str, Any]]) -> str:
 
-        prompt = "You are given a scientific paper text and several labeled examples. Predict the most likely label.\n\n"
+        prompt = "You are given a scientific paper text and several labeled examples. Predict the most likely label of your text.\n\n"
         prompt += f"Text to classify:\n\"{node_text}\"\n\n"
-        prompt += "Labeled examples:\n"
 
-        labeled_memory_examples = list({(m["label"], m["text"]): m for m in memory if m.get("label") is not None}.values())
+        label_definition = """
+Here are the definitions of the labels, which are helpful for you to predict your label:
 
-        for m in labeled_memory_examples[:5]:
-            lbl = inv_label_vocab.get(m["label"], "?")
-            txt = m["text"][:60] + "..." if len(m["text"]) > 60 else m["text"]
-            prompt += f"- [{lbl}] \"{txt}\"\n"
+[label=Label_6]
+- Explores formal frameworks like PAC learning, VC dimension, and computational complexity.
+- Addresses theoretical limitations and generalization guarantees.
+- Includes studies on learnability and approximation strategies.
+- Emphasizes conceptual clarity and rigorous analysis.
+
+[label=Neural_Networks]
+- Investigates layered architectures for pattern recognition and learning.
+- Covers models like CNNs, RNNs, and feedforward networks.
+- Learns via backpropagation and activation tuning.
+- Applied in tasks such as vision, sequence modeling, and signal processing.
+- Inspired by biological systems and deep representations.
+
+[label=Case_Based]
+- Solves problems by referencing past similar examples.
+- Stores and retrieves previous cases for reasoning.
+- Adapts old solutions to new problems.
+- Applies to diagnosis, design support, and decision-making.
+- Emphasizes example-driven and explainable inference.
+
+[label=Genetic_Algorithms]
+- Uses evolution-inspired methods to optimize solutions.
+- Operates with selection, crossover, and mutation.
+- Evolves rule sets, classifiers, or architectures over time.
+- Excels in complex search spaces with rugged landscapes.
+- Highlights robustness and adaptive search behavior.
+
+[label=Probabilistic_Methods]
+- Models uncertainty through probability and Bayesian reasoning.
+- Includes graphical models, sampling, and inference.
+- Handles noisy or incomplete data in decision-making.
+- Applied in diagnosis, prediction, and structured reasoning.
+- Combines interpretability with statistical rigor.
+
+[label=Reinforcement_Learning]
+- Learns from interactions with environment via rewards.
+- Balances exploration and exploitation to find optimal policies.
+- Formalized as MDPs with agents and states.
+- Used in robotics, control, and game-playing systems.
+- Focuses on long-term decision-making under uncertainty.
+
+[label=Rule_Learning]
+- Extracts symbolic rules like "if-then" from training data.
+- Produces interpretable and compact decision logic.
+- Applies logical reasoning for classification tasks.
+- Suitable for expert systems and knowledge discovery.
+- Optimizes rule accuracy, generality, and simplicity.
+
+        """
+
+        label_definition_2 = """
+You are given the scientific paper text and the official definitions of candidate labels.  
+Your task is to predict the most appropriate label for the given text.  
+You must rely only on the provided label definitions.  
+Do not guess or hallucinate beyond the definitions.
+
+Here are the official label definitions:
+
+[label=Theory]
+- Definition:
+    - Focuses on the development of abstract learning models and formal theoretical frameworks.
+    - Analyzes generalization bounds, computational complexity, learnability, or approximation limits.
+    - Does not involve specific network architectures, training processes, or real-world application details.
+- Examples:
+    - "Analyzing the PAC learnability of Boolean concept classes under limited samples."
+    - "Exploring convergence bounds for support vector machines in high-dimensional spaces."
+
+[label=Neural_Networks]
+- Definition:
+    - Focuses on the design, training, and application of multi-layered network models (e.g., CNNs, RNNs, feedforward networks).
+    - Includes training optimization, architecture development, and empirical performance evaluation.
+    - If the text describes any specific neural network structure, learning method, or applied usage, classify here.
+- Examples:
+    - "Improving object detection using deep convolutional neural networks."
+    - "Training recurrent neural networks for language modeling tasks."
+
+[label=Case_Based]
+- Definition:
+    - Solves new problems by adapting solutions from previously solved cases.
+    - Highlights memory-based reasoning, example retrieval, and adaptation processes.
+- Examples:
+    - "Using past legal cases to inform decisions on new disputes."
+    - "Adapting historical mechanical fault diagnoses for new industrial equipment."
+
+[label=Genetic_Algorithms]
+- Definition:
+    - Optimization methods inspired by biological evolution.
+    - Involves selection, mutation, crossover, and evolutionary adaptation.
+- Examples:
+    - "Optimizing urban traffic flow using genetic algorithm techniques."
+    - "Designing efficient neural network architectures with evolutionary strategies."
+
+[label=Probabilistic_Methods]
+- Definition:
+    - Models uncertainty using probability theory and Bayesian frameworks.
+    - Includes graphical models, probabilistic inference, and decision making under uncertainty.
+- Examples:
+    - "Applying Bayesian networks for disease risk prediction from incomplete clinical data."
+    - "Using probabilistic graphical models to infer social network influence patterns."
+
+[label=Reinforcement_Learning]
+- Definition:
+    - Learns optimal behaviors through trial and error with environmental rewards.
+    - Formalized as Markov Decision Processes (MDPs), balancing exploration and exploitation.
+- Examples:
+    - "Training an agent to navigate a maze environment using Q-learning."
+    - "Optimizing robotic grasping strategies via reinforcement learning."
+
+[label=Rule_Learning]
+- Definition:
+    - Extracts symbolic "if-then" rules from training data for classification and reasoning.
+    - Produces interpretable and compact decision logic.
+- Examples:
+    - "Learning decision rules for customer churn prediction."
+    - "Extracting symbolic classification rules for fraud detection."
+
+
+Important Decision Rules:
+- If the text mentions neural network structures, training behaviors, or applied tasks, even alongside theoretical discussion, classify as Neural_Networks.
+- If the text only discusses abstract theoretical limits, generalization theory, or computational complexity without any specific model, classify as Theory.
+- If unsure, prioritize the definition that explicitly matches the described methods, models, or systems.
+- Do not classify based solely on words like "optimization" or "convergence" without considering the context.
+
+
+Respond in JSON format:
+{"action_type": "update", "predicted_label": "label_string"}
+
+        """
+
+        prompt += label_definition
+
+
+        # prompt += "Labeled examples:\n"
+
+        # labeled_memory_examples = list({(m["label"], m["text"]): m for m in memory if m.get("label") is not None}.values())
+
+        # for m in labeled_memory_examples[:5]:
+        #     lbl = inv_label_vocab.get(m["label"], "?")
+        #     txt = m["text"][:60] + "..." if len(m["text"]) > 60 else m["text"]
+        #     prompt += f"- [{lbl}] \"{txt}\"\n"
 
         prompt += "\nRespond with:\n{\"action_type\": \"update\", \"predicted_label\": \"label_string\"}\n"
         label_list = ", ".join(f'"{v}"' for v in inv_label_vocab.values())
-        prompt += f"You must choose one of the allowed label strings exactly as listed: [{label_list}]"
+        prompt += f"You must choose one of the allowed label strings exactly as listed: [{label_list}] for your text, based on your text to classify and label definitions."
         return prompt
 
 
