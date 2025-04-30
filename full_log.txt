@@ -1,0 +1,1727 @@
+
+Text to classify:
+"Improving decision tree predictive accuracy with attributes."
+
+Labeled examples:
+- [Theory] "Constructing m-of-n concepts for decision tree."
+- [Theory] "Improving decision tree predictive accuracy with attributes."
+- [Theory] "Constructing new attributes for decision trees."
+- [Theory] "Efficient learning of rectangle unions."
+- [Neural_Networks] "Efficient learning of overcomplete data representations."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-7c3532a2e4b1488f99f9869e357b10b5","object":"chat.completion
+","created":1745465042,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Theory'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2675 | Layer 2
+  ├─ 🏷️  Action: retrieve
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 18
+  └─ 👥 Total neighbors: 5
+
+🔍 Message Trace | Node 2675 | Layer 2
+  📥 Retrieved from 5 target(s):
+    ↳ Node 1256 ✅ {'text': 'Classifier learning benchmark in technical report.'}
+    ↳ Node 1595 ✅ {'text': 'Constructing m-of-n concepts for decision tree.'}
+    ↳ Node 1824 ✅ {'text': 'Dynamic method enhances decision tree learning.'}
+    ↳ Node 1862 ✅ {'text': 'Comparison of attribute types for constructive induction.'}
+    ↳ Node 1964 ✅ {'text': 'Improving prediction accuracy and theory complexity.'}
+Processing layer 2:  81%|███████████████████████████▋      | 52/64 [02:43<00:33,  2.83s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-475d37b5422a40208a08fcff7763a9a5","object":"chat.completion","created"
+:1745465043,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2676 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [611, 1787, 2385], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2676 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [611, 17
+87, 2385], 'results': {611: {'text': 'Face analysis and synthesis using networks.'}, 1787: {'text': 'S
+ynaptic models for visual feature extraction.'}, 2385: {'text': 'Visual perception and learning in neu
+ral networks.'}}, 'not_found': []}
+
+📋 Multi-Action Plan | Node 2676 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [611, 1787, 2385], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2676 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [611, 17
+87, 2385], 'results': {611: {'text': 'Face analysis and synthesis using networks.'}, 1787: {'text': 'S
+ynaptic models for visual feature extraction.'}, 2385: {'text': 'Visual perception and learning in neu
+ral networks.'}}, 'not_found': []}
+
+📦 [Fallback Prompt for Node 2676]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Perceptual learning in vernier hyperacuity using networks."
+
+Labeled examples:
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-b0f658935361427f87f7920c348b8dc6","object":"chat.completion
+","created":1745465045,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Neural_Networks'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2676 | Layer 2
+  ├─ 🏷️  Action: retrieve
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 6
+  └─ 👥 Total neighbors: 3
+
+🔍 Message Trace | Node 2676 | Layer 2
+  📥 Retrieved from 3 target(s):
+    ↳ Node 611 ✅ {'text': 'Face analysis and synthesis using networks.'}
+    ↳ Node 1787 ✅ {'text': 'Synaptic models for visual feature extraction.'}
+    ↳ Node 2385 ✅ {'text': 'Visual perception and learning in neural networks.'}
+Processing layer 2:  83%|████████████████████████████▏     | 53/64 [02:46<00:32,  2.93s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-5e16da17a0824e6eb1c7f2e3ba52d093","object":"chat.completion","created"
+:1745465046,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2677 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [1339, 1582, 1909, 2017, 2338], 'info_type': 'text',
+'aggregated_text': 'Comparative analysis of simple and complex models in various contexts.'}
+🧠 [Retrieve] Node 2677 updated aggregated_text:
+Comparative analysis of simple and complex models in various contexts....
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [1339, 1
+582, 1909, 2017, 2338], 'results': {1339: {'text': 'Bayesian Classifier Analysis in Machine Learning.'
+}, 1582: {'text': 'Selective Bayesian network classifiers with efficient induction.'}, 1909: {'text':
+'Induction algorithms for Bayesian classifiers comparison.'}, 2017: {'text': 'Bayesian networks with f
+eature selection for prediction.'}, 2338: {'text': 'Optimality of Bayesian Classifier beyond independe
+nce.'}}, 'not_found': []}
+
+📋 Multi-Action Plan | Node 2677 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [1339, 1582, 1909, 2017, 2338], 'info_type': 'text',
+'aggregated_text': 'Comparative analysis of simple and complex models in various contexts.'}
+🧠 [Retrieve] Node 2677 updated aggregated_text:
+Comparative analysis of simple and complex models in various contexts....
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [1339, 1
+582, 1909, 2017, 2338], 'results': {1339: {'text': 'Bayesian Classifier Analysis in Machine Learning.'
+}, 1582: {'text': 'Selective Bayesian network classifiers with efficient induction.'}, 1909: {'text':
+'Induction algorithms for Bayesian classifiers comparison.'}, 2017: {'text': 'Bayesian networks with f
+eature selection for prediction.'}, 2338: {'text': 'Optimality of Bayesian Classifier beyond independe
+nce.'}}, 'not_found': []}
+
+📦 [Fallback Prompt for Node 2677]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Comparison of simple and complex models."
+
+Labeled examples:
+- [Probabilistic_Methods] "Bayesian networks with feature selection for prediction."
+- [Probabilistic_Methods] "Efficient representation learning using compositional modeli..."
+- [Case_Based] "Data analysis for logical conclusions efficiently."
+- [Neural_Networks] "Cancer diagnosis and prognosis using linear programming."
+- [Neural_Networks] "Information processing in primate retinal cone pathways."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-f012280ec8f943078ea2d64fad572ea7","object":"chat.completion
+","created":1745465050,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Theory'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2677 | Layer 2
+  ├─ 🏷️  Action: retrieve
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 18
+  └─ 👥 Total neighbors: 5
+
+🔍 Message Trace | Node 2677 | Layer 2
+  📥 Retrieved from 5 target(s):
+    ↳ Node 1339 ✅ {'text': 'Bayesian Classifier Analysis in Machine Learning.'}
+    ↳ Node 1582 ✅ {'text': 'Selective Bayesian network classifiers with efficient induction.'}
+    ↳ Node 1909 ✅ {'text': 'Induction algorithms for Bayesian classifiers comparison.'}
+    ↳ Node 2017 ✅ {'text': 'Bayesian networks with feature selection for prediction.'}
+    ↳ Node 2338 ✅ {'text': 'Optimality of Bayesian Classifier beyond independence.'}
+Processing layer 2:  84%|████████████████████████████▋     | 54/64 [02:50<00:32,  3.27s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-9e2824f3154c483191fdf3e9bee0f01f","object":"chat.completion","created"
+:1745465050,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2678 | Layer 2
+  1. {'action_type': 'rag_query', 'query': '2678', 'top_k': 10}
+🔍 RAG Query: Node 2678
+📊 Candidate pool size: 1624
+📎 Top-10 results:
+  ↳ Node 188 | Label: 1 | Score: -2.000
+  ↳ Node 2026 | Label: 2 | Score: -2.000
+  ↳ Node 995 | Label: 1 | Score: -2.449
+  ↳ Node 1543 | Label: 3 | Score: -2.449
+  ↳ Node 546 | Label: 1 | Score: -2.449
+  ↳ Node 908 | Label: 2 | Score: -2.449
+  ↳ Node 905 | Label: 3 | Score: -2.449
+  ↳ Node 792 | Label: 6 | Score: -2.449
+  ↳ Node 619 | Label: 3 | Score: -2.449
+  ↳ Node 1101 | Label: 0 | Score: -2.449
+✅ Executed rag_query with result: {'action': 'rag_query', 'query': '2678', 'results': {188: {'text':
+'Coevolving high-level representations in complex tasks.', 'label': 1, 'similarity_score': -2.0}, 2026
+: {'text': 'Efficient learning of overcomplete data representations.', 'label': 2, 'similarity_score':
+ -2.0}, 995: {'text': 'Team dynamics and performance enhancement strategies.', 'label': 1, 'similarity
+_score': -2.449489742783178}, 1543: {'text': 'Belief networks revisited in brief.', 'label': 3, 'simil
+arity_score': -2.449489742783178}, 546: {'text': 'Genetic algorithm for mathematical economics studies
+.', 'label': 1, 'similarity_score': -2.449489742783178}, 908: {'text': 'Diverse machine learning techn
+iques approach.', 'label': 2, 'similarity_score': -2.449489742783178}, 905: {'text': 'Efficient repres
+entation learning using compositional modeling.', 'label': 3, 'similarity_score': -2.449489742783178},
+ 792: {'text': 'Efficient learning of rectangle unions.', 'label': 6, 'similarity_score': -2.449489742
+783178}, 619: {'text': 'Impact of mediating instrumental variables in research.', 'label': 3, 'similar
+ity_score': -2.449489742783178}, 1101: {'text': 'Data analysis for logical conclusions efficiently.',
+'label': 0, 'similarity_score': -2.449489742783178}}}
+
+📋 Multi-Action Plan | Node 2678 | Layer 2
+  1. {'action_type': 'rag_query', 'query': '2678', 'top_k': 10}
+🔍 RAG Query: Node 2678
+📊 Candidate pool size: 1624
+📎 Top-10 results:
+  ↳ Node 188 | Label: 1 | Score: -2.000
+  ↳ Node 2026 | Label: 2 | Score: -2.000
+  ↳ Node 995 | Label: 1 | Score: -2.449
+  ↳ Node 1543 | Label: 3 | Score: -2.449
+  ↳ Node 546 | Label: 1 | Score: -2.449
+  ↳ Node 908 | Label: 2 | Score: -2.449
+  ↳ Node 905 | Label: 3 | Score: -2.449
+  ↳ Node 792 | Label: 6 | Score: -2.449
+  ↳ Node 619 | Label: 3 | Score: -2.449
+  ↳ Node 1101 | Label: 0 | Score: -2.449
+✅ Executed rag_query with result: {'action': 'rag_query', 'query': '2678', 'results': {188: {'text':
+'Coevolving high-level representations in complex tasks.', 'label': 1, 'similarity_score': -2.0}, 2026
+: {'text': 'Efficient learning of overcomplete data representations.', 'label': 2, 'similarity_score':
+ -2.0}, 995: {'text': 'Team dynamics and performance enhancement strategies.', 'label': 1, 'similarity
+_score': -2.449489742783178}, 1543: {'text': 'Belief networks revisited in brief.', 'label': 3, 'simil
+arity_score': -2.449489742783178}, 546: {'text': 'Genetic algorithm for mathematical economics studies
+.', 'label': 1, 'similarity_score': -2.449489742783178}, 908: {'text': 'Diverse machine learning techn
+iques approach.', 'label': 2, 'similarity_score': -2.449489742783178}, 905: {'text': 'Efficient repres
+entation learning using compositional modeling.', 'label': 3, 'similarity_score': -2.449489742783178},
+ 792: {'text': 'Efficient learning of rectangle unions.', 'label': 6, 'similarity_score': -2.449489742
+783178}, 619: {'text': 'Impact of mediating instrumental variables in research.', 'label': 3, 'similar
+ity_score': -2.449489742783178}, 1101: {'text': 'Data analysis for logical conclusions efficiently.',
+'label': 0, 'similarity_score': -2.449489742783178}}}
+
+📦 [Fallback Prompt for Node 2678]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Egocentric spatial representation in early vision."
+
+Labeled examples:
+- [Genetic_Algorithms] "Coevolving high-level representations in complex tasks."
+- [Neural_Networks] "Efficient learning of overcomplete data representations."
+- [Genetic_Algorithms] "Team dynamics and performance enhancement strategies."
+- [Probabilistic_Methods] "Belief networks revisited in brief."
+- [Genetic_Algorithms] "Genetic algorithm for mathematical economics studies."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-6ddad8e6c591475c955a096c7511680e","object":"chat.completion
+","created":1745465052,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Theory'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2678 | Layer 2
+  ├─ 🏷️  Action: rag_query
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 16
+  └─ 👥 Total neighbors: 2
+
+🔍 Message Trace | Node 2678 | Layer 2
+  🔍 RAG Query issued: 2678 (top-k: 10)
+Processing layer 2:  86%|█████████████████████████████▏    | 55/64 [02:53<00:28,  3.12s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-086be2bbafd741dfa96be38701cc2ee4","object":"chat.completion","created"
+:1745465053,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2679 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [99, 2578], 'info_type': 'text', 'aggregated_text': '
+Statistical analysis of hospital quality monitors and related studies.'}
+🧠 [Retrieve] Node 2679 updated aggregated_text:
+Statistical analysis of hospital quality monitors and related studies....
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [99, 257
+8], 'results': {99: {'text': 'Bayesian forecasting of multinomial time series.'}, 2578: {'text': 'Hosp
+ital quality monitoring using hierarchical time series.'}}, 'not_found': []}
+
+📋 Multi-Action Plan | Node 2679 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [99, 2578], 'info_type': 'text', 'aggregated_text': '
+Statistical analysis of hospital quality monitors and related studies.'}
+🧠 [Retrieve] Node 2679 updated aggregated_text:
+Statistical analysis of hospital quality monitors and related studies....
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [99, 257
+8], 'results': {99: {'text': 'Bayesian forecasting of multinomial time series.'}, 2578: {'text': 'Hosp
+ital quality monitoring using hierarchical time series.'}}, 'not_found': []}
+
+📦 [Fallback Prompt for Node 2679]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Statistical analysis of hospital quality monitors."
+
+Labeled examples:
+- [Probabilistic_Methods] "Bayesian forecasting of multinomial time series."
+- [Neural_Networks] "Data exploration with Self-Organizing Maps efficiently."
+- [Case_Based] "Data analysis for logical conclusions efficiently."
+- [Probabilistic_Methods] "Technical report number 967 from August 1996."
+- [Genetic_Algorithms] "Automated fitness raters for music generation."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-f5c549f535e84e25ad3d5dc3753cfe3b","object":"chat.completion
+","created":1745465056,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Probabilistic_Methods'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2679 | Layer 2
+  ├─ 🏷️  Action: retrieve
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 18
+  └─ 👥 Total neighbors: 2
+
+🔍 Message Trace | Node 2679 | Layer 2
+  📥 Retrieved from 2 target(s):
+    ↳ Node 99 ✅ {'text': 'Bayesian forecasting of multinomial time series.'}
+    ↳ Node 2578 ✅ {'text': 'Hospital quality monitoring using hierarchical time series.'}
+Processing layer 2:  88%|█████████████████████████████▊    | 56/64 [02:56<00:26,  3.29s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-e980d7d54cf34cdaaee85388baf3b977","object":"chat.completion","created"
+:1745465057,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2680 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [101, 157, 2596], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2680 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [101, 15
+7, 2596], 'results': {101: {'text': 'Adaptive noise injection for input relevance.'}, 157: {'text': 'B
+ayesian framework for learning in networks.'}, 2596: {'text': 'Estimation method using lasso for inter
+pretability.'}}, 'not_found': []}
+
+📋 Multi-Action Plan | Node 2680 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [101, 157, 2596], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2680 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [101, 15
+7, 2596], 'results': {101: {'text': 'Adaptive noise injection for input relevance.'}, 157: {'text': 'B
+ayesian framework for learning in networks.'}, 2596: {'text': 'Estimation method using lasso for inter
+pretability.'}}, 'not_found': []}
+
+📦 [Fallback Prompt for Node 2680]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Equivalence of adaptive ridge and lasso."
+
+Labeled examples:
+- [Neural_Networks] "Adaptive noise injection for input relevance."
+- [Neural_Networks] "Equivalence of adaptive ridge and lasso."
+- [Probabilistic_Methods] "Hierarchical selection models for meta-analysis."
+- [Probabilistic_Methods] "Efficient representation learning using compositional modeli..."
+- [Probabilistic_Methods] "Bayesian models for non-linear autoregressions."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-288952bb743241ae857c6720eba09355","object":"chat.completion
+","created":1745465059,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Neural_Networks'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2680 | Layer 2
+  ├─ 🏷️  Action: retrieve
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 18
+  └─ 👥 Total neighbors: 3
+
+🔍 Message Trace | Node 2680 | Layer 2
+  📥 Retrieved from 3 target(s):
+    ↳ Node 101 ✅ {'text': 'Adaptive noise injection for input relevance.'}
+    ↳ Node 157 ✅ {'text': 'Bayesian framework for learning in networks.'}
+    ↳ Node 2596 ✅ {'text': 'Estimation method using lasso for interpretability.'}
+Processing layer 2:  89%|██████████████████████████████▎   | 57/64 [03:00<00:23,  3.31s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-03c235a695774ef9a7688513a5a3160c","object":"chat.completion","created"
+:1745465060,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2681 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [78, 160, 1857], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2681 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [78, 160
+, 1857], 'results': {78: {'text': 'Probabilistic regression model implementation in BUGS.'}, 160: {'te
+xt': 'Comparison of Gaussian processes for regression.'}, 1857: {'text': 'Monte Carlo Gaussian Process
+ for Regression/Classification.'}}, 'not_found': []}
+
+📋 Multi-Action Plan | Node 2681 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [78, 160, 1857], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2681 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [78, 160
+, 1857], 'results': {78: {'text': 'Probabilistic regression model implementation in BUGS.'}, 160: {'te
+xt': 'Comparison of Gaussian processes for regression.'}, 1857: {'text': 'Monte Carlo Gaussian Process
+ for Regression/Classification.'}}, 'not_found': []}
+
+📦 [Fallback Prompt for Node 2681]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Regression with input-dependent noise using Gaussian processes."
+
+Labeled examples:
+- [Theory] "Probabilistic regression model implementation in BUGS."
+- [Neural_Networks] "Regression with input-dependent noise using Gaussian process..."
+- [Probabilistic_Methods] "Technical report number 967 from August 1996."
+- [Neural_Networks] "Information processing in primate retinal cone pathways."
+- [Neural_Networks] "Technical report numbered 947 from 1995."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-c5b7246eba664572a48f72560484fccf","object":"chat.completion
+","created":1745465062,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Theory'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2681 | Layer 2
+  ├─ 🏷️  Action: retrieve
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 18
+  └─ 👥 Total neighbors: 3
+
+🔍 Message Trace | Node 2681 | Layer 2
+  📥 Retrieved from 3 target(s):
+    ↳ Node 78 ✅ {'text': 'Probabilistic regression model implementation in BUGS.'}
+    ↳ Node 160 ✅ {'text': 'Comparison of Gaussian processes for regression.'}
+    ↳ Node 1857 ✅ {'text': 'Monte Carlo Gaussian Process for Regression/Classification.'}
+Processing layer 2:  91%|██████████████████████████████▊   | 58/64 [03:03<00:19,  3.25s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-aef62fc326c34d2682f5a9b6627f0e0a","object":"chat.completion","created"
+:1745465063,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2682 | Layer 2
+  1. {'action_type': 'broadcast', 'target_nodes': [48, 2348], 'message': "My label is '3', which corre
+sponds to importance sampling in Markov chains."}
+📤 [Action: Broadcast] Node 2682 → [48, 2348]
+✅ Executed broadcast with result: {'action': 'broadcast', 'message': {'text': 'Importance sampling fo
+r isolated modes in Markov chains.', 'predicted_label': 3}, 'target_nodes': [48, 2348]}
+
+📋 Multi-Action Plan | Node 2682 | Layer 2
+  1. {'action_type': 'broadcast', 'target_nodes': [48, 2348], 'message': "My label is '3', which corre
+sponds to importance sampling in Markov chains."}
+📤 [Action: Broadcast] Node 2682 → [48, 2348]
+✅ Executed broadcast with result: {'action': 'broadcast', 'message': {'text': 'Importance sampling fo
+r isolated modes in Markov chains.', 'predicted_label': 3}, 'target_nodes': [48, 2348]}
+
+📦 [Fallback Prompt for Node 2682]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Importance sampling for isolated modes in Markov chains."
+
+Labeled examples:
+- [Probabilistic_Methods] "Importance sampling for isolated modes in Markov chains."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-38da0664537644459c16cdd5a324eef7","object":"chat.completion
+","created":1745465066,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Probabilistic_Methods'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2682 | Layer 2
+  ├─ 🏷️  Action: broadcast
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 6
+  └─ 👥 Total neighbors: 2
+
+🔍 Message Trace | Node 2682 | Layer 2
+  📤 Broadcasted to 2 node(s): [48, 2348]
+    ↳ Message: {'text': 'Importance sampling for isolated modes in Markov chains.', 'predicted_label':
+ 3}
+Processing layer 2:  92%|███████████████████████████████▎  | 59/64 [03:06<00:16,  3.29s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-78baaf346b9041dcbd8f1428f5043ec8","object":"chat.completion","created"
+:1745465067,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2683 | Layer 2
+  1. {'action_type': 'broadcast', 'target_nodes': [427, 668, 687, 2044], 'message': "My label is '2',
+which corresponds to Radial Basis Function Networks."}
+📤 [Action: Broadcast] Node 2683 → [427, 668, 687, 2044]
+✅ Executed broadcast with result: {'action': 'broadcast', 'message': {'text': 'Introduction to RBF ne
+tworks for learning.', 'predicted_label': 2}, 'target_nodes': [427, 668, 687, 2044]}
+
+📋 Multi-Action Plan | Node 2683 | Layer 2
+  1. {'action_type': 'broadcast', 'target_nodes': [427, 668, 687, 2044], 'message': "My label is '2',
+which corresponds to Radial Basis Function Networks."}
+📤 [Action: Broadcast] Node 2683 → [427, 668, 687, 2044]
+✅ Executed broadcast with result: {'action': 'broadcast', 'message': {'text': 'Introduction to RBF ne
+tworks for learning.', 'predicted_label': 2}, 'target_nodes': [427, 668, 687, 2044]}
+
+📦 [Fallback Prompt for Node 2683]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Introduction to RBF networks for learning."
+
+Labeled examples:
+- [Neural_Networks] "Introduction to RBF networks for learning."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-fc5ef73d1ecb4965b250d8aa3d7186a6","object":"chat.completion
+","created":1745465070,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Neural_Networks'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2683 | Layer 2
+  ├─ 🏷️  Action: broadcast
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 6
+  └─ 👥 Total neighbors: 4
+
+🔍 Message Trace | Node 2683 | Layer 2
+  📤 Broadcasted to 4 node(s): [427, 668, 687, 2044]
+    ↳ Message: {'text': 'Introduction to RBF networks for learning.', 'predicted_label': 2}
+Processing layer 2:  94%|███████████████████████████████▉  | 60/64 [03:10<00:14,  3.50s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-df057e1acdab48339931614dec37daba","object":"chat.completion","created"
+:1745465071,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2684 | Layer 2
+  1. {'action_type': 'update', 'predicted_label': 'Neural_Networks'}
+✅ Mapped label string to ID: Neural_Networks -> 2
+✅ Executed update with result: {'action': 'update', 'updated_fields': ['predicted_label']}
+
+📋 Multi-Action Plan | Node 2684 | Layer 2
+  1. {'action_type': 'update', 'predicted_label': 'Neural_Networks'}
+✅ Mapped label string to ID: Neural_Networks -> 2
+✅ Executed update with result: {'action': 'update', 'updated_fields': ['predicted_label']}
+
+🧠 Agent Step | Node 2684 | Layer 2
+  ├─ 🏷️  Action: update
+  ├─ 🎯 Predicted Label: 2
+  ├─ 🧠 Memory size: 18
+  └─ 👥 Total neighbors: 1
+
+🔍 Message Trace | Node 2684 | Layer 2
+  🛠️  Updated fields: ['predicted_label']
+Processing layer 2:  95%|████████████████████████████████▍ | 61/64 [03:11<00:08,  2.86s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-4079e341f9a84e81a71dd038ff6c0000","object":"chat.completion","created"
+:1745465072,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2685 | Layer 2
+  1. {'action_type': 'rag_query', 'query': '2685', 'top_k': 5}
+🔍 RAG Query: Node 2685
+📊 Candidate pool size: 1624
+📎 Top-5 results:
+  ↳ Node 792 | Label: 6 | Score: -4.796
+  ↳ Node 2026 | Label: 2 | Score: -4.796
+  ↳ Node 908 | Label: 2 | Score: -4.796
+  ↳ Node 546 | Label: 1 | Score: -4.796
+  ↳ Node 905 | Label: 3 | Score: -4.796
+✅ Executed rag_query with result: {'action': 'rag_query', 'query': '2685', 'results': {792: {'text':
+'Efficient learning of rectangle unions.', 'label': 6, 'similarity_score': -4.795831523312719}, 2026:
+{'text': 'Efficient learning of overcomplete data representations.', 'label': 2, 'similarity_score': -
+4.795831523312719}, 908: {'text': 'Diverse machine learning techniques approach.', 'label': 2, 'simila
+rity_score': -4.795831523312719}, 546: {'text': 'Genetic algorithm for mathematical economics studies.
+', 'label': 1, 'similarity_score': -4.795831523312719}, 905: {'text': 'Efficient representation learni
+ng using compositional modeling.', 'label': 3, 'similarity_score': -4.795831523312719}}}
+
+📋 Multi-Action Plan | Node 2685 | Layer 2
+  1. {'action_type': 'rag_query', 'query': '2685', 'top_k': 5}
+🔍 RAG Query: Node 2685
+📊 Candidate pool size: 1624
+📎 Top-5 results:
+  ↳ Node 792 | Label: 6 | Score: -4.796
+  ↳ Node 2026 | Label: 2 | Score: -4.796
+  ↳ Node 908 | Label: 2 | Score: -4.796
+  ↳ Node 546 | Label: 1 | Score: -4.796
+  ↳ Node 905 | Label: 3 | Score: -4.796
+✅ Executed rag_query with result: {'action': 'rag_query', 'query': '2685', 'results': {792: {'text':
+'Efficient learning of rectangle unions.', 'label': 6, 'similarity_score': -4.795831523312719}, 2026:
+{'text': 'Efficient learning of overcomplete data representations.', 'label': 2, 'similarity_score': -
+4.795831523312719}, 908: {'text': 'Diverse machine learning techniques approach.', 'label': 2, 'simila
+rity_score': -4.795831523312719}, 546: {'text': 'Genetic algorithm for mathematical economics studies.
+', 'label': 1, 'similarity_score': -4.795831523312719}, 905: {'text': 'Efficient representation learni
+ng using compositional modeling.', 'label': 3, 'similarity_score': -4.795831523312719}}}
+
+📦 [Fallback Prompt for Node 2685]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Continuous rate changes learning algorithms."
+
+Labeled examples:
+- [Theory] "Efficient learning of rectangle unions."
+- [Neural_Networks] "Diverse machine learning techniques approach."
+- [Reinforcement_Learning] "Generalizing TD learning in reinforcement algorithms."
+- [Probabilistic_Methods] "Efficient representation learning using compositional modeli..."
+- [Genetic_Algorithms] "Genetic algorithm for mathematical economics studies."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-16b47920b7c54f47837b75c800edf742","object":"chat.completion
+","created":1745465074,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Theory'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2685 | Layer 2
+  ├─ 🏷️  Action: rag_query
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 16
+  └─ 👥 Total neighbors: 2
+
+🔍 Message Trace | Node 2685 | Layer 2
+  🔍 RAG Query issued: 2685 (top-k: 5)
+Processing layer 2:  97%|████████████████████████████████▉ | 62/64 [03:14<00:05,  2.72s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-39d2a08ceb4d46e880dbddc9e20344ab","object":"chat.completion","created"
+:1745465074,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2686 | Layer 2
+  1. {'action_type': 'update', 'predicted_label': 'Neural_Networks'}
+✅ Mapped label string to ID: Neural_Networks -> 2
+✅ Executed update with result: {'action': 'update', 'updated_fields': ['predicted_label']}
+
+📋 Multi-Action Plan | Node 2686 | Layer 2
+  1. {'action_type': 'update', 'predicted_label': 'Neural_Networks'}
+✅ Mapped label string to ID: Neural_Networks -> 2
+✅ Executed update with result: {'action': 'update', 'updated_fields': ['predicted_label']}
+
+🧠 Agent Step | Node 2686 | Layer 2
+  ├─ 🏷️  Action: update
+  ├─ 🎯 Predicted Label: 2
+  ├─ 🧠 Memory size: 18
+  └─ 👥 Total neighbors: 3
+
+🔍 Message Trace | Node 2686 | Layer 2
+  🛠️  Updated fields: ['predicted_label']
+Processing layer 2:  98%|█████████████████████████████████▍| 63/64 [03:15<00:02,  2.31s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-bf9f7d21d732479886cd9a477759be1f","object":"chat.completion","created"
+:1745465076,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2687 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [636, 764, 2174], 'info_type': 'text', 'aggregated_te
+xt': 'Control real robot using distributed classifier systems with insights from neighboring studies.'
+}
+🧠 [Retrieve] Node 2687 updated aggregated_text:
+Control real robot using distributed classifier systems with insights from neighboring studies....
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [636, 76
+4, 2174], 'results': {636: {'text': 'Developing robots through reinforcement learning.'}, 764: {'text'
+: 'Innovative solutions for classifier system optimization.'}, 2174: {'text': 'Trainer role in reinfor
+cement learning for agents.'}}, 'not_found': []}
+
+📋 Multi-Action Plan | Node 2687 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [636, 764, 2174], 'info_type': 'text', 'aggregated_te
+xt': 'Control real robot using distributed classifier systems with insights from neighboring studies.'
+}
+🧠 [Retrieve] Node 2687 updated aggregated_text:
+Control real robot using distributed classifier systems with insights from neighboring studies....
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [636, 76
+4, 2174], 'results': {636: {'text': 'Developing robots through reinforcement learning.'}, 764: {'text'
+: 'Innovative solutions for classifier system optimization.'}, 2174: {'text': 'Trainer role in reinfor
+cement learning for agents.'}}, 'not_found': []}
+
+🧠 Agent Step | Node 2687 | Layer 2
+  ├─ 🏷️  Action: retrieve
+  ├─ 🎯 Predicted Label: 4
+  ├─ 🧠 Memory size: 18
+  └─ 👥 Total neighbors: 3
+
+🔍 Message Trace | Node 2687 | Layer 2
+  📥 Retrieved from 3 target(s):
+    ↳ Node 636 ✅ {'text': 'Developing robots through reinforcement learning.'}
+    ↳ Node 764 ✅ {'text': 'Innovative solutions for classifier system optimization.'}
+    ↳ Node 2174 ✅ {'text': 'Trainer role in reinforcement learning for agents.'}
+Processing layer 2: 100%|██████████████████████████████████| 64/64 [03:18<00:00,  3.10s/it]
+Processing layer 2:   0%|                                           | 0/20 [00:00<?, ?it/s]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-cbefecbd7c2c401cb699ef108dd6ed33","object":"chat.completion","created"
+:1745465079,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2688 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [1784, 1839, 1840, 2216], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2688 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [1784, 1
+839, 1840, 2216], 'results': {1784: {'text': 'Identifying redundancy in Genetic Programming through an
+alysis.'}, 1839: {'text': 'Improved efficiency through new context-preserving crossovers.'}, 1840: {'t
+ext': 'Accelerating evolution through discovering and exploiting subroutines.'}, 2216: {'text': 'Hybri
+dized search techniques enhance program discovery efficiency.'}}, 'not_found': []}
+
+📋 Multi-Action Plan | Node 2688 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [1784, 1839, 1840, 2216], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2688 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [1784, 1
+839, 1840, 2216], 'results': {1784: {'text': 'Identifying redundancy in Genetic Programming through an
+alysis.'}, 1839: {'text': 'Improved efficiency through new context-preserving crossovers.'}, 1840: {'t
+ext': 'Accelerating evolution through discovering and exploiting subroutines.'}, 2216: {'text': 'Hybri
+dized search techniques enhance program discovery efficiency.'}}, 'not_found': []}
+
+📦 [Fallback Prompt for Node 2688]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Interaction between Crossover Operator and Tree Depth."
+
+Labeled examples:
+- [Genetic_Algorithms] "Improved efficiency through new context-preserving crossover..."
+- [Genetic_Algorithms] "Accelerating evolution through discovering and exploiting su..."
+- [Genetic_Algorithms] "Hybridized search techniques enhance program discovery effic..."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-4345ea88bbba427c8eecaef2241e2b7e","object":"chat.completion
+","created":1745465081,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Genetic_Algorithms'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2688 | Layer 2
+  ├─ 🏷️  Action: retrieve
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 12
+  └─ 👥 Total neighbors: 4
+
+🔍 Message Trace | Node 2688 | Layer 2
+  📥 Retrieved from 4 target(s):
+    ↳ Node 1784 ✅ {'text': 'Identifying redundancy in Genetic Programming through analysis.'}
+    ↳ Node 1839 ✅ {'text': 'Improved efficiency through new context-preserving crossovers.'}
+    ↳ Node 1840 ✅ {'text': 'Accelerating evolution through discovering and exploiting subroutines.'}
+    ↳ Node 2216 ✅ {'text': 'Hybridized search techniques enhance program discovery efficiency.'}
+Processing layer 2:   5%|█▊                                 | 1/20 [00:03<01:08,  3.62s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-645dfff271ce4229bd1188271dd1d6c4","object":"chat.completion","created"
+:1745465082,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2689 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [1975, 2209], 'info_type': 'text', 'aggregated_text':
+ 'Reinforcement learning model with expected mistake bound related to efficient reinforcement learning
+ with k-DNF action maps and PAC adaptive control algorithm for exploration.'}
+🧠 [Retrieve] Node 2689 updated aggregated_text:
+Reinforcement learning model with expected mistake bound related to efficient reinforcement learning..
+.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [1975, 2
+209], 'results': {1975: {'text': 'Efficient reinforcement learning with k-DNF action maps.'}, 2209: {'
+text': 'PAC adaptive control algorithm for exploration.'}}, 'not_found': []}
+
+📋 Multi-Action Plan | Node 2689 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [1975, 2209], 'info_type': 'text', 'aggregated_text':
+ 'Reinforcement learning model with expected mistake bound related to efficient reinforcement learning
+ with k-DNF action maps and PAC adaptive control algorithm for exploration.'}
+🧠 [Retrieve] Node 2689 updated aggregated_text:
+Reinforcement learning model with expected mistake bound related to efficient reinforcement learning..
+.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [1975, 2
+209], 'results': {1975: {'text': 'Efficient reinforcement learning with k-DNF action maps.'}, 2209: {'
+text': 'PAC adaptive control algorithm for exploration.'}}, 'not_found': []}
+
+📦 [Fallback Prompt for Node 2689]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Reinforcement learning model with expected mistake bound."
+
+Labeled examples:
+- [Reinforcement_Learning] "Efficient reinforcement learning with k-DNF action maps."
+- [Reinforcement_Learning] "PAC adaptive control algorithm for exploration."
+- [Theory] "Reinforcement learning model with expected mistake bound."
+- [Probabilistic_Methods] "Efficient representation learning using compositional modeli..."
+- [Reinforcement_Learning] "Efficient reinforcement learning algorithm design and analys..."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-0d437a0feb1f4ec6b656333e56e3e4be","object":"chat.completion
+","created":1745465086,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Theory'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2689 | Layer 2
+  ├─ 🏷️  Action: retrieve
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 15
+  └─ 👥 Total neighbors: 2
+
+🔍 Message Trace | Node 2689 | Layer 2
+  📥 Retrieved from 2 target(s):
+    ↳ Node 1975 ✅ {'text': 'Efficient reinforcement learning with k-DNF action maps.'}
+    ↳ Node 2209 ✅ {'text': 'PAC adaptive control algorithm for exploration.'}
+Processing layer 2:  10%|███▌                               | 2/20 [00:07<01:11,  3.96s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-934d199788874cc6b7b2fbfc019842db","object":"chat.completion","created"
+:1745465087,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2690 | Layer 2
+  1. {'action_type': 'broadcast', 'target_nodes': [591, 2053], 'message': "My label is '6', which rela
+tes to robust trainability of single neurons."}
+📤 [Action: Broadcast] Node 2690 → [591, 2053]
+✅ Executed broadcast with result: {'action': 'broadcast', 'message': {'text': 'Robust trainability of
+ single neurons.', 'predicted_label': 6}, 'target_nodes': [591, 2053]}
+
+📋 Multi-Action Plan | Node 2690 | Layer 2
+  1. {'action_type': 'broadcast', 'target_nodes': [591, 2053], 'message': "My label is '6', which rela
+tes to robust trainability of single neurons."}
+📤 [Action: Broadcast] Node 2690 → [591, 2053]
+✅ Executed broadcast with result: {'action': 'broadcast', 'message': {'text': 'Robust trainability of
+ single neurons.', 'predicted_label': 6}, 'target_nodes': [591, 2053]}
+
+📦 [Fallback Prompt for Node 2690]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Robust trainability of single neurons."
+
+Labeled examples:
+- [Theory] "Robust trainability of single neurons."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-c811d1a86d8443b98cc3c60e1f472083","object":"chat.completion
+","created":1745465089,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Theory'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2690 | Layer 2
+  ├─ 🏷️  Action: broadcast
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 6
+  └─ 👥 Total neighbors: 2
+
+🔍 Message Trace | Node 2690 | Layer 2
+  📤 Broadcasted to 2 node(s): [591, 2053]
+    ↳ Message: {'text': 'Robust trainability of single neurons.', 'predicted_label': 6}
+Processing layer 2:  15%|█████▎                             | 3/20 [00:11<01:03,  3.75s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-36c809406044471f9a5dac4e41bdcde7","object":"chat.completion","created"
+:1745465090,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2691 | Layer 2
+  1. {'action_type': 'update', 'predicted_label': 'Neural_Networks'}
+✅ Mapped label string to ID: Neural_Networks -> 2
+✅ Executed update with result: {'action': 'update', 'updated_fields': ['predicted_label']}
+
+📋 Multi-Action Plan | Node 2691 | Layer 2
+  1. {'action_type': 'update', 'predicted_label': 'Neural_Networks'}
+✅ Mapped label string to ID: Neural_Networks -> 2
+✅ Executed update with result: {'action': 'update', 'updated_fields': ['predicted_label']}
+
+🧠 Agent Step | Node 2691 | Layer 2
+  ├─ 🏷️  Action: update
+  ├─ 🎯 Predicted Label: 2
+  ├─ 🧠 Memory size: 18
+  └─ 👥 Total neighbors: 1
+
+🔍 Message Trace | Node 2691 | Layer 2
+  🛠️  Updated fields: ['predicted_label']
+Processing layer 2:  20%|███████                            | 4/20 [00:12<00:44,  2.80s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-a8970d1dcb1c4f61bbeb5e1e3bad8850","object":"chat.completion","created"
+:1745465091,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2692 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [1370, 2038, 2172], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2692 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [1370, 2
+038, 2172], 'results': {1370: {'text': 'Theory refinement for knowledge-base maintenance.'}, 2038: {'t
+ext': 'Technical report on Knowledge Based Systems.'}, 2172: {'text': 'Theory patching tractability in
+ logical domains.'}}, 'not_found': []}
+
+📋 Multi-Action Plan | Node 2692 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [1370, 2038, 2172], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2692 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [1370, 2
+038, 2172], 'results': {1370: {'text': 'Theory refinement for knowledge-base maintenance.'}, 2038: {'t
+ext': 'Technical report on Knowledge Based Systems.'}, 2172: {'text': 'Theory patching tractability in
+ logical domains.'}}, 'not_found': []}
+
+📦 [Fallback Prompt for Node 2692]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Update diagnostic knowledge base using strategies."
+
+Labeled examples:
+- [Case_Based] "Update diagnostic knowledge base using strategies."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-d9456f652fea4a8297fa68115a23e5a6","object":"chat.completion
+","created":1745465094,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Case_Based'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2692 | Layer 2
+  ├─ 🏷️  Action: retrieve
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 6
+  └─ 👥 Total neighbors: 3
+
+🔍 Message Trace | Node 2692 | Layer 2
+  📥 Retrieved from 3 target(s):
+    ↳ Node 1370 ✅ {'text': 'Theory refinement for knowledge-base maintenance.'}
+    ↳ Node 2038 ✅ {'text': 'Technical report on Knowledge Based Systems.'}
+    ↳ Node 2172 ✅ {'text': 'Theory patching tractability in logical domains.'}
+Processing layer 2:  25%|████████▊                          | 5/20 [00:15<00:43,  2.90s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-687a475d4a964e9cb77cf3880dd871fa","object":"chat.completion","created"
+:1745465095,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2693 | Layer 2
+  1. {'action_type': 'rag_query', 'query': '2693', 'top_k': 5}
+🔍 RAG Query: Node 2693
+📊 Candidate pool size: 1624
+📎 Top-5 results:
+  ↳ Node 546 | Label: 1 | Score: -5.099
+  ↳ Node 522 | Label: 6 | Score: -5.196
+  ↳ Node 1432 | Label: 1 | Score: -5.196
+  ↳ Node 574 | Label: 6 | Score: -5.292
+  ↳ Node 619 | Label: 3 | Score: -5.292
+✅ Executed rag_query with result: {'action': 'rag_query', 'query': '2693', 'results': {546: {'text':
+'Genetic algorithm for mathematical economics studies.', 'label': 1, 'similarity_score': -5.0990195135
+927845}, 522: {'text': 'Algorithmic probability discovery.', 'label': 6, 'similarity_score': -5.196152
+422706632}, 1432: {'text': 'Evolutionary algorithms in robotics optimization and design.', 'label': 1,
+ 'similarity_score': -5.196152422706632}, 574: {'text': 'Learnability of discrete distributions in abs
+tract.', 'label': 6, 'similarity_score': -5.291502622129181}, 619: {'text': 'Impact of mediating instr
+umental variables in research.', 'label': 3, 'similarity_score': -5.291502622129181}}}
+
+📋 Multi-Action Plan | Node 2693 | Layer 2
+  1. {'action_type': 'rag_query', 'query': '2693', 'top_k': 5}
+🔍 RAG Query: Node 2693
+📊 Candidate pool size: 1624
+📎 Top-5 results:
+  ↳ Node 546 | Label: 1 | Score: -5.099
+  ↳ Node 522 | Label: 6 | Score: -5.196
+  ↳ Node 1432 | Label: 1 | Score: -5.196
+  ↳ Node 574 | Label: 6 | Score: -5.292
+  ↳ Node 619 | Label: 3 | Score: -5.292
+✅ Executed rag_query with result: {'action': 'rag_query', 'query': '2693', 'results': {546: {'text':
+'Genetic algorithm for mathematical economics studies.', 'label': 1, 'similarity_score': -5.0990195135
+927845}, 522: {'text': 'Algorithmic probability discovery.', 'label': 6, 'similarity_score': -5.196152
+422706632}, 1432: {'text': 'Evolutionary algorithms in robotics optimization and design.', 'label': 1,
+ 'similarity_score': -5.196152422706632}, 574: {'text': 'Learnability of discrete distributions in abs
+tract.', 'label': 6, 'similarity_score': -5.291502622129181}, 619: {'text': 'Impact of mediating instr
+umental variables in research.', 'label': 3, 'similarity_score': -5.291502622129181}}}
+
+📦 [Fallback Prompt for Node 2693]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Metropolis algorithm behavior in high dimensions."
+
+Labeled examples:
+- [Genetic_Algorithms] "Genetic algorithm for mathematical economics studies."
+- [Genetic_Algorithms] "Evolutionary algorithms in robotics optimization and design."
+- [Theory] "Algorithmic probability discovery."
+- [Theory] "Learnability of discrete distributions in abstract."
+- [Genetic_Algorithms] "Distributed genetic algorithms for grid partitioning."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-64e71dc874044ec2a36c42e4d20c213b","object":"chat.completion
+","created":1745465096,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Theory'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2693 | Layer 2
+  ├─ 🏷️  Action: rag_query
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 16
+  └─ 👥 Total neighbors: 1
+
+🔍 Message Trace | Node 2693 | Layer 2
+  🔍 RAG Query issued: 2693 (top-k: 5)
+Processing layer 2:  30%|██████████▌                        | 6/20 [00:18<00:38,  2.77s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-816ba98f5d4f4a939b51585e352bf539","object":"chat.completion","created"
+:1745465097,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2694 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [571, 1762, 2331, 2495], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2694 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [571, 17
+62, 2331, 2495], 'results': {571: {'text': 'Error bound for classifier chosen by early stopping.'}, 17
+62: {'text': 'Improved test error bounds with trade-offs.'}, 2331: {'text': 'Improved probabilistic pe
+rformance guarantees for classifiers.'}, 2495: {'text': 'Improving error bounds for similar classifier
+s.'}}, 'not_found': []}
+
+📋 Multi-Action Plan | Node 2694 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [571, 1762, 2331, 2495], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2694 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [571, 17
+62, 2331, 2495], 'results': {571: {'text': 'Error bound for classifier chosen by early stopping.'}, 17
+62: {'text': 'Improved test error bounds with trade-offs.'}, 2331: {'text': 'Improved probabilistic pe
+rformance guarantees for classifiers.'}, 2495: {'text': 'Improving error bounds for similar classifier
+s.'}}, 'not_found': []}
+
+📦 [Fallback Prompt for Node 2694]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Probabilistic error bounds for partition-based classifiers."
+
+Labeled examples:
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-cb08dacb0bee43d188988477db118b8f","object":"chat.completion
+","created":1745465099,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Probabilistic_Methods'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2694 | Layer 2
+  ├─ 🏷️  Action: retrieve
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 6
+  └─ 👥 Total neighbors: 4
+
+🔍 Message Trace | Node 2694 | Layer 2
+  📥 Retrieved from 4 target(s):
+    ↳ Node 571 ✅ {'text': 'Error bound for classifier chosen by early stopping.'}
+    ↳ Node 1762 ✅ {'text': 'Improved test error bounds with trade-offs.'}
+    ↳ Node 2331 ✅ {'text': 'Improved probabilistic performance guarantees for classifiers.'}
+    ↳ Node 2495 ✅ {'text': 'Improving error bounds for similar classifiers.'}
+Processing layer 2:  35%|████████████▎                      | 7/20 [00:21<00:38,  2.96s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-20f2ec802d414fb1a87356a345072c7f","object":"chat.completion","created"
+:1745465100,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2695 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [2057, 2198, 2696], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2695 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [2057, 2
+198, 2696], 'results': {2057: {'text': 'Chunking in soar: A versatile learning mechanism.'}, 2198: {'t
+ext': 'Incremental algorithm for learning regular grammars.'}, 2696: {'text': 'Learning DFA efficientl
+y from simple examples.'}}, 'not_found': []}
+
+📋 Multi-Action Plan | Node 2695 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [2057, 2198, 2696], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2695 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [2057, 2
+198, 2696], 'results': {2057: {'text': 'Chunking in soar: A versatile learning mechanism.'}, 2198: {'t
+ext': 'Incremental algorithm for learning regular grammars.'}, 2696: {'text': 'Learning DFA efficientl
+y from simple examples.'}}, 'not_found': []}
+
+📦 [Fallback Prompt for Node 2695]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Infer regular grammar efficiently with algorithm."
+
+Labeled examples:
+- [Theory] "Incremental algorithm for learning regular grammars."
+- [Theory] "Infer regular grammar efficiently with algorithm."
+- [Genetic_Algorithms] "Genetic algorithm for mathematical economics studies."
+- [Genetic_Algorithms] "Evolutionary algorithms in robotics optimization and design."
+- [Theory] "Algorithmic probability discovery."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-95d4c46103b8447abc40985e02fd809d","object":"chat.completion
+","created":1745465103,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Theory'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2695 | Layer 2
+  ├─ 🏷️  Action: retrieve
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 13
+  └─ 👥 Total neighbors: 3
+
+🔍 Message Trace | Node 2695 | Layer 2
+  📥 Retrieved from 3 target(s):
+    ↳ Node 2057 ✅ {'text': 'Chunking in soar: A versatile learning mechanism.'}
+    ↳ Node 2198 ✅ {'text': 'Incremental algorithm for learning regular grammars.'}
+    ↳ Node 2696 ✅ {'text': 'Learning DFA efficiently from simple examples.'}
+Processing layer 2:  40%|██████████████                     | 8/20 [00:24<00:36,  3.05s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-0caa63d228784d7b85445fb58f5f2182","object":"chat.completion","created"
+:1745465104,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2696 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [98, 672, 2036, 2695], 'info_type': 'text', 'aggregat
+ed_text': 'Efficiently learning DFA from simple examples, alongside adversarial robotic environment pl
+anning, heuristic switching in examples, and efficient learning of rectangle unions.'}
+🧠 [Retrieve] Node 2696 updated aggregated_text:
+Efficiently learning DFA from simple examples, alongside adversarial robotic environment planning, h..
+.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [98, 672
+, 2036, 2695], 'results': {98: {'text': 'Adversarial robotic environment planning and learning strateg
+ies.'}, 672: {'text': 'Cryptographic limitations on learning Boolean functions.'}, 2036: {'text': 'Stu
+dy on distribution-dependent PAC learning.'}, 2695: {'text': 'Infer regular grammar efficiently with a
+lgorithm.'}}, 'not_found': []}
+
+📋 Multi-Action Plan | Node 2696 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [98, 672, 2036, 2695], 'info_type': 'text', 'aggregat
+ed_text': 'Efficiently learning DFA from simple examples, alongside adversarial robotic environment pl
+anning, heuristic switching in examples, and efficient learning of rectangle unions.'}
+🧠 [Retrieve] Node 2696 updated aggregated_text:
+Efficiently learning DFA from simple examples, alongside adversarial robotic environment planning, h..
+.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [98, 672
+, 2036, 2695], 'results': {98: {'text': 'Adversarial robotic environment planning and learning strateg
+ies.'}, 672: {'text': 'Cryptographic limitations on learning Boolean functions.'}, 2036: {'text': 'Stu
+dy on distribution-dependent PAC learning.'}, 2695: {'text': 'Infer regular grammar efficiently with a
+lgorithm.'}}, 'not_found': []}
+
+📦 [Fallback Prompt for Node 2696]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Learning DFA efficiently from simple examples."
+
+Labeled examples:
+- [Theory] "Adversarial robotic environment planning and learning strate..."
+- [Case_Based] "Reminding or heuristic switching in examples."
+- [Reinforcement_Learning] "Generalizing TD learning in reinforcement algorithms."
+- [Theory] "Efficient learning of rectangle unions."
+- [Neural_Networks] "Efficient learning of overcomplete data representations."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-0e8c607b187b41159a6285ac9e47ab72","object":"chat.completion
+","created":1745465108,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Theory'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2696 | Layer 2
+  ├─ 🏷️  Action: retrieve
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 18
+  └─ 👥 Total neighbors: 4
+
+🔍 Message Trace | Node 2696 | Layer 2
+  📥 Retrieved from 4 target(s):
+    ↳ Node 98 ✅ {'text': 'Adversarial robotic environment planning and learning strategies.'}
+    ↳ Node 672 ✅ {'text': 'Cryptographic limitations on learning Boolean functions.'}
+    ↳ Node 2036 ✅ {'text': 'Study on distribution-dependent PAC learning.'}
+    ↳ Node 2695 ✅ {'text': 'Infer regular grammar efficiently with algorithm.'}
+Processing layer 2:  45%|███████████████▊                   | 9/20 [00:29<00:40,  3.69s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-01369313b17c493a9a12748585234722","object":"chat.completion","created"
+:1745465109,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2697 | Layer 2
+  1. {'action_type': 'update', 'predicted_label': 'Probabilistic_Methods'}
+✅ Mapped label string to ID: Probabilistic_Methods -> 3
+✅ Executed update with result: {'action': 'update', 'updated_fields': ['predicted_label']}
+
+📋 Multi-Action Plan | Node 2697 | Layer 2
+  1. {'action_type': 'update', 'predicted_label': 'Probabilistic_Methods'}
+✅ Mapped label string to ID: Probabilistic_Methods -> 3
+✅ Executed update with result: {'action': 'update', 'updated_fields': ['predicted_label']}
+
+🧠 Agent Step | Node 2697 | Layer 2
+  ├─ 🏷️  Action: update
+  ├─ 🎯 Predicted Label: 3
+  ├─ 🧠 Memory size: 20
+  └─ 👥 Total neighbors: 4
+
+🔍 Message Trace | Node 2697 | Layer 2
+  🛠️  Updated fields: ['predicted_label']
+Processing layer 2:  50%|█████████████████                 | 10/20 [00:31<00:29,  2.97s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-8e0b6c2e5cfd4a9cb9c7b462d06970de","object":"chat.completion","created"
+:1745465110,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2698 | Layer 2
+  1. {'action_type': 'broadcast', 'target_nodes': [1759, 2697, 2700], 'message': "My label is '3', whi
+ch might indicate a category related to predictive modeling in diabetes management."}
+📤 [Action: Broadcast] Node 2698 → [1759, 2697, 2700]
+✅ Executed broadcast with result: {'action': 'broadcast', 'message': {'text': 'Predicting glucose lev
+els in diabetic patients.', 'predicted_label': 3}, 'target_nodes': [1759, 2697, 2700]}
+
+📋 Multi-Action Plan | Node 2698 | Layer 2
+  1. {'action_type': 'broadcast', 'target_nodes': [1759, 2697, 2700], 'message': "My label is '3', whi
+ch might indicate a category related to predictive modeling in diabetes management."}
+📤 [Action: Broadcast] Node 2698 → [1759, 2697, 2700]
+✅ Executed broadcast with result: {'action': 'broadcast', 'message': {'text': 'Predicting glucose lev
+els in diabetic patients.', 'predicted_label': 3}, 'target_nodes': [1759, 2697, 2700]}
+
+📦 [Fallback Prompt for Node 2698]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Predicting glucose levels in diabetic patients."
+
+Labeled examples:
+- [Probabilistic_Methods] "Predicting glucose levels in diabetic patients."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-30248f87a3c54f3a9334444bb36d92d4","object":"chat.completion
+","created":1745465113,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Probabilistic_Methods'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2698 | Layer 2
+  ├─ 🏷️  Action: broadcast
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 6
+  └─ 👥 Total neighbors: 3
+
+🔍 Message Trace | Node 2698 | Layer 2
+  📤 Broadcasted to 3 node(s): [1759, 2697, 2700]
+    ↳ Message: {'text': 'Predicting glucose levels in diabetic patients.', 'predicted_label': 3}
+Processing layer 2:  55%|██████████████████▋               | 11/20 [00:35<00:29,  3.33s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-2609a034a6af4b428a9876e247e58d40","object":"chat.completion","created"
+:1745465114,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2699 | Layer 2
+  1. {'action_type': 'broadcast', 'target_nodes': [2153], 'message': "My label is '3', which might ind
+icate that I am related to Metropolis chain convergence in finite state."}
+📤 [Action: Broadcast] Node 2699 → [2153]
+✅ Executed broadcast with result: {'action': 'broadcast', 'message': {'text': 'Metropolis chain conve
+rgence in finite state.', 'predicted_label': 3}, 'target_nodes': [2153]}
+
+📋 Multi-Action Plan | Node 2699 | Layer 2
+  1. {'action_type': 'broadcast', 'target_nodes': [2153], 'message': "My label is '3', which might ind
+icate that I am related to Metropolis chain convergence in finite state."}
+📤 [Action: Broadcast] Node 2699 → [2153]
+✅ Executed broadcast with result: {'action': 'broadcast', 'message': {'text': 'Metropolis chain conve
+rgence in finite state.', 'predicted_label': 3}, 'target_nodes': [2153]}
+
+📦 [Fallback Prompt for Node 2699]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Metropolis chain convergence in finite state."
+
+Labeled examples:
+- [Probabilistic_Methods] "Metropolis chain convergence in finite state."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-fbc87c51a00246afb337bc5910d03f76","object":"chat.completion
+","created":1745465117,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Probabilistic_Methods'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2699 | Layer 2
+  ├─ 🏷️  Action: broadcast
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 6
+  └─ 👥 Total neighbors: 1
+
+🔍 Message Trace | Node 2699 | Layer 2
+  📤 Broadcasted to 1 node(s): [2153]
+    ↳ Message: {'text': 'Metropolis chain convergence in finite state.', 'predicted_label': 3}
+Processing layer 2:  60%|████████████████████▍             | 12/20 [00:38<00:26,  3.35s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-0419a64728c744ceb3cc7ad29de77667","object":"chat.completion","created"
+:1745465118,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2700 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [2697, 2698], 'info_type': 'text', 'aggregated_text':
+ 'Probabilistic reasoning with incomplete information.'}
+🧠 [Retrieve] Node 2700 updated aggregated_text:
+Probabilistic reasoning with incomplete information....
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [2697, 2
+698], 'results': {2697: {'text': 'Belief maintenance with probabilistic logic.'}, 2698: {'text': 'Pred
+icting glucose levels in diabetic patients.'}}, 'not_found': []}
+
+📋 Multi-Action Plan | Node 2700 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [2697, 2698], 'info_type': 'text', 'aggregated_text':
+ 'Probabilistic reasoning with incomplete information.'}
+🧠 [Retrieve] Node 2700 updated aggregated_text:
+Probabilistic reasoning with incomplete information....
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [2697, 2
+698], 'results': {2697: {'text': 'Belief maintenance with probabilistic logic.'}, 2698: {'text': 'Pred
+icting glucose levels in diabetic patients.'}}, 'not_found': []}
+
+📦 [Fallback Prompt for Node 2700]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Probabilistic reasoning with incomplete information."
+
+Labeled examples:
+- [Probabilistic_Methods] "Predicting glucose levels in diabetic patients."
+- [Case_Based] "Data analysis for logical conclusions efficiently."
+- [Probabilistic_Methods] "Efficient representation learning using compositional modeli..."
+- [Genetic_Algorithms] "Team dynamics and performance enhancement strategies."
+- [Probabilistic_Methods] "Belief networks revisited in brief."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-1ce3b3aea3804efd9b98eb23876b34d9","object":"chat.completion
+","created":1745465121,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Probabilistic_Methods'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2700 | Layer 2
+  ├─ 🏷️  Action: retrieve
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 18
+  └─ 👥 Total neighbors: 2
+
+🔍 Message Trace | Node 2700 | Layer 2
+  📥 Retrieved from 2 target(s):
+    ↳ Node 2697 ✅ {'text': 'Belief maintenance with probabilistic logic.'}
+    ↳ Node 2698 ✅ {'text': 'Predicting glucose levels in diabetic patients.'}
+Processing layer 2:  65%|██████████████████████            | 13/20 [00:42<00:24,  3.51s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-9085581f16de475d9b4f15b88d01466f","object":"chat.completion","created"
+:1745465121,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2701 | Layer 2
+  1. {'action_type': 'update', 'predicted_label': 'Neural_Networks'}
+✅ Mapped label string to ID: Neural_Networks -> 2
+✅ Executed update with result: {'action': 'update', 'updated_fields': ['predicted_label']}
+
+📋 Multi-Action Plan | Node 2701 | Layer 2
+  1. {'action_type': 'update', 'predicted_label': 'Neural_Networks'}
+✅ Mapped label string to ID: Neural_Networks -> 2
+✅ Executed update with result: {'action': 'update', 'updated_fields': ['predicted_label']}
+
+🧠 Agent Step | Node 2701 | Layer 2
+  ├─ 🏷️  Action: update
+  ├─ 🎯 Predicted Label: 2
+  ├─ 🧠 Memory size: 18
+  └─ 👥 Total neighbors: 2
+
+🔍 Message Trace | Node 2701 | Layer 2
+  🛠️  Updated fields: ['predicted_label']
+Processing layer 2:  70%|███████████████████████▊          | 14/20 [00:44<00:17,  2.86s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-a013d616497e4fefa6e12fc4c64c45b7","object":"chat.completion","created"
+:1745465123,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2702 | Layer 2
+  1. {'action_type': 'broadcast', 'target_nodes': [881, 2624], 'message': "My label is '1', which migh
+t indicate that I am related to Neural Networks or Evolutionary Methods in the context of Neural Netwo
+rk building-blocks."}
+📤 [Action: Broadcast] Node 2702 → [881, 2624]
+✅ Executed broadcast with result: {'action': 'broadcast', 'message': {'text': 'Evolutionary method fi
+nds neural network building-blocks.', 'predicted_label': 1}, 'target_nodes': [881, 2624]}
+
+📋 Multi-Action Plan | Node 2702 | Layer 2
+  1. {'action_type': 'broadcast', 'target_nodes': [881, 2624], 'message': "My label is '1', which migh
+t indicate that I am related to Neural Networks or Evolutionary Methods in the context of Neural Netwo
+rk building-blocks."}
+📤 [Action: Broadcast] Node 2702 → [881, 2624]
+✅ Executed broadcast with result: {'action': 'broadcast', 'message': {'text': 'Evolutionary method fi
+nds neural network building-blocks.', 'predicted_label': 1}, 'target_nodes': [881, 2624]}
+
+📦 [Fallback Prompt for Node 2702]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Evolutionary method finds neural network building-blocks."
+
+Labeled examples:
+- [Genetic_Algorithms] "Evolutionary method finds neural network building-blocks."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-d4d128f8658f4276a6cda2746cf8baaf","object":"chat.completion
+","created":1745465126,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Genetic_Algorithms'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2702 | Layer 2
+  ├─ 🏷️  Action: broadcast
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 6
+  └─ 👥 Total neighbors: 2
+
+🔍 Message Trace | Node 2702 | Layer 2
+  📤 Broadcasted to 2 node(s): [881, 2624]
+    ↳ Message: {'text': 'Evolutionary method finds neural network building-blocks.', 'predicted_label'
+: 1}
+Processing layer 2:  75%|█████████████████████████▌        | 15/20 [00:48<00:16,  3.27s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-6ce1dc26373140528e04c9a6441a6fd1","object":"chat.completion","created"
+:1745465127,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2703 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [1221, 1409, 2200], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2703 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [1221, 1
+409, 2200], 'results': {1221: {'text': 'Global learning through evaluation space adaptation.'}, 1409:
+{'text': 'Evolution of learning, planning, and memory.'}, 2200: {'text': 'Adaptive strategy in evolvin
+g environments.'}}, 'not_found': []}
+
+📋 Multi-Action Plan | Node 2703 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [1221, 1409, 2200], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2703 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [1221, 1
+409, 2200], 'results': {1221: {'text': 'Global learning through evaluation space adaptation.'}, 1409:
+{'text': 'Evolution of learning, planning, and memory.'}, 2200: {'text': 'Adaptive strategy in evolvin
+g environments.'}}, 'not_found': []}
+
+📦 [Fallback Prompt for Node 2703]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Correlation between task difficulty and performance."
+
+Labeled examples:
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-6bcf35cef0b040aab745fe44ae14729a","object":"chat.completion
+","created":1745465129,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Theory'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2703 | Layer 2
+  ├─ 🏷️  Action: retrieve
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 6
+  └─ 👥 Total neighbors: 3
+
+🔍 Message Trace | Node 2703 | Layer 2
+  📥 Retrieved from 3 target(s):
+    ↳ Node 1221 ✅ {'text': 'Global learning through evaluation space adaptation.'}
+    ↳ Node 1409 ✅ {'text': 'Evolution of learning, planning, and memory.'}
+    ↳ Node 2200 ✅ {'text': 'Adaptive strategy in evolving environments.'}
+Processing layer 2:  80%|███████████████████████████▏      | 16/20 [00:51<00:12,  3.18s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-821b9a7026a44bb6a7903d67d4635b1b","object":"chat.completion","created"
+:1745465130,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2704 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [209, 2407], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2704 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [209, 24
+07], 'results': {209: {'text': 'Parallel Genetic Programming on SIMD architecture.'}, 2407: {'text': '
+Evolving Turing-complete programs for register machines.'}}, 'not_found': []}
+
+📋 Multi-Action Plan | Node 2704 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [209, 2407], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2704 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [209, 24
+07], 'results': {209: {'text': 'Parallel Genetic Programming on SIMD architecture.'}, 2407: {'text': '
+Evolving Turing-complete programs for register machines.'}}, 'not_found': []}
+
+📦 [Fallback Prompt for Node 2704]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Improving efficiency of Genetic Programming evaluations."
+
+Labeled examples:
+- [Genetic_Algorithms] "Parallel Genetic Programming on SIMD architecture."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-3ee1a9e54b8349b7b385c58af19eb44b","object":"chat.completion
+","created":1745465132,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Genetic_Algorithms'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2704 | Layer 2
+  ├─ 🏷️  Action: retrieve
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 8
+  └─ 👥 Total neighbors: 2
+
+🔍 Message Trace | Node 2704 | Layer 2
+  📥 Retrieved from 2 target(s):
+    ↳ Node 209 ✅ {'text': 'Parallel Genetic Programming on SIMD architecture.'}
+    ↳ Node 2407 ✅ {'text': 'Evolving Turing-complete programs for register machines.'}
+Processing layer 2:  85%|████████████████████████████▉     | 17/20 [00:54<00:09,  3.16s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-03b5eb7991504adb8d243ca8b15fc1c0","object":"chat.completion","created"
+:1745465133,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2705 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [1784, 1839, 1840, 2216], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2705 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [1784, 1
+839, 1840, 2216], 'results': {1784: {'text': 'Identifying redundancy in Genetic Programming through an
+alysis.'}, 1839: {'text': 'Improved efficiency through new context-preserving crossovers.'}, 1840: {'t
+ext': 'Accelerating evolution through discovering and exploiting subroutines.'}, 2216: {'text': 'Hybri
+dized search techniques enhance program discovery efficiency.'}}, 'not_found': []}
+
+📋 Multi-Action Plan | Node 2705 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [1784, 1839, 1840, 2216], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2705 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [1784, 1
+839, 1840, 2216], 'results': {1784: {'text': 'Identifying redundancy in Genetic Programming through an
+alysis.'}, 1839: {'text': 'Improved efficiency through new context-preserving crossovers.'}, 1840: {'t
+ext': 'Accelerating evolution through discovering and exploiting subroutines.'}, 2216: {'text': 'Hybri
+dized search techniques enhance program discovery efficiency.'}}, 'not_found': []}
+
+📦 [Fallback Prompt for Node 2705]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Adverse interaction with tree depth restriction."
+
+Labeled examples:
+- [Genetic_Algorithms] "Improved efficiency through new context-preserving crossover..."
+- [Genetic_Algorithms] "Accelerating evolution through discovering and exploiting su..."
+- [Genetic_Algorithms] "Hybridized search techniques enhance program discovery effic..."
+- [Genetic_Algorithms] "Evolutionary algorithm study on crossover operator."
+- [Genetic_Algorithms] "Genetic algorithm for mathematical economics studies."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-6e7ab84ea125403795dc6b50acb4d046","object":"chat.completion
+","created":1745465136,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Genetic_Algorithms'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2705 | Layer 2
+  ├─ 🏷️  Action: retrieve
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 22
+  └─ 👥 Total neighbors: 4
+
+🔍 Message Trace | Node 2705 | Layer 2
+  📥 Retrieved from 4 target(s):
+    ↳ Node 1784 ✅ {'text': 'Identifying redundancy in Genetic Programming through analysis.'}
+    ↳ Node 1839 ✅ {'text': 'Improved efficiency through new context-preserving crossovers.'}
+    ↳ Node 1840 ✅ {'text': 'Accelerating evolution through discovering and exploiting subroutines.'}
+    ↳ Node 2216 ✅ {'text': 'Hybridized search techniques enhance program discovery efficiency.'}
+Processing layer 2:  90%|██████████████████████████████▌   | 18/20 [00:57<00:06,  3.22s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-976a6be8b77b41ac9310704a939f0ae6","object":"chat.completion","created"
+:1745465136,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2706 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [1046, 1138, 1640, 1752], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2706 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [1046, 1
+138, 1640, 1752], 'results': {1046: {'text': 'Learning structural indices for case-based design.'}, 11
+38: {'text': 'Analogical reasoning mechanisms learned from experiences.'}, 1640: {'text': 'Kritik inte
+grates model-based reasoning for design.'}, 1752: {'text': 'Importance of explanation in interactive d
+esign.'}}, 'not_found': []}
+
+📋 Multi-Action Plan | Node 2706 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [1046, 1138, 1640, 1752], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2706 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [1046, 1
+138, 1640, 1752], 'results': {1046: {'text': 'Learning structural indices for case-based design.'}, 11
+38: {'text': 'Analogical reasoning mechanisms learned from experiences.'}, 1640: {'text': 'Kritik inte
+grates model-based reasoning for design.'}, 1752: {'text': 'Importance of explanation in interactive d
+esign.'}}, 'not_found': []}
+
+📦 [Fallback Prompt for Node 2706]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Capture design rationale in device functions."
+
+Labeled examples:
+- [Case_Based] "Capture design rationale in device functions."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-b1f3e3f932f84cc0b7a43c8e7007e05d","object":"chat.completion
+","created":1745465139,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Case_Based'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2706 | Layer 2
+  ├─ 🏷️  Action: retrieve
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 6
+  └─ 👥 Total neighbors: 4
+
+🔍 Message Trace | Node 2706 | Layer 2
+  📥 Retrieved from 4 target(s):
+    ↳ Node 1046 ✅ {'text': 'Learning structural indices for case-based design.'}
+    ↳ Node 1138 ✅ {'text': 'Analogical reasoning mechanisms learned from experiences.'}
+    ↳ Node 1640 ✅ {'text': 'Kritik integrates model-based reasoning for design.'}
+    ↳ Node 1752 ✅ {'text': 'Importance of explanation in interactive design.'}
+Processing layer 2:  95%|████████████████████████████████▎ | 19/20 [01:01<00:03,  3.25s/it]🔁 Raw resp
+onse from vLLM: {"id":"chatcmpl-20790108f3a749a581c8ce72c85cbceb","object":"chat.completion","created"
+:1745465140,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assistant","reason
+ing_content"...
+
+📋 Multi-Action Plan | Node 2707 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [774, 1389, 2344], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2707 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [774, 13
+89, 2344], 'results': {774: {'text': 'Hybrid neural network for accurate face recognition.'}, 1389: {'
+text': 'SVM for classification with large datasets.'}, 2344: {'text': 'Neural network head tracking wi
+th adaptation.'}}, 'not_found': []}
+
+📋 Multi-Action Plan | Node 2707 | Layer 2
+  1. {'action_type': 'retrieve', 'target_nodes': [774, 1389, 2344], 'info_type': 'text'}
+⚠️ [Retrieve] Node 2707 missing aggregated_text from LLM. Consider fallback or debug prompt.
+✅ Executed retrieve with result: {'action': 'retrieve', 'info_type': 'text', 'target_nodes': [774, 13
+89, 2344], 'results': {774: {'text': 'Hybrid neural network for accurate face recognition.'}, 1389: {'
+text': 'SVM for classification with large datasets.'}, 2344: {'text': 'Neural network head tracking wi
+th adaptation.'}}, 'not_found': []}
+
+📦 [Fallback Prompt for Node 2707]:
+You are given a scientific paper text and several labeled examples. Predict the most likely label.
+
+Text to classify:
+"Face detection system outperforms state-of-the-art methods."
+
+Labeled examples:
+- [Neural_Networks] "Hybrid neural network for accurate face recognition."
+- [Neural_Networks] "Neural network head tracking with adaptation."
+
+Respond with:
+{"action_type": "update", "predicted_label": "label_string"}
+You must choose one of the allowed label strings exactly as listed: ["Case_Based", "Genetic_Algorithms
+", "Neural_Networks", "Probabilistic_Methods", "Reinforcement_Learning", "Rule_Learning", "Theory"]
+🔁 Raw response from vLLM: {"id":"chatcmpl-5cbc394f3a0541918ee01b90cc3d6c3c","object":"chat.completion
+","created":1745465142,"model":"Qwen2.5-14B-Instruct","choices":[{"index":0,"message":{"role":"assista
+nt","reasoning_content"...
+🎯 [Fallback Result]: [{'action_type': 'update', 'predicted_label': 'Neural_Networks'}]
+⚠️ Fallback decision did not yield a valid update action. Skipping fallback update.
+
+🧠 Agent Step | Node 2707 | Layer 2
+  ├─ 🏷️  Action: retrieve
+  ├─ 🎯 Predicted Label: None
+  ├─ 🧠 Memory size: 10
+  └─ 👥 Total neighbors: 3
+
+🔍 Message Trace | Node 2707 | Layer 2
+  📥 Retrieved from 3 target(s):
+    ↳ Node 774 ✅ {'text': 'Hybrid neural network for accurate face recognition.'}
+    ↳ Node 1389 ✅ {'text': 'SVM for classification with large datasets.'}
+    ↳ Node 2344 ✅ {'text': 'Neural network head tracking with adaptation.'}
+Processing layer 2: 100%|██████████████████████████████████| 20/20 [01:04<00:00,  3.22s/it]
+📝 Tracking data saved to results/cora_20250423_171723/tracking/layer_2_tracking.json
+Metrics saved to results/cora_20250423_171723/metrics.json
+Traceback (most recent call last):
+  File "/common/home/mg1998/Graph/GAN/Graph_Agentic_Network/experiments/run_node_classification.py", l
+ine 116, in <module>
+    }
+  File "/common/home/mg1998/Graph/GAN/Graph_Agentic_Network/experiments/run_node_classification.py", l
+ine 94, in run_node_classification
+    save_metrics(metrics, result_dir)
+  File "/common/home/mg1998/Graph/GAN/Graph_Agentic_Network/gan/utils.py", line 76, in visualize_resul
+ts
+    labels = dataset.labels
+AttributeError: 'dict' object has no attribute 'labels'
+(gan_arrakis) mg1998@arrakis:~/Graph/GAN/Graph_Agentic_Network$ git branch
+* Aggregated_Text
+  Experiment
+  Fix_Up
+  main
+(gan_arrakis) mg1998@arrakis:~/Graph/GAN/Graph_Agentic_Network$ git checkout Experiment
+error: Your local changes to the following files would be overwritten by checkout:
+        gan/__pycache__/llm.cpython-310.pyc
+        gan/__pycache__/node.cpython-310.pyc
+        gan/llm.py
+        gan/node.py
+Please commit your changes or stash them before you switch branches.
+Aborting
+(gan_arrakis) mg1998@arrakis:~/Graph/GAN/Graph_Agentic_Network$ git add .
+(gan_arrakis) mg1998@arrakis:~/Graph/GAN/Graph_Agentic_Network$ git commit -m "many issues less than 0
+.1"
+[Aggregated_Text b05b3a8] many issues less than 0.1
+ Committer: Minghao Guo <mg1998@arrakis.cs.rutgers.edu>
+Your name and email address were configured automatically based
+on your username and hostname. Please check that they are accurate.
+You can suppress this message by setting them explicitly:
+
+    git config --global user.name "Your Name"
+    git config --global user.email you@example.com
+
+After doing this, you may fix the identity used for this commit with:
+
+    git commit --amend --reset-author
+
+ 17 files changed, 6148 insertions(+), 3060 deletions(-)
+ rewrite __pycache__/config.cpython-310.pyc (73%)
+ rewrite data/cora/cora_text_graph_simplified.jsonl (90%)
+ copy data/cora/{cora_text_graph_simplified.jsonl => cora_text_graph_simplified_original.jsonl} (100%)
+ rewrite experiments/run_node_classification.py (83%)
+ create mode 100644 full_log.txt
+ rewrite gan/__pycache__/node.cpython-310.pyc (67%)
+ rewrite gan/__pycache__/utils.cpython-310.pyc (70%)
+ create mode 100644 gan/tracker.py
+ create mode 100644 gpu2_log.txt
+(gan_arrakis) mg1998@arrakis:~/Graph/GAN/Graph_Agentic_Network$ git checkout Experiment
+Switched to branch 'Experiment'
+Your branch is ahead of 'origin/Experiment' by 6 commits.
+  (use "git push" to publish your local commits)
+(gan_arrakis) mg1998@arrakis:~/Graph/GAN/Graph_Agentic_Network$ git status
+On branch Experiment
+Your branch is ahead of 'origin/Experiment' by 6 commits.
+  (use "git push" to publish your local commits)
+
+Changes not staged for commit:
+  (use "git add <file>..." to update what will be committed)
+  (use "git restore <file>..." to discard changes in working directory)
+        modified:   config.py
+        modified:   gan/llm.py
+
+no changes added to commit (use "git add" and/or "git commit -a")
+(gan_arrakis) mg1998@arrakis:~/Graph/GAN/Graph_Agentic_Network$ git reset --hard 4c682c62c0febf7fc9a90
+febb916c2440051c0b4
+HEAD is now at 4c682c6 Milestone: acc=0.63, sometimes 0.65
+(gan_arrakis) mg1998@arrakis:~/Graph/GAN/Graph_Agentic_Network$ tmux capture-pane -pS -100000 > full_l
+og.txt
+

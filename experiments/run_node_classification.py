@@ -74,7 +74,7 @@ def run_node_classification(
             llm_interface=llm_interface,
             labels=labels,
             num_layers=num_layers,
-            train_idx=train_idx  # ✅ 关键传入
+            train_idx=train_idx
         )
 
         print("Running Graph Agentic Network")
@@ -84,6 +84,24 @@ def run_node_classification(
         print(f"GAN completed in {gan_time:.2f} seconds")
 
         gan_predictions = gan.get_node_predictions()
+
+        # 记录测试节点的预测结果
+        test_results = []
+        for idx in test_idx:
+            node_id = int(idx)  # 转换为整数
+            node = gan.graph.nodes[node_id]  # 使用整数索引
+            test_results.append({
+                'node_id': node_id,
+                'predicted_label': int(gan_predictions[idx]),
+                'true_label': int(labels[idx]),
+                'memory': [str(m) for m in node.state.memory] if node.state.memory else []
+            })
+
+        # 保存到JSON文件
+        test_results_file = os.path.join(result_dir, "test_predictions.json")
+        with open(test_results_file, 'w') as f:
+            json.dump(test_results, f, indent=2)
+        print(f"✅ Test predictions saved to {test_results_file}")
 
         gan_metrics = {
             'all': evaluate_node_classification(gan_predictions, labels),
