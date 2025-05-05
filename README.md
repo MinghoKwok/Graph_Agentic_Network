@@ -60,6 +60,11 @@ python3 -m vllm.entrypoints.openai.api_server \
   --served-model-name llama-3.1-8b-instruct
 ```
 
+```bash
+(vllm_qwen3) mg1998@wisehub:/common/users/mg1998/models$ /common/users/mg1998/envs/vllm_qwen3/bin/python -m vllm.entrypoints.openai.api_server   --model /common/users/mg1998/models/Qwen3-14B   --tokenizer /common/users/mg1998/models/Qwen3-14B   --port 8001
+
+```
+
 ## Project Structure
 
 - `gan/`: Core framework components

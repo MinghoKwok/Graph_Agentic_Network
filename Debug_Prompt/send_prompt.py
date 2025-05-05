@@ -2,7 +2,7 @@ import requests
 import argparse
 import json
 
-def send_prompt(prompt, url="http://localhost:8001/v1/chat/completions", model="Qwen2.5-14B-Instruct"):
+def send_prompt(prompt, url="http://localhost:8001/v1/chat/completions", model="/common/users/mg1998/models/Qwen3-14B"):
     headers = {"Content-Type": "application/json"}
     payload = {
         "model": model,

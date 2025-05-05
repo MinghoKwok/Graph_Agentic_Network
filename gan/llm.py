@@ -31,6 +31,7 @@ class RemoteLLMInterface(BaseLLMInterface):
     def __init__(self, endpoint: str, model_name: str):
         self.endpoint = endpoint
         self.model_name = model_name
+        print(f"[LLM DEBUG] Using endpoint: {self.endpoint} with model: {self.model_name}")
 
     def generate_response(self, prompt: str) -> str:
         assert isinstance(prompt, str) and len(prompt.strip()) > 30, "Prompt seems too short or empty!"
@@ -56,6 +57,9 @@ class RemoteLLMInterface(BaseLLMInterface):
             print(f"🔁 Raw response from vLLM: {response.text[:200]}...")  # 前200字节预览，避免爆屏
             response.raise_for_status()
             result = response.json()
+
+            print("🔍 Full LLM raw output:")
+            print(result["choices"][0]["message"]["content"])
             return result["choices"][0]["message"]["content"].strip()
         except Exception as e:
             print(f"[RemoteLLMInterface] Request failed: {e}")
@@ -299,27 +303,31 @@ Here are the definitions of the labels, which are helpful for you to predict you
     def _format_layer_prompt(self, context: Dict[str, Any]) -> str:
         return f"""You are the controller for a graph neural network.\n\nThe network has completed layer {context['current_layer']} of processing.\n\nMax layers: {context['max_layers']}\nCurrent layer: {context['current_layer']}\n\nBased on the progress, decide whether to:\n1. Continue to the next layer\n2. End processing and output final results\n\nRespond with either \"continue\" or \"end\"."""
 
-    def _parse_action(self, response: str) -> Dict[str, Any]:
+    def _parse_action(self, response: str) -> List[Dict[str, Any]]:
         try:
-            code_blocks = re.findall(r"```json\s*({.*?})\s*```", response, re.DOTALL)
+            code_blocks = re.findall(r"```json\s*([\s\S]*?)```", response)
             if not code_blocks:
-                code_blocks = re.findall(r"({.*?})", response, re.DOTALL)
+                code_blocks = re.findall(r"(\[.*?\]|\{.*?\})", response, re.DOTALL)
+
             for block in code_blocks:
                 try:
-                    cleaned = re.sub(r"//.*", "", block)
+                    cleaned = re.sub(r"//.*", "", block).strip()
                     parsed = json.loads(cleaned)
-                    if parsed.get("action_type") == "retrieve":
-                        parsed["target_nodes"] = [
-                            int(re.sub(r"[^\d]", "", str(nid)))
-                            for nid in parsed.get("target_nodes", [])
-                            if re.sub(r"[^\d]", "", str(nid)).isdigit()
-                        ]
-                    return parsed
-                except Exception:
-                    continue
+
+                    # ✅ Return entire action list
+                    if isinstance(parsed, list):
+                        return parsed
+
+                    # Single action fallback
+                    if isinstance(parsed, dict) and "action_type" in parsed:
+                        return [parsed]
+
+                except Exception as e:
+                    print(f"❌ Failed to parse block: {e}")
         except Exception as e:
             print(f"[RemoteLLMInterface] Failed to parse response: {e}")
-        return {"action_type": "no_op"}
+
+        return [{"action_type": "no_op"}]
 
 
 class MockLLMInterface(BaseLLMInterface):
