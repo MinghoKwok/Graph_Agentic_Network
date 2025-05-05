@@ -174,7 +174,7 @@ class NodeAgent:
         if action_type == "retrieve":
             return RetrieveAction(decision.get("target_nodes", []), decision.get("info_type", "text"))
         elif action_type == "rag_query":
-            return RAGAction(self.state.text, decision.get("top_k", 5))
+            return RAGAction(self.state.node_id, decision.get("top_k", 5))
         elif action_type == "broadcast":
             return BroadcastAction(decision.get("target_nodes", []), torch.tensor([len(str(decision.get("message", "")))], dtype=torch.float))
         elif action_type == "update":

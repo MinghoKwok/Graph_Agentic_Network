@@ -21,7 +21,7 @@ MULTI_GPU = torch.cuda.device_count() > 1
 
 # LLM settings
 LLM_BACKEND = "remote"  # Options: "remote", "mock", "flan-local"
-LLM_MODEL = "Qwen2.5-14B-Instruct" # "Qwen2.5-14B-Instruct" # "llama-3.1-8b-instruct" or "google/flan-t5-xl"
+LLM_MODEL = "Qwen2.5-14B-Instruct" # "Qwen2.5-14B-Instruct" # "Qwen2.5-14B-Instruct" # "llama-3.1-8b-instruct" or "google/flan-t5-xl"
 REMOTE_LLM_ENDPOINT = "http://localhost:8001/v1/chat/completions" #"http://localhost:8001/v1/completions"
 
 # Experiment settings

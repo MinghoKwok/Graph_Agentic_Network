@@ -56,6 +56,8 @@ class RemoteLLMInterface(BaseLLMInterface):
             print(f"🔁 Raw response from vLLM: {response.text[:200]}...")  # 前200字节预览，避免爆屏
             response.raise_for_status()
             result = response.json()
+            print("🔍 Full LLM raw output:")
+            print(result["choices"][0]["message"]["content"])
             return result["choices"][0]["message"]["content"].strip()
         except Exception as e:
             print(f"[RemoteLLMInterface] Request failed: {e}")

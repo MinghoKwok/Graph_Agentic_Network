@@ -107,6 +107,7 @@ class AgenticGraph:
 
         if len(node_features) > 0:
             self._node_features_index = NearestNeighbors(n_neighbors=min(10, len(node_features)), algorithm='ball_tree')
+            self._node_features_index = NearestNeighbors(n_neighbors=min(10, len(node_features)), metric='cosine')
             self._node_features_index.fit(np.stack(node_features))
             print(f"✅ RAG index built with {len(node_features)} labeled candidates")
             print(f"✅ Query vector count: {len(self._node_id_to_query_vector)}")
@@ -156,9 +157,9 @@ class AgenticGraph:
     #         import numpy as np
     #         return np.zeros(1433)
 
-    def rag_query(self, query: str, top_k: int = 5) -> Dict[int, Dict[str, Any]]:
+    def rag_query(self, query_id: int, top_k: int = 5) -> Dict[int, Dict[str, Any]]:
         try:
-            node_id = int(query)
+            node_id = query_id
             query_vector = self._node_id_to_query_vector.get(node_id)
             if query_vector is None:
                 print(f"⚠️ Node {node_id} has no query vector.")
