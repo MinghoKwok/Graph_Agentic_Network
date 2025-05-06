@@ -59,6 +59,24 @@ class NodeAgent:
                 action = self._create_action(action, graph)
             if action:
                 result = action.execute(self, graph)
+                
+                # 🔧 如果是 RAGAction，补充 memory 写入
+                if isinstance(action, RAGAction) and "results" in result:
+                    for node_id, node_info in result["results"].items():
+                        if isinstance(node_info, dict) and "text" in node_info and node_info["text"] and "label" in node_info and node_info["label"] is not None:
+                            memory_entry = {
+                                "layer": layer,
+                                "action": "RetrieveExample",
+                                "text": str(node_info["text"]),
+                                "label": int(node_info["label"]),
+                                "label_text": inv_label_vocab.get(int(node_info["label"]), str(node_info["label"])),
+                                "source": int(node_id),
+                                "source_type": "rag"
+                            }
+                            if not has_memory_entry(self, memory_entry):
+                                self.state.memory.append(memory_entry)
+
+
                 if isinstance(result, dict):
                     if result.get("action_type") == "retrieve" and "results" in result:
                         # 处理retrieve结果
