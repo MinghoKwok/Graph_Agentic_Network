@@ -59,6 +59,24 @@ class NodeAgent:
                 action = self._create_action(action, graph)
             if action:
                 result = action.execute(self, graph)
+                
+                # 🔧 如果是 RAGAction，补充 memory 写入
+                if isinstance(action, RAGAction) and "results" in result:
+                    for node_id, node_info in result["results"].items():
+                        if isinstance(node_info, dict) and "text" in node_info and node_info["text"] and "label" in node_info and node_info["label"] is not None:
+                            memory_entry = {
+                                "layer": layer,
+                                "action": "RetrieveExample",
+                                "text": str(node_info["text"]),
+                                "label": int(node_info["label"]),
+                                "label_text": inv_label_vocab.get(int(node_info["label"]), str(node_info["label"])),
+                                "source": int(node_id),
+                                "source_type": "rag"
+                            }
+                            if not has_memory_entry(self, memory_entry):
+                                self.state.memory.append(memory_entry)
+
+
                 if isinstance(result, dict):
                     if result.get("action_type") == "retrieve" and "results" in result:
                         # 处理retrieve结果
@@ -174,7 +192,7 @@ class NodeAgent:
         if action_type == "retrieve":
             return RetrieveAction(decision.get("target_nodes", []), decision.get("info_type", "text"))
         elif action_type == "rag_query":
-            return RAGAction(self.state.text, decision.get("top_k", 5))
+            return RAGAction(self.state.node_id, decision.get("top_k", 5))
         elif action_type == "broadcast":
             return BroadcastAction(decision.get("target_nodes", []), torch.tensor([len(str(decision.get("message", "")))], dtype=torch.float))
         elif action_type == "update":

@@ -88,15 +88,16 @@ class RAGAction(Action):
 
     def execute(self, agent: 'NodeAgent', graph: 'AgenticGraph') -> Dict[str, Any]:
         # 如果没有提供查询文本，使用节点的文本
-        query = self.query_text or agent.state.text
+        # query = self.query_text or agent.state.text
+        query_id = agent.state.node_id
         
         # 执行 RAG 查询
-        results = graph.rag_query(query, self.top_k)
+        results = graph.rag_query(query_id, self.top_k)
         
         # 返回结果，不在这里写入memory，让NodeAgent统一处理
         return {
             "action": "rag_query",
-            "query": query,
+            "query_id": query_id,
             "results": results
         }
 

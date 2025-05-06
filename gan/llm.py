@@ -7,6 +7,7 @@ import config
 from transformers import AutoTokenizer, AutoModelForSeq2SeqLM
 import torch
 from typing import Dict, Any, Optional, List, Union
+import datetime
 
 import sys
 import os
@@ -31,6 +32,8 @@ class RemoteLLMInterface(BaseLLMInterface):
     def __init__(self, endpoint: str, model_name: str):
         self.endpoint = endpoint
         self.model_name = model_name
+        # 创建日志目录
+        os.makedirs("debug_logs", exist_ok=True)
 
     def generate_response(self, prompt: str) -> str:
         assert isinstance(prompt, str) and len(prompt.strip()) > 30, "Prompt seems too short or empty!"
@@ -56,6 +59,16 @@ class RemoteLLMInterface(BaseLLMInterface):
             print(f"🔁 Raw response from vLLM: {response.text[:200]}...")  # 前200字节预览，避免爆屏
             response.raise_for_status()
             result = response.json()
+            print("🔍 Full LLM raw output:")
+            print(result["choices"][0]["message"]["content"])
+            
+            # 记录响应到日志
+            timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+            with open("debug_logs/llm_responses.txt", "a", encoding="utf-8") as log_file:
+                log_file.write(f"\n\n🔁 [LLM Response] | {timestamp}:\n")
+                log_file.write(json.dumps(result, indent=2, ensure_ascii=False))
+                log_file.write("\n" + "=" * 80)
+            
             return result["choices"][0]["message"]["content"].strip()
         except Exception as e:
             print(f"[RemoteLLMInterface] Request failed: {e}")
@@ -77,7 +90,6 @@ class RemoteLLMInterface(BaseLLMInterface):
         return "continue" in response.lower()
 
     def _format_action_prompt(self, context: Dict[str, Any]) -> str:
-
         node_id = context["node_id"]
         layer = context["layer"]
         text = context.get("text", "")
@@ -285,7 +297,8 @@ Here are the definitions of the labels, which are helpful for you to predict you
         prompt += """
 
     ## Planning Your Steps
-    Think like a planner: first gather evidence (retrieve, rag_query), then make a decision (update), and finally help others (broadcast).
+    1. If you have a predicted label, you can choose to broadcast it or continue to retrieve nodes with labels.
+    2. If you don't have a predicted label, think like a planner: first gather evidence (retrieve, rag_query), then make a decision (update), and finally help others (broadcast).
     Think about the following:
     - If you cannot predict your label yet, need more context to predict your label → `retrieve`, `rag_query`
     - Are you confident to predict your label? → `update`
@@ -294,6 +307,18 @@ Here are the definitions of the labels, which are helpful for you to predict you
     - If any neighbors already have predicted labels, it is recommended to retrieve from them first.
     """
 
+        print("📤 [DEBUG] Prompt being sent to LLM:\n", prompt)
+        
+        # 记录 prompt 到日志
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        log_dir = f"debug_logs/node_{node_id}"
+        os.makedirs(log_dir, exist_ok=True)
+        
+        with open(f"{log_dir}/layer_{layer}_{timestamp}.txt", "w", encoding="utf-8") as log_file:
+            log_file.write(f"📤 [DEBUG] Prompt for Node {node_id} | Layer {layer} | {timestamp}:\n")
+            log_file.write(prompt)
+            log_file.write("\n" + "=" * 80)
+        
         return prompt
 
     def _format_layer_prompt(self, context: Dict[str, Any]) -> str:
@@ -353,7 +378,6 @@ class LLMInterface(BaseLLMInterface):
             raise ValueError(f"Unsupported LLM_BACKEND: {self.backend}")
 
     def generate_response(self, prompt: str) -> str:
-        # print("📤 [DEBUG] Prompt being sent to LLM:\n", prompt)
         return self.impl.generate_response(prompt)
 
     def decide_action(self, context: Dict[str, Any]) -> Dict[str, Any]:

@@ -66,8 +66,8 @@ def load_ogb_arxiv(root: str = os.path.join(config.DATA_DIR, 'ogbn-arxiv')) -> D
     }
 
 def load_cora(
-    jsonl_path: str = "data/cora/cora_text_graph_simplified.jsonl",
-    edge_path: str = "data/cora/cora.cites"
+    jsonl_path: str = "/common/home/mg1998/Graph/GAN/Graph_Agentic_Network/data/cora/cora_text_graph_simplified.jsonl",
+    edge_path: str = "/common/home/mg1998/Graph/GAN/Graph_Agentic_Network/data/cora/cora.cites"
 ) -> Dict[str, Any]:
     """
     Load Cora dataset using simplified JSONL + true citation edges.
