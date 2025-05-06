@@ -54,7 +54,7 @@ def run_node_classification(
     num_classes = dataset['num_classes']
 
     # 加载文本形式的节点描述
-    with open(f"data/{dataset_name}/cora_text_graph_simplified.jsonl") as f:
+    with open(f"../data/{dataset_name}/cora_text_graph_simplified.jsonl") as f:
         node_texts = {int(json.loads(line)["node_id"]): json.loads(line)["text"] for line in f}
 
     results = {

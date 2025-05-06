@@ -60,6 +60,10 @@ python3 -m vllm.entrypoints.openai.api_server \
   --served-model-name llama-3.1-8b-instruct
 ```
 
+```
+CUDA_VISIBLE_DEVICES=3 python -m vllm.entrypoints.openai.api_server     --model Qwen2.5-14B-Instruct     --tokenizer /common/users/mg1998/models/Qwen2.5-14B-Instruct     --port 8001     --gpu-memory-utilization 0.9
+```
+
 ## Project Structure
 
 - `gan/`: Core framework components

@@ -12,6 +12,11 @@ import config
 from gan.node import NodeState, NodeAgent
 
 
+import sys
+import os
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+
 class AgenticGraph:
     """Graph structure for agentic network."""
 
@@ -29,9 +34,10 @@ class AgenticGraph:
         self.num_nodes = adj_matrix.shape[0]
         
         # Load node texts from JSONL file
-        with open(f"data/{config.DATASET_NAME}/cora_text_graph_simplified.jsonl") as f:
+        with open(f"../data/{config.DATASET_NAME}/cora_text_graph_simplified.jsonl") as f:
             records = [json.loads(l) for l in f]
         node_texts = {r["node_id"]: r["text"] for r in records}
+        self._node_texts = node_texts
         
         # Create train mask if train_idx is provided
         train_mask = torch.zeros(self.num_nodes, dtype=torch.bool)
@@ -60,45 +66,25 @@ class AgenticGraph:
     def _initialize_vector_index(self):
         from sklearn.neighbors import NearestNeighbors
         import numpy as np
-        import json
+        import os
 
-        # 加载 node_id ↔ paper_id 映射
-        self._node_to_paper_map = {}
-        self._paper_to_node_map = {}
-        self._node_texts = {}
-        with open(f"data/{config.DATASET_NAME}/cora_text_graph_simplified.jsonl", 'r') as f:
-            for line in f:
-                entry = json.loads(line)
-                node_id = entry.get('node_id')
-                paper_id = entry.get('paper_id')
-                text = entry.get('text', '')
-                if node_id is not None and paper_id is not None:
-                    self._node_to_paper_map[node_id] = paper_id
-                    self._paper_to_node_map[paper_id] = node_id
-                    self._node_texts[node_id] = text
+        emb_path = f"../data/{config.DATASET_NAME}/cora_text_embeddings.npy"
+        if not os.path.exists(emb_path):
+            print(f"❌ Missing embedding file: {emb_path}")
+            self._node_features_index = None
+            return
 
-        # 准备 query 向量（所有节点）
-        self._node_id_to_query_vector = {}
-        content_path = f"data/{config.DATASET_NAME}/cora.content"
-        with open(content_path, 'r') as f:
-            for line in f:
-                parts = line.strip().split()
-                if len(parts) < 3:
-                    continue
-                paper_id = int(parts[0])
-                features = np.array([float(x) for x in parts[1:-1]])
-                node_id = self._paper_to_node_map.get(paper_id)
-                if node_id is not None:
-                    self._node_id_to_query_vector[node_id] = features
+        # ✅ 加载 embedding
+        node_embeddings = np.load(emb_path, allow_pickle=True).item()
+        self._node_id_to_query_vector = node_embeddings
+        print(f"✅ Loaded sentence-transformer embeddings for {len(node_embeddings)} nodes")
 
-        print(f"✅ Loaded query vectors for {len(self._node_id_to_query_vector)} nodes")
-
-        # 构建候选索引（仅训练集中有标签的）
+        # ✅ 构建索引（仅训练集节点）
         node_features = []
         node_indices = []
         for node_id, agent in self.nodes.items():
             if agent.state.label is not None:
-                vec = self._node_id_to_query_vector.get(node_id)
+                vec = node_embeddings.get(node_id)
                 if vec is not None:
                     node_features.append(vec)
                     node_indices.append(node_id)
@@ -106,56 +92,16 @@ class AgenticGraph:
         self._feature_idx_to_node_id = {i: nid for i, nid in enumerate(node_indices)}
 
         if len(node_features) > 0:
-            self._node_features_index = NearestNeighbors(n_neighbors=min(10, len(node_features)), algorithm='ball_tree')
-            self._node_features_index = NearestNeighbors(n_neighbors=min(10, len(node_features)), metric='cosine')
+            self._node_features_index = NearestNeighbors(
+                n_neighbors=min(10, len(node_features)),
+                metric='cosine'
+            )
             self._node_features_index.fit(np.stack(node_features))
             print(f"✅ RAG index built with {len(node_features)} labeled candidates")
-            print(f"✅ Query vector count: {len(self._node_id_to_query_vector)}")
-            print(f"✅ Labeled candidate count: {len(self._feature_idx_to_node_id)}")
         else:
-            print("⚠️ No valid labeled nodes for building RAG index")
+            print("⚠️ No valid labeled nodes for RAG index")
             self._node_features_index = None
 
-
-    # 暂不使用词袋向量，使用节点ID
-    # def _text_to_bow(self, text: str) -> np.ndarray:
-    #     """
-    #     将文本转换为词袋向量表示。
-    #     这是一个简化的实现，在实际应用中，你可能需要更复杂的文本处理。
-        
-    #     Args:
-    #         text: 输入文本
-            
-    #     Returns:
-    #         词袋向量
-    #     """
-    #     try:
-    #         import numpy as np
-            
-    #         # 简单起见，我们假设已经有一个预定义的词汇表
-    #         # 在实际应用中，你需要有一个合适的词汇表和向量化逻辑
-            
-    #         # 特征维度应该与cora.content中的特征数匹配
-    #         feature_dim = 1433  # Cora数据集的词袋特征维度
-            
-    #         # 创建一个全零向量
-    #         bow_vector = np.zeros(feature_dim)
-            
-    #         # 如果text是实际文本，我们可以用词汇表将其转换为词袋向量
-    #         # 但这需要知道原始词汇表，这里简化处理
-            
-    #         # 简单起见，我们将文本的哈希值映射到特征维度上
-    #         words = text.lower().split()
-    #         for word in words:
-    #             idx = hash(word) % feature_dim
-    #             bow_vector[idx] = 1.0
-                
-    #         return bow_vector
-    #     except Exception as e:
-    #         print(f"⚠️ Failed to convert text to BOW: {e}")
-    #         # 返回一个默认向量
-    #         import numpy as np
-    #         return np.zeros(1433)
 
     def rag_query(self, query_id: int, top_k: int = 5) -> Dict[int, Dict[str, Any]]:
         try:

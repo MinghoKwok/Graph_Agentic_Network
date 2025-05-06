@@ -287,7 +287,8 @@ Here are the definitions of the labels, which are helpful for you to predict you
         prompt += """
 
     ## Planning Your Steps
-    Think like a planner: first gather evidence (retrieve, rag_query), then make a decision (update), and finally help others (broadcast).
+    1. If you have a predicted label, you can choose to broadcast it or continue to retrieve nodes with labels.
+    2. If you don't have a predicted label, think like a planner: first gather evidence (retrieve, rag_query), then make a decision (update), and finally help others (broadcast).
     Think about the following:
     - If you cannot predict your label yet, need more context to predict your label → `retrieve`, `rag_query`
     - Are you confident to predict your label? → `update`
@@ -296,6 +297,7 @@ Here are the definitions of the labels, which are helpful for you to predict you
     - If any neighbors already have predicted labels, it is recommended to retrieve from them first.
     """
 
+        print("📤 [DEBUG] Prompt being sent to LLM:\n", prompt)
         return prompt
 
     def _format_layer_prompt(self, context: Dict[str, Any]) -> str:
@@ -355,7 +357,6 @@ class LLMInterface(BaseLLMInterface):
             raise ValueError(f"Unsupported LLM_BACKEND: {self.backend}")
 
     def generate_response(self, prompt: str) -> str:
-        # print("📤 [DEBUG] Prompt being sent to LLM:\n", prompt)
         return self.impl.generate_response(prompt)
 
     def decide_action(self, context: Dict[str, Any]) -> Dict[str, Any]:
