@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 814 | Layer 0 | 20250506_213625:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_2] "Word Perfect Corp. LIA: A Location-Independent Transformation for ASOCS Adaptive Algorithm 2 Abstract: Most Artificial Neural Networks (ANNs) have a f..."
+2. [Label_5] "Learning Evolving Concepts Using Partial-Memory Approach  Machine Learning and Inference Laboratory Abstract: This paper addresses the problem of lear..."
+3. [Label_2] "Two Constructive Methods for Designing Compact Feedforward Networks of Threshold Units Abstract: We propose two algorithms for constructing and traini..."
+4. [Label_4] "Reinforcement Learning with Modular Neural Networks for Control Abstract: Reinforcement learning methods can be applied to control problems with the o..."
+5. [Label_0] "In Machine Learning: A Multistrategy Approach, Vol. IV  Macro and Micro Perspectives of Multistrategy Learning Abstract: Machine learning techniques a..."
+
+Text to classify:
+"A VLSI Implementation of a Parallel, Self-Organizing Learning Model
+Abstract: This paper presents a VLSI implementation of the Priority Adaptive Self-Organizing Concurrent System (PASOCS) learning model that is built using a multi-chip module (MCM) substrate. Many current hardware implementations of neural network learning models are direct implementations of classical neural network structures|a large number of simple computing nodes connected by a dense number of weighted links. PASOCS is one of a class of ASOCS (Adaptive Self-Organizing Concurrent System) connectionist models whose overall goal is the same as classical neural networks models, but whose functional mechanisms differ significantly. This model has potential application in areas such as pattern recognition, robotics, logical inference, and dynamic control."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

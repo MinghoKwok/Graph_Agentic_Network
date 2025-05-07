@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 268 | Layer 0 | 20250506_212826:
+```json
+[
+  {"action_type": "rag_query", "query": "Hidden Markov Model in bioinformatics", "top_k": 10}
+]
+```
+================================================================================

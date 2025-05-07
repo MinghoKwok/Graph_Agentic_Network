@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 578 | Layer 0 | 20250506_212354:
+```json
+[
+  {"action_type": "rag_query", "query": "utility problem in speedup learning", "top_k": 10}
+]
+```
+================================================================================

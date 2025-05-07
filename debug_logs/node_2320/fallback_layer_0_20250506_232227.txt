@@ -1,0 +1,56 @@
+📤 [DEBUG] Fallback Prompt for Node 2320 | Layer 0 | 20250506_232227:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 2 examples
+- Label_2: 2 examples
+- Label_3: 1 examples
+- Label_4: 1 examples
+- Label_6: 5 examples
+
+Memory:
+1. [Label_6] "The Weighted Majority Algorithm Abstract: fl This research was primarily conducted while this author was at the University of Calif. at Santa Cruz wit..."
+2. [Label_3] "Logarithmic Time Parallel Bayesian Inference Abstract: I present a parallel algorithm for exact probabilistic inference in Bayesian networks. For poly..."
+3. [Label_6] "Decision Tree Induction: How Effective is the Greedy Heuristic? Abstract: Most existing decision tree systems use a greedy approach to induce trees | ..."
+4. [Label_6] "PAC Learning Intersections of Halfspaces with Membership Queries (Extended Abstract) Abstract:"
+5. [Label_1] "The Application of a Parallel Genetic Algorithm to the n=m=P=C max Flowshop Problem Abstract: Hard combinatorial problems in sequencing and scheduling..."
+
+Text to classify:
+"Inserting the best known bounds for weighted bipar tite matching [11], with 1=2 p polynomial-time
+Abstract: we apply the reduction to their two core children, the total sum of their matching weights becomes O(n), and if for each comparison of a spine node and a critical node we apply the reduction to the core child of the spine node, the total sum of their matching weights becomes O(n). With regards to the O( 2 ) comparisons of two critical nodes, their sum cannot exceed O( 2 n) in total weight. Thus, since we have a total of O(n) edges involved in the matchings, in time O(n), we can reduce the total sum of the matching weights to O( 2 n). Theorem 6.6 Let M : IR 1 ! IR be a monotone function bounding the time complexity UWBM. Moreover, let M satisfy that M (x) = x 1+" f(x), where " 0 is a constant, f (x) = O(x o(1) ), f is monotone, and for some constants b 1 ; b 2 , 8x; y b 1 : f(xy) b 2 f (x)f (y). Then, with = " p in time O(n 1+o(1) + M (n)). Proof: We spend O(n polylog n + time(UWBM(k 2 n))) on the matchings. So, by Theorem 5.10, we have that Comp-Core-Trees can be computed in time O(n polylog n + time(UWBM(k 2 n))). Applying Theo 4 = 16, we get Corollary 6.7 MAST is computable in time O(n 1:5 log n). [4] W.H.E. Day. Computational complexity of inferring phylogenies from dissimilarity matrices. Bulletin of Mathematical Biology, 49(4):461-467, 1987. [5] M. Farach, S. Kannan, and T. Warnow. A robust model for finding optimal evolutionary trees. Al-gorithmica, 1994. In press. See also STOC '93."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1582 | Layer 0 | 20250506_223731:
+```json
+[
+  {"action_type": "rag_query", "query": "Efficient Learning of Selective Bayesian Network Classifiers", "top_k": 10}
+]
+```
+================================================================================

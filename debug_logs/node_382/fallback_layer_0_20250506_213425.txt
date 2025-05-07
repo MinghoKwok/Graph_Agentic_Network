@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 382 | Layer 0 | 20250506_213425:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 2 examples
+- Label_2: 1 examples
+- Label_5: 6 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_5] "Machine Learning and Inference Abstract: Constructive induction divides the problem of learning an inductive hypothesis into two intertwined searches:..."
+2. [Label_6] "Decision Tree Induction: How Effective is the Greedy Heuristic? Abstract: Most existing decision tree systems use a greedy approach to induce trees | ..."
+3. [Label_6] "Constructing Conjunctions using Systematic Search on Decision Trees Abstract: This paper investigates a dynamic path-based method for constructing con..."
+4. [Label_0] "A systematic description of greedy optimisation algorithms for cost sensitive generalisation Abstract: This paper defines a class of problems involvin..."
+5. [Label_5] "Pac-Learning Recursive Logic Programs: Efficient Algorithms Abstract: We present algorithms that learn certain classes of function-free recursive logi..."
+
+Text to classify:
+"Learning Decision Lists Using Homogeneous Rules
+Abstract: A decision list is an ordered list of conjunctive rules (?). Inductive algorithms such as AQ and CN2 learn decision lists incrementally, one rule at a time. Such algorithms face the rule overlap problem | the classification accuracy of the decision list depends on the overlap between the learned rules. Thus, even though the rules are learned in isolation, they can only be evaluated in concert. Existing algorithms solve this problem by adopting a greedy, iterative structure. Once a rule is learned, the training examples that match the rule are removed from the training set. We propose a novel solution to the problem: composing decision lists from homogeneous rules, rules whose classification accuracy does not change with their position in the decision list. We prove that the problem of finding a maximally accurate decision list can be reduced to the problem of finding maximally accurate homogeneous rules. We report on the performance of our algorithm on data sets from the UCI repository and on the MONK's problems."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

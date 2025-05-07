@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 945 | Layer 0 | 20250506_220409:
+```json
+[
+  {"action_type": "rag_query", "query": "structured representation of complex stochastic systems", "top_k": 10}
+]
+```
+================================================================================

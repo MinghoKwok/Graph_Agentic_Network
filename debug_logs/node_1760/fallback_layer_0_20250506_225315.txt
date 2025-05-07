@@ -1,0 +1,54 @@
+📤 [DEBUG] Fallback Prompt for Node 1760 | Layer 0 | 20250506_225315:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 2 examples
+- Label_2: 7 examples
+- Label_5: 2 examples
+
+Memory:
+1. [Label_2] "Word Perfect Corp. LIA: A Location-Independent Transformation for ASOCS Adaptive Algorithm 2 Abstract: Most Artificial Neural Networks (ANNs) have a f..."
+2. [Label_2] "ce: [Tex89] <institution> Texas Instruments. </institution> <note> TMS320C30 C Compiler Reference Guide, 1989. Document Title: SPRU034A. </note> Abstr..."
+3. [Label_5] "THE EXPANDABLE SPLIT WINDOW PARADIGM FOR EXPLOITING FINE-GRAIN PARALLELISM Abstract: We propose a new processing paradigm, called the Expandable Split..."
+4. [Label_2] "Fast Bounded Smooth Regression with Lazy Neural Trees Abstract: We propose the lazy neural tree (LNT) as the appropriate architecture for the realizat..."
+5. [Label_1] "Growing neural networks Abstract: nan"
+
+Text to classify:
+"Parallel Environments for Implementing Neural Networks
+Abstract: As artificial neural networks (ANNs) gain popularity in a variety of application domains, it is critical that these models run fast and generate results in real time. Although a number of implementations of neural networks are available on sequential machines, most of these implementations require an inordinate amount of time to train or run ANNs, especially when the ANN models are large. One approach for speeding up the implementation of ANNs is to implement them on parallel machines. This paper surveys the area of parallel environments for the implementations of ANNs, and prescribes desired characteristics to look for in such implementations."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

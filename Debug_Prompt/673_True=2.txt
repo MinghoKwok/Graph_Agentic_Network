@@ -1,0 +1,51 @@
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step:
+
+Analyze the Current Node Text: Identify its primary topics, specific application domain, the precise problem being solved within that domain, and critically, any explicitly stated core methodologies, algorithms, or theoretical frameworks. Note whether these methodologies are presented as general algorithmic paradigms (e.g., "Bayesian," "Deep Learning," "Ensemble Method") or as techniques highly specialized for the identified application domain (e.g., "an algorithm for DNA sequence alignment," "a heuristic for protein motif discovery").
+Analyze Memory Examples: For each label, understand its primary application domain(s), the types of specific problems addressed in its examples, and the nature of any underlying methodologies (i.e., are they general paradigms or domain-specific techniques relevant to that label's domain focus?).
+Compare and Weigh Evidence:
+A. Prioritize Domain and Specific Problem Alignment: The most critical factor is the alignment of the current text's specific application domain and the precise problem it addresses with those reflected in a label's examples. A strong match here forms the primary basis for classification.
+B. Evaluate Methodological Congruence within Context:
+Domain-Specific Techniques: If the current text's core methodology is a technique specialized for its application domain (e.g., "Trace-Evidence for DNA consensus"), and a label's examples showcase other specialized techniques for closely related problems within that SAME primary application domain (e.g., Label_2's "Family Pairwise Search for homology"), this constitutes a very strong indicator for that label. The shared context of applying specialized computational solutions to problems within the same specific field is key.
+General Algorithmic Paradigms: If the current text employs or discusses a general algorithmic paradigm (e.g., "improves on majority-voting," "uses a Bayesian approach"), consider this carefully.
+Does a label's examples apply this same general paradigm to solve similar types of problems within a closely related application domain as the current text? This can be a good supporting indicator.
+Crucial Distinction (Avoiding Previous Error): If interpreting the methodology as a "general paradigm" (like "it's about voting/ensembling") pulls the classification towards a label focused on such general methods (e.g., Label_6), BUT another label (e.g., Label_2) offers a much stronger, direct, and specific match in terms of both the application domain AND the type of problem being solved (e.g., both are specific algorithms for DNA sequence analysis), then the label with the stronger, specific domain and problem alignment (Label_2 in the example) should be heavily favored. The primary contribution of the work is often best understood as an advancement within its specialized field, even if it leverages or refines broader concepts.
+C. Holistic Coherence: The chosen label must be the most holistically supported. The alignment from point 3.A (Application Domain and Specific Problem) is paramount. Methodological similarity (point 3.B) should primarily serve to reinforce this, especially when comparing specialized techniques within that shared domain, rather than allowing a general methodological interpretation to override a clear domain-specific fit.
+Avoid Over-reliance: Do not rely solely on isolated keywords (like "system" or "accuracy," or even abstract methodological terms if used superficially without deep discussion of their theoretical underpinnings vs. domain application). The primary contribution, its focus (e.g., a new specific algorithm for a known domain problem vs. a new general theory), and the depth of discussion regarding any methodology in the context of the application domain are key.
+Example 1:
+Memory:
+
+[Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+[Label_1] "Neural networks for text classification."
+[Label_2] "Bayesian models for probabilistic inference." Current Node Text: "Markov models for speech sequence alignment." Prediction: Label_2 Reasoning: The text discusses Markov models (methodology) for speech sequence alignment (specific problem/domain). Label_2 examples share the Markov model methodology and apply it to related sequence analysis/probabilistic inference tasks. Strong domain and methodological overlap.
+Example 2:
+Memory:
+
+[Label_2] "Hidden Markov models for biological sequence alignment."
+[Label_6] "Improving ensemble model selection with probabilistic voting."
+[Label_2] "Bayesian inference for protein sequence homology detection."
+[Label_6] "Boosted decision trees for structured data classification."
+[Label_3] "Non-reversible Markov chains for MCMC sampling." Current Node Text: "Homology detection in genetic sequences using Bayesian Markov modeling." Prediction: Label_2 Reasoning: Current node: Domain = genetic sequences (biology), Specific Problem = homology detection, Methodology = Bayesian Markov modeling. Label_2 examples show "biological sequence alignment" (domain, related problem) with "Hidden Markov models" (methodology) AND "protein sequence homology detection" (domain, exact problem) with "Bayesian inference" (methodology). This is a very strong match in domain, specific problem, and constituent methodological elements, all specialized within bioinformatics. Label_6 is about general ensemble/classification methods, less specific to this biological problem.
+Your Turn:
+Memory:
+
+[Label: Label_2] "Homology Detection via Family Pairwise Search a straightforw..."
+[Label: Label_2] "The megaprior heuristic for discovering protein sequence pat..."
+[Label: Label_6] "The Weighted Majority Algorithm Abstract: fl This research w..."
+[Label: Label_3] "Analysis of a Non-Reversible Markov Chain Sampler Abstract: ..."
+[Label: Label_2] "Optimal Alignments in Linear Space using Automaton-derived C..."
+Text to classify:
+"Increasing Consensus Accuracy in DNA Fragment Assemblies by Incorporating Fluorescent Trace Representations
+Abstract: We present a new method for determining the consensus sequence in DNA fragment assemblies. The new method, Trace-Evidence, directly incorporates aligned ABI trace information into consensus calculations via our previously described representation, TraceData Classifications. The new method extracts and sums evidence indicated by the representation to determine consensus calls. Using the Trace-Evidence method results in automatically produced consensus sequences that are more accurate and less ambiguous than those produced with standard majority- voting methods. Additionally, these improvements are achieved with less coverage than required by the standard methods using Trace-Evidence and a coverage of only three, error rates are as low as those with a coverage of over ten sequences."
+
+Please think step by step: First analyze memory examples and their labels, then compare them to the input text. Identify the most semantically similar memory items and explain why. Finally, decide which label best matches and explain your reasoning.
+⚠️ Don't decide the label based on the amount of labels in memory simply!
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+

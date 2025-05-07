@@ -1,0 +1,54 @@
+📤 [DEBUG] Fallback Prompt for Node 604 | Layer 0 | 20250506_214606:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_1: 1 examples
+- Label_2: 3 examples
+- Label_3: 4 examples
+- Label_4: 1 examples
+- Label_6: 1 examples
+
+Memory:
+1. [Label_3] "BAYESIAN TIME SERIES: Models and Computations for the Analysis of Time Series in the Physical Sciences Abstract: This articles discusses developments ..."
+2. [Label_2] "Tau Net: A Neural Network for Modeling Temporal Variability Abstract: The ability to handle temporal variation is important when dealing with real-wor..."
+3. [Label_4] "Machine Learning Research: Four Current Directions Abstract: Machine Learning research has been making great progress is many directions. This article..."
+4. [Label_3] "Hidden Markov decision trees Abstract: We study a time series model that can be viewed as a decision tree with Markov temporal structure. The model is..."
+5. [Label_1] "Unsupervised Learning with the Soft-Means Algorithm Abstract: This note describes a useful adaptation of the `peak seeking' regime used in unsupervise..."
+
+Text to classify:
+"First experiments using a mixture of nonlinear experts for time series prediction
+Abstract: This paper investigates the advantages and disadvantages of the mixture of experts (ME) model (introduced to the connectionist community in [JJNH91] and applied to time series analysis in [WM95]) on two time series where the dynamics is well understood. The first series is a computer-generated series, consisting of a mixture between a noise-free process (the quadratic map) and a noisy process (a composition of a noisy linear autoregressive and a hyperbolic tangent). There are three main results: (1) the ME model produces significantly better results than single networks; (2) it discovers the regimes correctly and also allows us to characterize the sub-processes through their variances. (3) due to the correct matching of the noise level of the model to that of the data it avoids overfitting. The second series is the laser series used in the Santa Fe competition; the ME model also obtains excellent out-of-sample predictions, allows for analysis and shows no overfitting."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

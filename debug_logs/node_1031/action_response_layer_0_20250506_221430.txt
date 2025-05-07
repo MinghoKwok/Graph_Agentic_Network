@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1031 | Layer 0 | 20250506_221430:
+```json
+[
+  {"action_type": "rag_query", "query": "protein secondary structure prediction", "top_k": 10}
+]
+```
+================================================================================

@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 422 | Layer 0 | 20250506_211555:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_4] "A Teaching Strategy for Memory-Based Control Abstract: Combining different machine learning algorithms in the same system can produce benefits above a..."
+2. [Label_1] "Fitness Landscapes and Difficulty in Genetic Programming Abstract: The structure of the fitness landscape on which genetic programming operates is exa..."
+3. [Label_1] "Incremental Co-evolution of Organisms: A New Approach for Optimization and Discovery of Strategies Abstract: In the field of optimization and machine ..."
+4. [Label_4] "Machine Learning Research: Four Current Directions Abstract: Machine Learning research has been making great progress is many directions. This article..."
+5. [Label_1] "A STUDY OF CROSSOVER OPERATORS IN GENETIC PROGRAMMING Abstract: Holland's analysis of the sources of power of genetic algorithms has served as guidanc..."
+
+Text to classify:
+"Genetic Self-Learning
+Abstract: Evolutionary Algorithms are direct random search algorithms which imitate the principles of natural evolution as a method to solve adaptation (learning) tasks in general. As such they have several features in common which can be observed on the genetic and phenotypic level of living species. In this paper the algorithms' capability of adaptation or learning in a wider sense is demonstrated, and it is focused on Genetic Algorithms to illustrate the learning process on the population level (first level learning), and on Evolution Strategies to demonstrate the learning process on the meta-level of strategy parameters (second level learning)."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

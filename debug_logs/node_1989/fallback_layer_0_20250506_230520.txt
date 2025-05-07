@@ -1,0 +1,54 @@
+📤 [DEBUG] Fallback Prompt for Node 1989 | Layer 0 | 20250506_230520:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 6 examples
+- Label_5: 4 examples
+- Label_6: 1 examples
+
+Memory:
+1. [Label_0] "Formalising the knowledge content of case memory systems Abstract: Discussions of case-based reasoning often reflect an implicit assumption that a cas..."
+2. [Label_0] "AN INCREMENTAL LEARNING MODEL FOR COMMONSENSE REASONING Abstract:"
+3. [Label_6] "An Interactive Model of Teaching Abstract: Previous teaching models in the learning theory community have been batch models. That is, in these models ..."
+4. [Label_5] "on Inductive Logic Programming (ILP-95) Inducing Logic Programs without Explicit Negative Examples Abstract: This paper presents a method for learning..."
+5. [Label_0] "Modeling Case-based Planning for Repairing Reasoning Failures Abstract: One application of models of reasoning behavior is to allow a reasoner to intr..."
+
+Text to classify:
+"Participating in Instructional Dialogues: Finding and Exploiting Relevant Prior Explanations
+Abstract: In this paper we present our research on identifying and modeling the strategies that human tutors use for integrating previous explanations into current explanations. We have used this work to develop a computational model that has been partially implemented in an explanation facility for an existing tutoring system known as SHERLOCK. We are implementing a system that uses case-based reasoning to identify previous situations and explanations that could potentially affect the explanation being constructed. We have identified heuristics for constructing explanations that exploit this information in ways similar to what we have observed in When human tutors engage in dialogue, they freely exploit all aspects of the mutually known context, including the previous discourse. Utterances that do not draw on previous discourse seem awkward, unnatural, or even incoherent. Previous discourse must be taken into account in order to relate new information effectively to recently conveyed material, and to avoid repeating old material that would distract the student from what is new. Thus, strategies for using the dialogue history in generating explanations are of great importance to research in natural language generation for tutorial applications. The goal of our work is to produce a computational model of the effects of discourse context on explanations in instructional dialogues, and to implement this model in an intelligent tutoring system that maintains a dialogue history and uses it in planning its explanations. Based on a study of human-human instructional dialogues, we have developed a taxonomy that classifies the types of contextual effects that occur in our data according to the explanatory functions they serve (16). In this paper, we focus on one important category from our taxonomy: situations in which the tutor explicitly refers to a previous explanation in order to point out similarities (differences) between the material currently being explained and material presented in earlier explanation(s). We are implementing a system that uses case-based reasoning to identify previous situations and explanations that could potentially affect the explanation being constructed. We have identified heuristics for constructing explanations that exploit this information in ways similar to what we have observed in instructional dialogues produced by human tutors. By building a computer system that has this capability as an optional facility that can be enabled or disabled, we will be able to systematically evaluate our hypothesis that this is a useful tutoring strategy. In order to test our hypotheses about the effects of previous discourse on explanations, we are building an explanation component for an existing intelligent training system, Sherlock (11). Sherlock is an intelligent coached practice environment for training avionics technicians to troubleshoot complex electronic equipment. Using Sherlock, trainees solve problems with minimal tutor interaction and then review their troubleshooting behavior in a post-problem reflective follow-up session (rfu) where the tutor instructional dialogues produced by human tutors."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

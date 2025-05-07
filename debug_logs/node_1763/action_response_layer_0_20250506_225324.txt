@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1763 | Layer 0 | 20250506_225324:
+```json
+[
+  {"action_type": "rag_query", "query": "connectionism in cognitive science", "top_k": 10}
+]
+```
+================================================================================

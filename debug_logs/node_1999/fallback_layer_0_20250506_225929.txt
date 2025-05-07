@@ -1,0 +1,51 @@
+📤 [DEBUG] Fallback Prompt for Node 1999 | Layer 0 | 20250506_225929:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 6 examples
+- Label_2: 1 examples
+- Label_5: 4 examples
+
+Memory:
+1. [Label_1] "A STUDY OF CROSSOVER OPERATORS IN GENETIC PROGRAMMING Abstract: Holland's analysis of the sources of power of genetic algorithms has served as guidanc..."
+2. [Label_1] "A NN Algorithm for Boolean Satisfiability Problems Abstract: Satisfiability (SAT) refers to the task of finding a truth assignment that makes an arbit..."
+3. [Label_5] "Abstract Abstract: This paper is a scientific comparison of two code generation techniques with identical goals generation of the best possible softwa..."
+4. [Label_1] "The Application of a Parallel Genetic Algorithm to the n=m=P=C max Flowshop Problem Abstract: Hard combinatorial problems in sequencing and scheduling..."
+5. [Label_1] "Type Inheritance in Strongly Typed Genetic Programming Abstract: This paper appears as chapter 18 of Kenneth E. Kinnear, Jr. and Peter J. Angeline, ed..."
+
+Text to classify:
+"Evolutionary Training of CLP-Constrained Neural Networks
+Abstract: The paper is concerned with the integration of constraint logic programming systems (CLP) with systems based on genetic algorithms (GA). The resulting framework is tailored for applications that require a first phase in which a number of constraints need to be generated, and a second phase in which an optimal solution satisfying these constraints is produced. The first phase is carried by the CLP and the second one by the GA. We present a specific framework where ECL i PS e (ECRC Common Logic Programming System) and GENOCOP (GEnetic algorithm for Numerical Optimization for COnstrained Problems) are integrated in a framework called CoCo (COmputational intelligence plus COnstraint logic programming). The CoCo system is applied to the training problem for neural networks. We consider constrained networks, e.g. neural networks with shared weights, constraints on the weights for example domain constraints for hardware implementation etc. Then ECL i PS e is used to generate the chromosome representation together with other constraints which ensure, in most cases, that each network is specified by exactly one chromosome. Thus the problem becomes a constrained optimization problem, where the optimization criterion is to optimize the error of the network, and GENOCOP is used to find an optimal solution. Note: The work of the second author was partially supported by SION, a department of the NWO, the National Foundation for Scientific Research. This work has been carried out while the third author was visiting CWI, Amsterdam, and the fourth author was visiting Leiden University."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

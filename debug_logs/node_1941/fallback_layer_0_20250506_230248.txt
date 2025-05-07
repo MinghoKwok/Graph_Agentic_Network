@@ -1,0 +1,54 @@
+📤 [DEBUG] Fallback Prompt for Node 1941 | Layer 0 | 20250506_230248:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_2: 1 examples
+- Label_3: 9 examples
+- Label_4: 1 examples
+
+Memory:
+1. [Label_3] "Analysis of a Non-Reversible Markov Chain Sampler Abstract: Technical Report BU-1385-M, Biometrics Unit, Cornell University Abstract We analyse the co..."
+2. [Label_3] "On Convergence of the EM Algorithm and the Gibbs Sampler  SUMMARY Abstract: In this article we investigate the relationship between the two popular al..."
+3. [Label_3] "Analysis of the Gibbs sampler for a model related to James-Stein estimators Abstract: Summary. We analyze a hierarchical Bayes model which is related ..."
+4. [Label_3] "Monte Carlo Implementation of Gaussian Process Models for Bayesian Regression and Classification Abstract: Technical Report No. 9702, Department of St..."
+5. [Label_3] "On the Markov Equivalence of Chain Graphs, Undirected Graphs, and Acyclic Digraphs Abstract: Graphical Markov models use undirected graphs (UDGs), acy..."
+
+Text to classify:
+"SUPPRESSING RANDOM WALKS IN MARKOV CHAIN MONTE CARLO USING ORDERED OVERRELAXATION
+Abstract: Markov chain Monte Carlo methods such as Gibbs sampling and simple forms of the Metropolis algorithm typically move about the distribution being sampled via a random walk. For the complex, high-dimensional distributions commonly encountered in Bayesian inference and statistical physics, the distance moved in each iteration of these algorithms will usually be small, because it is difficult or impossible to transform the problem to eliminate dependencies between variables. The inefficiency inherent in taking such small steps is greatly exacerbated when the algorithm operates via a random walk, as in such a case moving to a point n steps away will typically take around n 2 iterations. Such random walks can sometimes be suppressed using "overrelaxed" variants of Gibbs sampling (a.k.a. the heatbath algorithm), but such methods have hitherto been largely restricted to problems where all the full conditional distributions are Gaussian. I present an overrelaxed Markov chain Monte Carlo algorithm based on order statistics that is more widely applicable. In particular, the algorithm can be applied whenever the full conditional distributions are such that their cumulative distribution functions and inverse cumulative distribution functions can be efficiently computed. The method is demonstrated on an inference problem for a simple hierarchical Bayesian model."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

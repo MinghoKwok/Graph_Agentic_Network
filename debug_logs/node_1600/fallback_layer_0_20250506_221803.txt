@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1600 | Layer 0 | 20250506_221803:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_2] "Two Constructive Methods for Designing Compact Feedforward Networks of Threshold Units Abstract: We propose two algorithms for constructing and traini..."
+2. [Label_1] "Growing neural networks Abstract: nan"
+3. [Label_2] "Tau Net: A Neural Network for Modeling Temporal Variability Abstract: The ability to handle temporal variation is important when dealing with real-wor..."
+4. [Label_4] "Generalization in Reinforcement Learning: Safely Approximating the Value Function Abstract: To appear in: G. Tesauro, D. S. Touretzky and T. K. Leen, ..."
+5. [Label_2] "Learning Symbolic Rules Using Artificial Neural Networks Abstract: A distinct advantage of symbolic learning algorithms over artificial neural network..."
+
+Text to classify:
+"First-Order vs. Second-Order Single Layer Recurrent Neural Networks
+Abstract: We examine the representational capabilities of first-order and second-order Single Layer Recurrent Neural Networks (SLRNNs) with hard-limiting neurons. We show that a second-order SLRNN is strictly more powerful than a first-order SLRNN. However, if the first-order SLRNN is augmented with output layers of feedforward neurons, it can implement any finite-state recognizer, but only if state-splitting is employed. When a state is split, it is divided into two equivalent states. The judicious use of state-splitting allows for efficient implementation of finite-state recognizers using augmented first-order SLRNNs."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

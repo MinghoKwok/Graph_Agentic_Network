@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1919 | Layer 0 | 20250506_225517:
+```json
+[
+  {"action_type": "rag_query", "query": "Inductive Constraint Logic and machine learning", "top_k": 10}
+]
+```
+================================================================================

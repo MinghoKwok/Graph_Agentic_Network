@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1737 | Layer 0 | 20250506_222520:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_1] "Fitness Landscapes and Difficulty in Genetic Programming Abstract: The structure of the fitness landscape on which genetic programming operates is exa..."
+2. [Label_1] "Incremental Co-evolution of Organisms: A New Approach for Optimization and Discovery of Strategies Abstract: In the field of optimization and machine ..."
+3. [Label_0] "Observation and Generalisation in a Simulated Robot World Abstract: This paper describes a program which observes the behaviour of actors in a simulat..."
+4. [Label_1] "An Artificial Life Model for Investigating the Evolution of Modularity Abstract: To investigate the issue of how modularity emerges in nature, we pres..."
+5. [Label_1] "A STUDY OF CROSSOVER OPERATORS IN GENETIC PROGRAMMING Abstract: Holland's analysis of the sources of power of genetic algorithms has served as guidanc..."
+
+Text to classify:
+"A Simulation of Adaptive Agents in a Hostile Environment
+Abstract: In this paper we use the genetic programming technique to evolve programs to control an autonomous agent capable of learning how to survive in a hostile environment. In order to facilitate this goal, agents are run through random environment configurations. Randomly generated programs, which control the interaction of the agent with its environment, are recombined to form better programs. Each generation of the population of agents is placed into the Simulator with the ultimate goal of producing an agent capable of surviving any environment. The environment that an agent is presented consists of other agents, mines, and energy. The goal of this research is to construct a program which when executed will allow an agent (or agents) to correctly sense, and mark, the presence of items (energy and mines) in any environment. The Simulator determines the raw fitness of each agent by interpreting the associated program. General programs are evolved to solve this problem. Different environmental setups are presented to show the generality of the solution. These environments include one agent in a fixed environment, one agent in a fluctuating environment, and multiple agents in a fluctuating environment cooperating together. The genetic programming technique was extremely successful. The average fitness per generation in all three environments tested showed steady improvement. Programs were successfully generated that enabled an agent to handle any possible environment."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

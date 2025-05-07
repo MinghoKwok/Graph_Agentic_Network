@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 640 | Layer 0 | 20250506_214801:
+```json
+[
+  {"action_type": "rag_query", "query": "Learning in the Presence of Malicious Errors", "top_k": 10}
+]
+```
+================================================================================

@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 922 | Layer 0 | 20250506_214213:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_0] "Formalising the knowledge content of case memory systems Abstract: Discussions of case-based reasoning often reflect an implicit assumption that a cas..."
+2. [Label_5] "An intelligent search method using Inductive Logic Programming Abstract: We propose a method to use Inductive Logic Programming to give heuristic func..."
+3. [Label_1] "The Application of a Parallel Genetic Algorithm to the n=m=P=C max Flowshop Problem Abstract: Hard combinatorial problems in sequencing and scheduling..."
+4. [Label_0] "A Comparative Utility Analysis of Case-Based Reasoning and Control-Rule Learning Systems Abstract: The utility problem in learning systems occurs when..."
+5. [Label_1] "Type Inheritance in Strongly Typed Genetic Programming Abstract: This paper appears as chapter 18 of Kenneth E. Kinnear, Jr. and Peter J. Angeline, ed..."
+
+Text to classify:
+"Towards Improving Case Adaptability with a Genetic Algorithm
+Abstract: Case combination is a difficult problem in Case Based Reasoning, as sub-cases often exhibit conflicts when merged together. In our previous work we formalized case combination by representing each case as a constraint satisfaction problem, and used the minimum conflicts algorithm to systematically synthesize the global solution. However, we also found instances of the problem in which the minimum conflicts algorithm does not perform case combination efficiently. In this paper we describe those situations in which initially retrieved cases are not easily adaptable, and propose a method by which to improve case adaptability with a genetic algorithm. We introduce a fitness function that maintains as much retrieved case information as possible, while also perturbing a sub-solution to allow subsequent case combination to proceed more efficiently."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

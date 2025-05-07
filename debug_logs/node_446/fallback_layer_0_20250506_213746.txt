@@ -1,0 +1,49 @@
+📤 [DEBUG] Fallback Prompt for Node 446 | Layer 0 | 20250506_213746:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_4: 10 examples
+
+Memory:
+1. [Label_4] "Truncating Temporal Differences: On the Efficient Implementation of TD() for Reinforcement Learning Abstract: Temporal difference (TD) methods constit..."
+2. [Label_4] "Reinforcement Learning Algorithm for Partially Observable Markov Decision Problems Abstract: Increasing attention has been paid to reinforcement learn..."
+3. [Label_4] "Multi-Time Models for Reinforcement Learning Abstract: Reinforcement learning can be used not only to predict rewards, but also to predict states, i.e..."
+4. [Label_4] "A Teaching Strategy for Memory-Based Control Abstract: Combining different machine learning algorithms in the same system can produce benefits above a..."
+5. [Label_4] "Scaling Reinforcement Learning Algorithms by Learning Variable Temporal Resolution Models Abstract: The close connection between reinforcement learnin..."
+
+Text to classify:
+"H-learning: A Reinforcement Learning Method to Optimize Undiscounted Average Reward
+Abstract: In this paper, we introduce a model-based reinforcement learning method called H-learning, which optimizes undiscounted average reward. We compare it with three other reinforcement learning methods in the domain of scheduling Automatic Guided Vehicles, transportation robots used in modern manufacturing plants and facilities. The four methods differ along two dimensions. They are either model-based or model-free, and optimize discounted total reward or undiscounted average reward. Our experimental results indicate that H-learning is more robust with respect to changes in the domain parameters, and in many cases, converges in fewer steps to better average reward per time step than all the other methods. An added advantage is that unlike the other methods it does not have any parameters to tune."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

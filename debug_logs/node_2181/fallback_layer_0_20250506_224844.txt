@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 2181 | Layer 0 | 20250506_224844:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_2] "Separating hippocampal maps  Spatial Functions of the Hippocampal Formation and the Abstract: The place fields of hippocampal cells in old animals som..."
+2. [Label_3] "Maximum Likelihood and Covariant Algorithms for Independent Component Analysis somewhat more biologically plausible, involving no Abstract: Bell and S..."
+3. [Label_3] "IMPROVING THE MEAN FIELD APPROXIMATION VIA THE USE OF MIXTURE DISTRIBUTIONS Abstract: Mean field methods provide computationally efficient approximati..."
+4. [Label_2] "Modeling Cortical Plasticity Based on Adapting Lateral Interaction Abstract: A neural network model called LISSOM for the cooperative self-organizatio..."
+5. [Label_2] "Theory of Correlations in Stochastic Neural Networks Abstract: One of the main experimental tools in probing the interactions between neurons has been..."
+
+Text to classify:
+"Statistical mechanics of neocortical interactions: Training and testing canonical momenta indicators of EEG
+Abstract: A series of papers has developed a statistical mechanics of neocortical interactions (SMNI), deriving aggregate behavior of experimentally observed columns of neurons from statistical electrical-chemical properties of synaptic interactions. While not useful to yield insights at the single neuron level, SMNI has demonstrated its capability in describing large-scale properties of short-term memory and electroencephalographic (EEG) systematics. The necessity of including nonlinear and stochastic structures in this development has been stressed. Sets of EEG and evoked potential data were fit, collected to investigate genetic predispositions to alcoholism and to extract brain signatures of short-term memory. Adaptive Simulated Annealing (ASA), a global optimization algorithm, was used to perform maximum likelihood fits of Lagrangians defined by path integrals of multivariate conditional probabilities. Canonical momenta indicators (CMI) are thereby derived for individual's EEG data. The CMI give better signal recognition than the raw data, and can be used to advantage as correlates of behavioral states. These results give strong quantitative support for an accurate intuitive picture, portraying neocortical interactions as having common algebraic or physics mechanisms that scale across quite disparate spatial scales and functional or behavioral phenomena, i.e., describing interactions among neurons, columns of neurons, and regional masses of neurons. This paper adds to these previous investigations two important aspects, a description of how the CMI may be used in source localization, and calculations using previously ASA-fitted parameters in out-of-sample data."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

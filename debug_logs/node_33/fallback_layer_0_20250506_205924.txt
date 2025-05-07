@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 33 | Layer 0 | 20250506_205924:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_2] "A Mixture of Experts Model Exhibiting Prosopagnosia Abstract: A considerable body of evidence from prosopagnosia, a deficit in face recognition dissoc..."
+2. [Label_3] "Maximum Likelihood and Covariant Algorithms for Independent Component Analysis somewhat more biologically plausible, involving no Abstract: Bell and S..."
+3. [Label_6] "Parity: The Problem that Won't Go Away Abstract: It is well-known that certain learning methods (e.g., the perceptron learning algorithm) cannot acqui..."
+4. [Label_5] "Machine Learning and Inference Abstract: Constructive induction divides the problem of learning an inductive hypothesis into two intertwined searches:..."
+5. [Label_3] "Discovering Structure in Continuous Variables Using Bayesian Networks Abstract: We study Bayesian networks for continuous variables using nonlinear co..."
+
+Text to classify:
+"Learning Generative Models with the Up-Propagation Algorithm
+Abstract: Up-propagation is an algorithm for inverting and learning neural network generative models. Sensory input is processed by inverting a model that generates patterns from hidden variables using top-down connections. The inversion process is iterative, utilizing a negative feedback loop that depends on an error signal propagated by bottom-up connections. The error signal is also used to learn the generative model from examples. The algorithm is benchmarked against principal component analysis in In his doctrine of unconscious inference, Helmholtz argued that perceptions are formed by the interaction of bottom-up sensory data with top-down expectations. According to one interpretation of this doctrine, perception is a procedure of sequential hypothesis testing. We propose a new algorithm, called up-propagation, that realizes this interpretation in layered neural networks. It uses top-down connections to generate hypotheses, and bottom-up connections to revise them. It is important to understand the difference between up-propagation and its ancestor, the backpropagation algorithm[1]. Backpropagation is a learning algorithm for recognition models. As shown in Figure 1a, bottom-up connections recognize patterns, while top-down connections propagate an error signal that is used to learn the recognition model. In contrast, up-propagation is an algorithm for inverting and learning generative models, as shown in Figure 1b. Top-down connections generate patterns from a set of hidden variables. Sensory input is processed by inverting the generative model, recovering hidden variables that could have generated the sensory data. This operation is called either pattern recognition or pattern analysis, depending on the meaning of the hidden variables. Inversion of the generative model is done iteratively, through a negative feedback loop driven by an error signal from the bottom-up connections. The error signal is also used for learning the connections experiments on images of handwritten digits."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

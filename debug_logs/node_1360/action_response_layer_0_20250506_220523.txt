@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1360 | Layer 0 | 20250506_220523:
+```json
+[
+  {"action_type": "rag_query", "query": "Learning From a Consistently Ignorant Teacher", "top_k": 10}
+]
+```
+================================================================================

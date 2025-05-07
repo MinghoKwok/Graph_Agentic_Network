@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 508 | Layer 0 | 20250506_214103:
+```json
+[
+  {"action_type": "rag_query", "query": "Machine Learning by Function Decomposition", "top_k": 10}
+]
+```
+================================================================================

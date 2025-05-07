@@ -1,0 +1,53 @@
+📤 [DEBUG] Fallback Prompt for Node 1947 | Layer 0 | 20250506_225646:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 1 examples
+- Label_2: 1 examples
+- Label_4: 1 examples
+- Label_5: 2 examples
+- Label_6: 5 examples
+
+Memory:
+1. [Label_2] "The Canonical Distortion Measure in Feature Space and 1-NN Classification Abstract: We prove that the Canonical Distortion Measure (CDM) [2, 3] is the..."
+2. [Label_5] "Learning Trees and Rules with Set-valued Features Abstract: In most learning systems examples are represented as fixed-length "feature vectors", the c..."
+3. [Label_6] "Machine Learning by Function Decomposition Abstract: We present a new machine learning method that, given a set of training examples, induces a defini..."
+4. [Label_6] "On the Induction of Intelligible Ensembles Abstract: Ensembles of classifiers, e.g. decision trees, often exhibit greater predictive accuracy than sin..."
+5. [Label_6] "Feature Generation for Sequence Categorization Abstract: The problem of sequence categorization is to generalize from a corpus of labeled sequences pr..."
+
+Text to classify:
+"Rapid Quality Estimation of Neural Network Input Representations
+Abstract: The choice of an input representation for a neural network can have a profound impact on its accuracy in classifying novel instances. However, neural networks are typically computationally expensive to train, making it difficult to test large numbers of alternative representations. This paper introduces fast quality measures for neural network representations, allowing one to quickly and accurately estimate which of a collection of possible representations for a problem is the best. We show that our measures for ranking representations are more accurate than a previously published measure, based on experiments with three difficult, real-world pattern recognition problems."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

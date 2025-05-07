@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 2327 | Layer 0 | 20250506_225624:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_3] "On Convergence of the EM Algorithm and the Gibbs Sampler  SUMMARY Abstract: In this article we investigate the relationship between the two popular al..."
+2. [Label_3] "IMPROVING THE MEAN FIELD APPROXIMATION VIA THE USE OF MIXTURE DISTRIBUTIONS Abstract: Mean field methods provide computationally efficient approximati..."
+3. [Label_3] "On Bayesian analysis of mixtures with an unknown number of components  Summary Abstract: New methodology for fully Bayesian mixture analysis is develo..."
+4. [Label_3] "Maximum Likelihood and Covariant Algorithms for Independent Component Analysis somewhat more biologically plausible, involving no Abstract: Bell and S..."
+5. [Label_1] "Unsupervised Learning with the Soft-Means Algorithm Abstract: This note describes a useful adaptation of the `peak seeking' regime used in unsupervise..."
+
+Text to classify:
+"A Comparison of New and Old Algorithms for A Mixture Estimation Problem
+Abstract: We investigate the problem of estimating the proportion vector which maximizes the likelihood of a given sample for a mixture of given densities. We adapt a framework developed for supervised learning and give simple derivations for many of the standard iterative algorithms like gradient projection and EM. In this framework, the distance between the new and old proportion vectors is used as a penalty term. The square distance leads to the gradient projection update, and the relative entropy to a new update which we call the exponentiated gradient update (EG ). Curiously, when a second order Taylor expansion of the relative entropy is used, we arrive at an update EM which, for = 1, gives the usual EM update. Experimentally, both the EM -update and the EG -update for &gt; 1 outperform the EM algorithm and its variants. We also prove a polynomial bound on the rate of convergence of the EG algorithm."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

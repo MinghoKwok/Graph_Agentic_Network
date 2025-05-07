@@ -1,0 +1,51 @@
+📤 [DEBUG] Fallback Prompt for Node 1401 | Layer 0 | 20250506_222759:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 5 examples
+- Label_1: 1 examples
+- Label_4: 7 examples
+
+Memory:
+1. [Label_0] "A Comparative Utility Analysis of Case-Based Reasoning and Control-Rule Learning Systems Abstract: The utility problem in learning systems occurs when..."
+2. [Label_0] "Formalising the knowledge content of case memory systems Abstract: Discussions of case-based reasoning often reflect an implicit assumption that a cas..."
+3. [Label_0] "Modeling Case-based Planning for Repairing Reasoning Failures Abstract: One application of models of reasoning behavior is to allow a reasoner to intr..."
+4. [Label_1] "A Search Space Analysis of the Job Shop Scheduling Problem Abstract: A computational study for the Job Shop Scheduling Problem is presented. Thereby e..."
+5. [Label_0] "Learning to Predict User Operations for Adaptive Scheduling Abstract: Mixed-initiative systems present the challenge of finding an effective level of ..."
+
+Text to classify:
+"Using Case-Based Reasoning as a Reinforcement Learning Framework for Optimization with Changing Criteria
+Abstract: Practical optimization problems such as job-shop scheduling often involve optimization criteria that change over time. Repair-based frameworks have been identified as flexible computational paradigms for difficult combinatorial optimization problems. Since the control problem of repair-based optimization is severe, Reinforcement Learning (RL) techniques can be potentially helpful. However, some of the fundamental assumptions made by traditional RL algorithms are not valid for repair-based optimization. Case-Based Reasoning (CBR) compensates for some of the limitations of traditional RL approaches. In this paper, we present a Case-Based Reasoning RL approach, implemented in the C A B I N S system, for repair-based optimization. We chose job-shop scheduling as the testbed for our approach. Our experimental results show that C A B I N S is able to effectively solve problems with changing optimization criteria which are not known to the system and only exist implicitly in a extensional manner in the case base."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1341 | Layer 0 | 20250506_222450:
+```json
+[
+  {"action_type": "rag_query", "query": "perceptrons in machine learning", "top_k": 10}
+]
+```
+================================================================================

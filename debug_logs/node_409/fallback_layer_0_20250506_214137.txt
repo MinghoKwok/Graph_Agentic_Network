@@ -1,0 +1,55 @@
+📤 [DEBUG] Fallback Prompt for Node 409 | Layer 0 | 20250506_214137:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 1 examples
+- Label_2: 2 examples
+- Label_5: 4 examples
+- Label_6: 3 examples
+
+Memory:
+1. [Label_2] "Learning Symbolic Rules Using Artificial Neural Networks Abstract: A distinct advantage of symbolic learning algorithms over artificial neural network..."
+2. [Label_6] "Error-Correcting Output Codes: A General Method for Improving Multiclass Inductive Learning Programs Abstract: Multiclass learning problems involve fi..."
+3. [Label_5] "Knowledge Acquisition with a Knowledge-Intensive Machine Learning System Abstract: In this paper, we investigate the integration of knowledge acquisit..."
+4. [Label_2] "Tau Net: A Neural Network for Modeling Temporal Variability Abstract: The ability to handle temporal variation is important when dealing with real-wor..."
+5. [Label_5] "Learning Evolving Concepts Using Partial-Memory Approach  Machine Learning and Inference Laboratory Abstract: This paper addresses the problem of lear..."
+
+Text to classify:
+"Extraction of Rules from Discrete-Time Recurrent Neural Networks
+Abstract: The extraction of symbolic knowledge from trained neural networks and the direct encoding of (partial) knowledge into networks prior to training are important issues. They allow the exchange of information between symbolic and connectionist knowledge representations. The focus of this paper is on the quality of the rules that are extracted from recurrent neural networks. Discrete-time recurrent neural networks can be trained to correctly classify strings of a regular language. Rules defining the learned grammar can be extracted from networks in the form of deterministic finite-state automata (DFA's) by applying clustering algorithms in the output space of recurrent state neurons. Our algorithm can extract different finite-state automata that are consistent with a training set from the same network. We compare the generalization performances of these different models and the trained network and we introduce a heuristic that permits us to choose among the consistent DFA's the model which best approximates the learned regular grammar. Keywords: Recurrent Neural Networks, Grammatical Inference, Regular Languages, Deterministic Finite-State Automata, Rule Extraction, Generalization Performance, Model Selection, Occam's Razor. fl Technical Report CS-TR-3465 and UMIACS-TR-95-54, University of Maryland, College Park, MD 20742. Ac cepted for publication in Neural Networks."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

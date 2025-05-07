@@ -1,0 +1,56 @@
+📤 [DEBUG] Fallback Prompt for Node 2382 | Layer 0 | 20250506_232528:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_2: 1 examples
+- Label_3: 3 examples
+- Label_5: 2 examples
+- Label_6: 4 examples
+
+Memory:
+1. [Label_5] "Machine learning in prognosis of the femoral neck fracture recovery examples, estimating attributes, explanation ability, Abstract: We compare the per..."
+2. [Label_2] "Fast Bounded Smooth Regression with Lazy Neural Trees Abstract: We propose the lazy neural tree (LNT) as the appropriate architecture for the realizat..."
+3. [Label_5] "Learning Trees and Rules with Set-valued Features Abstract: In most learning systems examples are represented as fixed-length "feature vectors", the c..."
+4. [Label_3] "Hidden Markov decision trees Abstract: We study a time series model that can be viewed as a decision tree with Markov temporal structure. The model is..."
+5. [Label_6] "Constructing Conjunctions using Systematic Search on Decision Trees Abstract: This paper investigates a dynamic path-based method for constructing con..."
+
+Text to classify:
+"Trees and Splines in Survival Analysis
+Abstract: Technical Report No. 275 Revised March 30, 1995 University of Washington Department of Statistics Seattle, Washington 98195 Abstract During the past few years several nonparametric alternatives to the Cox proportional hazards model have appeared in the literature. These methods extend techniques that are well known from regression analysis to the analysis of censored survival data. In this paper we discuss methods based on (partition) trees and (polynomial) splines, analyze two datasets using both Survival Trees[1] and HARE[2], and compare the strengths and weaknesses of the two methods. One of the strengths of HARE is that its model fitting procedure has an implicit check for proportionality of the underlying hazards model. It also provides an explicit model for the conditional hazards function, which makes it very convenient to obtain graphical summaries. On the other hand, the tree-based methods automatically partition a dataset into groups of cases that are similar in survival history. Results obtained by survival trees and HARE are often complimentary. Trees and splines in survival analysis should provide the data analyst with two useful tools when analyzing survival data."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

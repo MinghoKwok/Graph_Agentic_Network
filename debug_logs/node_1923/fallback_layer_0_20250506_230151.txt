@@ -1,0 +1,57 @@
+📤 [DEBUG] Fallback Prompt for Node 1923 | Layer 0 | 20250506_230151:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_1: 1 examples
+- Label_2: 1 examples
+- Label_3: 3 examples
+- Label_4: 1 examples
+- Label_6: 4 examples
+
+Memory:
+1. [Label_3] "Maximum Likelihood and Covariant Algorithms for Independent Component Analysis somewhat more biologically plausible, involving no Abstract: Bell and S..."
+2. [Label_3] "On Convergence of the EM Algorithm and the Gibbs Sampler  SUMMARY Abstract: In this article we investigate the relationship between the two popular al..."
+3. [Label_1] "Unsupervised Learning with the Soft-Means Algorithm Abstract: This note describes a useful adaptation of the `peak seeking' regime used in unsupervise..."
+4. [Label_6] "Efficient Algorithms for Identifying Relevant Features Abstract: This paper describes efficient methods for exact and approximate implementation of th..."
+5. [Label_6] "Pac Learning, Noise, and Geometry Abstract: This paper describes the probably approximately correct model of concept learning, paying special attentio..."
+
+Text to classify:
+"EM Algorithms for PCA and SPCA
+Abstract: I present an expectation-maximization (EM) algorithm for principal component analysis (PCA). The algorithm allows a few eigenvectors and eigenvalues to be extracted from large collections of high dimensional data. It is computationally very efficient in space and time. It also naturally accommodates missing information. I also introduce a new variant of PCA called sensible principal component analysis (SPCA) which defines a proper density model in the data space. Learning for SPCA is also done with an EM algorithm. I report results on synthetic and real data showing that these EM algorithms correctly and efficiently find the leading eigenvectors of the covariance of datasets in a few iterations using up to hundreds of thousands of datapoints in thousands of dimensions."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

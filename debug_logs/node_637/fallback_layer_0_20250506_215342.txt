@@ -1,0 +1,56 @@
+📤 [DEBUG] Fallback Prompt for Node 637 | Layer 0 | 20250506_215342:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_2: 1 examples
+- Label_3: 7 examples
+- Label_5: 1 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_3] "Algebraic Techniques for Efficient Inference in Bayesian Networks Abstract: A number of exact algorithms have been developed to perform probabilistic ..."
+2. [Label_3] "Logarithmic Time Parallel Bayesian Inference Abstract: I present a parallel algorithm for exact probabilistic inference in Bayesian networks. For poly..."
+3. [Label_3] "Discovering Structure in Continuous Variables Using Bayesian Networks Abstract: We study Bayesian networks for continuous variables using nonlinear co..."
+4. [Label_3] "Robustness Analysis of Bayesian Networks with Global Neighborhoods Abstract: This paper presents algorithms for robustness analysis of Bayesian networ..."
+5. [Label_2] "The megaprior heuristic for discovering protein sequence patterns Abstract: Several computer algorithms for discovering patterns in groups of protein ..."
+
+Text to classify:
+"Computational complexity reduction for BN2O networks using similarity of states
+Abstract: Although probabilistic inference in a general Bayesian belief network is an NP-hard problem, inference computation time can be reduced in most practical cases by exploiting domain knowledge and by making appropriate approximations in the knowledge representation. In this paper we introduce the property of similarity of states and a new method for approximate knowledge representation which is based on this property. We define two or more states of a node to be similar when the likelihood ratio of their probabilities does not depend on the instantiations of the other nodes in the network. We show that the similarity of states exposes redundancies in the joint probability distribution which can be exploited to reduce the computational complexity of probabilistic inference in networks with multiple similar states. For example, we show that a BN2O network|a two layer networks often used in diagnostic problems|can be reduced to a very close network with multiple similar states. Probabilistic inference in the new network can be done in only polynomial time with respect to the size of the network, and the results for queries of practical importance are very close to the results that can be obtained in exponential time with the original network. The error introduced by our reduction converges to zero faster than exponentially with respect to the degree of the polynomial describing the resulting computational complexity."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

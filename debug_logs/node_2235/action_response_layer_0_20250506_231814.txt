@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2235 | Layer 0 | 20250506_231814:
+```json
+[
+  {"action_type": "rag_query", "query": "Markov chains in machine learning", "top_k": 10}
+]
+```
+================================================================================

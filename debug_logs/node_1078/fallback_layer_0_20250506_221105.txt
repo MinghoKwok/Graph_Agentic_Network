@@ -1,0 +1,51 @@
+📤 [DEBUG] Fallback Prompt for Node 1078 | Layer 0 | 20250506_221105:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_3: 6 examples
+- Label_5: 2 examples
+- Label_6: 3 examples
+
+Memory:
+1. [Label_3] "Algebraic Techniques for Efficient Inference in Bayesian Networks Abstract: A number of exact algorithms have been developed to perform probabilistic ..."
+2. [Label_3] "Discovering Structure in Continuous Variables Using Bayesian Networks Abstract: We study Bayesian networks for continuous variables using nonlinear co..."
+3. [Label_3] "Logarithmic Time Parallel Bayesian Inference Abstract: I present a parallel algorithm for exact probabilistic inference in Bayesian networks. For poly..."
+4. [Label_5] "Relational Knowledge Discovery in Databases Abstract: In this paper, we indicate some possible applications of ILP or similar techniques in the knowle..."
+5. [Label_6] "Pattern Theoretic Knowledge Discovery Abstract: Future research directions in Knowledge Discovery in Databases (KDD) include the ability to extract an..."
+
+Text to classify:
+"An Algorithm for Bayesian Belief Network Construction from Data
+Abstract: This paper presents an efficient algorithm for constructing Bayesian belief networks from databases. The algorithm takes a database and an attributes ordering (i.e., the causal attributes of an attribute should appear earlier in the order) as input and constructs a belief network structure as output. The construction process is based on the computation of mutual information of attribute pairs. Given a data set which is large enough and has a DAG-Isomorphic probability distribution, this algorithm guarantees that the perfect map [1] of the underlying dependency tests. To evaluate this algorithm, we present the experimental results on three versions of the well-known ALARM network database, which has 37 attributes and 10,000 records. The correctness proof and the analysis of computational complexity are also presented. We also discuss the features of our work and relate it to previous works. model is generated, and at the same time, enjoys the time complexity of O N( ) 2 on conditional independence (CI)"
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 304 | Layer 0 | 20250506_213018:
+```json
+[
+  {"action_type": "rag_query", "query": "Boltzmann Machine learning", "top_k": 10}
+]
+```
+================================================================================

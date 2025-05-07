@@ -1,0 +1,51 @@
+📤 [DEBUG] Fallback Prompt for Node 1903 | Layer 0 | 20250506_225427:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 5 examples
+- Label_2: 2 examples
+- Label_5: 3 examples
+
+Memory:
+1. [Label_2] "Word Perfect Corp. LIA: A Location-Independent Transformation for ASOCS Adaptive Algorithm 2 Abstract: Most Artificial Neural Networks (ANNs) have a f..."
+2. [Label_2] "ce: [Tex89] <institution> Texas Instruments. </institution> <note> TMS320C30 C Compiler Reference Guide, 1989. Document Title: SPRU034A. </note> Abstr..."
+3. [Label_1] "Incremental Co-evolution of Organisms: A New Approach for Optimization and Discovery of Strategies Abstract: In the field of optimization and machine ..."
+4. [Label_5] "THE EXPANDABLE SPLIT WINDOW PARADIGM FOR EXPLOITING FINE-GRAIN PARALLELISM Abstract: We propose a new processing paradigm, called the Expandable Split..."
+5. [Label_1] "An Artificial Life Model for Investigating the Evolution of Modularity Abstract: To investigate the issue of how modularity emerges in nature, we pres..."
+
+Text to classify:
+"DNA: A New ASOCS Model With Improved Implementation Potential
+Abstract: A new class of highspeed, self-adaptive, massively parallel computing models called ASOCS (Adaptive Self-Organizing Concurrent Systems) has been proposed. Current analysis suggests that there may be problems implementing ASOCS models in VLSI using the hierarchical network structures originally proposed. The problems are not inherent in the models, but rather in the technology used to implement them. This has led to the development of a new ASOCS model called DNA (Discriminant-Node ASOCS) that does not depend on a hierarchical node structure for success. Three areas of the DNA model are briefly discussed in this paper: DNA's flexible nodes, how DNA overcomes problems other models have allocating unused nodes, and how DNA operates during processing and learning."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

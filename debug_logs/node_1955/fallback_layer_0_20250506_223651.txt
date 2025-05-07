@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1955 | Layer 0 | 20250506_223651:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_5] "Abstract Abstract: This paper is a scientific comparison of two code generation techniques with identical goals generation of the best possible softwa..."
+2. [Label_1] "17 Massively Parallel Genetic Programming Abstract: As the field of Genetic Programming (GP) matures and its breadth of application increases, the nee..."
+3. [Label_5] "THE EXPANDABLE SPLIT WINDOW PARADIGM FOR EXPLOITING FINE-GRAIN PARALLELISM Abstract: We propose a new processing paradigm, called the Expandable Split..."
+4. [Label_1] "The Application of a Parallel Genetic Algorithm to the n=m=P=C max Flowshop Problem Abstract: Hard combinatorial problems in sequencing and scheduling..."
+5. [Label_2] "ce: [Tex89] <institution> Texas Instruments. </institution> <note> TMS320C30 C Compiler Reference Guide, 1989. Document Title: SPRU034A. </note> Abstr..."
+
+Text to classify:
+"Abstract
+Abstract: This paper is a scientific comparison of two code generation techniques with identical goals generation of the best possible software pipelined code for computers with instruction level parallelism. Both are variants of modulo scheduling, a framework for generation of software pipelines pioneered by Rau and Glaser [RaGl81], but are otherwise quite dissimilar. One technique was developed at Silicon Graphics and is used in the MIPSpro compiler. This is the production compiler for SGI s systems which are based on the MIPS R8000 processor [Hsu94]. It is essentially a branchandbound enumeration of possible schedules with extensive pruning. This method is heuristic because of the way it prunes and also because of the interaction between register allocation and scheduling. 1 The second technique aims to produce optimal results by formulating the scheduling and register allocation problem as an integrated integer linear programming (ILP 1 ) problem. This idea has received much recent exposure in the literature [AlGoGa95, Feautrier94, GoAlGa94a, GoAlGa94b, Eichenberger95], but to our knowledge all previous implementations have been too preliminary for detailed measurement and evaluation. In particular, we believe this to be the first published measurement of runtime performance for ILP based generation of software pipelines. A particularly valuable result of this study was evaluation of the heuristic pipelining technology in the SGI compiler . One of the motivations behind the McGill research was the hope that optimal software pipelining, while not in itself practical for use in production compilers, would be useful for their evaluation and validation. Our comparison has indeed provided a quantitative validation of the SGI compilers pipeliner, leading us to increased confidence in both techniques."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 2015 | Layer 0 | 20250506_224003:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_6] "Universal Portfolios With and Without Transaction Costs Abstract: A constant rebalanced portfolio is an investment strategy which keeps the same distr..."
+2. [Label_6] "The Weighted Majority Algorithm Abstract: fl This research was primarily conducted while this author was at the University of Calif. at Santa Cruz wit..."
+3. [Label_6] "Efficient Algorithms for Identifying Relevant Features Abstract: This paper describes efficient methods for exact and approximate implementation of th..."
+4. [Label_2] "MBP on T0: mixing floating- and fixed-point formats in BP learning Abstract: We examine the efficient implementation of back prop type algorithms on T..."
+5. [Label_4] "KnightCap: A chess program that learns by combining TD() with minimax search Abstract: In this paper we present TDLeaf(), a variation on the TD() algo..."
+
+Text to classify:
+"On-Line Portfolio Selection Using Multiplicative Updates
+Abstract: We present an on-line investment algorithm which achieves almost the same wealth as the best constant-rebalanced portfolio determined in hindsight from the actual market outcomes. The algorithm employs a multiplicative update rule derived using a framework introduced by Kivinen and Warmuth. Our algorithm is very simple to implement and requires only constant storage and computing time per stock in each trading period. We tested the performance of our algorithm on real stock data from the New York Stock Exchange accumulated during a 22-year period. On this data, our algorithm clearly outperforms the best single stock as well as Cover's universal portfolio selection algorithm. We also present results for the situation in which the investor has access to additional "side information.""
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

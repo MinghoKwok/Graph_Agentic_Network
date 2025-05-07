@@ -1,0 +1,51 @@
+📤 [DEBUG] Fallback Prompt for Node 2342 | Layer 0 | 20250506_231722:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_4: 1 examples
+- Label_5: 6 examples
+- Label_6: 8 examples
+
+Memory:
+1. [Label_6] "Efficient Algorithms for Identifying Relevant Features Abstract: This paper describes efficient methods for exact and approximate implementation of th..."
+2. [Label_6] "Constructing Conjunctions using Systematic Search on Decision Trees Abstract: This paper investigates a dynamic path-based method for constructing con..."
+3. [Label_5] "Incremental Reduced Error Pruning Abstract: This paper outlines some problems that may occur with Reduced Error Pruning in relational learning algorit..."
+4. [Label_6] "On the Induction of Intelligible Ensembles Abstract: Ensembles of classifiers, e.g. decision trees, often exhibit greater predictive accuracy than sin..."
+5. [Label_5] "Machine Learning and Inference Abstract: Constructive induction divides the problem of learning an inductive hypothesis into two intertwined searches:..."
+
+Text to classify:
+"The Power of Decision Tables
+Abstract: We evaluate the power of decision tables as a hypothesis space for supervised learning algorithms. Decision tables are one of the simplest hypothesis spaces possible, and usually they are easy to understand. Experimental results show that on artificial and real-world domains containing only discrete features, IDTM, an algorithm inducing decision tables, can sometimes outperform state-of-the-art algorithms such as C4.5. Surprisingly, performance is quite good on some datasets with continuous features, indicating that many datasets used in machine learning either do not require these features, or that these features have few values. We also describe an incremental method for performing cross-validation that is applicable to incremental learning algorithms including IDTM. Using incremental cross-validation, it is possible to cross-validate a given dataset and IDTM in time that is linear in the number of instances, the number of features, and the number of label values. The time for incremental cross-validation is independent of the number of folds chosen, hence leave-one-out cross-validation and ten-fold cross-validation take the same time."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

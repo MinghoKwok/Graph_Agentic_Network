@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2578 | Layer 0 | 20250506_232858:
+```json
+[
+  {"action_type": "rag_query", "query": "hierarchical time series models", "top_k": 10}
+]
+```
+================================================================================

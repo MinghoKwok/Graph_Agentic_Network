@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 2396 | Layer 0 | 20250506_230011:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_1] "A STUDY OF CROSSOVER OPERATORS IN GENETIC PROGRAMMING Abstract: Holland's analysis of the sources of power of genetic algorithms has served as guidanc..."
+2. [Label_1] "An Artificial Life Model for Investigating the Evolution of Modularity Abstract: To investigate the issue of how modularity emerges in nature, we pres..."
+3. [Label_1] "Testing the Robustness of the Genetic Algorithm on the Floating Building Block Representation. Abstract: Recent studies on a floating building block r..."
+4. [Label_1] "Type Inheritance in Strongly Typed Genetic Programming Abstract: This paper appears as chapter 18 of Kenneth E. Kinnear, Jr. and Peter J. Angeline, ed..."
+5. [Label_1] "Fitness Landscapes and Difficulty in Genetic Programming Abstract: The structure of the fitness landscape on which genetic programming operates is exa..."
+
+Text to classify:
+"Properties of Genetic Representations of Neural Architectures
+Abstract: Genetic algorithms and related evolutionary techniques offer a promising approach for automatically exploring the design space of neural architectures for artificial intelligence and cognitive modeling. Central to this process of evolutionary design of neural architectures (EDNA) is the choice of the representation scheme that is used to encode a neural architecture in the form of a gene string (genotype) and to decode a genotype into the corresponding neural architecture (phenotype). The representation scheme used not only constrains the class of neural architectures that are representable (evolvable) in the system, but also determines the efficiency and the time-space complexity of the evolutionary design procedure as a whole. This paper identifies and discusses a set of properties that can be used to characterize different representations used in EDNA and to design or select representations with the necessary properties for particular classes of applications."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

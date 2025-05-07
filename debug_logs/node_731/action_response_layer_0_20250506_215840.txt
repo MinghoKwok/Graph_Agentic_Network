@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 731 | Layer 0 | 20250506_215840:
+```json
+[
+  {"action_type": "rag_query", "query": "predictability minimization learning", "top_k": 10}
+]
+```
+================================================================================

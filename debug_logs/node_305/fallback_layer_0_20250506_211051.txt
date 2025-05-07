@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 305 | Layer 0 | 20250506_211051:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_4] "A Teaching Strategy for Memory-Based Control Abstract: Combining different machine learning algorithms in the same system can produce benefits above a..."
+2. [Label_4] "Reinforcement Learning Algorithm for Partially Observable Markov Decision Problems Abstract: Increasing attention has been paid to reinforcement learn..."
+3. [Label_4] "Scaling Reinforcement Learning Algorithms by Learning Variable Temporal Resolution Models Abstract: The close connection between reinforcement learnin..."
+4. [Label_4] "Truncating Temporal Differences: On the Efficient Implementation of TD() for Reinforcement Learning Abstract: Temporal difference (TD) methods constit..."
+5. [Label_1] "Incremental Co-evolution of Organisms: A New Approach for Optimization and Discovery of Strategies Abstract: In the field of optimization and machine ..."
+
+Text to classify:
+"Solving Combinatorial Optimization Tasks by Reinforcement Learning: A General Methodology Applied to Resource-Constrained Scheduling
+Abstract: This paper introduces a methodology for solving combinatorial optimization problems through the application of reinforcement learning methods. The approach can be applied in cases where several similar instances of a combinatorial optimization problem must be solved. The key idea is to analyze a set of "training" problem instances and learn a search control policy for solving new problem instances. The search control policy has the twin goals of finding high-quality solutions and finding them quickly. Results of applying this methodology to a NASA scheduling problem show that the learned search control policy is much more effective than the best known non-learning search procedure|a method based on simulated annealing."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

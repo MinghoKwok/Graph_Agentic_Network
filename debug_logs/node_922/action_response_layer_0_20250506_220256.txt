@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 922 | Layer 0 | 20250506_220256:
+```json
+[
+  {"action_type": "rag_query", "query": "Genetic Algorithm Case Based Reasoning", "top_k": 10}
+]
+```
+================================================================================

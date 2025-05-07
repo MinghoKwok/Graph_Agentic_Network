@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 2457 | Layer 0 | 20250506_230323:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_2] "Two Constructive Methods for Designing Compact Feedforward Networks of Threshold Units Abstract: We propose two algorithms for constructing and traini..."
+2. [Label_2] "Learning Symbolic Rules Using Artificial Neural Networks Abstract: A distinct advantage of symbolic learning algorithms over artificial neural network..."
+3. [Label_5] "Machine learning in prognosis of the femoral neck fracture recovery examples, estimating attributes, explanation ability, Abstract: We compare the per..."
+4. [Label_5] "Learning Trees and Rules with Set-valued Features Abstract: In most learning systems examples are represented as fixed-length "feature vectors", the c..."
+5. [Label_1] "A NN Algorithm for Boolean Satisfiability Problems Abstract: Satisfiability (SAT) refers to the task of finding a truth assignment that makes an arbit..."
+
+Text to classify:
+"In Proceedings of the 1997 Sian Kaan International Workshop on Neural Networks and Neurocontrol. Real-Valued
+Abstract: 2 Neural Network & Machine Learning Laboratory Computer Science Department Brigham Young University Provo, UT 84602, USA Email: martinez@cs.byu.edu WWW: http://axon.cs.byu.edu Abstract. Many neural network models must be trained by finding a set of real-valued weights that yield high accuracy on a training set. Other learning models require weights on input attributes that yield high leave-one-out classification accuracy in order to avoid problems associated with irrelevant attributes and high dimensionality. In addition, there are a variety of general problems for which a set of real values must be found which maximize some evaluation function. This paper presents an algorithm for doing a schemata search over a real-valued weight space to find a set of weights (or other real values) that yield high values for a given evaluation function. The algorithm, called the Real-Valued Schemata Search (RVSS), uses the BRACE statistical technique [Moore & Lee, 1993] to determine when to narrow the search space. This paper details the RVSS approach and gives initial empirical results."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

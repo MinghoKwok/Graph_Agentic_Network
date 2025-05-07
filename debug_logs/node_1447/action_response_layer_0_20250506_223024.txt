@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1447 | Layer 0 | 20250506_223024:
+```json
+[
+  {"action_type": "rag_query", "query": "Model of the Environment to Avoid Local Learning", "top_k": 10}
+]
+```
+================================================================================

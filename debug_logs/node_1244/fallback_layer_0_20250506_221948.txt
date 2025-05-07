@@ -1,0 +1,51 @@
+📤 [DEBUG] Fallback Prompt for Node 1244 | Layer 0 | 20250506_221948:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 1 examples
+- Label_5: 10 examples
+- Label_6: 3 examples
+
+Memory:
+1. [Label_5] "First Order Regression Abstract: We present a new approach, called First Order Regression (FOR), to handling numerical information in Inductive Logic ..."
+2. [Label_6] "Inductive Logic Programming Abstract: A new research area, Inductive Logic Programming, is presently emerging. While inheriting various positive chara..."
+3. [Label_5] "Incremental Reduced Error Pruning Abstract: This paper outlines some problems that may occur with Reduced Error Pruning in relational learning algorit..."
+4. [Label_5] "Distance Induction in First Order Logic used for classification via a k-nearest-neighbor process. Experiments on Abstract: This paper tackles the supe..."
+5. [Label_6] "Machine Learning by Function Decomposition Abstract: We present a new machine learning method that, given a set of training examples, induces a defini..."
+
+Text to classify:
+"Producing More Comprehensible Models While Retaining Their Performance
+Abstract: Rissanen's Minimum Description Length (MDL) principle is adapted to handle continuous attributes in the Inductive Logic Programming setting. Application of the developed coding as a MDL pruning mechanism is devised. The behavior of the MDL pruning is tested in a synthetic domain with artificially added noise of different levels and in two real life problems | modelling of the surface roughness of a grinding workpiece and modelling of the mutagenicity of nitroaromatic compounds. Results indicate that MDL pruning is a successful parameter-free noise fighting tool in real-life domains since it acts as a safeguard against building too complex models while retaining the accuracy of the model."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

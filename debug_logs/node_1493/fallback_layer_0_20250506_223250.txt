@@ -1,0 +1,54 @@
+📤 [DEBUG] Fallback Prompt for Node 1493 | Layer 0 | 20250506_223250:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_2: 7 examples
+- Label_3: 1 examples
+- Label_4: 2 examples
+- Label_5: 1 examples
+- Label_6: 1 examples
+
+Memory:
+1. [Label_2] "Application of Neural Networks for the Classification of Diffuse Liver Disease by Quantitative Echography Abstract: Three different methods were inves..."
+2. [Label_2] "The Canonical Distortion Measure in Feature Space and 1-NN Classification Abstract: We prove that the Canonical Distortion Measure (CDM) [2, 3] is the..."
+3. [Label_0] "On the Greediness of Feature Selection Algorithms Abstract: Based on our analysis and experiments using real-world datasets, we find that the greedine..."
+4. [Label_3] "Bumptrees for Efficient Function, Constraint, and Classification Learning Abstract: A new class of data structures called bumptrees is described. Thes..."
+5. [Label_6] "Error-Correcting Output Codes: A General Method for Improving Multiclass Inductive Learning Programs Abstract: Multiclass learning problems involve fi..."
+
+Text to classify:
+"Evaluation of Pattern Classifiers for Fingerprint and OCR Applications
+Abstract: In this paper we evaluate the classification accuracy of four statistical and three neural network classifiers for two image based pattern classification problems. These are fingerprint classification and optical character recognition (OCR) for isolated handprinted digits. The evaluation results reported here should be useful for designers of practical systems for these two important commercial applications. For the OCR problem, the Karhunen-Loeve (K-L) transform of the images is used to generate the input feature set. Similarly for the fingerprint problem, the K-L transform of the ridge directions is used to generate the input feature set. The statistical classifiers used were Euclidean minimum distance, quadratic minimum distance, normal, and k-nearest neighbor. The neural network classifiers used were multilayer perceptron, radial basis function, and probabilistic. The OCR data consisted of 7,480 digit images for training and 23,140 digit images for testing. The fingerprint data consisted of 2,000 training and 2,000 testing images. In addition to evaluation for accuracy, the multilayer perceptron and radial basis function networks were evaluated for size and generalization capability. For the evaluated datasets the best accuracy obtained for either problem was provided by the probabilistic neural network, where the minimum classification error was 2.5% for OCR and 7.2% for fingerprints."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,56 @@
+📤 [DEBUG] Fallback Prompt for Node 2137 | Layer 0 | 20250506_231313:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_2: 1 examples
+- Label_4: 1 examples
+- Label_5: 2 examples
+- Label_6: 7 examples
+
+Memory:
+1. [Label_5] "First Order Regression Abstract: We present a new approach, called First Order Regression (FOR), to handling numerical information in Inductive Logic ..."
+2. [Label_0] "A systematic description of greedy optimisation algorithms for cost sensitive generalisation Abstract: This paper defines a class of problems involvin..."
+3. [Label_4] "Machine Learning Research: Four Current Directions Abstract: Machine Learning research has been making great progress is many directions. This article..."
+4. [Label_6] "Constructing Conjunctions using Systematic Search on Decision Trees Abstract: This paper investigates a dynamic path-based method for constructing con..."
+5. [Label_6] "Machine Learning by Function Decomposition Abstract: We present a new machine learning method that, given a set of training examples, induces a defini..."
+
+Text to classify:
+"Search-based Class Discretization
+Abstract: We present a methodology that enables the use of classification algorithms on regression tasks. We implement this method in system RECLA that transforms a regression problem into a classification one and then uses an existent classification system to solve this new problem. The transformation consists of mapping a continuous variable into an ordinal variable by grouping its values into an appropriate set of intervals. We use misclassification costs as a means to reflect the implicit ordering among the ordinal values of the new variable. We describe a set of alternative discretization methods and, based on our experimental results, justify the need for a search-based approach to choose the best method. Our experimental results confirm the validity of our search-based approach to class discretization, and reveal the accuracy benefits of adding misclassification costs."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

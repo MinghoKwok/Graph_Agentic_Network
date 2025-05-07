@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 2524 | Layer 0 | 20250506_232621:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 3 examples
+- Label_3: 8 examples
+- Label_5: 1 examples
+- Label_6: 3 examples
+
+Memory:
+1. [Label_3] "group, and despite having just 337 subjects, the study strongly supports Identification of causal effects Abstract: Figure 8a and Figure 8b show the p..."
+2. [Label_6] "Inductive Logic Programming Abstract: A new research area, Inductive Logic Programming, is presently emerging. While inheriting various positive chara..."
+3. [Label_6] "Separating Formal Bounds from Practical Performance in Learning Systems Abstract: nan"
+4. [Label_3] "On the Logic of Iterated Belief Revision Abstract: We show in this paper that the AGM postulates are too week to ensure the rational preservation of c..."
+5. [Label_0] "Modeling Case-based Planning for Repairing Reasoning Failures Abstract: One application of models of reasoning behavior is to allow a reasoner to intr..."
+
+Text to classify:
+"nan
+Abstract: In the Proceedings of the Conference on Uncertainty in Artificial Intelli- gence (UAI-94), Seattle, WA, 46-54, July 29-31, 1994. Technical Report R-213-B April, 1994 Abstract Evaluation of counterfactual queries (e.g., "If A were true, would C have been true?") is important to fault diagnosis, planning, and determination of liability. In this paper we present methods for computing the probabilities of such queries using the formulation proposed in [Balke and Pearl, 1994], where the antecedent of the query is interpreted as an external action that forces the proposition A to be true. When a prior probability is available on the causal mechanisms governing the domain, counterfactual probabilities can be evaluated precisely. However, when causal knowledge is specified as conditional probabilities on the observables, only bounds can computed. This paper develops techniques for evaluating these bounds, and demonstrates their use in two applications: (1) the determination of treatment efficacy from studies in which subjects may choose their own treatment, and (2) the determination of liability in product-safety litigation."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

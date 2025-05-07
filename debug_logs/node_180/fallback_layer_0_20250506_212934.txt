@@ -1,0 +1,55 @@
+📤 [DEBUG] Fallback Prompt for Node 180 | Layer 0 | 20250506_212934:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_1: 1 examples
+- Label_2: 7 examples
+- Label_3: 2 examples
+
+Memory:
+1. [Label_2] "Separating hippocampal maps  Spatial Functions of the Hippocampal Formation and the Abstract: The place fields of hippocampal cells in old animals som..."
+2. [Label_2] "Tau Net: A Neural Network for Modeling Temporal Variability Abstract: The ability to handle temporal variation is important when dealing with real-wor..."
+3. [Label_2] "Modeling Cortical Plasticity Based on Adapting Lateral Interaction Abstract: A neural network model called LISSOM for the cooperative self-organizatio..."
+4. [Label_3] "Hidden Markov decision trees Abstract: We study a time series model that can be viewed as a decision tree with Markov temporal structure. The model is..."
+5. [Label_1] "Environmental Effects on Minimal Behaviors in the Minimat World Abstract: The structure of an environment affects the behaviors of the organisms that ..."
+
+Text to classify:
+"REDUCED MEMORY REPRESENTATIONS FOR MUSIC
+Abstract: We address the problem of musical variation (identification of different musical sequences as variations) and its implications for mental representations of music. According to reductionist theories, listeners judge the structural importance of musical events while forming mental representations. These judgments may result from the production of reduced memory representations that retain only the musical gist. In a study of improvised music performance, pianists produced variations on melodies. Analyses of the musical events retained across variations provided support for the reductionist account of structural importance. A neural network trained to produce reduced memory representations for the same melodies represented structurally important events more efficiently than others. Agreement among the musicians' improvisations, the network model, and music-theoretic predictions suggest that perceived constancy across musical variation is a natural result of a reductionist mechanism for producing memory representations."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

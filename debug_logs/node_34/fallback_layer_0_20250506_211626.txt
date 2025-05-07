@@ -1,0 +1,50 @@
+📤 [DEBUG] Fallback Prompt for Node 34 | Layer 0 | 20250506_211626:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 3 examples
+- Label_4: 7 examples
+
+Memory:
+1. [Label_4] "Scaling Reinforcement Learning Algorithms by Learning Variable Temporal Resolution Models Abstract: The close connection between reinforcement learnin..."
+2. [Label_4] "Category: Control, Navigation and Planning. Key words: Reinforcement learning, Exploration, Hidden state. Prefer oral presentation. Abstract: This pap..."
+3. [Label_4] "A Teaching Strategy for Memory-Based Control Abstract: Combining different machine learning algorithms in the same system can produce benefits above a..."
+4. [Label_4] "Reinforcement Learning Algorithm for Partially Observable Markov Decision Problems Abstract: Increasing attention has been paid to reinforcement learn..."
+5. [Label_4] "Planning by Incremental Dynamic Programming Abstract: This paper presents the basic results and ideas of dynamic programming as they relate most direc..."
+
+Text to classify:
+"Using a Case Base of Surfaces to Speed-Up Reinforcement Learning
+Abstract: This paper demonstrates the exploitation of certain vision processing techniques to index into a case base of surfaces. The surfaces are the result of reinforcement learning and represent the optimum choice of actions to achieve some goal from anywhere in the state space. This paper shows how strong features that occur in the interaction of the system with its environment can be detected early in the learning process. Such features allow the system to identify when an identical, or very similar, task has been solved previously and to retrieve the relevant surface. This results in an orders of magnitude increase in learning rate."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

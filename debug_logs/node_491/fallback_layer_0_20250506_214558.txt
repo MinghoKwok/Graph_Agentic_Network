@@ -1,0 +1,54 @@
+📤 [DEBUG] Fallback Prompt for Node 491 | Layer 0 | 20250506_214558:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_3: 9 examples
+- Label_4: 2 examples
+- Label_6: 1 examples
+
+Memory:
+1. [Label_3] "Analysis of a Non-Reversible Markov Chain Sampler Abstract: Technical Report BU-1385-M, Biometrics Unit, Cornell University Abstract We analyse the co..."
+2. [Label_3] "Hidden Markov decision trees Abstract: We study a time series model that can be viewed as a decision tree with Markov temporal structure. The model is..."
+3. [Label_3] "Discovering Structure in Continuous Variables Using Bayesian Networks Abstract: We study Bayesian networks for continuous variables using nonlinear co..."
+4. [Label_3] "Monte Carlo Implementation of Gaussian Process Models for Bayesian Regression and Classification Abstract: Technical Report No. 9702, Department of St..."
+5. [Label_6] "Bayesian Methods for Adaptive Models Abstract: nan"
+
+Text to classify:
+"Self Regenerative Markov Chain Monte Carlo  Summary
+Abstract: We propose a new method of construction of Markov chains with a given stationary distribution . This method is based on construction of an auxiliary chain with some other stationary distribution and picking elements of this auxiliary chain a suitable number of times. The proposed method has many advantages over its rivals. It is easy to implement; it provides a simple analysis; it can be faster and more efficient than the currently available techniques and it can also be adapted during the course of the simulation. We make theoretical and numerical comparisons of the characteristics of the proposed algorithm with some other MCMC techniques."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

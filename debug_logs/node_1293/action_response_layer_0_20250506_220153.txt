@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1293 | Layer 0 | 20250506_220153:
+```json
+[
+  {"action_type": "rag_query", "query": "Recurrent Neural Networks for interconnection networks", "top_k": 10}
+]
+```
+================================================================================

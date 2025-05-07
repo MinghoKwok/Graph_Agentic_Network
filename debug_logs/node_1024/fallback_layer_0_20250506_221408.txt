@@ -1,0 +1,55 @@
+📤 [DEBUG] Fallback Prompt for Node 1024 | Layer 0 | 20250506_221408:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 3 examples
+- Label_3: 1 examples
+- Label_5: 1 examples
+- Label_6: 6 examples
+
+Memory:
+1. [Label_6] "On learning hierarchical classifications Abstract: Many significant real-world classification tasks involve a large number of categories which are arr..."
+2. [Label_0] "LINNEO A Classification Methodology for Ill-structured Domains Abstract: In this work we present a classification methodology (LINNEO + ) to discover ..."
+3. [Label_6] "On the Induction of Intelligible Ensembles Abstract: Ensembles of classifiers, e.g. decision trees, often exhibit greater predictive accuracy than sin..."
+4. [Label_6] "Machine Learning by Function Decomposition Abstract: We present a new machine learning method that, given a set of training examples, induces a defini..."
+5. [Label_0] "EXPLORING A FRAMEWORK FOR INSTANCE BASED LEARNING AND NAIVE BAYESIAN CLASSIFIERS Abstract: The relative performance of different methods for classifie..."
+
+Text to classify:
+"On learning hierarchical classifications
+Abstract: Many significant real-world classification tasks involve a large number of categories which are arranged in a hierarchical structure; for example, classifying documents into subject categories under the library of congress scheme, or classifying world-wide-web documents into topic hierarchies. We investigate the potential benefits of using a given hierarchy over base classes to learn accurate multi-category classifiers for these domains. First, we consider the possibility of exploiting a class hierarchy as prior knowledge that can help one learn a more accurate classifier. We explore the benefits of learning category-discriminants in a hard top-down fashion and compare this to a soft approach which shares training data among sibling categories. In doing so, we verify that hierarchies have the potential to improve prediction accuracy. But we argue that the reasons for this can be subtle. Sometimes, the improvement is only because using a hierarchy happens to constrain the expressiveness of a hypothesis class in an appropriate manner. However, various controlled experiments show that in other cases the performance advantage associated with using a hierarchy really does seem to be due to the prior knowledge it encodes."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

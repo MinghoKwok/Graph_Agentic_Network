@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1006 | Layer 0 | 20250506_221310:
+```json
+[
+  {"action_type": "rag_query", "query": "Learning Probabilistic Automata with Variable Memory Length", "top_k": 10}
+]
+```
+================================================================================

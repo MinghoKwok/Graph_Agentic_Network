@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 1081 | Layer 0 | 20250506_221115:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 2 examples
+- Label_1: 1 examples
+- Label_5: 6 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_5] "The Difficulties of Learning Logic Programs with Cut Abstract: As real logic programmers normally use cut (!), an effective learning procedure for log..."
+2. [Label_5] "Pac-Learning Recursive Logic Programs: Efficient Algorithms Abstract: We present algorithms that learn certain classes of function-free recursive logi..."
+3. [Label_5] "on Inductive Logic Programming (ILP-95) Inducing Logic Programs without Explicit Negative Examples Abstract: This paper presents a method for learning..."
+4. [Label_6] "Inductive Logic Programming Abstract: A new research area, Inductive Logic Programming, is presently emerging. While inheriting various positive chara..."
+5. [Label_5] "Distance Induction in First Order Logic used for classification via a k-nearest-neighbor process. Experiments on Abstract: This paper tackles the supe..."
+
+Text to classify:
+"Specialization of Recursive Predicates
+Abstract: When specializing a recursive predicate in order to exclude a set of negative examples without excluding a set of positive examples, it may not be possible to specialize or remove any of the clauses in a refutation of a negative example without excluding any positive exam ples. A previously proposed solution to this problem is to apply program transformation in order to obtain non-recursive target predicates from recursive ones. However, the application of this method prevents recursive specializations from being found. In this work, we present the algorithm spectre ii which is not limited to specializing non-recursive predicates. The key idea upon which the algorithm is based is that it is not enough to specialize or remove clauses in refutations of negative examples in order to obtain correct specializations, but it is sometimes necessary to specialize clauses that appear only in refutations of positive examples. In contrast to its predecessor spectre, the new algorithm is not limited to specializing clauses defining one predicate only, but may specialize clauses defining multiple predicates. Furthermore, the positive and negative examples are no longer required to be instances of the same predicate. It is proven that the algorithm produces a correct specialization when all positive examples are logical consequences of the original program, there is a finite number of derivations of positive and negative examples and when no positive and negative examples have the same sequence of input clauses in their refutations."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

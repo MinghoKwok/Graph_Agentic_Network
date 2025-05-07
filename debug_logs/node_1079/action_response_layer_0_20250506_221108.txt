@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1079 | Layer 0 | 20250506_221108:
+```json
+[
+  {"action_type": "rag_query", "query": "Support Vector Machines for time series prediction", "top_k": 10}
+]
+```
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1102 | Layer 0 | 20250506_221813:
+```json
+[
+  {"action_type": "rag_query", "query": "automated refinement of first-order horn-clause domain theories", "top_k": 10}
+]
+```
+================================================================================

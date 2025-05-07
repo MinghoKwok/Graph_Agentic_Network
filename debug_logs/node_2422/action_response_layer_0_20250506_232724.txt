@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2422 | Layer 0 | 20250506_232724:
+```json
+[
+  {"action_type": "rag_query", "query": "Underwater Mammals Classification", "top_k": 10}
+]
+```
+================================================================================

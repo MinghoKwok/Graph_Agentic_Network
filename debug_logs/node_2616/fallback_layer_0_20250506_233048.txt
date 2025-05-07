@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 2616 | Layer 0 | 20250506_233048:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 7 examples
+- Label_2: 1 examples
+- Label_5: 5 examples
+- Label_6: 1 examples
+
+Memory:
+1. [Label_0] "Formalising the knowledge content of case memory systems Abstract: Discussions of case-based reasoning often reflect an implicit assumption that a cas..."
+2. [Label_0] "A Comparative Utility Analysis of Case-Based Reasoning and Control-Rule Learning Systems Abstract: The utility problem in learning systems occurs when..."
+3. [Label_5] "Knowledge Acquisition with a Knowledge-Intensive Machine Learning System Abstract: In this paper, we investigate the integration of knowledge acquisit..."
+4. [Label_2] "Learning Symbolic Rules Using Artificial Neural Networks Abstract: A distinct advantage of symbolic learning algorithms over artificial neural network..."
+5. [Label_5] "on Inductive Logic Programming (ILP-95) Inducing Logic Programs without Explicit Negative Examples Abstract: This paper presents a method for learning..."
+
+Text to classify:
+"A comparison of Anapron with seven other name-pronunciation systems
+Abstract: This paper presents an experiment comparing a new name-pronunciation system, Anapron, with seven existing systems: three state-of-the-art commercial systems (from Bellcore, Bell Labs, and DEC), two variants of a machine-learning system (NETtalk), and two humans. Anapron works by combining rule-based and case-based reasoning. It is based on the idea that it is much easier to improve a rule-based system by adding case-based reasoning to it than by tuning the rules to deal with every exception. In the experiment described here, Anapron used a set of rules adapted from MITalk and elementary foreign-language textbooks, and a case library of 5000 names. With these components | which required relatively little knowledge engineering | Anapron was found to perform almost at the level of the commercial systems, and significantly better than the two versions of NETtalk. This work may not be copied or reproduced in whole or in part for any commercial purpose. Permission to copy in whole or in part without payment of fee is granted for nonprofit educational and research purposes provided that all such whole or partial copies include the following: a notice that such copying is by permission of Mitsubishi Electric Research Laboratories of Cambridge, Massachusetts; an acknowledgment of the authors and individual contributions to the work; and all applicable portions of the copyright notice. Copying, reproduction, or republishing for any other purpose shall require a license with payment of fee to Mitsubishi Electric Research Laboratories. All rights reserved."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

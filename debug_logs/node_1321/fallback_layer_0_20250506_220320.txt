@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1321 | Layer 0 | 20250506_220320:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_2] "Word Perfect Corp. LIA: A Location-Independent Transformation for ASOCS Adaptive Algorithm 2 Abstract: Most Artificial Neural Networks (ANNs) have a f..."
+2. [Label_5] "Learning Evolving Concepts Using Partial-Memory Approach  Machine Learning and Inference Laboratory Abstract: This paper addresses the problem of lear..."
+3. [Label_2] "Learning Symbolic Rules Using Artificial Neural Networks Abstract: A distinct advantage of symbolic learning algorithms over artificial neural network..."
+4. [Label_5] "Knowledge Acquisition with a Knowledge-Intensive Machine Learning System Abstract: In this paper, we investigate the integration of knowledge acquisit..."
+5. [Label_6] "Error-Correcting Output Codes: A General Method for Improving Multiclass Inductive Learning Programs Abstract: Multiclass learning problems involve fi..."
+
+Text to classify:
+"Priority ASOCS  ASOCS models have two significant advantages over other learning models:
+Abstract: This paper presents an ASOCS (Adaptive Self-Organizing Concurrent System) model for massively parallel processing of incrementally defined rule systems in such areas as adaptive logic, robotics, logical inference, and dynamic control. An ASOCS is an adaptive network composed of many simple computing elements operating asynchronously and in parallel. An ASOCS can operate in either a data processing mode or a learning mode. During data processing mode, an ASOCS acts as a parallel hardware circuit. During learning mode, an ASOCS incorporates a rule expressed as a Boolean conjunction in a distributed fashion in time logarithmic in the number of rules. This paper proposes a learning algorithm and architecture for Priority ASOCS. This new ASOCS model uses rules with priorities. The new model has significant learning time and space complexity improvements over previous models. Non-von Neumann architectures such as neural networks attack the word-at-a-time bottleneck of traditional computing systems [1]. Neural networks learn input-output mappings using highly distributed processing and memory [10,11,12]. Their numerous simple processing elements with modifiable weighted links permit a high degree of parallelism. A typical neural network has fixed topology. It learns by modifying weighted links between nodes. A new class of connectionist architectures has been proposed called ASOCS (Adaptive Self-Organizing Concurrent Systems) [4,5]. ASOCS models support efficient computation through self-organized learning and parallel execution. Learning is done through the incremental presentation of rules and/or examples. ASOCS models learn by modifying their topology. Data types include Boolean and multi-state variables; recent models support analog variables. The model incorporates rules into an adaptive logic network in a parallel and self organizing fashion. In processing mode, ASOCS supports fully parallel execution on actual inputs according to the learned rules. The adaptive logic network acts as a parallel hardware circuit during execution, mapping n input boolean vectors into m output boolean vectors, in a combinatoric fashion. The overall philosophy of ASOCS follows the high level goals of current neural network models. However, the mechanisms of learning and execution vary significantly. The ASOCS logic network is topologically dynamic with the network growing to efficiently fit the specific application. Current ASOCS models are based on digital nodes. ASOCS also supports use of symbolic and heuristic learning mechanisms, thus combining the parallelism and distributed nature of connectionist computing with the potential power of AI symbolic learning. A proof of concept ASOCS chip has been developed [2]."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

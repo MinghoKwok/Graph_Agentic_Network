@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1734 | Layer 0 | 20250506_225147:
+```json
+[
+  {"action_type": "rag_query", "query": "A Stochastic Search Approach to Grammar Induction", "top_k": 10}
+]
+```
+================================================================================

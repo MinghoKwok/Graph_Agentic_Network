@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 1254 | Layer 0 | 20250506_222018:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 1 examples
+- Label_2: 5 examples
+- Label_4: 2 examples
+- Label_6: 4 examples
+
+Memory:
+1. [Label_2] "Two Constructive Methods for Designing Compact Feedforward Networks of Threshold Units Abstract: We propose two algorithms for constructing and traini..."
+2. [Label_1] "Growing neural networks Abstract: nan"
+3. [Label_6] "Parity: The Problem that Won't Go Away Abstract: It is well-known that certain learning methods (e.g., the perceptron learning algorithm) cannot acqui..."
+4. [Label_4] "Generalization in Reinforcement Learning: Safely Approximating the Value Function Abstract: To appear in: G. Tesauro, D. S. Touretzky and T. K. Leen, ..."
+5. [Label_2] "Shattering all sets of k points in "general position" requires (k 1)=2 parameters Abstract: For classes of concepts defined by certain classes of anal..."
+
+Text to classify:
+"BACKPROPAGATION SEPARATES WHERE PERCEPTRONS DO
+Abstract: Feedforward nets with sigmoidal activation functions are often designed by minimizing a cost criterion. It has been pointed out before that this technique may be outperformed by the classical perceptron learning rule, at least on some problems. In this paper, we show that no such pathologies can arise if the error criterion is of a threshold LMS type, i.e., is zero for values "beyond" the desired target values. More precisely, we show that if the data are linearly separable, and one considers nets with no hidden neurons, then an error function as above cannot have any local minima that are not global. Simulations of networks with hidden units are consistent with these results, in that often data which can be classified when minimizing a threshold LMS criterion may fail to be classified when using instead a simple LMS cost. In addition, the proof gives the following stronger result, under the stated hypotheses: the continuous gradient adjustment procedure is such that from any initial weight configuration a separating set of weights is obtained in finite time. This is a precise analogue of the Perceptron Learning Theorem. The results are then compared with the more classical pattern recognition problem of threshold LMS with linear activations, where no spurious local minima exist even for nonseparable data: here it is shown that even if using the threshold criterion, such bad local minima may occur, if the data are not separable and sigmoids are used."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

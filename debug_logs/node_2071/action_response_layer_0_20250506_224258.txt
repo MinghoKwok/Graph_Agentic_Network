@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2071 | Layer 0 | 20250506_224258:
+```json
+[
+  {"action_type": "rag_query", "query": "LINNEO Classification Methodology", "top_k": 10}
+]
+```
+================================================================================

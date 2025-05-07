@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2592 | Layer 0 | 20250506_231032:
+```json
+[
+  {"action_type": "rag_query", "query": "FILTERING VIA SIMULATION: AUXILIARY PARTICLE FILTERS", "top_k": 10}
+]
+```
+================================================================================

@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 822 | Layer 0 | 20250506_213650:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_6] "Error-Correcting Output Codes: A General Method for Improving Multiclass Inductive Learning Programs Abstract: Multiclass learning problems involve fi..."
+2. [Label_2] "Learning from Bad Data Abstract: The data describing resolutions to telephone network local loop "troubles," from which we wish to learn rules for dis..."
+3. [Label_5] "Knowledge Acquisition with a Knowledge-Intensive Machine Learning System Abstract: In this paper, we investigate the integration of knowledge acquisit..."
+4. [Label_2] "Tau Net: A Neural Network for Modeling Temporal Variability Abstract: The ability to handle temporal variation is important when dealing with real-wor..."
+5. [Label_2] "A Mixture of Experts Model Exhibiting Prosopagnosia Abstract: A considerable body of evidence from prosopagnosia, a deficit in face recognition dissoc..."
+
+Text to classify:
+"Achieving High-Accuracy Text-to-Speech with Machine Learning
+Abstract: In 1987, Sejnowski and Rosenberg developed their famous NETtalk system for English text-to-speech. This chapter describes a machine learning approach to text-to-speech that builds upon and extends the initial NETtalk work. Among the many extensions to the NETtalk system were the following: a different learning algorithm, a wider input "window", error-correcting output coding, a right-to-left scan of the word to be pronounced (with the results of each decision influencing subsequent decisions), and the addition of several useful input features. These changes yielded a system that performs much better than the original NETtalk system. After training on 19,002 words, the system achieves 93.7% correct pronunciation of individual phonemes and 64.8% correct pronunciation of whole words (where the pronunciation must exactly match the dictionary pronunciation to be correct). Based on the judgements of three human participants in a blind assessment study, our system was estimated to have a serious error rate of 16.7% (on whole words) compared to an error rate of 26.1% for the DECTalk3.0 rulebase."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

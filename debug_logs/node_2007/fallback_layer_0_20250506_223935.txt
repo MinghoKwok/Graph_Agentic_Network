@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 2007 | Layer 0 | 20250506_223935:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_1] "Incremental Co-evolution of Organisms: A New Approach for Optimization and Discovery of Strategies Abstract: In the field of optimization and machine ..."
+2. [Label_6] "Inductive Logic Programming Abstract: A new research area, Inductive Logic Programming, is presently emerging. While inheriting various positive chara..."
+3. [Label_6] "Separating Formal Bounds from Practical Performance in Learning Systems Abstract: nan"
+4. [Label_5] "THE EXPANDABLE SPLIT WINDOW PARADIGM FOR EXPLOITING FINE-GRAIN PARALLELISM Abstract: We propose a new processing paradigm, called the Expandable Split..."
+5. [Label_1] "Type Inheritance in Strongly Typed Genetic Programming Abstract: This paper appears as chapter 18 of Kenneth E. Kinnear, Jr. and Peter J. Angeline, ed..."
+
+Text to classify:
+"A Computer Scientist's View of Life, the Universe, and Everything
+Abstract: Is the universe computable? If so, it may be much cheaper in terms of information requirements to compute all computable universes instead of just ours. I apply basic concepts of Kolmogorov complexity theory to the set of possible universes, and chat about perceived and true randomness, life, generalization, and learning in a given universe. Assumptions. A long time ago, the Great Programmer wrote a program that runs all possible universes on His Big Computer. "Possible" means "computable": (1) Each universe evolves on a discrete time scale. (2) Any universe's state at a given time is describable by a finite number of bits. One of the many universes is ours, despite some who evolved in it and claim it is incomputable. Computable universes. Let T M denote an arbitrary universal Turing machine with unidirectional output tape. T M 's input and output symbols are "0", "1", and "," (comma). T M 's possible input programs can be ordered alphabetically: "" (empty program), "0", "1", ",", "00", "01", "0,", "10", "11", "1,", ",0", ",1", ",,", "000", etc. Let A k denote T M 's k-th program in this list. Its output will be a finite or infinite string over the alphabet f "0","1",","g. This sequence of bitstrings separated by commas will be interpreted as the evolution E k of universe U k . If E k includes at least one comma, then let U l k represents U k 's state at the l-th time step of E k (k; l 2 f1; 2; : : : ; g). E k is represented by the sequence U 1 k corresponds to U k 's big bang. Different algorithms may compute the same universe. Some universes are finite (those whose programs cease producing outputs at some point), others are not. I don't know about ours. TM not important. The choice of the Turing machine is not important. This is due to the compiler theorem: for each universal Turing machine C there exists a constant prefix C 2 f "0","1",","g fl such that for all possible programs p, C's output in response to program C p is identical to T M 's output in response to p. The prefix C is the compiler that compiles programs for T M into equivalent programs for C. k denote the l-th (possibly empty) bitstring before the l-th comma. U l"
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

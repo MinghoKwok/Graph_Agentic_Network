@@ -1,0 +1,54 @@
+📤 [DEBUG] Fallback Prompt for Node 2681 | Layer 0 | 20250506_233925:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_2: 1 examples
+- Label_3: 8 examples
+- Label_6: 3 examples
+
+Memory:
+1. [Label_3] "Monte Carlo Implementation of Gaussian Process Models for Bayesian Regression and Classification Abstract: Technical Report No. 9702, Department of St..."
+2. [Label_6] "Bayesian Methods for Adaptive Models Abstract: nan"
+3. [Label_3] "Analysis of the Gibbs sampler for a model related to James-Stein estimators Abstract: Summary. We analyze a hierarchical Bayes model which is related ..."
+4. [Label_3] "Robustness Analysis of Bayesian Networks with Global Neighborhoods Abstract: This paper presents algorithms for robustness analysis of Bayesian networ..."
+5. [Label_3] "Discovering Structure in Continuous Variables Using Bayesian Networks Abstract: We study Bayesian networks for continuous variables using nonlinear co..."
+
+Text to classify:
+"Regression with Input-dependent Noise: A Gaussian Process Treatment
+Abstract: Technical Report NCRG/98/002, available from http://www.ncrg.aston.ac.uk/ To appear in Advances in Neural Information Processing Systems 10 eds. M. I. Jordan, M. J. Kearns and S. A. Solla. Lawrence Erlbaum (1998). Abstract Gaussian processes provide natural non-parametric prior distributions over regression functions. In this paper we consider regression problems where there is noise on the output, and the variance of the noise depends on the inputs. If we assume that the noise is a smooth function of the inputs, then it is natural to model the noise variance using a second Gaussian process, in addition to the Gaussian process governing the noise-free output value. We show that prior uncertainty about the parameters controlling both processes can be handled and that the posterior distribution of the noise rate can be sampled from using Markov chain Monte Carlo methods. Our results on a synthetic data set give a posterior noise variance that well-approximates the true variance."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

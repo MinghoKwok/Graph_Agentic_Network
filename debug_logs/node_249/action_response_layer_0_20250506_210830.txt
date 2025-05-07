@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 249 | Layer 0 | 20250506_210830:
+```json
+[
+  {"action_type": "rag_query", "query": "control flow prediction for dynamic ILP processors", "top_k": 10}
+]
+```
+================================================================================

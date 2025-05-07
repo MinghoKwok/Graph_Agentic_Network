@@ -1,0 +1,50 @@
+📤 [DEBUG] Fallback Prompt for Node 894 | Layer 0 | 20250506_220129:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_3: 9 examples
+- Label_6: 1 examples
+
+Memory:
+1. [Label_6] "Bayesian Methods for Adaptive Models Abstract: nan"
+2. [Label_3] "Monte Carlo Implementation of Gaussian Process Models for Bayesian Regression and Classification Abstract: Technical Report No. 9702, Department of St..."
+3. [Label_3] "On Bayesian analysis of mixtures with an unknown number of components  Summary Abstract: New methodology for fully Bayesian mixture analysis is develo..."
+4. [Label_3] "Analysis of the Gibbs sampler for a model related to James-Stein estimators Abstract: Summary. We analyze a hierarchical Bayes model which is related ..."
+5. [Label_3] "On Convergence of the EM Algorithm and the Gibbs Sampler  SUMMARY Abstract: In this article we investigate the relationship between the two popular al..."
+
+Text to classify:
+"Bayesian Analysis of Agricultural Field Experiments
+Abstract: SUMMARY The paper describes Bayesian analysis for agricultural field experiments, a topic that has received very little previous attention, despite a vast frequentist literature. Adoption of the Bayesian paradigm simplifies the interpretation of the results, especially in ranking and selection. Also, complex formulations can be analyzed with comparative ease, using Markov chain Monte Carlo methods. A key ingredient in the approach is the need for spatial representations of the unobserved fertility patterns. This is discussed in detail. Problems caused by outliers and by jumps in fertility are tackled via hierarchical-t formulations that may find use in other contexts. The paper includes three analyses of variety trials for yield and one example involving binary data; none is entirely straightforward. Some comparisons with frequentist analyses are made. The datasets are available at http://www.stat.duke.edu/~higdon/trials/data.html."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,55 @@
+📤 [DEBUG] Fallback Prompt for Node 2339 | Layer 0 | 20250506_232323:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_1: 2 examples
+- Label_5: 8 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_5] "An intelligent search method using Inductive Logic Programming Abstract: We propose a method to use Inductive Logic Programming to give heuristic func..."
+2. [Label_5] "Learning by Refining Algorithm Sketches Abstract: In this paper we suggest a mechanism that improves significantly the performance of a top-down induc..."
+3. [Label_5] "The Origins of Inductive Logic Programming: A Prehistoric Tale Abstract: This paper traces the development of the main ideas that have led to the pres..."
+4. [Label_6] "Inductive Logic Programming Abstract: A new research area, Inductive Logic Programming, is presently emerging. While inheriting various positive chara..."
+5. [Label_1] "Incremental Co-evolution of Organisms: A New Approach for Optimization and Discovery of Strategies Abstract: In the field of optimization and machine ..."
+
+Text to classify:
+"An intelligent search method using Inductive Logic Programming
+Abstract: We propose a method to use Inductive Logic Programming to give heuristic functions for searching goals to solve problems. The method takes solutions of a problem or a history of search and a set of background knowledge on the problem. In a large class of problems, a problem is described as a set of states and a set of operators, and is solved by finding a series of operators. A solution, a series of operators that brings an initial state to a final state, is transformed into positive and negative examples of a relation "better-choice", which describes that an operator is better than others in a state. We also give a way to use the "better-choice" relation as a heuristic function. The method can use any logic program as background knowledge to induce heuristics, and induced heuristics has high readability. The paper inspects the method by applying to a puzzle."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

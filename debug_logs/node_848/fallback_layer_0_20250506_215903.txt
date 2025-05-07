@@ -1,0 +1,51 @@
+📤 [DEBUG] Fallback Prompt for Node 848 | Layer 0 | 20250506_215903:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 2 examples
+- Label_5: 2 examples
+- Label_6: 8 examples
+
+Memory:
+1. [Label_6] "General Bounds on Statistical Query Learning and PAC Learning with Noise via Hypothesis Boosting Abstract: We derive general bounds on the complexity ..."
+2. [Label_6] "Separating Formal Bounds from Practical Performance in Learning Systems Abstract: nan"
+3. [Label_6] "Inductive Logic Programming Abstract: A new research area, Inductive Logic Programming, is presently emerging. While inheriting various positive chara..."
+4. [Label_6] "Efficient Algorithms for Identifying Relevant Features Abstract: This paper describes efficient methods for exact and approximate implementation of th..."
+5. [Label_5] "Machine learning in prognosis of the femoral neck fracture recovery examples, estimating attributes, explanation ability, Abstract: We compare the per..."
+
+Text to classify:
+"An Experimental and Theoretical Comparison of Model Selection Methods on simple model selection problems, the
+Abstract: We investigate the problem of model selection in the setting of supervised learning of boolean functions from independent random examples. More precisely, we compare methods for finding a balance between the complexity of the hypothesis chosen and its observed error on a random training sample of limited size, when the goal is that of minimizing the resulting generalization error. We undertake a detailed comparison of three well-known model selection methods | a variation of Vapnik's Guaranteed Risk Minimization (GRM), an instance of Rissanen's Minimum Description Length Principle (MDL), and cross validation (CV). We introduce a general class of model selection methods (called penalty-based methods) that includes both GRM and MDL, and provide general methods for analyzing such rules. We provide both controlled experimental evidence and formal theorems to support the following conclusions: * The class of penalty-based methods is fundamentally handicapped in the sense that there exist two types of model selection problems for which every penalty-based method must incur large generalization error on at least one, while CV enjoys small generalization error Despite the inescapable incomparability of model selection methods under certain circumstances, we conclude with a discussion of our belief that the balance of the evidence provides specific reasons to prefer CV to other methods, unless one is in possession of detailed problem-specific information. on both."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

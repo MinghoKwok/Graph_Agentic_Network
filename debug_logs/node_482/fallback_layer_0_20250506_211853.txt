@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 482 | Layer 0 | 20250506_211853:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_0] "A Comparative Utility Analysis of Case-Based Reasoning and Control-Rule Learning Systems Abstract: The utility problem in learning systems occurs when..."
+2. [Label_0] "Unifying Empirical and Explanation-Based Learning by Modeling the Utility of Learned Knowledge Abstract: The overfit problem in empirical learning and..."
+3. [Label_4] "A Teaching Strategy for Memory-Based Control Abstract: Combining different machine learning algorithms in the same system can produce benefits above a..."
+4. [Label_4] "Truncating Temporal Differences: On the Efficient Implementation of TD() for Reinforcement Learning Abstract: Temporal difference (TD) methods constit..."
+5. [Label_4] "Reinforcement Learning with Modular Neural Networks for Control Abstract: Reinforcement learning methods can be applied to control problems with the o..."
+
+Text to classify:
+"Simple Selection of Utile Control Rules in Speedup Learning
+Abstract: Many recent approaches to avoiding the utility problem in speedup learning rely on sophisticated utility measures and significant numbers of training data to accurately estimate the utility of control knowledge. Empirical results presented here and elsewhere indicate that a simple selection strategy of retaining all control rules derived from a training problem explanation quickly defines an efficient set of control knowledge from few training problems. This simple selection strategy provides a low-cost alternative to example-intensive approaches for improving the speed of a problem solver."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

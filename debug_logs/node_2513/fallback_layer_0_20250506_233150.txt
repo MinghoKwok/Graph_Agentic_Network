@@ -1,0 +1,57 @@
+📤 [DEBUG] Fallback Prompt for Node 2513 | Layer 0 | 20250506_233150:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_1: 2 examples
+- Label_2: 4 examples
+- Label_3: 4 examples
+- Label_4: 2 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_0] "Unifying Empirical and Explanation-Based Learning by Modeling the Utility of Learned Knowledge Abstract: The overfit problem in empirical learning and..."
+2. [Label_2] "Learning from Bad Data Abstract: The data describing resolutions to telephone network local loop "troubles," from which we wish to learn rules for dis..."
+3. [Label_4] "Reinforcement Learning with Modular Neural Networks for Control Abstract: Reinforcement learning methods can be applied to control problems with the o..."
+4. [Label_4] "Machine Learning Research: Four Current Directions Abstract: Machine Learning research has been making great progress is many directions. This article..."
+5. [Label_1] "Growing neural networks Abstract: nan"
+
+Text to classify:
+"Avoiding overfitting by locally matching the noise level of the data gating network discovers the
+Abstract: When trying to forecast the future behavior of a real-world system, two of the key problems are nonstationarity of the process (e.g., regime switching) and overfitting of the model (particularly serious for noisy processes). This articles shows how gated experts can point to solutions to these problems. The architecture, also called society of experts and mixture of experts consists of a (nonlinear) gating network and several (nonlinear) competing experts. Each expert learns a conditional mean (as usual), but each expert also has its own adaptive width. The gating network learns to assign a probability to each expert that depends on the input. This article first discusses the assumptions underlying this architecture and derives the weight update rules. It then evaluates the performance of gated experts in comparison to that of single networks, as well as to networks with two outputs, one predicting the mean, the other one the local error bar. This article also investigates the ability of gated experts to discover and characterize underlying the regimes. The results are: * there is significantly less overfitting compared to single nets, for two reasons: only subsets of the potential inputs are given to the experts and gating network (less of a curse of dimensionality), and the experts learn to match their variances to the (local) noise levels, thus only learning as This article focuses on the architecture and the overfitting problem. Applications to a computer-generated toy problem and the laser data from Santa Fe Competition are given in [Mangeas and Weigend, 1995], and the application to the real-world problem of predicting the electricity demand of France are given in [Mangeas et al., 1995]. much as the data support."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

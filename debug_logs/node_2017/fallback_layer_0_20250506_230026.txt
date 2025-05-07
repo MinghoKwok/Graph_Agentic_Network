@@ -1,0 +1,51 @@
+📤 [DEBUG] Fallback Prompt for Node 2017 | Layer 0 | 20250506_230026:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_3: 4 examples
+- Label_5: 4 examples
+- Label_6: 4 examples
+
+Memory:
+1. [Label_3] "Algebraic Techniques for Efficient Inference in Bayesian Networks Abstract: A number of exact algorithms have been developed to perform probabilistic ..."
+2. [Label_6] "Efficient Algorithms for Identifying Relevant Features Abstract: This paper describes efficient methods for exact and approximate implementation of th..."
+3. [Label_3] "Discovering Structure in Continuous Variables Using Bayesian Networks Abstract: We study Bayesian networks for continuous variables using nonlinear co..."
+4. [Label_5] "Machine learning in prognosis of the femoral neck fracture recovery examples, estimating attributes, explanation ability, Abstract: We compare the per..."
+5. [Label_5] "Knowledge Acquisition with a Knowledge-Intensive Machine Learning System Abstract: In this paper, we investigate the integration of knowledge acquisit..."
+
+Text to classify:
+"28 Learning Bayesian Networks Using Feature Selection
+Abstract: This paper introduces a novel enhancement for learning Bayesian networks with a bias for small, high-predictive-accuracy networks. The new approach selects a subset of features that maximizes predictive accuracy prior to the network learning phase. We examine explicitly the effects of two aspects of the algorithm, feature selection and node ordering. Our approach generates networks that are computationally simpler to evaluate and display predictive accuracy comparable Bayesian networks are being increasingly recognized as an important representation for probabilistic reasoning. For many domains, the need to specify the probability distributions for a Bayesian network is considerable, and learning these probabilities from data using an algorithm like K2 [Cooper92] could alleviate such specification difficulties. We describe an extension to the Bayesian network learning approaches introduced in K2. Our goal is to construct networks that are simpler to evaluate but still have high predictive accuracy relative to networks that model all features. Rather than use all database features (or attributes) for constructing the network, we select a subset of features that maximize the predictive accuracy of the network. Then the learning process uses only the selected features as nodes in learning the Bayesian network. We examine explicitly the effects of two aspects of the algorithm: (a) feature selection, and (b) node ordering. Our experimental results verify that this approach generates networks that are compu-tationally simpler to evaluate and display predictive accuracy comparable to the predictive accuracy of Bayesian networks that model all features. Our results, similar to those observed by other studies of feature selection in learning [Caruana94, John94, Langley94a, Langley94b], demonstrate that feature selection provides comparable predictive accuracy using smaller networks. For example, by selecting as few as 18% of the features for the to that of Bayesian networks which model all attributes."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 194 | Layer 0 | 20250506_210611:
+```json
+[
+  {"action_type": "rag_query", "query": "DNA Sequence Assembly", "top_k": 10}
+]
+```
+================================================================================

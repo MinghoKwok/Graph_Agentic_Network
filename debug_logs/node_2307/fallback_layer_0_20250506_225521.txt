@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 2307 | Layer 0 | 20250506_225521:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_1] "17 Massively Parallel Genetic Programming Abstract: As the field of Genetic Programming (GP) matures and its breadth of application increases, the nee..."
+2. [Label_1] "The Application of a Parallel Genetic Algorithm to the n=m=P=C max Flowshop Problem Abstract: Hard combinatorial problems in sequencing and scheduling..."
+3. [Label_5] "THE EXPANDABLE SPLIT WINDOW PARADIGM FOR EXPLOITING FINE-GRAIN PARALLELISM Abstract: We propose a new processing paradigm, called the Expandable Split..."
+4. [Label_5] "Abstract Abstract: This paper is a scientific comparison of two code generation techniques with identical goals generation of the best possible softwa..."
+5. [Label_5] "Modeling Superscalar Processors via Statistical Simulation Abstract: nan"
+
+Text to classify:
+"Parallel Gradient Distribution in Unconstrained Optimization
+Abstract: A parallel version is proposed for a fundamental theorem of serial unconstrained optimization. The parallel theorem allows each of k parallel processors to use simultaneously a different algorithm, such as a descent, Newton, quasi-Newton or a conjugate gradient algorithm. Each processor can perform one or many steps of a serial algorithm on a portion of the gradient of the objective function assigned to it, independently of the other processors. Eventually a synchronization step is performed which, for differentiable convex functions, consists of taking a strong convex combination of the k points found by the k processors. For nonconvex, as well as convex, differentiable functions, the best point found by the k processors is taken, or any better point. The fundamental result that we establish is that any accumulation point of the parallel algorithm is stationary for the nonconvex case, and is a global solution for the convex case. Computational testing on the Thinking Machines CM-5 multiprocessor indicate a speedup of the order of the number of processors employed."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

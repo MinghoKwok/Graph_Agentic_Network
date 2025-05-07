@@ -1,0 +1,54 @@
+📤 [DEBUG] Fallback Prompt for Node 2142 | Layer 0 | 20250506_231328:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 5 examples
+- Label_2: 2 examples
+- Label_5: 4 examples
+
+Memory:
+1. [Label_5] "Abstract Abstract: This paper is a scientific comparison of two code generation techniques with identical goals generation of the best possible softwa..."
+2. [Label_5] "THE EXPANDABLE SPLIT WINDOW PARADIGM FOR EXPLOITING FINE-GRAIN PARALLELISM Abstract: We propose a new processing paradigm, called the Expandable Split..."
+3. [Label_1] "17 Massively Parallel Genetic Programming Abstract: As the field of Genetic Programming (GP) matures and its breadth of application increases, the nee..."
+4. [Label_2] "ce: [Tex89] <institution> Texas Instruments. </institution> <note> TMS320C30 C Compiler Reference Guide, 1989. Document Title: SPRU034A. </note> Abstr..."
+5. [Label_5] "Modeling Superscalar Processors via Statistical Simulation Abstract: nan"
+
+Text to classify:
+"Run-time versus Compile-time Instruction Scheduling in Superscalar (RISC) Processors: Performance and Tradeoffs
+Abstract: The RISC revolution has spurred the development of processors with increasing levels of instruction level parallelism (ILP). In order to realize the full potential of these processors, multiple instructions must be issued and executed in a single cycle. Consequently, instruction scheduling plays a crucial role as an optimization in this context. While early attempts at instruction scheduling were limited to compile-time approaches, the recent trend is to provide dynamic support in hardware. In this paper, we present the results of a detailed comparative study of the performance advantages to be derived by the spectrum of instruction scheduling approaches: from limited basic-block schedulers in the compiler, to novel and aggressive run-time schedulers in hardware. A significant portion of our experimental study via simulations, is devoted to understanding the performance advantages of run-time scheduling. Our results indicate it to be effective in extracting the ILP inherent to the program trace being scheduled, over a wide range of machine and program parameters. Furthermore, we also show that this effectiveness can be further enhanced by a simple basic-block scheduler in the compiler, which optimizes for the presence of the run-time scheduler in the target; current basic-block schedulers are not designed to take advantage of this feature. We demonstrate this fact by presenting a novel enhanced basic-block scheduler in this paper. Finally, we outline a simple analytical characterization of the performance advantage, that run-time schedulers have to offer."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

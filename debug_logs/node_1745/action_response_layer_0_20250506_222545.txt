@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1745 | Layer 0 | 20250506_222545:
+```json
+[
+  {"action_type": "rag_query", "query": "Learning Recursive Sequences via Evolution of Machine-Language Programs", "top_k": 10}
+]
+```
+================================================================================

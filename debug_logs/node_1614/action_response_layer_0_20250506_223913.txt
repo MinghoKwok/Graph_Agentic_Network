@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1614 | Layer 0 | 20250506_223913:
+```json
+[
+  {"action_type": "rag_query", "query": "Bayesian Inference on Periodicities and Component Spectral Structure in Time Series", "top_k": 10}
+]
+```
+================================================================================

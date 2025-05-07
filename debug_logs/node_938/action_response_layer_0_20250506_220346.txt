@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 938 | Layer 0 | 20250506_220346:
+```json
+[
+  {"action_type": "rag_query", "query": "Genetic Programming of Minimal Neural Nets Using Occam's Razor", "top_k": 10}
+]
+```
+================================================================================

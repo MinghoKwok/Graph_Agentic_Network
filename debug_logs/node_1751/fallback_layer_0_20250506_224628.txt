@@ -1,0 +1,53 @@
+📤 [DEBUG] Fallback Prompt for Node 1751 | Layer 0 | 20250506_224628:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_1: 2 examples
+- Label_2: 4 examples
+- Label_3: 1 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_2] "Homology Detection via Family Pairwise Search a straightforward generalization of pairwise sequence comparison algorithms to Abstract: The function of..."
+2. [Label_2] "The megaprior heuristic for discovering protein sequence patterns Abstract: Several computer algorithms for discovering patterns in groups of protein ..."
+3. [Label_2] "Optimal Alignments in Linear Space using Automaton-derived Cost Functions (Extended Abstract) Submitted to CPM'96 Abstract: In a previous paper [SM95]..."
+4. [Label_0] "LINNEO A Classification Methodology for Ill-structured Domains Abstract: In this work we present a classification methodology (LINNEO + ) to discover ..."
+5. [Label_2] "Word Perfect Corp. LIA: A Location-Independent Transformation for ASOCS Adaptive Algorithm 2 Abstract: Most Artificial Neural Networks (ANNs) have a f..."
+
+Text to classify:
+"Global self organization of all known protein sequences reveals inherent biological signatures self organization method
+Abstract: A global classification of all currently known protein sequences is performed. Every protein sequence is partitioned into segments of 50 amino acids and a dynamic-programming distance is calculated between each pair of segments. This space of segments is first embedded into Euclidean space with small metric distortion. A novel self-organized cross-validated clustering algorithm is then applied to the embedded space with Euclidean distances. The resulting hierarchical tree of clusters offers a new representation of protein sequences and families, which compares favorably with the most updated classifications based on functional and structural protein data. Motifs and domains such as the Zinc Finger, EF hand, Homeobox, EGF-like and others are automatically correctly identified. A novel representation of protein families is introduced, from which functional biological kinship of protein families can be deduced, as demonstrated for the transporters family."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

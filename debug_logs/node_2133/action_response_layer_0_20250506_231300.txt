@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2133 | Layer 0 | 20250506_231300:
+```json
+[
+  {"action_type": "rag_query", "query": "Genetic Programming Bloat with Dynamic Fitness", "top_k": 10}
+]
+```
+================================================================================

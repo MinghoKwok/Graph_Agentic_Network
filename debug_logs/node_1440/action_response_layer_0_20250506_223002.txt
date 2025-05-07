@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1440 | Layer 0 | 20250506_223002:
+```json
+[
+  {"action_type": "rag_query", "query": "Value Function Approximations and Job-Shop Scheduling", "top_k": 10}
+]
+```
+================================================================================

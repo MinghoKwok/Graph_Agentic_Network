@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 376 | Layer 0 | 20250506_213955:
+```json
+[
+  {"action_type": "rag_query", "query": "Bayesian Finite Mixtures for Nonlinear Modeling", "top_k": 10}
+]
+```
+================================================================================

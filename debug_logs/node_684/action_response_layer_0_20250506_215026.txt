@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 684 | Layer 0 | 20250506_215026:
+```json
+[
+  {"action_type": "rag_query", "query": "mixture modelling", "top_k": 10}
+]
+```
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1014 | Layer 0 | 20250506_214702:
+```json
+[
+  {"action_type": "rag_query", "query": "face recognition using independent component analysis", "top_k": 10}
+]
+```
+================================================================================

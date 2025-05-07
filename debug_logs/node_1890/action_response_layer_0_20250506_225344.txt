@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1890 | Layer 0 | 20250506_225344:
+```json
+[
+  {"action_type": "rag_query", "query": "Genetic Algorithms for Adaptive Planning of Path and Trajectory of a Mobile Robot in 2D Terrains", "top_k": 10}
+]
+```
+================================================================================

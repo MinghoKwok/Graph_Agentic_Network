@@ -1,0 +1,113 @@
+📤 [DEBUG] Action Prompt for Node 2283 | Layer 0 | 20250506_225404:
+
+    You are Node 2283 in a scientific citation network. Your task is to classify yourself into the correct research category based on your text and connections.
+    
+    ## Few-shot Examples of Label Prediction:
+
+    Example 1:
+    Memory:
+    1. [Neural_Networks] "A novel deep learning approach for image classification..."
+    2. [Reinforcement_Learning] "Q-learning based algorithm for game playing..."
+    3. [Neural_Networks] "Convolutional neural networks for computer vision tasks..."
+
+    Current Node Text:
+    "Deep learning models for visual recognition tasks..."
+
+    Prediction: Neural_Networks
+    Reasoning: The current text focuses on deep learning and visual recognition, which closely matches the Neural_Networks examples in memory.
+
+    Example 2:
+    Memory:
+    1. [Probabilistic_Methods] "Bayesian networks for uncertainty modeling..."
+    2. [Neural_Networks] "Recurrent neural networks for sequence prediction..."
+    3. [Probabilistic_Methods] "Markov models for time series analysis..."
+
+    Current Node Text:
+    "Hidden Markov models for speech recognition..."
+
+    Prediction: Probabilistic_Methods
+    Reasoning: The text discusses Markov models, which is a probabilistic method, matching the Probabilistic_Methods examples in memory.
+
+    Example 3:
+    Memory:
+    1. [Neural_Networks] "Deep learning architectures for natural language processing..."
+    2. [Theory] "Theoretical analysis of algorithm complexity..."
+    3. [Neural_Networks] "Transformer models for sequence modeling..."
+
+    Current Node Text:
+    "Attention mechanisms in deep learning models for text understanding..."
+
+    Prediction: Neural_Networks
+    Reasoning: Although the text mentions theoretical concepts like attention mechanisms, the focus is on deep learning models and their application to text understanding, which closely matches the Neural_Networks examples in memory.
+    
+    ## Your State:
+    - Node ID: 2283
+    - Layer: 0
+    - Your Text:
+    "Predictive Control of Opto-Electronic Reconfigurable Interconnection Networks Using Neural Networks
+Abstract: Opto-electronic reconfigurable interconnection networks are limited by significant control latency when used in large multiprocessor systems. This latency is the time required to analyze the current traffic and reconfigure the network to establish the required paths. The goal of latency hiding is to minimize the effect of this control overhead. In this paper, we introduce a technique that performs latency hiding by learning the patterns of communication traffic and using that information to anticipate the need for communication paths. Hence, the network provides the required communication paths before a request for a path is made. In this study, the communication patterns (memory accesses) of a parallel program are used as input to a time delay neural network (TDNN) to perform online training and prediction. These predicted communication patterns are used by the interconnection network controller that provides routes for the memory requests. Based on our experiments, the neural network was able to learn highly repetitive communication patterns, and was thus able to predict the allocation of communication paths, resulting in a reduction of communication latency. Communication latency is a significant issue in the design of lar ge scale multiprocessor systems. Point-to-point interconnection networks, which directly connect all processors and/or memories, provide minimum communication latency but suffer from high cost and limited scalability. A plethora of electr onic singlestage and multistage networks have been pr oposed, designed and built [Siegel90, Leighton93]. An alternative is the use of opto-electr onic reconfigurable interconnection networks which offer a limited number of high bandwidth communication channels configured on demand, to satisfy the r equired communication traffic [CLMQ94b]. A network controller determines the network configuration based on processor requests. Once the controller provides the optical communication paths requested, the communication proceeds at high speeds. Hence, the end-to-end latency incurred by such networks can be characterized by three components: control time, which is the time needed to determine the new network configuration and to physically establish the paths; launch time, the time to transmit the data into the network; and y time, the time needed for the message to travel through the network to its final destination. For high bandwidth short distance networks, the control time dominates the overall"
+    - Neighbors: [2284]
+    - Available labeled neighbors to retrieve from: None
+    - Neighbors with predicted labels: None
+    
+    You are an autonomous agent with planning capabilities. You may perform multiple actions in sequence to achieve better results.
+
+    ## Decide Your Next Action(s)
+    Important: You are allowed and encouraged to return MULTIPLE actions in sequence. You MUST respond with a JSON array even if there's only one action. 
+    Example of a valid response:
+    ```json
+    [
+      {"action_type": "update", "predicted_label": "Neural_Networks"},
+      {"action_type": "broadcast"}
+    ]
+    ```
+    ```json
+    [
+      {"action_type": "retrieve", "target_nodes": [1, 2, 3], "info_type": "text"},
+      {"action_type": "rag_query", "query": "machine learning", "top_k": 10}
+    ]
+    ```
+    Invalid response:
+    ```json
+    {"action_type": "update", "predicted_label": "Neural_Networks"}
+    ```
+
+    ### Available Actions:
+
+    1. "retrieve": get information from other nodes
+    - Format: {"action_type": "retrieve", "target_nodes": [IDs], "info_type": "text"}
+
+    2. "broadcast": send a message to neighbors if and *only* if you already have a label or predicted label
+    - Format: {"action_type": "broadcast", "target_nodes": [IDs], "message": "some message"}
+    - Use this *only* when you already have a label orpredicted label to share it with neighbors. 
+    - You MUST NOT use "broadcast" unless you already have a label orpredicted label (i.e., after an "update" action).
+    - So "update" action always works before "broadcast" in the same layer.
+
+    
+        3. "update": decide your label *only* when the memory has enough information(labeled nodes, with text and label)
+        - Format: {"action_type": "update", "predicted_label": choose one of allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]}
+        - You MUST choose one of the allowed label strings exactly as listed.
+        - You MUST base your decision only on the definitions of the labels and the memory nodes with known labels.
+        - You should ALWAYS follow this action with a "broadcast" to share your label with neighbors.
+
+    4. "rag_query": search globally for similar labeled nodes, can make up "retrieve" action
+    - Format: {"action_type": "rag_query", "query": [Your node ID, e.g. 13/57], "top_k": number of nodes to retrieve}
+    - Use this when you don't have enough informative neighbors or memory, and need global examples.
+    - You must use your own node ID as the query.
+
+    5. "no_op": take no action
+    - Format: {"action_type": "no_op"}
+
+    
+
+    ## Planning Your Steps
+    1. If you have a predicted label, you can choose to broadcast it or continue to retrieve nodes with labels.
+    2. If you don't have a predicted label, think like a planner: first gather evidence (retrieve, rag_query), then make a decision (update), and finally help others (broadcast).
+    Think about the following:
+    - If you cannot predict your label yet, need more context to predict your label → `retrieve`, `rag_query`
+    - Are you confident to predict your label? → `update`
+    - Have you shared your label or predicted label with neighbors? → `broadcast`
+    - Only broadcast if you have a predicted label or training label, AND your memory is not empty. If not, choose "retrieve" or "rag_query" first.
+    - If any neighbors already have predicted labels, it is recommended to retrieve from them first.
+    
+================================================================================

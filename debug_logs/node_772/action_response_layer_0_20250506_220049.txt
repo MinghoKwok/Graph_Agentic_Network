@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 772 | Layer 0 | 20250506_220049:
+```json
+[
+  {"action_type": "rag_query", "query": "Graphical Models in Applied Mathematical Multivariate Statistics", "top_k": 10}
+]
+```
+================================================================================

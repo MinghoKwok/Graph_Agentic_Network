@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1366 | Layer 0 | 20250506_223215:
+```json
+[
+  {"action_type": "rag_query", "query": "Learning Local Error Bars for Nonlinear Regression", "top_k": 10}
+]
+```
+================================================================================

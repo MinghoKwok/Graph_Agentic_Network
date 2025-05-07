@@ -1,0 +1,54 @@
+📤 [DEBUG] Fallback Prompt for Node 2268 | Layer 0 | 20250506_231950:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 1 examples
+- Label_2: 7 examples
+- Label_5: 3 examples
+
+Memory:
+1. [Label_2] "ce: [Tex89] <institution> Texas Instruments. </institution> <note> TMS320C30 C Compiler Reference Guide, 1989. Document Title: SPRU034A. </note> Abstr..."
+2. [Label_2] "MBP on T0: mixing floating- and fixed-point formats in BP learning Abstract: We examine the efficient implementation of back prop type algorithms on T..."
+3. [Label_1] "17 Massively Parallel Genetic Programming Abstract: As the field of Genetic Programming (GP) matures and its breadth of application increases, the nee..."
+4. [Label_5] "Abstract Abstract: This paper is a scientific comparison of two code generation techniques with identical goals generation of the best possible softwa..."
+5. [Label_2] "Word Perfect Corp. LIA: A Location-Independent Transformation for ASOCS Adaptive Algorithm 2 Abstract: Most Artificial Neural Networks (ANNs) have a f..."
+
+Text to classify:
+"SPERT: A VLIW/SIMD Microprocessor for Artificial Neural Network Computations
+Abstract: SPERT (Synthetic PERceptron Testbed) is a fully programmable single chip microprocessor designed for efficient execution of artificial neural network algorithms. The first implementation will be in a 1.2 m CMOS technology with a 50MHz clock rate, and a prototype system is being designed to occupy a double SBus slot within a Sun Sparcstation. SPERT will sustain over 300 fi 10 6 connections per second during pattern classification, and around 100 fi 10 6 connection updates per second while running the popular error backpropagation training algorithm. This represents a speedup of around two orders of magnitude over a Sparcstation-2 for algorithms of interest. An earlier system produced by our group, the Ring Array Processor (RAP), used commercial DSP chips. Compared with a RAP multiprocessor of similar performance, SPERT represents over an order of magnitude reduction in cost for problems where fixed-point arithmetic is satisfactory. fl International Computer Science Institute, 1947 Center Street, Berkeley, CA 94704"
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

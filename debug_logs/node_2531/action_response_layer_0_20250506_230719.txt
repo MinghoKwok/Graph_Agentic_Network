@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2531 | Layer 0 | 20250506_230719:
+```json
+[
+  {"action_type": "rag_query", "query": "utility elicitation as a classification problem", "top_k": 10}
+]
+```
+================================================================================

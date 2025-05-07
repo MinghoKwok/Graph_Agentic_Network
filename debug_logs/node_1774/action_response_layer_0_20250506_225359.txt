@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1774 | Layer 0 | 20250506_225359:
+```json
+[
+  {"action_type": "rag_query", "query": "Networks of Spiking Neurons", "top_k": 10}
+]
+```
+================================================================================

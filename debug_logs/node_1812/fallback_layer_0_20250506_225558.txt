@@ -1,0 +1,56 @@
+📤 [DEBUG] Fallback Prompt for Node 1812 | Layer 0 | 20250506_225558:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_2: 3 examples
+- Label_4: 1 examples
+- Label_5: 7 examples
+- Label_6: 4 examples
+
+Memory:
+1. [Label_6] "Parity: The Problem that Won't Go Away Abstract: It is well-known that certain learning methods (e.g., the perceptron learning algorithm) cannot acqui..."
+2. [Label_6] "Error-Correcting Output Codes: A General Method for Improving Multiclass Inductive Learning Programs Abstract: Multiclass learning problems involve fi..."
+3. [Label_2] "Learning Symbolic Rules Using Artificial Neural Networks Abstract: A distinct advantage of symbolic learning algorithms over artificial neural network..."
+4. [Label_2] "Tau Net: A Neural Network for Modeling Temporal Variability Abstract: The ability to handle temporal variation is important when dealing with real-wor..."
+5. [Label_6] "Feature Generation for Sequence Categorization Abstract: The problem of sequence categorization is to generalize from a corpus of labeled sequences pr..."
+
+Text to classify:
+"GENERALIZATION PERFORMANCE OF BACKPROPAGATION LEARNING ON A SYLLABIFICATION TASK
+Abstract: We investigated the generalization capabilities of backpropagation learning in feed-forward and recurrent feed-forward connectionist networks on the assignment of syllable boundaries to orthographic representations in Dutch (hyphenation). This is a difficult task because phonological and morphological constraints interact, leading to ambiguity in the input patterns. We compared the results to different symbolic pattern matching approaches, and to an exemplar-based generalization scheme, related to a k-nearest neighbour approach, but using a similarity metric weighed by the relative information entropy of positions in the training patterns. Our results indicate that the generalization performance of backpropagation learning for this task is not better than that of the best symbolic pattern matching approaches, and of exemplar-based generalization."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

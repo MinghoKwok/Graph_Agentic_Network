@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1322 | Layer 0 | 20250506_220323:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_6] "General Bounds on Statistical Query Learning and PAC Learning with Noise via Hypothesis Boosting Abstract: We derive general bounds on the complexity ..."
+2. [Label_6] "Decision Tree Induction: How Effective is the Greedy Heuristic? Abstract: Most existing decision tree systems use a greedy approach to induce trees | ..."
+3. [Label_6] "Pac Learning, Noise, and Geometry Abstract: This paper describes the probably approximately correct model of concept learning, paying special attentio..."
+4. [Label_6] "On the Induction of Intelligible Ensembles Abstract: Ensembles of classifiers, e.g. decision trees, often exhibit greater predictive accuracy than sin..."
+5. [Label_6] "Constructing Conjunctions using Systematic Search on Decision Trees Abstract: This paper investigates a dynamic path-based method for constructing con..."
+
+Text to classify:
+"Theory and Applications of Agnostic PAC-Learning with Small Decision Trees
+Abstract: We exhibit a theoretically founded algorithm T2 for agnostic PAC-learning of decision trees of at most 2 levels, whose computation time is almost linear in the size of the training set. We evaluate the performance of this learning algorithm T2 on 15 common real-world datasets, and show that for most of these datasets T2 provides simple decision trees with little or no loss in predictive power (compared with C4.5). In fact, for datasets with continuous attributes its error rate tends to be lower than that of C4.5. To the best of our knowledge this is the first time that a PAC-learning algorithm is shown to be applicable to real-world classification problems. Since one can prove that T2 is an agnostic PAC-learning algorithm, T2 is guaranteed to produce close to optimal 2-level decision trees from sufficiently large training sets for any (!) distribution of data. In this regard T2 differs strongly from all other learning algorithms that are considered in applied machine learning, for which no guarantee can be given about their performance on new datasets. We also demonstrate that this algorithm T2 can be used as a diagnostic tool for the investigation of the expressive limits of 2-level decision trees. Finally, T2, in combination with new bounds on the VC-dimension of decision trees of bounded depth that we derive, provides us now for the first time with the tools necessary for comparing learning curves of decision trees for real-world datasets with the theoretical estimates of PAC learning theory."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

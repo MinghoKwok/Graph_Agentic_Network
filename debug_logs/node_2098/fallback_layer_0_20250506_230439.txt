@@ -1,0 +1,51 @@
+📤 [DEBUG] Fallback Prompt for Node 2098 | Layer 0 | 20250506_230439:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_3: 2 examples
+- Label_4: 2 examples
+- Label_6: 7 examples
+
+Memory:
+1. [Label_6] "Universal Portfolios With and Without Transaction Costs Abstract: A constant rebalanced portfolio is an investment strategy which keeps the same distr..."
+2. [Label_6] "The Weighted Majority Algorithm Abstract: fl This research was primarily conducted while this author was at the University of Calif. at Santa Cruz wit..."
+3. [Label_3] "On Convergence of the EM Algorithm and the Gibbs Sampler  SUMMARY Abstract: In this article we investigate the relationship between the two popular al..."
+4. [Label_6] "General Bounds on Statistical Query Learning and PAC Learning with Noise via Hypothesis Boosting Abstract: We derive general bounds on the complexity ..."
+5. [Label_6] "A Statistical Approach to Solving the EBL Utility Problem Abstract: Many "learning from experience" systems use information extracted from problem sol..."
+
+Text to classify:
+"Predicting a binary sequence almost as well as the optimal biased coin
+Abstract: We apply the exponential weight algorithm, introduced and Littlestone and Warmuth [17] and by Vovk [24] to the problem of predicting a binary sequence almost as well as the best biased coin. We first show that for the case of the logarithmic loss, the derived algorithm is equivalent to the Bayes algorithm with Jeffrey's prior, that was studied by Xie and Barron under probabilistic assumptions [26]. We derive a uniform bound on the regret which holds for any sequence. We also show that if the empirical distribution of the sequence is bounded away from 0 and from 1, then, as the length of the sequence increases to infinity, the difference between this bound and a corresponding bound on the average case regret of the same algorithm (which is asymptotically optimal in that case) is only 1=2. We show that this gap of 1=2 is necessary by calculating the regret of the min-max optimal algorithm for this problem and showing that the asymptotic upper bound is tight. We also study the application of this algorithm to the square loss and show that the algorithm that is derived in this case is different from the Bayes algorithm and is better than it for prediction in the worst-case."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

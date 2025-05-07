@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 843 | Layer 0 | 20250506_220435:
+```json
+[
+  {"action_type": "rag_query", "query": "Locally Weighted Learning for Control", "top_k": 10}
+]
+```
+================================================================================

@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 2241 | Layer 0 | 20250506_225151:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_3] "Abstract Abstract: Automated decision making is often complicated by the complexity of the knowledge involved. Much of this complexity arises from the..."
+2. [Label_3] "On the Logic of Iterated Belief Revision Abstract: We show in this paper that the AGM postulates are too week to ensure the rational preservation of c..."
+3. [Label_6] "Inductive Logic Programming Abstract: A new research area, Inductive Logic Programming, is presently emerging. While inheriting various positive chara..."
+4. [Label_0] "Modeling Case-based Planning for Repairing Reasoning Failures Abstract: One application of models of reasoning behavior is to allow a reasoner to intr..."
+5. [Label_5] "The Difficulties of Learning Logic Programs with Cut Abstract: As real logic programmers normally use cut (!), an effective learning procedure for log..."
+
+Text to classify:
+"On Decision-Theoretic Foundations for Defaults
+Abstract: In recent years, considerable effort has gone into understanding default reasoning. Most of this effort concentrated on the question of entailment, i.e., what conclusions are warranted by a knowledge-base of defaults. Surprisingly, few works formally examine the general role of defaults. We argue that an examination of this role is necessary in order to understand defaults, and suggest a concrete role for defaults: Defaults simplify our decision-making process, allowing us to make fast, approximately optimal decisions by ignoring certain possible states. In order to formalize this approach, we examine decision making in the framework of decision theory. We use probability and utility to measure the impact of possible states on the decision-making process. We accept a default if it ignores states with small impact according to our measure. We motivate our choice of measures and show that the resulting formalization of defaults satisfies desired properties of defaults, namely cumulative reasoning. Finally, we compare our approach with Poole's decision-theoretic defaults, and show how both can be combined to form an attractive framework for reasoning about decisions. We make numerous assumptions each day: the car will start, the road will not be blocked, there will be heavy traffic at 5pm, etc. Many of these assumptions are defeasible; we are willing to retract them given sufficient evidence. Humans naturally state defaults and draw conclusions from default information. Hence, defaults seem to play an important part in common-sense reasoning. To use such statements, however, we need a formal understanding of what defaults represent and what conclusions they admit. The problem of default entailment|roughly, what conclusions we should draw from a knowledge-base of defaults|has attracted a great deal of attention. Many researchers attempt to find "context-free" patterns of default reasoning (e.g., [ Kraus et al., 1990 ] ). As this research shows, much can be done in this approach. We claim, however, that the utility of this approach is limited; to gain a better understanding of defaults, we need to understand in what situations we should be willing to state a default. Our main thesis is that an investigation of defaults should elaborate their role in the behavior of the reasoning agent. This role should allow us to examine when a default is appropriate in terms of its implications on the agent's overall performance. In this paper, we suggest a particular role for defaults and show how this role allows us to provide a semantics for defaults. Of course, we do not claim that this is the only role defaults can play. In many applications, the end result of reasoning is a choice of actions. Usually, this choice is not optimal; there is too much uncertainty about the state of the world and the effects of actions to allow for an examination of all possibilities. We suggest that one role of defaults lies in simplifying our decision-making process by stating assumptions that reduce the space of examined possibilities. More precisely, we suggest that a default ' ! is a license to ignore : situations when our knowledge amounts to '. One particular suggestion that can be understood in this light is *-semantics [ Pearl, 1989 ] . In *-semantics, we accept a default ' ! if given the knowledge ', the probability of : is very small. This small probability of the :' states gives us a license to ignore them. Although probability plays an important part in our decisions, we claim that we should also examine the utility of our actions. For example, while most people think that it is highly unlikely that they will die next year, they also believe that they should not accept this as a default assumption in the context of a decision as to whether or not to buy life insurance. In this context, the stakes are too high to ignore this outcome, even though it is unlikely. We suggest that the license to ignore a set should be given based on its impact on our decision. To paraphrase this view, we should accept Bird ! Fly if assuming that the bird flies cannot get us into too much trouble. To formalize our intuitions we examine decision-making in the framework of decision theory [ Luce and Raiffa, 1957 ] . Decision theory represents a decision problem using several components: a set of possible states, a probability measure over these sets, and a utility function that assigns to each action and state a numerical value. fl To appear in IJCAI'95."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2583 | Layer 0 | 20250506_232913:
+```json
+[
+  {"action_type": "rag_query", "query": "Dynamic Automatic Model Selection", "top_k": 10}
+]
+```
+================================================================================

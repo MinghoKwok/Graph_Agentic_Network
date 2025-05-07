@@ -1,0 +1,55 @@
+📤 [DEBUG] Fallback Prompt for Node 1398 | Layer 0 | 20250506_222750:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_1: 1 examples
+- Label_2: 1 examples
+- Label_3: 1 examples
+- Label_4: 1 examples
+- Label_5: 2 examples
+- Label_6: 4 examples
+
+Memory:
+1. [Label_2] "A Mixture of Experts Model Exhibiting Prosopagnosia Abstract: A considerable body of evidence from prosopagnosia, a deficit in face recognition dissoc..."
+2. [Label_6] "On the Induction of Intelligible Ensembles Abstract: Ensembles of classifiers, e.g. decision trees, often exhibit greater predictive accuracy than sin..."
+3. [Label_6] "Machine Learning by Function Decomposition Abstract: We present a new machine learning method that, given a set of training examples, induces a defini..."
+4. [Label_0] "In Machine Learning: A Multistrategy Approach, Vol. IV  Macro and Micro Perspectives of Multistrategy Learning Abstract: Machine learning techniques a..."
+5. [Label_3] "Abstract Abstract: Automated decision making is often complicated by the complexity of the knowledge involved. Much of this complexity arises from the..."
+
+Text to classify:
+"Self-Organizing Sets of Experts
+Abstract: We describe and evaluate multi-network connectionist systems composed of "expert" networks. By preprocessing training data with a competitive learning network, the system automatically organizes the process of decomposition into expert subtasks. Using several different types of challenging problem, we assess this approach | the degree to which the automatically generated experts really are specialists on a predictable subset of the overall task, and a comparison of such decompositions with equivalent single-networks. In addition, we assess the utility of this approach alongside, and in competition to, non-expert multiversion systems. Previously developed measures of `diversity' for such systems are also applied to provide a quantitative assessment of the degree of specialization obtained in an expert-net ensemble. We show that on both types of problem, abstract well-defined and data-defined, the automatic decomposition does produce an effective set of specialist networks which together can support a high level of performance. Curiously, the study does not provide any support for a differential of effectiveness within the two classes of problem: continuous, homogeneous functions and discrete, discontinuous functions."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

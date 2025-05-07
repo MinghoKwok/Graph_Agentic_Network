@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1640 | Layer 0 | 20250506_224649:
+```json
+[
+  {"action_type": "rag_query", "query": "case-based design system", "top_k": 10}
+]
+```
+================================================================================

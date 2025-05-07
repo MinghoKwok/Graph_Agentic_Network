@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 142 | Layer 0 | 20250506_210359:
+```json
+[
+  {"action_type": "rag_query", "query": "linear programming in machine learning", "top_k": 10}
+]
+```
+================================================================================

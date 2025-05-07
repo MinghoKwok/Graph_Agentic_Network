@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1236 | Layer 0 | 20250506_215848:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_6] "Decision Tree Induction: How Effective is the Greedy Heuristic? Abstract: Most existing decision tree systems use a greedy approach to induce trees | ..."
+2. [Label_6] "Constructing Conjunctions using Systematic Search on Decision Trees Abstract: This paper investigates a dynamic path-based method for constructing con..."
+3. [Label_6] "On the Induction of Intelligible Ensembles Abstract: Ensembles of classifiers, e.g. decision trees, often exhibit greater predictive accuracy than sin..."
+4. [Label_4] "Machine Learning Research: Four Current Directions Abstract: Machine Learning research has been making great progress is many directions. This article..."
+5. [Label_0] "A systematic description of greedy optimisation algorithms for cost sensitive generalisation Abstract: This paper defines a class of problems involvin..."
+
+Text to classify:
+"Exploring the Decision Forest: An Empirical Investigation of Occam's Razor in Decision Tree Induction
+Abstract: We report on a series of experiments in which all decision trees consistent with the training data are constructed. These experiments were run to gain an understanding of the properties of the set of consistent decision trees and the factors that affect the accuracy of individual trees. In particular, we investigated the relationship between the size of a decision tree consistent with some training data and the accuracy of the tree on test data. The experiments were performed on a massively parallel Maspar computer. The results of the experiments on several artificial and two real world problems indicate that, for many of the problems investigated, smaller consistent decision trees are on average less accurate than the average accuracy of slightly larger trees."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

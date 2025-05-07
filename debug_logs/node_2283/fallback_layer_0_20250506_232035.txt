@@ -1,0 +1,55 @@
+📤 [DEBUG] Fallback Prompt for Node 2283 | Layer 0 | 20250506_232035:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_2: 5 examples
+- Label_4: 2 examples
+- Label_5: 2 examples
+- Label_6: 1 examples
+
+Memory:
+1. [Label_2] "Tau Net: A Neural Network for Modeling Temporal Variability Abstract: The ability to handle temporal variation is important when dealing with real-wor..."
+2. [Label_5] "Learning Evolving Concepts Using Partial-Memory Approach  Machine Learning and Inference Laboratory Abstract: This paper addresses the problem of lear..."
+3. [Label_2] "Word Perfect Corp. LIA: A Location-Independent Transformation for ASOCS Adaptive Algorithm 2 Abstract: Most Artificial Neural Networks (ANNs) have a f..."
+4. [Label_2] "Two Constructive Methods for Designing Compact Feedforward Networks of Threshold Units Abstract: We propose two algorithms for constructing and traini..."
+5. [Label_6] "Error-Correcting Output Codes: A General Method for Improving Multiclass Inductive Learning Programs Abstract: Multiclass learning problems involve fi..."
+
+Text to classify:
+"Predictive Control of Opto-Electronic Reconfigurable Interconnection Networks Using Neural Networks
+Abstract: Opto-electronic reconfigurable interconnection networks are limited by significant control latency when used in large multiprocessor systems. This latency is the time required to analyze the current traffic and reconfigure the network to establish the required paths. The goal of latency hiding is to minimize the effect of this control overhead. In this paper, we introduce a technique that performs latency hiding by learning the patterns of communication traffic and using that information to anticipate the need for communication paths. Hence, the network provides the required communication paths before a request for a path is made. In this study, the communication patterns (memory accesses) of a parallel program are used as input to a time delay neural network (TDNN) to perform online training and prediction. These predicted communication patterns are used by the interconnection network controller that provides routes for the memory requests. Based on our experiments, the neural network was able to learn highly repetitive communication patterns, and was thus able to predict the allocation of communication paths, resulting in a reduction of communication latency. Communication latency is a significant issue in the design of lar ge scale multiprocessor systems. Point-to-point interconnection networks, which directly connect all processors and/or memories, provide minimum communication latency but suffer from high cost and limited scalability. A plethora of electr onic singlestage and multistage networks have been pr oposed, designed and built [Siegel90, Leighton93]. An alternative is the use of opto-electr onic reconfigurable interconnection networks which offer a limited number of high bandwidth communication channels configured on demand, to satisfy the r equired communication traffic [CLMQ94b]. A network controller determines the network configuration based on processor requests. Once the controller provides the optical communication paths requested, the communication proceeds at high speeds. Hence, the end-to-end latency incurred by such networks can be characterized by three components: control time, which is the time needed to determine the new network configuration and to physically establish the paths; launch time, the time to transmit the data into the network; and y time, the time needed for the message to travel through the network to its final destination. For high bandwidth short distance networks, the control time dominates the overall"
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

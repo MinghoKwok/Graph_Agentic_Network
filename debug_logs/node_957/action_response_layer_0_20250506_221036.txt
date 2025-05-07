@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 957 | Layer 0 | 20250506_221036:
+```json
+[
+  {"action_type": "rag_query", "query": "annealed theories of learning", "top_k": 10}
+]
+```
+================================================================================

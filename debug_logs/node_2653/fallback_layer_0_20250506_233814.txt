@@ -1,0 +1,53 @@
+📤 [DEBUG] Fallback Prompt for Node 2653 | Layer 0 | 20250506_233814:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_5: 4 examples
+- Label_6: 10 examples
+
+Memory:
+1. [Label_6] "General Bounds on Statistical Query Learning and PAC Learning with Noise via Hypothesis Boosting Abstract: We derive general bounds on the complexity ..."
+2. [Label_6] "Inductive Logic Programming Abstract: A new research area, Inductive Logic Programming, is presently emerging. While inheriting various positive chara..."
+3. [Label_6] "Separating Formal Bounds from Practical Performance in Learning Systems Abstract: nan"
+4. [Label_6] "Pac Learning, Noise, and Geometry Abstract: This paper describes the probably approximately correct model of concept learning, paying special attentio..."
+5. [Label_6] "Parity: The Problem that Won't Go Away Abstract: It is well-known that certain learning methods (e.g., the perceptron learning algorithm) cannot acqui..."
+
+Text to classify:
+"On the Sample Complexity of Weakly Learning
+Abstract: In this paper, we study the sample complexity of weak learning. That is, we ask how much data must be collected from an unknown distribution in order to extract a small but significant advantage in prediction. We show that it is important to distinguish between those learning algorithms that output deterministic hypotheses and those that output randomized hypotheses. We prove that in the weak learning model, any algorithm using deterministic hypotheses to weakly learn a class of Vapnik-Chervonenkis dimension d(n) requires ( d(n)) examples. In contrast, when randomized hypotheses are allowed, we show that fi(1) examples suffice in some cases. We then show that there exists an efficient algorithm using deterministic hypotheses that weakly learns against any distribution on a set of size d(n) with only O(d(n) 2=3 ) examples. Thus for the class of symmetric Boolean functions over n variables, where the strong learning sample complexity is fi(n), the sample complexity for weak learning using deterministic hypotheses is ( n) and O(n 2=3 ), and the sample complexity for weak learning using randomized hypotheses is fi(1). Next we prove the existence of classes for which the distribution-free sample size required to obtain a slight advantage in prediction over random guessing is essentially equal to that required to obtain arbitrary accuracy. Finally, for a class of small circuits, namely all parity functions of subsets of n Boolean variables, we prove a weak learning sample complexity of fi(n). This bound holds even if the weak learning algorithm is allowed to replace random sampling with membership queries, and the target distribution is uniform on f0; 1g n . p"
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

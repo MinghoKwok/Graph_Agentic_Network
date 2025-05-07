@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 2460 | Layer 0 | 20250506_230333:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_3] "Analysis of the Gibbs sampler for a model related to James-Stein estimators Abstract: Summary. We analyze a hierarchical Bayes model which is related ..."
+2. [Label_3] "Discovering Structure in Continuous Variables Using Bayesian Networks Abstract: We study Bayesian networks for continuous variables using nonlinear co..."
+3. [Label_3] "Logarithmic Time Parallel Bayesian Inference Abstract: I present a parallel algorithm for exact probabilistic inference in Bayesian networks. For poly..."
+4. [Label_3] "group, and despite having just 337 subjects, the study strongly supports Identification of causal effects Abstract: Figure 8a and Figure 8b show the p..."
+5. [Label_3] "On Bayesian analysis of mixtures with an unknown number of components  Summary Abstract: New methodology for fully Bayesian mixture analysis is develo..."
+
+Text to classify:
+"Mutual Information as a Bayesian Measure of Independence
+Abstract: 0.0 Abstract. The problem of hypothesis testing is examined from both the historical and the Bayesian points of view in the case that sampling is from an underlying joint probability distribution and the hypotheses tested for are those of independence and dependence of the underlying distribution. Exact results for the Bayesian method are provided. Asymptotic Bayesian results and historical method quantities are compared, and historical method quantities are interpreted in terms of clearly defined Bayesian quantities. The asymptotic Bayesian test relies upon a statistic that is predominantly mutual information. Problems of hypothesis testing arise ubiquitously in situations where observed data is produced by an unknown process and the question is asked From what process did this observed data arise? Historically, the hypothesis testing problem is approached from the point of view of sampling, whereby several fixed hypotheses to be tested for are given, and all measures of the test and its quality are found directly from the likelihood, i.e. by what amounts to sampling the likelihood [2] [3]. (To be specific, a hypothesis is a set of possible parameter vectors, each parameter vector completely specifying a sampling distribution. A simple hypothesis is a hypothesis set that contains one parameter vector. A composite hypothesis occurs when the (nonempty) hypothesis set is not a single parameter vector.) Generally, the test procedure chooses as true the hypothesis that gives the largest test value, although the notion of procedure is not specific and may refer to any method for choosing the hypothesis given the test values. Since it is of interest to quantify the quality of the test, a level of significance is generated, this level being the probability that, under the chosen hypothesis and test procedure, an incorrect hypothesis choice is made. The significance is generated using the sampling distribution, or likelihood. For simple hypotheses the level of significance is found using the single parameter value of the hypothesis. When a test is applied in the case of a composite hypothesis, a size for the test is found that is given by the supremum probability (ranging over the parameter vectors in the hypothesis set) that under the chosen"
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

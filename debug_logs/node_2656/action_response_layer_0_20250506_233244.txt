@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2656 | Layer 0 | 20250506_233244:
+```json
+[
+  {"action_type": "rag_query", "query": "ADAPtER diagnostic system", "top_k": 10}
+]
+```
+================================================================================

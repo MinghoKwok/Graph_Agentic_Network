@@ -1,0 +1,114 @@
+
+📤 [DEBUG] Action Prompt for Node 1522 | Layer 0 | 20250506_224031:
+
+    You are Node 1522 in a scientific citation network. Your task is to classify yourself into the correct research category based on your text and connections.
+    
+    ## Few-shot Examples of Label Prediction:
+
+    Example 1:
+    Memory:
+    1. [Neural_Networks] "A novel deep learning approach for image classification..."
+    2. [Reinforcement_Learning] "Q-learning based algorithm for game playing..."
+    3. [Neural_Networks] "Convolutional neural networks for computer vision tasks..."
+
+    Current Node Text:
+    "Deep learning models for visual recognition tasks..."
+
+    Prediction: Neural_Networks
+    Reasoning: The current text focuses on deep learning and visual recognition, which closely matches the Neural_Networks examples in memory.
+
+    Example 2:
+    Memory:
+    1. [Probabilistic_Methods] "Bayesian networks for uncertainty modeling..."
+    2. [Neural_Networks] "Recurrent neural networks for sequence prediction..."
+    3. [Probabilistic_Methods] "Markov models for time series analysis..."
+
+    Current Node Text:
+    "Hidden Markov models for speech recognition..."
+
+    Prediction: Probabilistic_Methods
+    Reasoning: The text discusses Markov models, which is a probabilistic method, matching the Probabilistic_Methods examples in memory.
+
+    Example 3:
+    Memory:
+    1. [Neural_Networks] "Deep learning architectures for natural language processing..."
+    2. [Theory] "Theoretical analysis of algorithm complexity..."
+    3. [Neural_Networks] "Transformer models for sequence modeling..."
+
+    Current Node Text:
+    "Attention mechanisms in deep learning models for text understanding..."
+
+    Prediction: Neural_Networks
+    Reasoning: Although the text mentions theoretical concepts like attention mechanisms, the focus is on deep learning models and their application to text understanding, which closely matches the Neural_Networks examples in memory.
+    
+    ## Your State:
+    - Node ID: 1522
+    - Layer: 0
+    - Your Text:
+    "nan
+Abstract: ARCING THE EDGE Leo Breiman Technical Report 486 , Statistics Department University of California, Berkeley CA. 94720 Abstract Recent work has shown that adaptively reweighting the training set, growing a classifier using the new weights, and combining the classifiers constructed to date can significantly decrease generalization error. Procedures of this type were called arcing by Breiman[1996]. The first successful arcing procedure was introduced by Freund and Schapire[1995,1996] and called Adaboost. In an effort to explain why Adaboost works, Schapire et.al. [1997] derived a bound on the generalization error of a convex combination of classifiers in terms of the margin. We introduce a function called the edge, which differs from the margin only if there are more than two classes. A framework for understanding arcing algorithms is defined. In this framework, we see that the arcing algorithms currently in the literature are optimization algorithms which minimize some function of the edge. A relation is derived between the optimal reduction in the maximum value of the edge and the PAC concept of weak learner. Two algorithms are described which achieve the optimal reduction. Tests on both synthetic and real data cast doubt on the Schapire et.al. There is recent empirical evidence that significant reductions in generalization error can be gotten by growing a number of different classifiers on the same training set and letting these vote for the best class. Freund and Schapire ([1995], [1996] ) proposed an algorithm called AdaBoost which adaptively reweights the training set in a way based on the past history of misclassifications, constructs a new classifier using the current weights, and uses the misclassification rate of this classifier to determine the size of its vote. In a number of empirical studies on many data sets using trees (CART or C4.5) as the base classifier (Drucker and Cortes[1995], Quinlan[1996], Freud and Schapire[1996], Breiman[1996]) AdaBoost produced dramatic decreases in generalization error compared to using a single tree. Error rates were reduced to the point where tests on some well-known data sets gave the result that CART plus AdaBoost did significantly better than any other of the commonly used classification methods (Breiman[1996] ). Meanwhile, empirical results showed that other methods of adaptive resampling (or reweighting) and combining (called "arcing" by Breiman [1996]) also led to low test set error rates. An algorithm called arc-x4 (Breiman[1996]) gave error rates almost identical to Adaboost. Ji and Ma[1997] worked with classifiers consisting of randomly selected hyperplanes and using a different method of adaptive resampling and unweighted voting, also got low error rates. Thus, there are a least three arcing algorithms extant, all of which give excellent classification accuracy. explanation."
+    - Neighbors: [569, 1484]
+    - Available labeled neighbors to retrieve from: None
+    - Neighbors with predicted labels: None
+    
+    You are an autonomous agent with planning capabilities. You may perform multiple actions in sequence to achieve better results.
+
+    ## Decide Your Next Action(s)
+    Important: You are allowed and encouraged to return MULTIPLE actions in sequence. You MUST respond with a JSON array even if there's only one action. 
+    Example of a valid response:
+    ```json
+    [
+      {"action_type": "update", "predicted_label": "Neural_Networks"},
+      {"action_type": "broadcast"}
+    ]
+    ```
+    ```json
+    [
+      {"action_type": "retrieve", "target_nodes": [1, 2, 3], "info_type": "text"},
+      {"action_type": "rag_query", "query": "machine learning", "top_k": 10}
+    ]
+    ```
+    Invalid response:
+    ```json
+    {"action_type": "update", "predicted_label": "Neural_Networks"}
+    ```
+
+    ### Available Actions:
+
+    1. "retrieve": get information from other nodes
+    - Format: {"action_type": "retrieve", "target_nodes": [IDs], "info_type": "text"}
+
+    2. "broadcast": send a message to neighbors if and *only* if you already have a label or predicted label
+    - Format: {"action_type": "broadcast", "target_nodes": [IDs], "message": "some message"}
+    - Use this *only* when you already have a label orpredicted label to share it with neighbors. 
+    - You MUST NOT use "broadcast" unless you already have a label orpredicted label (i.e., after an "update" action).
+    - So "update" action always works before "broadcast" in the same layer.
+
+    
+        3. "update": decide your label *only* when the memory has enough information(labeled nodes, with text and label)
+        - Format: {"action_type": "update", "predicted_label": choose one of allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]}
+        - You MUST choose one of the allowed label strings exactly as listed.
+        - You MUST base your decision only on the definitions of the labels and the memory nodes with known labels.
+        - You should ALWAYS follow this action with a "broadcast" to share your label with neighbors.
+
+    4. "rag_query": search globally for similar labeled nodes, can make up "retrieve" action
+    - Format: {"action_type": "rag_query", "query": [Your node ID, e.g. 13/57], "top_k": number of nodes to retrieve}
+    - Use this when you don't have enough informative neighbors or memory, and need global examples.
+    - You must use your own node ID as the query.
+
+    5. "no_op": take no action
+    - Format: {"action_type": "no_op"}
+
+    
+
+    ## Planning Your Steps
+    1. If you have a predicted label, you can choose to broadcast it or continue to retrieve nodes with labels.
+    2. If you don't have a predicted label, think like a planner: first gather evidence (retrieve, rag_query), then make a decision (update), and finally help others (broadcast).
+    Think about the following:
+    - If you cannot predict your label yet, need more context to predict your label → `retrieve`, `rag_query`
+    - Are you confident to predict your label? → `update`
+    - Have you shared your label or predicted label with neighbors? → `broadcast`
+    - Only broadcast if you have a predicted label or training label, AND your memory is not empty. If not, choose "retrieve" or "rag_query" first.
+    - If any neighbors already have predicted labels, it is recommended to retrieve from them first.
+    
+================================================================================

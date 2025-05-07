@@ -1,0 +1,50 @@
+📤 [DEBUG] Fallback Prompt for Node 1063 | Layer 0 | 20250506_221019:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_1: 9 examples
+
+Memory:
+1. [Label_1] "Fitness Landscapes and Difficulty in Genetic Programming Abstract: The structure of the fitness landscape on which genetic programming operates is exa..."
+2. [Label_1] "The Application of a Parallel Genetic Algorithm to the n=m=P=C max Flowshop Problem Abstract: Hard combinatorial problems in sequencing and scheduling..."
+3. [Label_1] "A STUDY OF CROSSOVER OPERATORS IN GENETIC PROGRAMMING Abstract: Holland's analysis of the sources of power of genetic algorithms has served as guidanc..."
+4. [Label_1] "A Genetic Algorithm for File and Task Placement in a Distributed System Abstract: In this paper we explore the distributed file and task placement pro..."
+5. [Label_1] "17 Massively Parallel Genetic Programming Abstract: As the field of Genetic Programming (GP) matures and its breadth of application increases, the nee..."
+
+Text to classify:
+"An Analysis of the Effects of Neighborhood Size and Shape on Local Selection Algorithms
+Abstract: The increasing availability of finely-grained parallel architectures has resulted in a variety of evolutionary algorithms (EAs) in which the population is spatially distributed and local selection algorithms operate in parallel on small, overlapping neighborhoods. The effects of design choices regarding the particular type of local selection algorithm as well as the size and shape of the neighborhood are not particularly well understood and are generally tested empirically. In this paper we extend the techniques used to more formally analyze selection methods for sequential EAs and apply them to local neighborhood models, resulting in a much clearer understanding of the effects of neighborhood size and shape."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

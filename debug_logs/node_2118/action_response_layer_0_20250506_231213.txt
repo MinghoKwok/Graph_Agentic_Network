@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2118 | Layer 0 | 20250506_231213:
+```json
+[
+  {"action_type": "rag_query", "query": "temporal-difference learning", "top_k": 10}
+]
+```
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1203 | Layer 0 | 20250506_215705:
+```json
+[
+  {"action_type": "rag_query", "query": "neural network learning algorithms", "top_k": 10}
+]
+```
+================================================================================

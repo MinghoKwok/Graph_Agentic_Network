@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1534 | Layer 0 | 20250506_221434:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_0] "AN INCREMENTAL LEARNING MODEL FOR COMMONSENSE REASONING Abstract:"
+2. [Label_0] "Goal-Driven Learning: Fundamental Issues (A Symposium Report) Abstract: In Artificial Intelligence, Psychology, and Education, a growing body of resea..."
+3. [Label_0] "A Comparative Utility Analysis of Case-Based Reasoning and Control-Rule Learning Systems Abstract: The utility problem in learning systems occurs when..."
+4. [Label_3] "Algebraic Techniques for Efficient Inference in Bayesian Networks Abstract: A number of exact algorithms have been developed to perform probabilistic ..."
+5. [Label_0] "Unifying Empirical and Explanation-Based Learning by Modeling the Utility of Learned Knowledge Abstract: The overfit problem in empirical learning and..."
+
+Text to classify:
+"The Use of Explicit Goals for Knowledge to Guide Inference and Learning
+Abstract: Combinatorial explosion of inferences has always been a central problem in artificial intelligence. Although the inferences that can be drawn from a reasoner's knowledge and from available inputs is very large (potentially infinite), the inferential resources available to any reasoning system are limited. With limited inferential capacity and very many potential inferences, reasoners must somehow control the process of inference. Not all inferences are equally useful to a given reasoning system. Any reasoning system that has goals (or any form of a utility function) and acts based on its beliefs indirectly assigns utility to its beliefs. Given limits on the process of inference, and variation in the utility of inferences, it is clear that a reasoner ought to draw the inferences that will be most valuable to it. This paper presents an approach to this problem that makes the utility of a (potential) belief an explicit part of the inference process. The method is to generate explicit desires for knowledge. The question of focus of attention is thereby transformed into two related problems: How can explicit desires for knowledge be used to control inference and facilitate resource-constrained goal pursuit in general? and, Where do these desires for knowledge come from? We present a theory of knowledge goals, or desires for knowledge, and their use in the processes of understanding and learning. The theory is illustrated using two case studies, a natural language understanding program that learns by reading novel or unusual newspaper stories, and a differential diagnosis program that improves its accuracy with experience."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

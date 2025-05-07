@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2205 | Layer 0 | 20250506_231647:
+```json
+[
+  {"action_type": "rag_query", "query": "Genetic Local Search Approach", "top_k": 10}
+]
+```
+================================================================================

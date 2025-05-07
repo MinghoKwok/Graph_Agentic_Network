@@ -1,0 +1,51 @@
+📤 [DEBUG] Fallback Prompt for Node 1116 | Layer 0 | 20250506_221306:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_2: 4 examples
+- Label_3: 9 examples
+- Label_6: 1 examples
+
+Memory:
+1. [Label_3] "On the Markov Equivalence of Chain Graphs, Undirected Graphs, and Acyclic Digraphs Abstract: Graphical Markov models use undirected graphs (UDGs), acy..."
+2. [Label_3] "Hidden Markov decision trees Abstract: We study a time series model that can be viewed as a decision tree with Markov temporal structure. The model is..."
+3. [Label_3] "Analysis of a Non-Reversible Markov Chain Sampler Abstract: Technical Report BU-1385-M, Biometrics Unit, Cornell University Abstract We analyse the co..."
+4. [Label_3] "Analysis of the Gibbs sampler for a model related to James-Stein estimators Abstract: Summary. We analyze a hierarchical Bayes model which is related ..."
+5. [Label_2] "Homology Detection via Family Pairwise Search a straightforward generalization of pairwise sequence comparison algorithms to Abstract: The function of..."
+
+Text to classify:
+"Equivalence of Linear Boltzmann Chains and Hidden Markov Models sequence L, is: where Z(; A;
+Abstract: Several authors have made a link between hidden Markov models for time series and energy-based models (Luttrell 1989, Williams 1990, Saul and Jordan 1995). Saul and Jordan (1995) discuss a linear Boltzmann chain model with state-state transition energies A ii 0 (going from state i to state i 0 ) and symbol emission energies B ij , under which the probability of an entire state fi l ; j l g L Whilst any HMM can be written as a linear Boltzmann chain by setting exp(A ii 0 ) = a ii 0 , exp(B ij ) = b ij and exp( i ) = i , not all linear Boltzmann chains can be represented as HMMs (Saul and Jordan 1995). However, the difference between the two models is minimal. To be precise, if the final hidden"
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

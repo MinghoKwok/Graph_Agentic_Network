@@ -1,0 +1,50 @@
+📤 [DEBUG] Fallback Prompt for Node 1740 | Layer 0 | 20250506_224552:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 10 examples
+- Label_2: 2 examples
+
+Memory:
+1. [Label_1] "A STUDY OF CROSSOVER OPERATORS IN GENETIC PROGRAMMING Abstract: Holland's analysis of the sources of power of genetic algorithms has served as guidanc..."
+2. [Label_1] "Genetic Algorithms For Vertex Splitting in DAGs 1 Abstract: 1 This paper has been submitted to the 5th International Conference on Genetic Algorithms ..."
+3. [Label_1] "The Application of a Parallel Genetic Algorithm to the n=m=P=C max Flowshop Problem Abstract: Hard combinatorial problems in sequencing and scheduling..."
+4. [Label_1] "17 Massively Parallel Genetic Programming Abstract: As the field of Genetic Programming (GP) matures and its breadth of application increases, the nee..."
+5. [Label_2] "Separating hippocampal maps  Spatial Functions of the Hippocampal Formation and the Abstract: The place fields of hippocampal cells in old animals som..."
+
+Text to classify:
+"As mentioned in the introduction, an encod-ing/crossover pair makes a spectrum of geographical linkages. A
+Abstract: It is open as to which chromosomal dimension performs best. Although higher-dimensional encodings (whether real or imaginary) can preserve more geographical gene linkages, we suspect that too high a dimension would not perform desirably. We are studying the question of which dimension of encoding is best for a given instance. It is likely that the optimal dimension is somehow dependent on the chromosome size and the input graph topology; interactions with the flexibility of crossover are yet unknown. The interaction of these considerations with the number of cuts used in the crossover is also an open issue. * In relocating genes onto a multi-dimensional chromosome, the simplest way is via a sequential assignment such as row-major order. Section 4 showed that performance improves when a DFS-row-major reembedding is used for two- and three-dimensional encodings. We suspect that this phenomenon will be consistent for higher-dimensional cases, and hope to perform more detailed investigations in the future. Although DFS reordering proved to be helpful for both linear encodings [19] and multi-dimensional encodings, we do not believe DFS-row-major reembedding is a good approach for the multi-dimensional cases since the row-major embedding is so simplistic. We are considering alternative 2-dimensional and 3-dimensional reembeddings which will hopefully provide further improvement. [4] T. N. Bui and B. R. Moon. Hyperplane synthesis for genetic algorithms. In Fifth International Conference on Genetic Algorithms, pages 102-109, July 1993. [5] T. N. Bui and B. R. Moon. Analyzing hyperplane synthesis in genetic algorithms using clustered schemata. In International Conference on Evolutionary Computation, Oct. 1994. Lecture Notes in Computer Science, 866:108-118, Springer-Verlag."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

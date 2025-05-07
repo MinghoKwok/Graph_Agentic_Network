@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1921 | Layer 0 | 20250506_223504:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_1] "A STUDY OF CROSSOVER OPERATORS IN GENETIC PROGRAMMING Abstract: Holland's analysis of the sources of power of genetic algorithms has served as guidanc..."
+2. [Label_6] "Machine Learning by Function Decomposition Abstract: We present a new machine learning method that, given a set of training examples, induces a defini..."
+3. [Label_1] "A Transformation System for Interactive Reformulation of Design Optimization Strategies Abstract: Automatic design optimization is highly sensitive to..."
+4. [Label_1] "Type Inheritance in Strongly Typed Genetic Programming Abstract: This paper appears as chapter 18 of Kenneth E. Kinnear, Jr. and Peter J. Angeline, ed..."
+5. [Label_1] "The Application of a Parallel Genetic Algorithm to the n=m=P=C max Flowshop Problem Abstract: Hard combinatorial problems in sequencing and scheduling..."
+
+Text to classify:
+"Computation. Automated Synthesis of Analog Electrical Circuits by Means of Genetic Programming
+Abstract: The design (synthesis) of analog electrical circuits starts with a high-level statement of the circuit's desired behavior and requires creating a circuit that satisfies the specified design goals. Analog circuit synthesis entails the creation of both the topology and the sizing (numerical values) of all of the circuit's components. The difficulty of the problem of analog circuit synthesis is well known and there is no previously known general automated technique for synthesizing an analog circuit from a high-level statement of the circuit's desired behavior. This paper presents a single uniform approach using genetic programming for the automatic synthesis of both the topology and sizing of a suite of eight different prototypical analog circuits, including a lowpass filter, a crossover (woofer and tweeter) filter, a source identification circuit, an amplifier, a computational circuit, a time-optimal controller circuit, a temperaturesensing circuit, and a voltage reference circuit. The problemspecific information required for each of the eight problems is minimal and consists primarily of the number of inputs and outputs of the desired circuit, the types of available components, and a fitness measure that restates the high-level statement of the circuit's desired behavior as a measurable mathematical quantity. The eight genetically evolved circuits constitute an instance of an evolutionary computation technique producing results on a task that is usually thought of as requiring human intelligence. The fact that a single uniform approach yielded a satisfactory design for each of the eight circuits as well as the fact that a satisfactory design was created on the first or second run of each problem are evidence for the general applicability of genetic programming for solving the problem of automatic synthesis of analog electrical circuits."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

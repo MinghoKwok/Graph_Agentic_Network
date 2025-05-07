@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1772 | Layer 0 | 20250506_222711:
+```json
+[
+  {"action_type": "rag_query", "query": "optimization algorithms", "top_k": 10}
+]
+```
+================================================================================

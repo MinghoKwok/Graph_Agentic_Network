@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1806 | Layer 0 | 20250506_222858:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_2] "MBP on T0: mixing floating- and fixed-point formats in BP learning Abstract: We examine the efficient implementation of back prop type algorithms on T..."
+2. [Label_6] "Separating Formal Bounds from Practical Performance in Learning Systems Abstract: nan"
+3. [Label_4] "Truncating Temporal Differences: On the Efficient Implementation of TD() for Reinforcement Learning Abstract: Temporal difference (TD) methods constit..."
+4. [Label_4] "Generalization in Reinforcement Learning: Safely Approximating the Value Function Abstract: To appear in: G. Tesauro, D. S. Touretzky and T. K. Leen, ..."
+5. [Label_6] "Parity: The Problem that Won't Go Away Abstract: It is well-known that certain learning methods (e.g., the perceptron learning algorithm) cannot acqui..."
+
+Text to classify:
+"MBP on T0: mixing floating- and fixed-point formats in BP learning
+Abstract: We examine the efficient implementation of back prop type algorithms on T0 [4], a vector processor with a fixed point engine, designed for neural network simulation. A matrix formulation of back prop, Matrix Back Prop [1], has been shown to be very efficient on some RISCs [2]. Using Matrix Back Prop, we achieve an asymptotically optimal performance on T0 (about 0.8 GOPS) for both forward and backward phases, which is not possible with the standard on-line method. Since high efficiency is futile if convergence is poor (due to the use of fixed point arithmetic), we use a mixture of fixed and floating point operations. The key observation is that the precision of fixed point is sufficient for good convergence, if the range is appropriately chosen. Though the most expensive computations are implemented in fixed point, we achieve a rate of convergence that is comparable to the floating point version. The time taken for conversion between fixed and floating point is also shown to be reasonable."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

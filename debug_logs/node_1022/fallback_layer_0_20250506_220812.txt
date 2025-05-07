@@ -1,0 +1,53 @@
+📤 [DEBUG] Fallback Prompt for Node 1022 | Layer 0 | 20250506_220812:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 2 examples
+- Label_2: 2 examples
+- Label_3: 1 examples
+- Label_4: 2 examples
+- Label_6: 3 examples
+
+Memory:
+1. [Label_2] "Shattering all sets of k points in "general position" requires (k 1)=2 parameters Abstract: For classes of concepts defined by certain classes of anal..."
+2. [Label_2] "Theory of Correlations in Stochastic Neural Networks Abstract: One of the main experimental tools in probing the interactions between neurons has been..."
+3. [Label_6] "The Weighted Majority Algorithm Abstract: fl This research was primarily conducted while this author was at the University of Calif. at Santa Cruz wit..."
+4. [Label_6] "Separating Formal Bounds from Practical Performance in Learning Systems Abstract: nan"
+5. [Label_6] "PAC Learning Intersections of Halfspaces with Membership Queries (Extended Abstract) Abstract:"
+
+Text to classify:
+"j
+Abstract: So applying Corollary 4.3 to the second equation in (47), we conclude that From (38), we then get jg(y n + ~ k( y (51), we obtain jy n + ~ k( From (39) we see that the right-hand side of (54) is bounded by . Since the system _ y = A 1 y k( y )b 2 jyj ev N : (55) Now, suppose lim sup t!1 jy(t)j = &gt; 0. Then jyj ev 2. Since j k(y)j Ljyj, we have and using (56) and (57), we obtain j~yj ev 2(~-1 + -2 )L + -2 ffi : (58) (Note that if the right-hand side of (58) is 1 , then the inequality is trivial since we know from (52) that j~yj ev 1 .) From (53), (56), and (58), we have -2 ffi + N ffi &gt; N . However, from (55) we see that (60) still holds. So we established (60) in all cases. From (40) we then get jyj ev 2 Taking the lim sup t!1 of the left-hand side of (61), we have 1 2 + N("-2 + 1)ffi i.e. 2 N("-2 + 1)ffi. Substituting this into (58) and (61), we get j~yj ev ffi, and jyj ev 2 N("-2 + 1)ffi . So, if we take N = 2 N("-2 + 1)(1 + 2L(~-1 + -2 )) + -2 ; the conclusion follows. To complete the proof, we need to deal with the general case of m &gt; 1 inputs. This is done by induction on m, as in the proof in [14], and will be omitted here. 2 [1] Fuller, A.T., "In the large stability of relay and saturated control systems with linear controllers," Int. J. Control, 10(1969): 457-480. [2] Gutman, P-O., and P. Hagander, "A new design of constrained controllers for linear systems," IEEE Transactions on Automat. Contr. AC-30(1985): 22-23. [3] Kosut, R.L., "Design of linear systems with saturating linear control and bounded states," IEEE Trans. Au-tom. Control AC-28(1983): 121-124. [4] Krikelis, N.J., and S.K. Barkas, "Design of tracking systems subject to actuator saturation and integrator wind-up," Int. J. Control 39(1984): 667-682. [5] Schmitendorf, W.E. and B.R. Barmish, "Null controllability of linear systems with constrained controls," SIAM J. Control and Opt. 18(1980): 327-345. [6] Slemrod, M., "Feedback stabilization of a linear control system in Hilbert space," Math. Control Signals Systems 2(1989): 265-285. [7] Slotine, J-J.E., and W. Li, Applied Nonlinear Control, Prentice-Hall, Englewood Cliffs, 1991. [8] Sontag, E.D., "An algebraic approach to bounded controllability of linear systems," Int. J. Control 39(1984): 181-188. [9] Sontag, E.D., "Remarks on stabilization and input-to-state stability," Proc. IEEE CDC, Tampa, Dec. 1989, IEEE Publications, 1989, pp. 1376-1378. [10] Sontag, E.D., Mathematical Control Theory: Deterministic Finite Dimensional Systems, Springer, New York, 1990. [11] Sontag, E.D., and H.J. Sussmann, "Nonlinear output feedback design for linear systems with saturating controls," Proc. IEEE CDC, Honolulu, Dec. 1990, IEEE Publications, 1990, pp. 3414-3416. [12] Sussmann, H. J. and Y. Yang, "On the stabilizability of multiple integrators by means of bounded feedback controls" Proc. IEEE CDC, Brighton, UK, Dec. 1991, IEEE Publications, 1991: 70-73. [13] Teel, A.R., "Global stabilization and restricted tracking for multiple integrators with bounded controls," Systems and Control Letters 18(1992): 165-171. [14] Yang, Y., H.J. Sussmann and E.D. Sontag, "Stabilization of linear systems with bounded controls," Proc. June 1992 NOLCOS, Bordeaux, (M. Fliess, Ed.), IFAC Publications, pp. 15-20. [15] Yang, Y., Global Stabilization of Linear Systems with Bounded Feedback, Ph. D. Thesis, Mathematics Department, Rutgers University, 1993. j~yj ev M (~-1 + -2 ) + ffi-2 ; (50)"
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

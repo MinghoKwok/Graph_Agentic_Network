@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 2674 | Layer 0 | 20250506_231451:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_2] "Learning Symbolic Rules Using Artificial Neural Networks Abstract: A distinct advantage of symbolic learning algorithms over artificial neural network..."
+2. [Label_5] "Knowledge Acquisition with a Knowledge-Intensive Machine Learning System Abstract: In this paper, we investigate the integration of knowledge acquisit..."
+3. [Label_3] "Abstract Abstract: Automated decision making is often complicated by the complexity of the knowledge involved. Much of this complexity arises from the..."
+4. [Label_0] "LINNEO A Classification Methodology for Ill-structured Domains Abstract: In this work we present a classification methodology (LINNEO + ) to discover ..."
+5. [Label_3] "On the Logic of Iterated Belief Revision Abstract: We show in this paper that the AGM postulates are too week to ensure the rational preservation of c..."
+
+Text to classify:
+"Comparing Methods for Refining Certainty-Factor Rule-Bases
+Abstract: This paper compares two methods for refining uncertain knowledge bases using propositional certainty-factor rules. The first method, implemented in the Rapture system, employs neural-network training to refine the certainties of existing rules but uses a symbolic technique to add new rules. The second method, based on the one used in the Kbann system, initially adds a complete set of potential new rules with very low certainty and allows neural-network training to filter and adjust these rules. Experimental results indicate that the former method results in significantly faster training and produces much simpler refined rule bases with slightly greater accuracy."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

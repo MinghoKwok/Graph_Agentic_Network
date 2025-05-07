@@ -1,0 +1,51 @@
+📤 [DEBUG] Fallback Prompt for Node 672 | Layer 0 | 20250506_214948:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_5: 3 examples
+- Label_6: 13 examples
+
+Memory:
+1. [Label_5] "Pac-Learning Recursive Logic Programs: Efficient Algorithms Abstract: We present algorithms that learn certain classes of function-free recursive logi..."
+2. [Label_6] "Inductive Logic Programming Abstract: A new research area, Inductive Logic Programming, is presently emerging. While inheriting various positive chara..."
+3. [Label_0] "Oblivious Decision Trees and Abstract Cases Abstract: In this paper, we address the problem of case-based learning in the presence of irrelevant featu..."
+4. [Label_6] "Separating Formal Bounds from Practical Performance in Learning Systems Abstract: nan"
+5. [Label_6] "Machine Learning by Function Decomposition Abstract: We present a new machine learning method that, given a set of training examples, induces a defini..."
+
+Text to classify:
+"Cryptographic Limitations on Learning Boolean Formulae and Finite Automata
+Abstract: In this paper we prove the intractability of learning several classes of Boolean functions in the distribution-free model (also called the Probably Approximately Correct or PAC model) of learning from examples. These results are representation independent, in that they hold regardless of the syntactic form in which the learner chooses to represent its hypotheses. Our methods reduce the problems of cracking a number of well-known public-key cryptosys- tems to the learning problems. We prove that a polynomial-time learning algorithm for Boolean formulae, deterministic finite automata or constant-depth threshold circuits would have dramatic consequences for cryptography and number theory: in particular, such an algorithm could be used to break the RSA cryptosystem, factor Blum integers (composite numbers equivalent to 3 modulo 4), and detect quadratic residues. The results hold even if the learning algorithm is only required to obtain a slight advantage in prediction over random guessing. The techniques used demonstrate an interesting duality between learning and cryptography. We also apply our results to obtain strong intractability results for approximating a gener - alization of graph coloring. fl This research was conducted while the author was at Harvard University and supported by an A.T.& T. Bell Laboratories scholarship. y Supported by grants ONR-N00014-85-K-0445, NSF-DCR-8606366 and NSF-CCR-89-02500, DAAL03-86-K-0171, DARPA AFOSR 89-0506, and by SERC."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

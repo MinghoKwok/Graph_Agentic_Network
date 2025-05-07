@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2178 | Layer 0 | 20250506_231523:
+```json
+[
+  {"action_type": "rag_query", "query": "Statistical Mechanics of Financial Markets", "top_k": 10}
+]
+```
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1973 | Layer 0 | 20250506_225808:
+```json
+[
+  {"action_type": "rag_query", "query": "genetic algorithms neural networks", "top_k": 10}
+]
+```
+================================================================================

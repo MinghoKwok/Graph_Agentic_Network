@@ -1,0 +1,56 @@
+📤 [DEBUG] Fallback Prompt for Node 461 | Layer 0 | 20250506_214421:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 2 examples
+- Label_2: 3 examples
+- Label_4: 1 examples
+- Label_5: 3 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_2] "Two Constructive Methods for Designing Compact Feedforward Networks of Threshold Units Abstract: We propose two algorithms for constructing and traini..."
+2. [Label_6] "Machine Learning by Function Decomposition Abstract: We present a new machine learning method that, given a set of training examples, induces a defini..."
+3. [Label_1] "Growing neural networks Abstract: nan"
+4. [Label_1] "A NN Algorithm for Boolean Satisfiability Problems Abstract: Satisfiability (SAT) refers to the task of finding a truth assignment that makes an arbit..."
+5. [Label_2] "Learning Symbolic Rules Using Artificial Neural Networks Abstract: A distinct advantage of symbolic learning algorithms over artificial neural network..."
+
+Text to classify:
+"Product Unit Learning constructive algorithm is then introduced which adds product units to a network
+Abstract: Product units provide a method of automatically learning the higher-order input combinations required for the efficient synthesis of Boolean logic functions by neural networks. Product units also have a higher information capacity than sigmoidal networks. However, this activation function has not received much attention in the literature. A possible reason for this is that one encounters some problems when using standard backpropagation to train networks containing these units. This report examines these problems, and evaluates the performance of three training algorithms on networks of this type. Empirical results indicate that the error surface of networks containing product units have more local minima than corresponding networks with summation units. For this reason, a combination of local and global training algorithms were found to provide the most reliable convergence. We then investigate how `hints' can be added to the training algorithm. By extracting a common frequency from the input weights, and training this frequency separately, we show that convergence can be accelerated. In order to compare their performance with other transfer functions, product units were implemented as candidate units in the Cascade Correlation (CC) [13] system. Using these candidate units resulted in smaller networks which trained faster than when the any of the standard (three sigmoidal types and one Gaussian) transfer functions were used. This superiority was confirmed when a pool of candidate units of four different nonlinear activation functions were used, which have to compete for addition to the network. Extensive simulations showed that for the problem of implementing random Boolean logic functions, product units are always chosen above any of the other transfer functions."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

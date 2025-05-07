@@ -1,0 +1,51 @@
+📤 [DEBUG] Fallback Prompt for Node 960 | Layer 0 | 20250506_220456:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 2 examples
+- Label_5: 7 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_5] "Machine Learning and Inference Abstract: Constructive induction divides the problem of learning an inductive hypothesis into two intertwined searches:..."
+2. [Label_5] "Learning by Refining Algorithm Sketches Abstract: In this paper we suggest a mechanism that improves significantly the performance of a top-down induc..."
+3. [Label_5] "Learning Evolving Concepts Using Partial-Memory Approach  Machine Learning and Inference Laboratory Abstract: This paper addresses the problem of lear..."
+4. [Label_6] "Error-Correcting Output Codes: A General Method for Improving Multiclass Inductive Learning Programs Abstract: Multiclass learning problems involve fi..."
+5. [Label_5] "on Inductive Logic Programming (ILP-95) Inducing Logic Programs without Explicit Negative Examples Abstract: This paper presents a method for learning..."
+
+Text to classify:
+"Proceedings of the First International Workshop on Intelligent Adaptive Systems (IAS-95) Constructive Induction-based Learning Agents:
+Abstract: This paper introduces a new type of intelligent agent called a constructive induction-based learning agent (CILA). This agent differs from other adaptive agents because it has the ability to not only learn how to assist a user in some task, but also to incrementally adapt its knowledge representation space to better fit the given learning task. The agents ability to autonomously make problem-oriented modifications to the originally given representation space is due to its constructive induction (CI) learning method. Selective induction (SI) learning methods, and agents based on these methods, rely on a good representation space. A good representation space has no misclassification noise, inter-correlated attributes or irrelevant attributes. Our proposed CILA has methods for overcoming all of these problems. In agent domains with poor representations, the CI-based learning agent will learn more accurate rules and be more useful than an SI-based learning agent. This paper gives an architecture for a CI-based learning agent and gives an empirical comparison of a CI and SI for a set of six abstract domains involving DNF-type (disjunctive normal form) descriptions."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1526 | Layer 0 | 20250506_224044:
+```json
+[
+  {"action_type": "rag_query", "query": "Independent Component Analysis", "top_k": 10}
+]
+```
+================================================================================

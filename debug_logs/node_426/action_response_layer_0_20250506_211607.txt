@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 426 | Layer 0 | 20250506_211607:
+```json
+[
+  {"action_type": "rag_query", "query": "rule induction machine learning", "top_k": 10}
+]
+```
+================================================================================

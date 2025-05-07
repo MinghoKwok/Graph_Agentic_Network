@@ -1,0 +1,55 @@
+📤 [DEBUG] Fallback Prompt for Node 1381 | Layer 0 | 20250506_223301:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_2: 4 examples
+- Label_3: 5 examples
+- Label_4: 1 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_3] "Maximum Likelihood and Covariant Algorithms for Independent Component Analysis somewhat more biologically plausible, involving no Abstract: Bell and S..."
+2. [Label_3] "On Bayesian analysis of mixtures with an unknown number of components  Summary Abstract: New methodology for fully Bayesian mixture analysis is develo..."
+3. [Label_2] "The megaprior heuristic for discovering protein sequence patterns Abstract: Several computer algorithms for discovering patterns in groups of protein ..."
+4. [Label_6] "Bayesian Methods for Adaptive Models Abstract: nan"
+5. [Label_3] "IMPROVING THE MEAN FIELD APPROXIMATION VIA THE USE OF MIXTURE DISTRIBUTIONS Abstract: Mean field methods provide computationally efficient approximati..."
+
+Text to classify:
+"A Context-Sensitive Generalization of ICA
+Abstract: Source separation arises in a surprising number of signal processing applications, from speech recognition to EEG analysis. In the square linear blind source separation problem without time delays, one must find an unmixing matrix which can detangle the result of mixing n unknown independent sources through an unknown n fi n mixing matrix. The recently introduced ICA blind source separation algorithm (Baram and Roth 1994; Bell and Sejnowski 1995) is a powerful and surprisingly simple technique for solving this problem. ICA is all the more remarkable for performing so well despite making absolutely no use of the temporal structure of its input! This paper presents a new algorithm, contextual ICA, which derives from a maximum likelihood density estimation formulation of the problem. cICA can incorporate arbitrarily complex adaptive history-sensitive source models, and thereby make use of the temporal structure of its input. This allows it to separate in a number of situations where standard ICA cannot, including sources with low kurtosis, colored gaussian sources, and sources which have gaussian histograms. Since ICA is a special case of cICA, the MLE derivation provides as a corollary a rigorous derivation of classic ICA."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

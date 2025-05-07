@@ -1,0 +1,56 @@
+📤 [DEBUG] Fallback Prompt for Node 1843 | Layer 0 | 20250506_225737:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 4 examples
+- Label_1: 2 examples
+- Label_3: 1 examples
+- Label_4: 2 examples
+- Label_5: 1 examples
+
+Memory:
+1. [Label_0] "Goal-Driven Learning: Fundamental Issues (A Symposium Report) Abstract: In Artificial Intelligence, Psychology, and Education, a growing body of resea..."
+2. [Label_0] "Unifying Empirical and Explanation-Based Learning by Modeling the Utility of Learned Knowledge Abstract: The overfit problem in empirical learning and..."
+3. [Label_0] "The Role of Generic Models in Conceptual Change Abstract: 1 This research was funded in part by NSF Grant No. IRI-92-10925 and in part by ONR Grant No..."
+4. [Label_4] "Analysis of Some Incremental Variants of Policy Iteration: First Steps Toward Understanding Actor-Critic Learning Systems Abstract: Northeastern Unive..."
+5. [Label_4] "Category: Control, Navigation and Planning. Key words: Reinforcement learning, Exploration, Hidden state. Prefer oral presentation. Abstract: This pap..."
+
+Text to classify:
+"Goal-based Explanation Evaluation 1
+Abstract: 1 I would like to thank my dissertation advisor, Roger Schank, for his very valuable guidance on this research, and to thank the Cognitive Science reviewers for their helpful comments on a draft of this paper. The research described here was conducted primarily at Yale University, supported in part by the Defense Advanced Research Projects Agency, monitored by the Office of Naval Research under contract N0014-85-K-0108 and by the Air Force Office of Scientific Research under contract F49620-88-C-0058."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

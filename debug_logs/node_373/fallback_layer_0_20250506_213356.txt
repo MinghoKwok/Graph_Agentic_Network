@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 373 | Layer 0 | 20250506_213356:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_1: 5 examples
+- Label_2: 1 examples
+- Label_5: 3 examples
+
+Memory:
+1. [Label_5] "THE EXPANDABLE SPLIT WINDOW PARADIGM FOR EXPLOITING FINE-GRAIN PARALLELISM Abstract: We propose a new processing paradigm, called the Expandable Split..."
+2. [Label_1] "17 Massively Parallel Genetic Programming Abstract: As the field of Genetic Programming (GP) matures and its breadth of application increases, the nee..."
+3. [Label_5] "Abstract Abstract: This paper is a scientific comparison of two code generation techniques with identical goals generation of the best possible softwa..."
+4. [Label_2] "ce: [Tex89] <institution> Texas Instruments. </institution> <note> TMS320C30 C Compiler Reference Guide, 1989. Document Title: SPRU034A. </note> Abstr..."
+5. [Label_1] "A Genetic Algorithm for File and Task Placement in a Distributed System Abstract: In this paper we explore the distributed file and task placement pro..."
+
+Text to classify:
+"Task Selection for a Multiscalar Processor
+Abstract: The Multiscalar architecture advocates a distributed processor organization and task-level speculation to exploit high degrees of instruction level parallelism (ILP) in sequential programs without impeding improvements in clock speeds. The main goal of this paper is to understand the key implications of the architectural features of distributed processor organization and task-level speculation for compiler task selection from the point of view of performance. We identify the fundamental performance issues to be: control ow speculation, data communication, data dependence speculation, load imbalance, and task overhead. We show that these issues are intimately related to a few key characteristics of tasks: task size, inter-task control ow, and inter-task data dependence. We describe compiler heuristics to select tasks with favorable characteristics. We report experimental results to show that the heuristics are successful in boosting overall performance by establishing larger ILP windows."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

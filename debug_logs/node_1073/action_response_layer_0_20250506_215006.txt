@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1073 | Layer 0 | 20250506_215006:
+```json
+[
+  {"action_type": "rag_query", "query": "attribute estimation in regression", "top_k": 10}
+]
+```
+================================================================================

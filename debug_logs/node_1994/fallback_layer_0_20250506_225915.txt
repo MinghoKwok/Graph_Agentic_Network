@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 1994 | Layer 0 | 20250506_225915:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 4 examples
+- Label_3: 3 examples
+- Label_4: 2 examples
+- Label_5: 2 examples
+
+Memory:
+1. [Label_3] "On the Logic of Iterated Belief Revision Abstract: We show in this paper that the AGM postulates are too week to ensure the rational preservation of c..."
+2. [Label_0] "The Role of Generic Models in Conceptual Change Abstract: 1 This research was funded in part by NSF Grant No. IRI-92-10925 and in part by ONR Grant No..."
+3. [Label_5] "Machine Learning and Inference Abstract: Constructive induction divides the problem of learning an inductive hypothesis into two intertwined searches:..."
+4. [Label_5] "The Origins of Inductive Logic Programming: A Prehistoric Tale Abstract: This paper traces the development of the main ideas that have led to the pres..."
+5. [Label_3] "Abstract Abstract: Automated decision making is often complicated by the complexity of the knowledge involved. Much of this complexity arises from the..."
+
+Text to classify:
+"Constructive Belief and Rational Representation
+Abstract: It is commonplace in artificial intelligence to divide an agent's explicit beliefs into two parts: the beliefs explicitly represented or manifest in memory, and the implicitly represented or constructive beliefs that are repeatedly reconstructed when needed rather than memorized. Many theories of knowledge view the relation between manifest and constructive beliefs as a logical relation, with the manifest beliefs representing the constructive beliefs through a logic of belief. This view, however, limits the ability of a theory to treat incomplete or inconsistent sets of beliefs in useful ways. We argue that a more illuminating view is that belief is the result of rational representation. In this theory, the agent obtains its constructive beliefs by using its manifest beliefs and preferences to rationally (in the sense of decision theory) choose the most useful conclusions indicated by the manifest beliefs."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

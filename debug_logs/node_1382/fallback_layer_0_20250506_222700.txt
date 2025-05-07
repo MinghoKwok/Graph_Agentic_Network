@@ -1,0 +1,53 @@
+📤 [DEBUG] Fallback Prompt for Node 1382 | Layer 0 | 20250506_222700:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_1: 3 examples
+- Label_2: 4 examples
+- Label_5: 1 examples
+- Label_6: 3 examples
+
+Memory:
+1. [Label_6] "Parity: The Problem that Won't Go Away Abstract: It is well-known that certain learning methods (e.g., the perceptron learning algorithm) cannot acqui..."
+2. [Label_2] "Tau Net: A Neural Network for Modeling Temporal Variability Abstract: The ability to handle temporal variation is important when dealing with real-wor..."
+3. [Label_5] "Pac-Learning Recursive Logic Programs: Efficient Algorithms Abstract: We present algorithms that learn certain classes of function-free recursive logi..."
+4. [Label_2] "Word Perfect Corp. LIA: A Location-Independent Transformation for ASOCS Adaptive Algorithm 2 Abstract: Most Artificial Neural Networks (ANNs) have a f..."
+5. [Label_0] "AN INCREMENTAL LEARNING MODEL FOR COMMONSENSE REASONING Abstract:"
+
+Text to classify:
+"AN ADAPTIVE NEURAL NETWORK PARSER
+Abstract: We inv estigate the applicability of an adaptive neural network to problems with time-dependent input by demonstrating that a deterministic parser for natural language inputs of significant syntactic complexity can be developed using recurrent connectionist architectures. The traditional stacking mechanism, known to be necessary for proper treatment of context-free languages in symbolic systems, is absent from the design, having been subsumed by recurrency in the network."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

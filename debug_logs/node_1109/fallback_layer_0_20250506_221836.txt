@@ -1,0 +1,54 @@
+📤 [DEBUG] Fallback Prompt for Node 1109 | Layer 0 | 20250506_221836:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 4 examples
+- Label_5: 5 examples
+- Label_6: 1 examples
+
+Memory:
+1. [Label_0] "Formalising the knowledge content of case memory systems Abstract: Discussions of case-based reasoning often reflect an implicit assumption that a cas..."
+2. [Label_0] "A Comparative Utility Analysis of Case-Based Reasoning and Control-Rule Learning Systems Abstract: The utility problem in learning systems occurs when..."
+3. [Label_6] "Inductive Logic Programming Abstract: A new research area, Inductive Logic Programming, is presently emerging. While inheriting various positive chara..."
+4. [Label_5] "Pac-Learning Recursive Logic Programs: Efficient Algorithms Abstract: We present algorithms that learn certain classes of function-free recursive logi..."
+5. [Label_5] "on Inductive Logic Programming (ILP-95) Inducing Logic Programs without Explicit Negative Examples Abstract: This paper presents a method for learning..."
+
+Text to classify:
+"Inductive Bias in Case-Based Reasoning Systems
+Abstract: In order to learn more about the behaviour of case-based reasoners as learning systems, we form-alise a simple case-based learner as a PAC learning algorithm, using the case-based representation hCB; i. We first consider a `naive' case-based learning algorithm CB1( H ) which learns by collecting all available cases into the case-base and which calculates similarity by counting the number of features on which two problem descriptions agree. We present results concerning the consistency of this learning algorithm and give some partial results regarding its sample complexity. We are able to characterise CB1( H ) as a `weak but general' learning algorithm. We then consider how the sample complexity of case-based learning can be reduced for specific classes of target concept by the application of inductive bias, or prior knowledge of the class of target concepts. Following recent work demonstrating how case-based learning can be improved by choosing a similarity measure appropriate to the concept being learnt, we define a second case-based learning `algorithm' CB2 which learns using the best possible similarity measure that might be inferred for the chosen target concept. While CB2 is not an executable learning strategy (since the chosen similarity measure is defined in terms of a priori knowledge of the actual target concept) it allows us to assess in the limit the maximum possible contribution of this approach to case-based learning. Also, in addition to illustrating the role of inductive bias, the definition of CB2 simplifies the general problem of establishing which functions might be represented in the form hCB; i. Reasoning about the case-based representation in this special case has therefore been a little more straight-forward than in the general case of CB1( H ), allowing more substantial results regarding representable functions and sample complexity to be presented for CB2. In assessing these results, we are forced to conclude that case-based learning is not the best approach to learning the chosen concept space (the space of monomial functions). We discuss, however, how our study has demonstrated, in the context of case-based learning, the operation of concepts well known in machine learning such as inductive bias and the trade-off between computational complexity and sample complexity."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

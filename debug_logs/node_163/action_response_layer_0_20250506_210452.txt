@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 163 | Layer 0 | 20250506_210452:
+```json
+[
+  {"action_type": "rag_query", "query": "Genetic algorithms in search, optimization, and machine learning", "top_k": 10}
+]
+```
+================================================================================

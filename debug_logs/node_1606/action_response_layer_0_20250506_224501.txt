@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1606 | Layer 0 | 20250506_224501:
+```json
+[
+  {"action_type": "rag_query", "query": "Pruning Recurrent Neural Networks", "top_k": 10}
+]
+```
+================================================================================

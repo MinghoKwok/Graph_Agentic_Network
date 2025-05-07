@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 155 | Layer 0 | 20250506_212228:
+```json
+[
+  {"action_type": "rag_query", "query": "Model-Based Cluster Analysis", "top_k": 10}
+]
+```
+================================================================================

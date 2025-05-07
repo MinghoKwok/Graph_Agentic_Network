@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 254 | Layer 0 | 20250506_210843:
+```json
+[
+  {"action_type": "rag_query", "query": "Recursive Auto-Associative Memory", "top_k": 10}
+]
+```
+================================================================================

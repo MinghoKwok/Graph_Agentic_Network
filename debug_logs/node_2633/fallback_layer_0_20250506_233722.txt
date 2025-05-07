@@ -1,0 +1,56 @@
+📤 [DEBUG] Fallback Prompt for Node 2633 | Layer 0 | 20250506_233722:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 1 examples
+- Label_2: 2 examples
+- Label_3: 1 examples
+- Label_5: 1 examples
+- Label_6: 7 examples
+
+Memory:
+1. [Label_6] "Machine Learning by Function Decomposition Abstract: We present a new machine learning method that, given a set of training examples, induces a defini..."
+2. [Label_1] "Unsupervised Learning with the Soft-Means Algorithm Abstract: This note describes a useful adaptation of the `peak seeking' regime used in unsupervise..."
+3. [Label_6] "Pac Learning, Noise, and Geometry Abstract: This paper describes the probably approximately correct model of concept learning, paying special attentio..."
+4. [Label_2] "The Canonical Distortion Measure in Feature Space and 1-NN Classification Abstract: We prove that the Canonical Distortion Measure (CDM) [2, 3] is the..."
+5. [Label_2] "Shattering all sets of k points in "general position" requires (k 1)=2 parameters Abstract: For classes of concepts defined by certain classes of anal..."
+
+Text to classify:
+"Learning Using Group Representations (Extended Abstract)
+Abstract: We consider the problem of learning functions over a fixed distribution. An algorithm by Kushilevitz and Mansour [7] learns any boolean function over f0; 1g n in time polynomial in the L 1 -norm of the Fourier transform of the function. We show that the KM-algorithm is a special case of a more general class of learning algorithms. This is achieved by extending their ideas using representations of finite groups. We introduce some new classes of functions which can be learned using this generalized KM algorithm."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

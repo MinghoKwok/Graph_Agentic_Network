@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 513 | Layer 0 | 20250506_214708:
+```json
+[
+  {"action_type": "rag_query", "query": "Detecting Features in Spatial Point Processes with Clustering", "top_k": 10}
+]
+```
+================================================================================

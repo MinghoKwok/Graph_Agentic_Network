@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 887 | Layer 0 | 20250506_214017:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_0] "Formalising the knowledge content of case memory systems Abstract: Discussions of case-based reasoning often reflect an implicit assumption that a cas..."
+2. [Label_6] "Constructing Conjunctions using Systematic Search on Decision Trees Abstract: This paper investigates a dynamic path-based method for constructing con..."
+3. [Label_0] "Oblivious Decision Trees and Abstract Cases Abstract: In this paper, we address the problem of case-based learning in the presence of irrelevant featu..."
+4. [Label_6] "Decision Tree Induction: How Effective is the Greedy Heuristic? Abstract: Most existing decision tree systems use a greedy approach to induce trees | ..."
+5. [Label_0] "Improving Minority Class Prediction Using Case-Specific Feature Weights Abstract: This paper addresses the problem of handling skewed class distributi..."
+
+Text to classify:
+"Simplifying Decision Trees: A Survey
+Abstract: Induced decision trees are an extensively-researched solution to classification tasks. For many practical tasks, the trees produced by tree-generation algorithms are not comprehensible to users due to their size and complexity. Although many tree induction algorithms have been shown to produce simpler, more comprehensible trees (or data structures derived from trees) with good classification accuracy, tree simplification has usually been of secondary concern relative to accuracy and no attempt has been made to survey the literature from the perspective of simplification. We present a framework that organizes the approaches to tree simplification and summarize and critique the approaches within this framework. The purpose of this survey is to provide researchers and practitioners with a concise overview of tree-simplification approaches and insight into their relative capabilities. In our final discussion, we briefly describe some empirical findings and discuss the application of tree induction algorithms to case retrieval in case-based reasoning systems."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

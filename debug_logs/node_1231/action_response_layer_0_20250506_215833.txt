@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1231 | Layer 0 | 20250506_215833:
+```json
+[
+  {"action_type": "rag_query", "query": "Type Inheritance in Strongly Typed Genetic Programming", "top_k": 5}
+]
+```
+================================================================================

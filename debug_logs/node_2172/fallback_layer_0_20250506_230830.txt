@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 2172 | Layer 0 | 20250506_230830:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 3 examples
+- Label_3: 2 examples
+- Label_5: 4 examples
+- Label_6: 3 examples
+
+Memory:
+1. [Label_3] "On the Logic of Iterated Belief Revision Abstract: We show in this paper that the AGM postulates are too week to ensure the rational preservation of c..."
+2. [Label_5] "Pac-Learning Recursive Logic Programs: Efficient Algorithms Abstract: We present algorithms that learn certain classes of function-free recursive logi..."
+3. [Label_5] "The Difficulties of Learning Logic Programs with Cut Abstract: As real logic programmers normally use cut (!), an effective learning procedure for log..."
+4. [Label_6] "Inductive Logic Programming Abstract: A new research area, Inductive Logic Programming, is presently emerging. While inheriting various positive chara..."
+5. [Label_0] "LINNEO A Classification Methodology for Ill-structured Domains Abstract: In this work we present a classification methodology (LINNEO + ) to discover ..."
+
+Text to classify:
+"Tractability of Theory Patching
+Abstract: In this paper we consider the problem of theory patching, in which we are given a domain theory, some of whose components are indicated to be possibly flawed, and a set of labeled training examples for the domain concept. The theory patching problem is to revise only the indicated components of the theory, such that the resulting theory correctly classifies all the training examples. Theory patching is thus a type of theory revision in which revisions are made to individual components of the theory. Our concern in this paper is to determine for which classes of logical domain theories the theory patching problem is tractable. We consider both propositional and first-order domain theories, and show that the theory patching problem is equivalent to that of determining what information contained in a theory is stable regardless of what revisions might be performed to the theory. We show that determining stability is tractable if the input theory satisfies two conditions: that revisions to each theory component have monotonic effects on the classification of examples, and that theory components act independently in the classification of examples in the theory. We also show how the concepts introduced can be used to determine the soundness and completeness of particular theory patching algorithms."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

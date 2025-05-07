@@ -1,0 +1,53 @@
+📤 [DEBUG] Fallback Prompt for Node 2272 | Layer 0 | 20250506_231344:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 1 examples
+- Label_2: 4 examples
+- Label_4: 4 examples
+- Label_5: 1 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_2] "Separating hippocampal maps  Spatial Functions of the Hippocampal Formation and the Abstract: The place fields of hippocampal cells in old animals som..."
+2. [Label_4] "Emergent Hierarchical Control Structures: Learning Reactive/Hierarchical Relationships in Reinforcement Environments Abstract: The use of externally i..."
+3. [Label_2] "Tau Net: A Neural Network for Modeling Temporal Variability Abstract: The ability to handle temporal variation is important when dealing with real-wor..."
+4. [Label_5] "Learning Evolving Concepts Using Partial-Memory Approach  Machine Learning and Inference Laboratory Abstract: This paper addresses the problem of lear..."
+5. [Label_4] "A Teaching Strategy for Memory-Based Control Abstract: Combining different machine learning algorithms in the same system can produce benefits above a..."
+
+Text to classify:
+"Rapid learning of binding-match and binding-error detector circuits via long-term potentiation
+Abstract: It is argued that the memorization of events and situations (episodic memory) requires the rapid formation of neural circuits responsive to binding errors and binding matches. While the formation of circuits responsive to binding matches can be modeled by associative learning mechanisms, the rapid formation of circuits responsive to binding errors is difficult to explain given their seemingly paradoxical behavior; such a circuit must be formed in response to the occurrence of a binding (i.e., a particular pattern in the input), but subsequent to its formation, it must not fire anymore in response to the occurrence of the very binding (i.e., pattern) that led to its formation. A plausible account of the formation of such circuits has not been offered. A computational model is described that demonstrates how a transient pattern of activity representing an event can lead to the rapid formation of circuits for detecting bindings and binding errors as a result of long-term potentiation within structures whose architecture and circuitry are similar to those of the hippocampal formation, a neural structure known to be critical to episodic memory. The model exhibits a high memory capacity and is robust against limited amounts of diffuse cell loss. The model also offers an alternate interpretation of the functional role of region CA3 in the formation of episodic memories, and predicts the nature of memory impairment that would result from damage to various regions of the hippocampal formation."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

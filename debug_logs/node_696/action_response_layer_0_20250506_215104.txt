@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 696 | Layer 0 | 20250506_215104:
+```json
+[
+  {"action_type": "rag_query", "query": "networks that grow when they learn and shrink when they forget", "top_k": 10}
+]
+```
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 587 | Layer 0 | 20250506_212423:
+```json
+[
+  {"action_type": "rag_query", "query": "NONPARAMETRIC SELECTION OF INPUT VARIABLES FOR CONNECTIONIST LEARNING", "top_k": 10}
+]
+```
+================================================================================

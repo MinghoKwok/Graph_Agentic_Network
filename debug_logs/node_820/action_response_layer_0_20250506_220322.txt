@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 820 | Layer 0 | 20250506_220322:
+```json
+[
+  {"action_type": "rag_query", "query": "NESTED NETWORKS FOR ROBOT CONTROL", "top_k": 10}
+]
+```
+================================================================================

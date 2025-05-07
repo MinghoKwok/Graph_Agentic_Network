@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 596 | Layer 0 | 20250506_212451:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_6] "Decision Tree Induction: How Effective is the Greedy Heuristic? Abstract: Most existing decision tree systems use a greedy approach to induce trees | ..."
+2. [Label_2] "Homology Detection via Family Pairwise Search a straightforward generalization of pairwise sequence comparison algorithms to Abstract: The function of..."
+3. [Label_6] "On the Induction of Intelligible Ensembles Abstract: Ensembles of classifiers, e.g. decision trees, often exhibit greater predictive accuracy than sin..."
+4. [Label_6] "On learning hierarchical classifications Abstract: Many significant real-world classification tasks involve a large number of categories which are arr..."
+5. [Label_2] "The megaprior heuristic for discovering protein sequence patterns Abstract: Several computer algorithms for discovering patterns in groups of protein ..."
+
+Text to classify:
+"The Disk-Covering Method for Tree Reconstruction
+Abstract: Evolutionary tree reconstruction is a very important step in many biological research problems, and yet is extremely difficult for a variety of computational, statistical, and scientific reasons. In particular, the reconstruction of very large trees containing significant amounts of divergence is especially challenging. We present in this paper a new tree reconstruction method, which we call the Disk-Covering Method, which can be used to recover accurate estimations of the evolutionary tree for otherwise intractable datasets. DCM obtains a decomposition of the input dataset into small overlapping sets of closely related taxa, reconstructs trees on these subsets (using a "base" phylogenetic method of choice), and then combines the subtrees into one tree on the entire set of taxa. Because the subproblems analyzed by DCM are smaller, com-putationally expensive methods such as maximum likelihood estimation can be used without incurring too much cost. At the same time, because the taxa within each subset are closely related, even very simple methods (such as neighbor-joining) are much more likely to be highly accurate. The result is that DCM-boosted methods are typically faster and more accurate as compared to "naive" use of the same method. In this paper we describe the basic ideas and techniques in DCM, and demonstrate the advantages of DCM experimentally by simulating sequence evolution on a variety of trees."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

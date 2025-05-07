@@ -1,0 +1,55 @@
+📤 [DEBUG] Fallback Prompt for Node 2375 | Layer 0 | 20250506_232507:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 1 examples
+- Label_2: 2 examples
+- Label_3: 6 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_3] "Analysis of the Gibbs sampler for a model related to James-Stein estimators Abstract: Summary. We analyze a hierarchical Bayes model which is related ..."
+2. [Label_3] "On Convergence of the EM Algorithm and the Gibbs Sampler  SUMMARY Abstract: In this article we investigate the relationship between the two popular al..."
+3. [Label_3] "IMPROVING THE MEAN FIELD APPROXIMATION VIA THE USE OF MIXTURE DISTRIBUTIONS Abstract: Mean field methods provide computationally efficient approximati..."
+4. [Label_3] "Maximum Likelihood and Covariant Algorithms for Independent Component Analysis somewhat more biologically plausible, involving no Abstract: Bell and S..."
+5. [Label_6] "Bayesian Methods for Adaptive Models Abstract: nan"
+
+Text to classify:
+"Minimax Bayes, asymptotic minimax and sparse wavelet priors
+Abstract: Pinsker(1980) gave a precise asymptotic evaluation of the minimax mean squared error of estimation of a signal in Gaussian noise when the signal is known a priori to lie in a compact ellipsoid in Hilbert space. This `Minimax Bayes' method can be applied to a variety of global non-parametric estimation settings with parameter spaces far from ellipsoidal. For example it leads to a theory of exact asymptotic minimax estimation over norm balls in Besov and Triebel spaces using simple co-ordinatewise estimators and wavelet bases. This paper outlines some features of the method common to several applications. In particular, we derive new results on the exact asymptotic minimax risk over weak ` p balls in R n as n ! 1, and also for a class of `local' estimators on the Triebel scale. By its very nature, the method reveals the structure of asymptotically least favorable distributions. Thus we may simulate `least favorable' sample paths. We illustrate this for estimation of a signal in Gaussian white noise over norm balls in certain Besov spaces. In wavelet bases, when p &lt; 2, the least favorable priors are sparse, and the resulting sample paths strikingly different from those observed in Pinsker's ellipsoidal setting (p = 2). Acknowledgements. I am grateful for many conversations with David Donoho and Carl Taswell, and to a referee for helpful comments. This work was supported in part by NSF grants DMS 84-51750, 9209130, and NIH PHS grant GM21215-12."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

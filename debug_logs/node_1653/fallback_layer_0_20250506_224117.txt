@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 1653 | Layer 0 | 20250506_224117:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 6 examples
+- Label_1: 1 examples
+- Label_5: 2 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_0] "Use of Mental Models for Constraining Index Learning in Experience-Based Design Abstract: The power of the case-based method comes from the ability to..."
+2. [Label_0] "Modeling Case-based Planning for Repairing Reasoning Failures Abstract: One application of models of reasoning behavior is to allow a reasoner to intr..."
+3. [Label_0] "Formalising the knowledge content of case memory systems Abstract: Discussions of case-based reasoning often reflect an implicit assumption that a cas..."
+4. [Label_1] "A Transformation System for Interactive Reformulation of Design Optimization Strategies Abstract: Automatic design optimization is highly sensitive to..."
+5. [Label_0] "The Role of Generic Models in Conceptual Change Abstract: 1 This research was funded in part by NSF Grant No. IRI-92-10925 and in part by ONR Grant No..."
+
+Text to classify:
+"Problem Solving for Redesign
+Abstract: A knowledge-level analysis of complex tasks like diagnosis and design can give us a better understanding of these tasks in terms of the goals they aim to achieve and the different ways to achieve these goals. In this paper we present a knowledge-level analysis of redesign. Redesign is viewed as a family of methods based on some common principles, and a number of dimensions along which redesign problem solving methods can vary are distinguished. By examining the problem-solving behavior of a number of existing redesign systems and approaches, we came up with a collection of problem-solving methods for redesign and developed a task-method structure for redesign. In constructing a system for redesign a large number of knowledge-related choices and decisions are made. In order to describe all relevant choices in redesign problem solving, we have to extend the current notion of possible relations between tasks and methods in a PSM architecture. The realization of a task by a problem-solving method, and the decomposition of a problem-solving method into subtasks are the most common relations in a PSM architecture. However, we suggest to extend these relations with the notions of task refinement and method refinement. These notions represent intermediate decisions in a task-method structure, in which the competence of a task or method is refined without immediately paying attention to its operationalization in terms of subtasks. Explicit representation of this kind of intermediate decisions helps to make and represent decisions in a more piecemeal fashion."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

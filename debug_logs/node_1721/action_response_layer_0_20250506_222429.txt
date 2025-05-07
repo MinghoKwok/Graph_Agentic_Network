@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1721 | Layer 0 | 20250506_222429:
+```json
+[
+  {"action_type": "rag_query", "query": "Machine learning in blood group determination", "top_k": 10}
+]
+```
+================================================================================

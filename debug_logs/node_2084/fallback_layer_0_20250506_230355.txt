@@ -1,0 +1,53 @@
+📤 [DEBUG] Fallback Prompt for Node 2084 | Layer 0 | 20250506_230355:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_1: 2 examples
+- Label_2: 5 examples
+- Label_4: 1 examples
+- Label_6: 1 examples
+
+Memory:
+1. [Label_2] "Application of Neural Networks for the Classification of Diffuse Liver Disease by Quantitative Echography Abstract: Three different methods were inves..."
+2. [Label_2] "Tau Net: A Neural Network for Modeling Temporal Variability Abstract: The ability to handle temporal variation is important when dealing with real-wor..."
+3. [Label_2] "Two Constructive Methods for Designing Compact Feedforward Networks of Threshold Units Abstract: We propose two algorithms for constructing and traini..."
+4. [Label_2] "Fast Bounded Smooth Regression with Lazy Neural Trees Abstract: We propose the lazy neural tree (LNT) as the appropriate architecture for the realizat..."
+5. [Label_1] "Growing neural networks Abstract: nan"
+
+Text to classify:
+"Synthesize, Optimize, Analyze, Repeat (SOAR): Application of Neural Network Tools to ECG Patient Monitoring
+Abstract: Results are reported from the application of tools for synthesizing, optimizing and analyzing neural networks to an ECG Patient Monitoring task. A neural network was synthesized from a rule-based classifier and optimized over a set of normal and abnormal heartbeats. The classification error rate on a separate and larger test set was reduced by a factor of 2. Sensitivity analysis of the synthesized and optimized networks revealed informative differences. Analysis of the weights and unit activations of the optimized network enabled a reduction in size of the network by a factor of 40% without loss of accuracy."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

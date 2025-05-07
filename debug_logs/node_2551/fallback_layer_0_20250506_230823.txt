@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 2551 | Layer 0 | 20250506_230823:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_0] "Unifying Empirical and Explanation-Based Learning by Modeling the Utility of Learned Knowledge Abstract: The overfit problem in empirical learning and..."
+2. [Label_4] "Analysis of Some Incremental Variants of Policy Iteration: First Steps Toward Understanding Actor-Critic Learning Systems Abstract: Northeastern Unive..."
+3. [Label_0] "In Machine Learning: A Multistrategy Approach, Vol. IV  Macro and Micro Perspectives of Multistrategy Learning Abstract: Machine learning techniques a..."
+4. [Label_4] "Model of the Environment to Avoid Local Learning Abstract: Pier Luca Lanzi Technical Report N. 97.46 December 20 th , 1997"
+5. [Label_6] "Pac Learning, Noise, and Geometry Abstract: This paper describes the probably approximately correct model of concept learning, paying special attentio..."
+
+Text to classify:
+"The Role of Forgetting in Learning
+Abstract: This paper is a discussion of the relationship between learning and forgetting. An analysis of the economics of learning is carried out and it is argued that knowledge can sometimes have a negative value. A series of experiments involving a program which learns to traverse state spaces is described. It is shown that most of the knowledge acquired is of negative value even though it is correct and was acquired solving similar problems. It is shown that the value of the knowledge depends on what else is known and that random forgetting can sometimes lead to substantial improvements in performance. It is concluded that research into knowledge acquisition should take seriously the possibility that knowledge may sometimes be harmful. The view is taken that learning and forgetting are complementary processes which construct and maintain useful representations of experience."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

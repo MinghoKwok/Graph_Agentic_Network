@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 152 | Layer 0 | 20250506_210424:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_6] "Parity: The Problem that Won't Go Away Abstract: It is well-known that certain learning methods (e.g., the perceptron learning algorithm) cannot acqui..."
+2. [Label_1] "Growing neural networks Abstract: nan"
+3. [Label_2] "Theory of Correlations in Stochastic Neural Networks Abstract: One of the main experimental tools in probing the interactions between neurons has been..."
+4. [Label_5] "Modeling Superscalar Processors via Statistical Simulation Abstract: nan"
+5. [Label_4] "Generalization in Reinforcement Learning: Safely Approximating the Value Function Abstract: To appear in: G. Tesauro, D. S. Touretzky and T. K. Leen, ..."
+
+Text to classify:
+"Replicability of Neural Computing Experiments
+Abstract: If an experiment requires statistical analysis to establish a result, then one should do a better experiment. Ernest Rutherford, 1930 Most proponents of cold fusion reporting excess heat from their electrolysis experiments were claiming that one of the main characteristics of cold fusion was its irreproducibility | J.R. Huizenga, Cold Fusion, 1993, p. 78 Abstract Amid the ever increasing research into various aspects of neural computing, much progress is evident both from theoretical advances and from empirical studies. On the empirical side a wealth of data from experimental studies is being reported. It is, however, not clear how best to report neural computing experiments such that they may be replicated by other interested researchers. In particular, the nature of iterative learning on a randomised initial architecture, such as backpropagation training of a multilayer perceptron, is such that precise replication of a reported result is virtually impossible. The outcome is that experimental replication of reported results, a touchstone of "the scientific method", is not an option for researchers in this most popular subfield of neural computing. In this paper, we address this issue of replicability of experiments based on backpropagation training of multilayer perceptrons (although many of our results will be applicable to any other subfield that is plagued by the same characteristics). First, we attempt to produce a complete abstract specification of such a neural computing experiment. From this specification we identify the full range of parameters needed to support maximum replicability, and we use it to show why absolute replicability is not an option in practice. We propose a statistical framework to support replicability. We demonstrate this framework with some empirical studies of our own on both repli-cability with respect to experimental controls, and validity of implementations of the backpropagation algorithm. Finally, we suggest how the degree of replicability of a neural computing experiment can be estimated and reflected in the claimed precision for any empirical results reported."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

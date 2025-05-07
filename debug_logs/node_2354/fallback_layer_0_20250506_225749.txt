@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 2354 | Layer 0 | 20250506_225749:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_1] "Incremental Co-evolution of Organisms: A New Approach for Optimization and Discovery of Strategies Abstract: In the field of optimization and machine ..."
+2. [Label_4] "Category: Control, Navigation and Planning. Key words: Reinforcement learning, Exploration, Hidden state. Prefer oral presentation. Abstract: This pap..."
+3. [Label_0] "Lazy Acquisition of Place Knowledge Abstract: In this paper we define the task of place learning and describe one approach to this problem. Our framew..."
+4. [Label_4] "A Teaching Strategy for Memory-Based Control Abstract: Combining different machine learning algorithms in the same system can produce benefits above a..."
+5. [Label_0] "Observation and Generalisation in a Simulated Robot World Abstract: This paper describes a program which observes the behaviour of actors in a simulat..."
+
+Text to classify:
+"The Power of Team Exploration: Two Robots Can Learn Unlabeled Directed Graphs
+Abstract: We show that two cooperating robots can learn exactly any strongly-connected directed graph with n indistinguishable nodes in expected time polynomial in n. We introduce a new type of homing sequence for two robots, which helps the robots recognize certain previously-seen nodes. We then present an algorithm in which the robots learn the graph and the homing sequence simultaneously by actively wandering through the graph. Unlike most previous learning results using homing sequences, our algorithm does not require a teacher to provide counterexamples. Furthermore, the algorithm can use efficiently any additional information available that distinguishes nodes. We also present an algorithm in which the robots learn by taking random walks. The rate at which a random walk on a graph converges to the stationary distribution is characterized by the conductance of the graph. Our random-walk algorithm learns in expected time polynomial in n and in the inverse of the conductance and is more efficient than the homing-sequence algorithm for high-conductance graphs."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

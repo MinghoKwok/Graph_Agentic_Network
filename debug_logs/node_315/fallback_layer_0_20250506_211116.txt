@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 315 | Layer 0 | 20250506_211116:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_2] "Theory of Correlations in Stochastic Neural Networks Abstract: One of the main experimental tools in probing the interactions between neurons has been..."
+2. [Label_2] "Separating hippocampal maps  Spatial Functions of the Hippocampal Formation and the Abstract: The place fields of hippocampal cells in old animals som..."
+3. [Label_2] "Modeling Cortical Plasticity Based on Adapting Lateral Interaction Abstract: A neural network model called LISSOM for the cooperative self-organizatio..."
+4. [Label_1] "An Artificial Life Model for Investigating the Evolution of Modularity Abstract: To investigate the issue of how modularity emerges in nature, we pres..."
+5. [Label_1] "Environmental Effects on Minimal Behaviors in the Minimat World Abstract: The structure of an environment affects the behaviors of the organisms that ..."
+
+Text to classify:
+"Cortical Functionality Emergence:  Self-Organization of Complex Structures: From Individual to Collective Dynamics,
+Abstract: General Theory & Quantitative Results Abstract: The human genotype represents at most ten billion binary informations, whereas the human brain contains more than a million times a billion synapses. So a differentiated brain structure is essentially due to self-organization. Such self-organization is relevant for areas ranging from medicine to the design of intelligent complex systems. Many brain structures emerge as collective phenomenon of a microscopic neurosynaptic dynamics: a stochastic dynamics mimics the neuronal action potentials, while the synaptic dynamics is modeled by a local coupling dynamics of type Hebb-rule, that is, a synaptic efficiency increases after coincident spiking of pre- and postsynaptic neuron. The microscopic dynamics is transformed to a collective dynamics reminiscent of hydrodynamics. The theory models empirical findings quantitatively: Topology preserving neuronal maps were assumed by Descartes in 1664; their self-organization was suggested by Weiss in 1928; their empirical observation was reported by Marshall in 1941; it is shown that they are neurosynaptically stable due to ubiquitous infinitesimal short range electrical or chemical leakage. In the visual cortex, neuronal stimulus orientation preference emerges; empirically measured orientation patterns are determined by the Poisson equation of electrostatics; this Poisson equation orientation pattern emergence is derived here. Complex cognitive abilities emerge when the basic local synaptic changes are regulated by valuation, emergent valuation, attention, attention focus or combination of subnetworks. Altogether a general theory is presented for the emergence of functionality from synaptic growth in neuro-biological systems. The theory provides a transformation to a collective dynamics and is used for quantitative modeling of empirical data."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

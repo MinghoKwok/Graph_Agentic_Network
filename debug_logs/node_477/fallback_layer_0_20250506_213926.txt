@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 477 | Layer 0 | 20250506_213926:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 3 examples
+- Label_2: 2 examples
+- Label_4: 8 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_4] "Machine Learning Research: Four Current Directions Abstract: Machine Learning research has been making great progress is many directions. This article..."
+2. [Label_4] "Scaling Reinforcement Learning Algorithms by Learning Variable Temporal Resolution Models Abstract: The close connection between reinforcement learnin..."
+3. [Label_0] "Unifying Empirical and Explanation-Based Learning by Modeling the Utility of Learned Knowledge Abstract: The overfit problem in empirical learning and..."
+4. [Label_4] "Multi-Time Models for Reinforcement Learning Abstract: Reinforcement learning can be used not only to predict rewards, but also to predict states, i.e..."
+5. [Label_0] "In Machine Learning: A Multistrategy Approach, Vol. IV  Macro and Micro Perspectives of Multistrategy Learning Abstract: Machine learning techniques a..."
+
+Text to classify:
+"Forward models: Supervised learning with a distal teacher
+Abstract: Internal models of the environment have an important role to play in adaptive systems in general and are of particular importance for the supervised learning paradigm. In this paper we demonstrate that certain classical problems associated with the notion of the "teacher" in supervised learning can be solved by judicious use of learned internal models as components of the adaptive system. In particular, we show how supervised learning algorithms can be utilized in cases in which an unknown dynamical system intervenes between actions and desired outcomes. Our approach applies to any supervised learning algorithm that is capable of learning in multi-layer networks. *This paper is a revised version of MIT Center for Cognitive Science Occasional Paper #40. We wish to thank Michael Mozer, Andrew Barto, Robert Jacobs, Eric Loeb, and James McClelland for helpful comments on the manuscript. This project was supported in part by BRSG 2 S07 RR07047-23 awarded by the Biomedical Research Support Grant Program, Division of Research Resources, National Institutes of Health, by a grant from ATR Auditory and Visual Perception Research Laboratories, by a grant from Siemens Corporation, by a grant from the Human Frontier Science Program, and by grant N00014-90-J-1942 awarded by the Office of Naval Research."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

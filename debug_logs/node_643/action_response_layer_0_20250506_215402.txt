@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 643 | Layer 0 | 20250506_215402:
+```json
+[
+  {"action_type": "rag_query", "query": "Modeling Case-based Planning for Repairing Reasoning Failures", "top_k": 10}
+]
+```
+================================================================================

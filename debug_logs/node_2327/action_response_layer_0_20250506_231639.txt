@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2327 | Layer 0 | 20250506_231639:
+```json
+[
+  {"action_type": "rag_query", "query": "mixture estimation problem", "top_k": 10}
+]
+```
+================================================================================

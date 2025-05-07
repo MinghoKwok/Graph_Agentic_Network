@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 370 | Layer 0 | 20250506_213936:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_4: 10 examples
+
+Memory:
+1. [Label_4] "Scaling Reinforcement Learning Algorithms by Learning Variable Temporal Resolution Models Abstract: The close connection between reinforcement learnin..."
+2. [Label_4] "Reinforcement Learning Algorithm for Partially Observable Markov Decision Problems Abstract: Increasing attention has been paid to reinforcement learn..."
+3. [Label_4] "Category: Control, Navigation and Planning. Key words: Reinforcement learning, Exploration, Hidden state. Prefer oral presentation. Abstract: This pap..."
+4. [Label_4] "Generalization in Reinforcement Learning: Safely Approximating the Value Function Abstract: To appear in: G. Tesauro, D. S. Touretzky and T. K. Leen, ..."
+5. [Label_4] "A Teaching Strategy for Memory-Based Control Abstract: Combining different machine learning algorithms in the same system can produce benefits above a..."
+
+Text to classify:
+"Robust Reinforcement Learning in Motion Planning
+Abstract: While exploring to find better solutions, an agent performing online reinforcement learning (RL) can perform worse than is acceptable. In some cases, exploration might have unsafe, or even catastrophic, results, often modeled in terms of reaching `failure' states of the agent's environment. This paper presents a method that uses domain knowledge to reduce the number of failures during exploration. This method formulates the set of actions from which the RL agent composes a control policy to ensure that exploration is conducted in a policy space that excludes most of the unacceptable policies. The resulting action set has a more abstract relationship to the task being solved than is common in many applications of RL. Although the cost of this added safety is that learning may result in a suboptimal solution, we argue that this is an appropriate tradeoff in many problems. We illustrate this method in the domain of motion planning."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1935 | Layer 0 | 20250506_225608:
+```json
+[
+    {"action_type": "rag_query", "query": "Cortical Mechanisms for Object Recognition and Learning", "top_k": 10}
+]
+```
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 481 | Layer 0 | 20250506_213938:
+```json
+[
+  {"action_type": "rag_query", "query": "Weighted Majority Algorithm", "top_k": 10}
+]
+```
+================================================================================

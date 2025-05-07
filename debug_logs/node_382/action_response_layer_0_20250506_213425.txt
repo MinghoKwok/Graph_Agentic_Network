@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 382 | Layer 0 | 20250506_213425:
+```json
+[
+  {"action_type": "rag_query", "query": "decision lists machine learning", "top_k": 10}
+]
+```
+================================================================================

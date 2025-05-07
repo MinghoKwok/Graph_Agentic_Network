@@ -1,0 +1,55 @@
+📤 [DEBUG] Fallback Prompt for Node 2016 | Layer 0 | 20250506_230647:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 4 examples
+- Label_3: 5 examples
+- Label_5: 2 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_3] "On the Logic of Iterated Belief Revision Abstract: We show in this paper that the AGM postulates are too week to ensure the rational preservation of c..."
+2. [Label_0] "The Role of Generic Models in Conceptual Change Abstract: 1 This research was funded in part by NSF Grant No. IRI-92-10925 and in part by ONR Grant No..."
+3. [Label_0] "AN INCREMENTAL LEARNING MODEL FOR COMMONSENSE REASONING Abstract:"
+4. [Label_0] "Modeling Case-based Planning for Repairing Reasoning Failures Abstract: One application of models of reasoning behavior is to allow a reasoner to intr..."
+5. [Label_6] "Inductive Logic Programming Abstract: A new research area, Inductive Logic Programming, is presently emerging. While inheriting various positive chara..."
+
+Text to classify:
+"On the Semantics of Belief Revision Systems
+Abstract: We consider belief revision operators that satisfy the Alchourron-Gardenfors-Makinson postulates, and present an epistemic logic in which, for any such revision operator, the result of a revision can be described by a sentence in the logic. In our logic, the fact that the agent's set of beliefs is is represented by the sentence O, where O is Levesque's `only know' operator. Intuitively, O is read as ` is all that is believed.' The fact that the agent believes is represented by the sentence B , read in the usual way as ` is believed'. The connective represents update as defined by Katsuno and Mendelzon. The revised beliefs are represented by the sentence O B . We show that for every revision operator that satisfies the AGM postulates, there is a model for our epistemic logic such that the beliefs implied by the sentence O B in this model correspond exactly to the sentences implied by the theory that results from revising by . This means that reasoning about changes in the agent's beliefs reduces to model checking of certain epistemic sentences. The negative result in the paper is that this type of formal account of revision cannot be extended to the situation where the agent is able to reason about its beliefs. A fully introspective agent cannot use our construction to reason about the results of its own revisions, on pain of triviality."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

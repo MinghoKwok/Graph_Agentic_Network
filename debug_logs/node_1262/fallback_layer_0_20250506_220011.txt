@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1262 | Layer 0 | 20250506_220011:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_2] "Homology Detection via Family Pairwise Search a straightforward generalization of pairwise sequence comparison algorithms to Abstract: The function of..."
+2. [Label_2] "The megaprior heuristic for discovering protein sequence patterns Abstract: Several computer algorithms for discovering patterns in groups of protein ..."
+3. [Label_6] "Feature Generation for Sequence Categorization Abstract: The problem of sequence categorization is to generalize from a corpus of labeled sequences pr..."
+4. [Label_2] "The Canonical Distortion Measure in Feature Space and 1-NN Classification Abstract: We prove that the Canonical Distortion Measure (CDM) [2, 3] is the..."
+5. [Label_6] "Pattern Theoretic Knowledge Discovery Abstract: Future research directions in Knowledge Discovery in Databases (KDD) include the ability to extract an..."
+
+Text to classify:
+"Maximum A Posteriori Classification of DNA Structure from Sequence Information
+Abstract: We introduce an algorithm, lllama, which combines simple pattern recognizers into a general method for estimating the entropy of a sequence. Each pattern recognizer exploits a partial match between subsequences to build a model of the sequence. Since the primary features of interest in biological sequence domains are subsequences with small variations in exact composition, lllama is particularly suited to such domains. We describe two methods, lllama-length and lllama-alone, which use this entropy estimate to perform maximum a posteriori classification. We apply these methods to several problems in three-dimensional structure classification of short DNA sequences. The results include a surprisingly low 3.6% error rate in predicting helical conformation of oligonucleotides. We compare our results to those obtained using more traditional methods for automated generation of classifiers."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2273 | Layer 0 | 20250506_225332:
+```json
+[
+  {"action_type": "rag_query", "query": "Learning Harmonic Progression Using Markov Models", "top_k": 10}
+]
+```
+================================================================================

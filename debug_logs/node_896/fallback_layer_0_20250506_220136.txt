@@ -1,0 +1,51 @@
+📤 [DEBUG] Fallback Prompt for Node 896 | Layer 0 | 20250506_220136:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_3: 8 examples
+- Label_4: 2 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_3] "Analysis of a Non-Reversible Markov Chain Sampler Abstract: Technical Report BU-1385-M, Biometrics Unit, Cornell University Abstract We analyse the co..."
+2. [Label_3] "On the Markov Equivalence of Chain Graphs, Undirected Graphs, and Acyclic Digraphs Abstract: Graphical Markov models use undirected graphs (UDGs), acy..."
+3. [Label_3] "Analysis of the Gibbs sampler for a model related to James-Stein estimators Abstract: Summary. We analyze a hierarchical Bayes model which is related ..."
+4. [Label_4] "Reinforcement Learning Algorithm for Partially Observable Markov Decision Problems Abstract: Increasing attention has been paid to reinforcement learn..."
+5. [Label_4] "Incremental Pruning: A Simple, Fast, Exact Algorithm for Partially Observable Markov Decision Processes Abstract: Most exact algorithms for general po..."
+
+Text to classify:
+"Discretization of continuous Markov chains and MCMC convergence assessment
+Abstract: We show in this paper that continuous state space Markov chains can be rigorously discretized into finite Markov chains. The idea is to subsample the continuous chain at renewal times related to small sets which control the discretization. Once a finite Markov chain is derived from the MCMC output, general convergence properties on finite state spaces can be exploited for convergence assessment in several directions. Our choice is based on a divergence criterion derived from Kemeny and Snell (1960), which is first evaluated on parallel chains with a stopping time, and then implemented, more efficiently, on two parallel chains only, using Birkhoff's pointwise ergodic theorem for stopping rules. The performance of this criterion is illustrated on three standard examples."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

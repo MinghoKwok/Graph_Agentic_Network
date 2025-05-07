@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1151 | Layer 0 | 20250506_215420:
+```json
+[
+  {"action_type": "rag_query", "query": "Learning Classification Rules Using Lattices", "top_k": 10}
+]
+```
+================================================================================

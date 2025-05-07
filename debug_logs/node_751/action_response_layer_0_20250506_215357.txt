@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 751 | Layer 0 | 20250506_215357:
+```json
+[
+  {"action_type": "rag_query", "query": "Dirichlet Mixtures in Machine Learning", "top_k": 10}
+]
+```
+================================================================================

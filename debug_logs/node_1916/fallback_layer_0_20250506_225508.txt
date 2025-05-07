@@ -1,0 +1,51 @@
+📤 [DEBUG] Fallback Prompt for Node 1916 | Layer 0 | 20250506_225508:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 3 examples
+- Label_2: 5 examples
+- Label_4: 2 examples
+
+Memory:
+1. [Label_2] "Modeling Cortical Plasticity Based on Adapting Lateral Interaction Abstract: A neural network model called LISSOM for the cooperative self-organizatio..."
+2. [Label_2] "Separating hippocampal maps  Spatial Functions of the Hippocampal Formation and the Abstract: The place fields of hippocampal cells in old animals som..."
+3. [Label_2] "Theory of Correlations in Stochastic Neural Networks Abstract: One of the main experimental tools in probing the interactions between neurons has been..."
+4. [Label_1] "An Artificial Life Model for Investigating the Evolution of Modularity Abstract: To investigate the issue of how modularity emerges in nature, we pres..."
+5. [Label_2] "Word Perfect Corp. LIA: A Location-Independent Transformation for ASOCS Adaptive Algorithm 2 Abstract: Most Artificial Neural Networks (ANNs) have a f..."
+
+Text to classify:
+"Modeling Cortical Plasticity Based on Adapting Lateral Interaction
+Abstract: A neural network model called LISSOM for the cooperative self-organization of afferent and lateral connections in cortical maps is applied to modeling cortical plasticity. After self-organization, the LISSOM maps are in a dynamic equilibrium with the input, and reorganize like the cortex in response to simulated cortical lesions and intracortical microstimulation. The model predicts that adapting lateral interactions are fundamental to cortical reorganization, and suggests techniques to hasten recovery following sensory cortical surgery."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

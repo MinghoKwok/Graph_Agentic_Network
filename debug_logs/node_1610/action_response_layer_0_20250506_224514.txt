@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1610 | Layer 0 | 20250506_224514:
+```json
+[
+  {"action_type": "rag_query", "query": "Fourier-Neural Recurrent Networks", "top_k": 5}
+]
+```
+================================================================================

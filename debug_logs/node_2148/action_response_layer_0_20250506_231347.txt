@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2148 | Layer 0 | 20250506_231347:
+```json
+[
+  {"action_type": "rag_query", "query": "Bayesian Design for the Normal Linear Model", "top_k": 10}
+]
+```
+================================================================================

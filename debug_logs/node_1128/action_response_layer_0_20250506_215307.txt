@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1128 | Layer 0 | 20250506_215307:
+```json
+[
+  {"action_type": "rag_query", "query": "structured variational approximations", "top_k": 10}
+]
+```
+================================================================================

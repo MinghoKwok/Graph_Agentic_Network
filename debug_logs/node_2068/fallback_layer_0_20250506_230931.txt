@@ -1,0 +1,54 @@
+📤 [DEBUG] Fallback Prompt for Node 2068 | Layer 0 | 20250506_230931:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 4 examples
+- Label_2: 4 examples
+- Label_4: 3 examples
+
+Memory:
+1. [Label_2] "Modeling Cortical Plasticity Based on Adapting Lateral Interaction Abstract: A neural network model called LISSOM for the cooperative self-organizatio..."
+2. [Label_2] "Separating hippocampal maps  Spatial Functions of the Hippocampal Formation and the Abstract: The place fields of hippocampal cells in old animals som..."
+3. [Label_1] "nan Abstract: Co-evolution of Pursuit and Evasion II: Simulation Methods and Results fl Abstract In a previous SAB paper [10], we presented the scient..."
+4. [Label_4] "Embodiment and Manipulation Learning Process for a Humanoid Hand Abstract: nan"
+5. [Label_2] "A Mixture of Experts Model Exhibiting Prosopagnosia Abstract: A considerable body of evidence from prosopagnosia, a deficit in face recognition dissoc..."
+
+Text to classify:
+"Rearrangement of receptive field topography after intracortical and peripheral stimulation: The role of plasticity in
+Abstract: Intracortical microstimulation (ICMS) of a single site in the somatosensory cortex of rats and monkeys for 2-6 hours produces a large increase in the number of neurons responsive to the skin region corresponding to the ICMS-site receptive field (RF), with very little effect on the position and size of the ICMS-site RF, and the response evoked at the ICMS site by tactile stimulation (Recanzone et al., 1992b). Large changes in RF topography are observed following several weeks of repetitive stimulation of a restricted skin region in monkeys (Jenkins et al., 1990; Recanzone et al., 1992acde). Repetitive stimulation of a localized skin region in monkeys produced by training the monkeys in a tactile frequency discrimination task improves their performance (Recanzone et al., 1992a). It has been suggested that these changes in RF topography are caused by competitive learning in excitatory pathways (Grajski & Merzenich, 1990; Jenkins et al., 1990; Recanzone et al., 1992abcde). ICMS almost simultaneously excites excitatory and inhibitory terminals and excitatory and inhibitory cortical neurons within a few microns of the stimulating electrode. Thus, this paper investigates the implications of the possibility that lateral inhibitory pathways too may undergo synaptic plasticity during ICMS. Lateral inhibitory pathways may also undergo synaptic plasticity in adult animals during peripheral conditioning. The "EXIN" (afferent excitatory and lateral inhibitory) synaptic plasticity rules"
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 2024 | Layer 0 | 20250506_224031:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_2] "Theory of Correlations in Stochastic Neural Networks Abstract: One of the main experimental tools in probing the interactions between neurons has been..."
+2. [Label_1] "Growing neural networks Abstract: nan"
+3. [Label_2] "Two Constructive Methods for Designing Compact Feedforward Networks of Threshold Units Abstract: We propose two algorithms for constructing and traini..."
+4. [Label_1] "An Artificial Life Model for Investigating the Evolution of Modularity Abstract: To investigate the issue of how modularity emerges in nature, we pres..."
+5. [Label_3] "Maximum Likelihood and Covariant Algorithms for Independent Component Analysis somewhat more biologically plausible, involving no Abstract: Bell and S..."
+
+Text to classify:
+"Analysis of Linsker's application of Hebbian rules to Linear Networks
+Abstract: Linsker has reported the development of structured receptive fields in simulations using a Hebb-type synaptic plasticity rule in a feed-forward linear network. The synapses develop under dynamics determined by a matrix that is closely related to the covariance matrix of input cell activities. We analyse the dynamics of the learning rule in terms of the eigenvectors of this matrix. These eigenvectors represent independently evolving weight structures. Some general theorems are presented regarding the properties of these eigenvectors and their eigenvalues. For a general covariance matrix four principal parameter regimes are predicted. We concentrate on the gaussian covariances at layer B ! C of Linsker's network. Analytic and numerical solutions for the eigenvectors at this layer are presented. Three eigenvectors dominate the dynamics: a DC eigenvector, in which all synapses have the same sign; a bi-lobed, oriented eigenvector; and a circularly symmetric, centre-surround eigenvector. Analysis of the circumstances in which each of these vectors dominates yields an explanation of the emergence of centre-surround structures and symmetry-breaking bi-lobed structures. Criteria are developed estimating the boundary of the parameter regime in which centre-surround structures emerge. The application of our analysis to Linsker's higher layers, at which the covariance functions were oscillatory, is briefly discussed."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

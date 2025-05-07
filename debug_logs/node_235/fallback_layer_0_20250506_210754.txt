@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 235 | Layer 0 | 20250506_210754:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_1] "nan Abstract: Co-evolution of Pursuit and Evasion II: Simulation Methods and Results fl Abstract In a previous SAB paper [10], we presented the scient..."
+2. [Label_2] "Modeling Cortical Plasticity Based on Adapting Lateral Interaction Abstract: A neural network model called LISSOM for the cooperative self-organizatio..."
+3. [Label_2] "Two Constructive Methods for Designing Compact Feedforward Networks of Threshold Units Abstract: We propose two algorithms for constructing and traini..."
+4. [Label_1] "Growing neural networks Abstract: nan"
+5. [Label_4] "Embodiment and Manipulation Learning Process for a Humanoid Hand Abstract: nan"
+
+Text to classify:
+"Development of triadic neural circuits for visual image stabilization under eye movements
+Abstract: Human visual systems maintain a stable internal representation of a scene even though the image on the retina is constantly changing because of eye movements. Such stabilization can theoretically be effected by dynamic shifts in the receptive field (RF) of neurons in the visual system. This paper examines how a neural circuit can learn to generate such shifts. The shifts are controlled by eye position signals and compensate for the movement in the retinal image caused by eye movements. The development of a neural shifter circuit (Olshausen, Anderson, & Van Essen, 1992) is modeled using triadic connections. These connections are gated by signals that indicate the direction of gaze (eye position signals). In simulations, a neural model is exposed to sequences of stimuli paired with appropriate eye position signals. The initially"
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

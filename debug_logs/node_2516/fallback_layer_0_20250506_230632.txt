@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 2516 | Layer 0 | 20250506_230632:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_1] "A NN Algorithm for Boolean Satisfiability Problems Abstract: Satisfiability (SAT) refers to the task of finding a truth assignment that makes an arbit..."
+2. [Label_1] "Incremental Co-evolution of Organisms: A New Approach for Optimization and Discovery of Strategies Abstract: In the field of optimization and machine ..."
+3. [Label_5] "An intelligent search method using Inductive Logic Programming Abstract: We propose a method to use Inductive Logic Programming to give heuristic func..."
+4. [Label_4] "KnightCap: A chess program that learns by combining TD() with minimax search Abstract: In this paper we present TDLeaf(), a variation on the TD() algo..."
+5. [Label_6] "PAC Learning Intersections of Halfspaces with Membership Queries (Extended Abstract) Abstract:"
+
+Text to classify:
+"When Gravity Fails: Local Search Topology
+Abstract: Local search algorithms for combinatorial search problems frequently encounter a sequence of states in which it is impossible to improve the value of the objective function; moves through these regions, called plateau moves, dominate the time spent in local search. We analyze and characterize plateaus for three different classes of randomly generated Boolean Satisfiability problems. We identify several interesting features of plateaus that impact the performance of local search algorithms. We show that local minima tend to be small but occasionally may be very large. We also show that local minima can be escaped without unsatisfying a large number of clauses, but that systematically searching for an escape route may be computationally expensive if the local minimum is large. We show that plateaus with exits, called benches, tend to be much larger than minima, and that some benches have very few exit states which local search can use to escape. We show that the solutions (i.e., global minima) of randomly generated problem instances form clusters, which behave similarly to local minima. We revisit several enhancements of local search algorithms and explain their performance in light of our results. Finally we discuss strategies for creating the next generation of local search algorithms."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

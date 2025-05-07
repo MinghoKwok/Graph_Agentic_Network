@@ -1,0 +1,50 @@
+📤 [DEBUG] Fallback Prompt for Node 309 | Layer 0 | 20250506_213033:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 8 examples
+- Label_6: 3 examples
+
+Memory:
+1. [Label_1] "The Application of a Parallel Genetic Algorithm to the n=m=P=C max Flowshop Problem Abstract: Hard combinatorial problems in sequencing and scheduling..."
+2. [Label_1] "Testing the Robustness of the Genetic Algorithm on the Floating Building Block Representation. Abstract: Recent studies on a floating building block r..."
+3. [Label_1] "A STUDY OF CROSSOVER OPERATORS IN GENETIC PROGRAMMING Abstract: Holland's analysis of the sources of power of genetic algorithms has served as guidanc..."
+4. [Label_1] "Incremental Co-evolution of Organisms: A New Approach for Optimization and Discovery of Strategies Abstract: In the field of optimization and machine ..."
+5. [Label_6] "Separating Formal Bounds from Practical Performance in Learning Systems Abstract: nan"
+
+Text to classify:
+"nan
+Abstract: A lower-bound result on the power of Abstract This paper presents a lower-bound result on the computational power of a genetic algorithm in the context of combinatorial optimization. We describe a new genetic algorithm, the merged genetic algorithm, and prove that for the class of monotonic functions, the algorithm finds the optimal solution, and does so with an exponential convergence rate. The analysis pertains to the ideal behavior of the algorithm where the main task reduces to showing convergence of probability distributions over the search space of combinatorial structures to the optimal one. We take exponential convergence to be indicative of efficient solvability for the sample-bounded algorithm, although a sampling theory is needed to better relate the limit behavior to actual behavior. The paper concludes with a discussion of some immediate problems that lie ahead. a genetic algorithm"
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

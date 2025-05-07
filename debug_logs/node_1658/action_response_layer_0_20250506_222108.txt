@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1658 | Layer 0 | 20250506_222108:
+```json
+[
+  {"action_type": "rag_query", "query": "Learning One-Dimensional Geometric Patterns Under One-Sided Random Misclassification Noise", "top_k": 5}
+]
+```
+================================================================================

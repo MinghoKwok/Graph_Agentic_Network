@@ -1,0 +1,53 @@
+📤 [DEBUG] Fallback Prompt for Node 788 | Layer 0 | 20250506_220141:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_2: 1 examples
+- Label_3: 9 examples
+
+Memory:
+1. [Label_3] "Algebraic Techniques for Efficient Inference in Bayesian Networks Abstract: A number of exact algorithms have been developed to perform probabilistic ..."
+2. [Label_3] "Logarithmic Time Parallel Bayesian Inference Abstract: I present a parallel algorithm for exact probabilistic inference in Bayesian networks. For poly..."
+3. [Label_3] "Discovering Structure in Continuous Variables Using Bayesian Networks Abstract: We study Bayesian networks for continuous variables using nonlinear co..."
+4. [Label_3] "Analysis of a Non-Reversible Markov Chain Sampler Abstract: Technical Report BU-1385-M, Biometrics Unit, Cornell University Abstract We analyse the co..."
+5. [Label_3] "Robustness Analysis of Bayesian Networks with Global Neighborhoods Abstract: This paper presents algorithms for robustness analysis of Bayesian networ..."
+
+Text to classify:
+"Stochastic simulation algorithms for dynamic probabilistic networks
+Abstract: Stochastic simulation algorithms such as likelihood weighting often give fast, accurate approximations to posterior probabilities in probabilistic networks, and are the methods of choice for very large networks. Unfortunately, the special characteristics of dynamic probabilistic networks (DPNs), which are used to represent stochastic temporal processes, mean that standard simulation algorithms perform very poorly. In essence, the simulation trials diverge further and further from reality as the process is observed over time. In this paper, we present simulation algorithms that use the evidence observed at each time step to push the set of trials back towards reality. The first algorithm, "evidence reversal" (ER) restructures each time slice of the DPN so that the evidence nodes for the slice become ancestors of the state variables. The second algorithm, called "survival of the fittest" sampling (SOF), "repopulates" the set of trials at each time step using a stochastic reproduction rate weighted by the likelihood of the evidence according to each trial. We compare the performance of each algorithm with likelihood weighting on the original network, and also investigate the benefits of combining the ER and SOF methods. The ER/SOF combination appears to maintain bounded error independent of the number of time steps in the simulation."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

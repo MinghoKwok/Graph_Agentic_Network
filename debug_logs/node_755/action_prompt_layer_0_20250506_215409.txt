@@ -1,0 +1,114 @@
+
+📤 [DEBUG] Action Prompt for Node 755 | Layer 0 | 20250506_215409:
+
+    You are Node 755 in a scientific citation network. Your task is to classify yourself into the correct research category based on your text and connections.
+    
+    ## Few-shot Examples of Label Prediction:
+
+    Example 1:
+    Memory:
+    1. [Neural_Networks] "A novel deep learning approach for image classification..."
+    2. [Reinforcement_Learning] "Q-learning based algorithm for game playing..."
+    3. [Neural_Networks] "Convolutional neural networks for computer vision tasks..."
+
+    Current Node Text:
+    "Deep learning models for visual recognition tasks..."
+
+    Prediction: Neural_Networks
+    Reasoning: The current text focuses on deep learning and visual recognition, which closely matches the Neural_Networks examples in memory.
+
+    Example 2:
+    Memory:
+    1. [Probabilistic_Methods] "Bayesian networks for uncertainty modeling..."
+    2. [Neural_Networks] "Recurrent neural networks for sequence prediction..."
+    3. [Probabilistic_Methods] "Markov models for time series analysis..."
+
+    Current Node Text:
+    "Hidden Markov models for speech recognition..."
+
+    Prediction: Probabilistic_Methods
+    Reasoning: The text discusses Markov models, which is a probabilistic method, matching the Probabilistic_Methods examples in memory.
+
+    Example 3:
+    Memory:
+    1. [Neural_Networks] "Deep learning architectures for natural language processing..."
+    2. [Theory] "Theoretical analysis of algorithm complexity..."
+    3. [Neural_Networks] "Transformer models for sequence modeling..."
+
+    Current Node Text:
+    "Attention mechanisms in deep learning models for text understanding..."
+
+    Prediction: Neural_Networks
+    Reasoning: Although the text mentions theoretical concepts like attention mechanisms, the focus is on deep learning models and their application to text understanding, which closely matches the Neural_Networks examples in memory.
+    
+    ## Your State:
+    - Node ID: 755
+    - Layer: 0
+    - Your Text:
+    "of a simulator for evolving morphology are: Universal the simulator should cover an infinite gen
+Abstract: Funes, P. and Pollack, J. (1997) Computer Evolution of Buildable Objects. Fourth European Conference on Artificial Life. P. Husbands and I. Harvey, eds., MIT Press. pp 358-367. knowledge into the program, which would result in familiar structures, we provided the algorithm with a model of the physical reality and a purely utilitarian fitness function, thus supplying measures of feasibility and functionality. In this way the evolutionary process runs in an environment that has not been unnecessarily constrained. We added, however, a requirement of computability to reject overly complex structures when they took too long for our simulations to evaluate. The results are encouraging. The evolved structures had a surprisingly alien look: they are not based in common knowledge on how to build with brick toys; instead, the computer found ways of its own through the evolutionary search process. We were able to assemble the final designs manually and confirm that they accomplish the objectives introduced with our fitness functions. After some background on related problems, we describe our physical simulation model for two-dimensional Lego structures, and the representation for encoding them and applying evolution. We demonstrate the feasibility of our work with photos of actual objects which were the result of particular optimizations. Finally, we discuss future work and draw some conclusions. In order to evolve both the morphology and behavior of autonomous mechanical devices which can be manufactured, one must have a simulator which operates under several constraints, and a resultant controller which is adaptive enough to cover the gap between simulated and real world. eral space of mechanisms. Conservative - because simulation is never perfect, it should preserve a margin of safety. Efficient - it should be quicker to test in simulation than through physical production and test. Buildable - results should be convertible from a simula tion to a real object Computer Evolution of Buildable Objects Abstract The idea of co-evolution of bodies and brains is becoming popular, but little work has been done in evolution of physical structure because of the lack of a general framework for doing it. Evolution of creatures in simulation has been constrained by the reality gap which implies that resultant objects are usually not buildable. The work we present takes a step in the problem of body evolution by applying evolutionary techniques to the design of structures assembled out of parts. Evolution takes place in a simulator we designed, which computes forces and stresses and predicts failure for 2-dimensional Lego structures. The final printout of our program is a schematic assembly, which can then be built physically. We demonstrate its functionality in several different evolved entities."
+    - Neighbors: [188, 757, 1404, 2058]
+    - Available labeled neighbors to retrieve from: None
+    - Neighbors with predicted labels: None
+    
+    You are an autonomous agent with planning capabilities. You may perform multiple actions in sequence to achieve better results.
+
+    ## Decide Your Next Action(s)
+    Important: You are allowed and encouraged to return MULTIPLE actions in sequence. You MUST respond with a JSON array even if there's only one action. 
+    Example of a valid response:
+    ```json
+    [
+      {"action_type": "update", "predicted_label": "Neural_Networks"},
+      {"action_type": "broadcast"}
+    ]
+    ```
+    ```json
+    [
+      {"action_type": "retrieve", "target_nodes": [1, 2, 3], "info_type": "text"},
+      {"action_type": "rag_query", "query": "machine learning", "top_k": 10}
+    ]
+    ```
+    Invalid response:
+    ```json
+    {"action_type": "update", "predicted_label": "Neural_Networks"}
+    ```
+
+    ### Available Actions:
+
+    1. "retrieve": get information from other nodes
+    - Format: {"action_type": "retrieve", "target_nodes": [IDs], "info_type": "text"}
+
+    2. "broadcast": send a message to neighbors if and *only* if you already have a label or predicted label
+    - Format: {"action_type": "broadcast", "target_nodes": [IDs], "message": "some message"}
+    - Use this *only* when you already have a label orpredicted label to share it with neighbors. 
+    - You MUST NOT use "broadcast" unless you already have a label orpredicted label (i.e., after an "update" action).
+    - So "update" action always works before "broadcast" in the same layer.
+
+    
+        3. "update": decide your label *only* when the memory has enough information(labeled nodes, with text and label)
+        - Format: {"action_type": "update", "predicted_label": choose one of allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]}
+        - You MUST choose one of the allowed label strings exactly as listed.
+        - You MUST base your decision only on the definitions of the labels and the memory nodes with known labels.
+        - You should ALWAYS follow this action with a "broadcast" to share your label with neighbors.
+
+    4. "rag_query": search globally for similar labeled nodes, can make up "retrieve" action
+    - Format: {"action_type": "rag_query", "query": [Your node ID, e.g. 13/57], "top_k": number of nodes to retrieve}
+    - Use this when you don't have enough informative neighbors or memory, and need global examples.
+    - You must use your own node ID as the query.
+
+    5. "no_op": take no action
+    - Format: {"action_type": "no_op"}
+
+    
+
+    ## Planning Your Steps
+    1. If you have a predicted label, you can choose to broadcast it or continue to retrieve nodes with labels.
+    2. If you don't have a predicted label, think like a planner: first gather evidence (retrieve, rag_query), then make a decision (update), and finally help others (broadcast).
+    Think about the following:
+    - If you cannot predict your label yet, need more context to predict your label → `retrieve`, `rag_query`
+    - Are you confident to predict your label? → `update`
+    - Have you shared your label or predicted label with neighbors? → `broadcast`
+    - Only broadcast if you have a predicted label or training label, AND your memory is not empty. If not, choose "retrieve" or "rag_query" first.
+    - If any neighbors already have predicted labels, it is recommended to retrieve from them first.
+    
+================================================================================

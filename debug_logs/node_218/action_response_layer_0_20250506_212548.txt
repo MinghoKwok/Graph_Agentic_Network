@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 218 | Layer 0 | 20250506_212548:
+```json
+[
+  {"action_type": "rag_query", "query": "Learning Classification Trees Bayesian Statistics", "top_k": 10}
+]
+```
+================================================================================

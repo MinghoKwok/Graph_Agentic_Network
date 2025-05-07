@@ -1,0 +1,55 @@
+📤 [DEBUG] Fallback Prompt for Node 2347 | Layer 0 | 20250506_232346:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_1: 9 examples
+- Label_3: 1 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_6] "Decision Tree Induction: How Effective is the Greedy Heuristic? Abstract: Most existing decision tree systems use a greedy approach to induce trees | ..."
+2. [Label_1] "The Application of a Parallel Genetic Algorithm to the n=m=P=C max Flowshop Problem Abstract: Hard combinatorial problems in sequencing and scheduling..."
+3. [Label_0] "A systematic description of greedy optimisation algorithms for cost sensitive generalisation Abstract: This paper defines a class of problems involvin..."
+4. [Label_6] "A Statistical Approach to Solving the EBL Utility Problem Abstract: Many "learning from experience" systems use information extracted from problem sol..."
+5. [Label_1] "A Genetic Algorithm for File and Task Placement in a Distributed System Abstract: In this paper we explore the distributed file and task placement pro..."
+
+Text to classify:
+"Chapter 4 Empirical comparison of stochastic algorithms Empirical comparison of stochastic algorithms in a graph
+Abstract: There are several stochastic methods that can be used for solving NP-hard optimization problems approximatively. Examples of such algorithms include (in order of increasing computational complexity) stochastic greedy search methods, simulated annealing, and genetic algorithms. We investigate which of these methods is likely to give best performance in practice, with respect to the computational effort each requires. We study this problem empirically by selecting a set of stochastic algorithms with varying computational complexity, and by experimentally evaluating for each method how the goodness of the results achieved improves with increasing computational time. For the evaluation, we use a graph optimization problem, which is closely related to several real-world practical problems. To get a wider perspective of the goodness of the achieved results, the stochastic methods are also compared against special-case greedy heuristics. This investigation suggests that although genetic algorithms can provide good results, simpler stochastic algorithms can achieve similar performance more quickly."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

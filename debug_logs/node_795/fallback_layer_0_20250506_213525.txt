@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 795 | Layer 0 | 20250506_213525:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_5] "Learning Trees and Rules with Set-valued Features Abstract: In most learning systems examples are represented as fixed-length "feature vectors", the c..."
+2. [Label_2] "Learning Symbolic Rules Using Artificial Neural Networks Abstract: A distinct advantage of symbolic learning algorithms over artificial neural network..."
+3. [Label_6] "PAC Learning Intersections of Halfspaces with Membership Queries (Extended Abstract) Abstract:"
+4. [Label_6] "Machine Learning by Function Decomposition Abstract: We present a new machine learning method that, given a set of training examples, induces a defini..."
+5. [Label_6] "Constructing Conjunctions using Systematic Search on Decision Trees Abstract: This paper investigates a dynamic path-based method for constructing con..."
+
+Text to classify:
+"Learning Hierarchical Rule Sets
+Abstract: We present an algorithm for learning sets of rules that are organized into up to k levels. Each level can contain an arbitrary number of rules "if c then l" where l is the class associated to the level and c is a concept from a given class of basic concepts. The rules of higher levels have precedence over the rules of lower levels and can be used to represent exceptions. As basic concepts we can use Boolean attributes in the infinite attribute space model, or certain concepts defined in terms of substrings. Given a sample of m examples, the algorithm runs in polynomial time and produces a consistent concept representation of size O((log m) k n k ), where n is the size of the smallest consistent representation with k levels of rules. This implies that the algorithm learns in the PAC model. The algorithm repeatedly applies the greedy heuristics for weighted set cover. The weights are obtained from approximate solutions to previous set cover problems."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

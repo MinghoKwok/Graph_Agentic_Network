@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2617 | Layer 0 | 20250506_233642:
+```json
+[
+  {"action_type": "rag_query", "query": "predicting ordinal classes in ILP", "top_k": 10}
+]
+```
+================================================================================

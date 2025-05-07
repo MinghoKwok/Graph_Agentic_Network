@@ -1,0 +1,55 @@
+📤 [DEBUG] Fallback Prompt for Node 1873 | Layer 0 | 20250506_225912:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 2 examples
+- Label_2: 3 examples
+- Label_5: 3 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_2] "ce: [Tex89] <institution> Texas Instruments. </institution> <note> TMS320C30 C Compiler Reference Guide, 1989. Document Title: SPRU034A. </note> Abstr..."
+2. [Label_1] "17 Massively Parallel Genetic Programming Abstract: As the field of Genetic Programming (GP) matures and its breadth of application increases, the nee..."
+3. [Label_2] "MBP on T0: mixing floating- and fixed-point formats in BP learning Abstract: We examine the efficient implementation of back prop type algorithms on T..."
+4. [Label_5] "THE EXPANDABLE SPLIT WINDOW PARADIGM FOR EXPLOITING FINE-GRAIN PARALLELISM Abstract: We propose a new processing paradigm, called the Expandable Split..."
+5. [Label_5] "Modeling Superscalar Processors via Statistical Simulation Abstract: nan"
+
+Text to classify:
+"Achieving Super Computer Performance with a DSP Array Processor
+Abstract: The MUSIC system (MUlti Signal processor system with Intelligent Communication) is a parallel distributed memory architecture based on digital signal processors (DSP). A system with 60 processor elements is operational. It has a peak performance of 3.8 GFlops, an electrical power consumption of less than 800 W (including forced air cooling) and fits into a 19" rack. Two applications (the back-propagation algorithm for neural net learning and molecular dynamics simulations) run about 6 times faster than on a CRAY Y-MP and 2 times faster than on a NEC SX-3. A sustained performance of more than 1 GFlops is reached. The selling price of such a system would be in the range of about 300'000 US$."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

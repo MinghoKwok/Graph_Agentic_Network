@@ -1,0 +1,114 @@
+
+📤 [DEBUG] Action Prompt for Node 1918 | Layer 0 | 20250506_225514:
+
+    You are Node 1918 in a scientific citation network. Your task is to classify yourself into the correct research category based on your text and connections.
+    
+    ## Few-shot Examples of Label Prediction:
+
+    Example 1:
+    Memory:
+    1. [Neural_Networks] "A novel deep learning approach for image classification..."
+    2. [Reinforcement_Learning] "Q-learning based algorithm for game playing..."
+    3. [Neural_Networks] "Convolutional neural networks for computer vision tasks..."
+
+    Current Node Text:
+    "Deep learning models for visual recognition tasks..."
+
+    Prediction: Neural_Networks
+    Reasoning: The current text focuses on deep learning and visual recognition, which closely matches the Neural_Networks examples in memory.
+
+    Example 2:
+    Memory:
+    1. [Probabilistic_Methods] "Bayesian networks for uncertainty modeling..."
+    2. [Neural_Networks] "Recurrent neural networks for sequence prediction..."
+    3. [Probabilistic_Methods] "Markov models for time series analysis..."
+
+    Current Node Text:
+    "Hidden Markov models for speech recognition..."
+
+    Prediction: Probabilistic_Methods
+    Reasoning: The text discusses Markov models, which is a probabilistic method, matching the Probabilistic_Methods examples in memory.
+
+    Example 3:
+    Memory:
+    1. [Neural_Networks] "Deep learning architectures for natural language processing..."
+    2. [Theory] "Theoretical analysis of algorithm complexity..."
+    3. [Neural_Networks] "Transformer models for sequence modeling..."
+
+    Current Node Text:
+    "Attention mechanisms in deep learning models for text understanding..."
+
+    Prediction: Neural_Networks
+    Reasoning: Although the text mentions theoretical concepts like attention mechanisms, the focus is on deep learning models and their application to text understanding, which closely matches the Neural_Networks examples in memory.
+    
+    ## Your State:
+    - Node ID: 1918
+    - Layer: 0
+    - Your Text:
+    "Stochastic Logic Programs
+Abstract: One way to represent a machine learning algorithm's bias over the hypothesis and instance space is as a pair of probability distributions. This approach has been taken both within Bayesian learning schemes and the framework of U-learnability. However, it is not obvious how an Inductive Logic Programming (ILP) system should best be provided with a probability distribution. This paper extends the results of a previous paper by the author which introduced stochastic logic programs as a means of providing a structured definition of such a probability distribution. Stochastic logic programs are a generalisation of stochastic grammars. A stochastic logic program consists of a set of labelled clauses p : C where p is from the interval [0; 1] and C is a range-restricted definite clause. A stochastic logic program P has a distributional semantics, that is one which assigns a probability distribution to the atoms of each predicate in the Herbrand base of the clauses in P . These probabilities are assigned to atoms according to an SLD-resolution strategy which employs a stochastic selection rule. It is shown that the probabilities can be computed directly for fail-free logic programs and by normalisation for arbitrary logic programs. The stochastic proof strategy can be used to provide three distinct functions: 1) a method of sampling from the Herbrand base which can be used to provide selected targets or example sets for ILP experiments, 2) a measure of the information content of examples or hypotheses; this can be used to guide the search in an ILP system and 3) a simple method for conditioning a given stochastic logic program on samples of data. Functions 1) and 3) are used to measure the generality of hypotheses in the ILP system Progol4.2. This supports an implementation of a Bayesian technique for learning from positive examples only. fl This paper is an extension of a paper with the same title which appeared in [12]"
+    - Neighbors: [1290, 2329]
+    - Available labeled neighbors to retrieve from: None
+    - Neighbors with predicted labels: None
+    
+    You are an autonomous agent with planning capabilities. You may perform multiple actions in sequence to achieve better results.
+
+    ## Decide Your Next Action(s)
+    Important: You are allowed and encouraged to return MULTIPLE actions in sequence. You MUST respond with a JSON array even if there's only one action. 
+    Example of a valid response:
+    ```json
+    [
+      {"action_type": "update", "predicted_label": "Neural_Networks"},
+      {"action_type": "broadcast"}
+    ]
+    ```
+    ```json
+    [
+      {"action_type": "retrieve", "target_nodes": [1, 2, 3], "info_type": "text"},
+      {"action_type": "rag_query", "query": "machine learning", "top_k": 10}
+    ]
+    ```
+    Invalid response:
+    ```json
+    {"action_type": "update", "predicted_label": "Neural_Networks"}
+    ```
+
+    ### Available Actions:
+
+    1. "retrieve": get information from other nodes
+    - Format: {"action_type": "retrieve", "target_nodes": [IDs], "info_type": "text"}
+
+    2. "broadcast": send a message to neighbors if and *only* if you already have a label or predicted label
+    - Format: {"action_type": "broadcast", "target_nodes": [IDs], "message": "some message"}
+    - Use this *only* when you already have a label orpredicted label to share it with neighbors. 
+    - You MUST NOT use "broadcast" unless you already have a label orpredicted label (i.e., after an "update" action).
+    - So "update" action always works before "broadcast" in the same layer.
+
+    
+        3. "update": decide your label *only* when the memory has enough information(labeled nodes, with text and label)
+        - Format: {"action_type": "update", "predicted_label": choose one of allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]}
+        - You MUST choose one of the allowed label strings exactly as listed.
+        - You MUST base your decision only on the definitions of the labels and the memory nodes with known labels.
+        - You should ALWAYS follow this action with a "broadcast" to share your label with neighbors.
+
+    4. "rag_query": search globally for similar labeled nodes, can make up "retrieve" action
+    - Format: {"action_type": "rag_query", "query": [Your node ID, e.g. 13/57], "top_k": number of nodes to retrieve}
+    - Use this when you don't have enough informative neighbors or memory, and need global examples.
+    - You must use your own node ID as the query.
+
+    5. "no_op": take no action
+    - Format: {"action_type": "no_op"}
+
+    
+
+    ## Planning Your Steps
+    1. If you have a predicted label, you can choose to broadcast it or continue to retrieve nodes with labels.
+    2. If you don't have a predicted label, think like a planner: first gather evidence (retrieve, rag_query), then make a decision (update), and finally help others (broadcast).
+    Think about the following:
+    - If you cannot predict your label yet, need more context to predict your label → `retrieve`, `rag_query`
+    - Are you confident to predict your label? → `update`
+    - Have you shared your label or predicted label with neighbors? → `broadcast`
+    - Only broadcast if you have a predicted label or training label, AND your memory is not empty. If not, choose "retrieve" or "rag_query" first.
+    - If any neighbors already have predicted labels, it is recommended to retrieve from them first.
+    
+================================================================================

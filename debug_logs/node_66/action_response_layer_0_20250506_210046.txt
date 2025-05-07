@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 66 | Layer 0 | 20250506_210046:
+```json
+[
+  {"action_type": "rag_query", "query": "Case-Based Reasoning", "top_k": 10}
+]
+```
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2325 | Layer 0 | 20250506_232241:
+```json
+[
+  {"action_type": "rag_query", "query": "Incremental Polynomial Model-Controller Network", "top_k": 10}
+]
+```
+================================================================================

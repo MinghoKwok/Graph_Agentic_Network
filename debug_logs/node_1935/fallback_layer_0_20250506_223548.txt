@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1935 | Layer 0 | 20250506_223548:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_2] "A Mixture of Experts Model Exhibiting Prosopagnosia Abstract: A considerable body of evidence from prosopagnosia, a deficit in face recognition dissoc..."
+2. [Label_2] "Modeling Cortical Plasticity Based on Adapting Lateral Interaction Abstract: A neural network model called LISSOM for the cooperative self-organizatio..."
+3. [Label_1] "Growing neural networks Abstract: nan"
+4. [Label_2] "Two Constructive Methods for Designing Compact Feedforward Networks of Threshold Units Abstract: We propose two algorithms for constructing and traini..."
+5. [Label_2] "The Canonical Distortion Measure in Feature Space and 1-NN Classification Abstract: We prove that the Canonical Distortion Measure (CDM) [2, 3] is the..."
+
+Text to classify:
+"Observations on Cortical Mechanisms for Object Recognition and Learning
+Abstract: This paper sketches several aspects of a hypothetical cortical architecture for visual object recognition, based on a recent computational model. The scheme relies on modules for learning from examples, such as Hyperbf-like networks, as its basic components. Such models are not intended to be precise theories of the biological circuitry but rather to capture a class of explanations we call Memory-Based Models (MBM) that contains sparse population coding, memory-based recognition and codebooks of prototypes. Unlike the sigmoidal units of some artificial neural networks, the units of MBMs are consistent with the usual description of cortical neurons as tuned to multidimensional optimal stimuli. We will describe how an example of MBM may be realized in terms of cortical circuitry and biophysical mechanisms, consistent with psychophysical and physiological data. A number of predictions, testable with physiological techniques, are made. This memo describes research done within the Center for Biological and Computational Learning in the Department of Brain and Cognitive Sciences and at the Artificial Intelligence Laboratory at the Massachusetts Institute of Technology. This research is sponsored by grants from the Office of Naval Research under contracts N00014-92-J-1879 and N00014-93-1-0385; and by a grant from the National Science Foundation under contract ASC-9217041 (this award includes funds from ARPA provided under the HPCC program). Additional support is provided by the North Atlantic Treaty Organization, ATR Audio and Visual Perception Research Laboratories, Mitsubishi Electric Corporation, Sumitomo Metal Industries, and Siemens AG. Support for the A.I. Laboratory's artificial intelligence research is provided by ARPA contract N00014-91-J-4038. Tomaso Poggio is supported by the Uncas and Helen Whitaker Chair at MIT's Whitaker College."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

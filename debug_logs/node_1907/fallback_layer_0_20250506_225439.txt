@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 1907 | Layer 0 | 20250506_225439:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 6 examples
+- Label_3: 3 examples
+- Label_5: 1 examples
+- Label_6: 1 examples
+
+Memory:
+1. [Label_3] "On the Logic of Iterated Belief Revision Abstract: We show in this paper that the AGM postulates are too week to ensure the rational preservation of c..."
+2. [Label_0] "Modeling Case-based Planning for Repairing Reasoning Failures Abstract: One application of models of reasoning behavior is to allow a reasoner to intr..."
+3. [Label_0] "The Role of Generic Models in Conceptual Change Abstract: 1 This research was funded in part by NSF Grant No. IRI-92-10925 and in part by ONR Grant No..."
+4. [Label_0] "AN INCREMENTAL LEARNING MODEL FOR COMMONSENSE REASONING Abstract:"
+5. [Label_0] "A Comparative Utility Analysis of Case-Based Reasoning and Control-Rule Learning Systems Abstract: The utility problem in learning systems occurs when..."
+
+Text to classify:
+"Toward Rational Planning and Replanning Rational Reason Maintenance, Reasoning Economies, and Qualitative Preferences formal notions
+Abstract: Efficiency dictates that plans for large-scale distributed activities be revised incrementally, with parts of plans being revised only if the expected utility of identifying and revising the subplans improves on the expected utility of using the original plan. The problems of identifying and reconsidering the subplans affected by changed circumstances or goals are closely related to the problems of revising beliefs as new or changed information is gained. But traditional techniques of reason maintenance|the standard method for belief revision|choose revisions arbitrarily and enforce global notions of consistency and groundedness which may mean reconsidering all beliefs or plan elements at each step. To address these problems, we developed (1) revision methods aimed at revising only those beliefs and plans worth revising, and tolerating incoherence and ungroundedness when these are judged less detrimental than a costly revision effort, (2) an artificial market economy in planning and revision tasks for arriving at overall judgments of worth, and (3) a representation for qualitative preferences that permits capture of common forms of dominance information. We view the activities of intelligent agents as stemming from interleaved or simultaneous planning, replanning, execution, and observation subactivities. In this model of the plan construction process, the agents continually evaluate and revise their plans in light of what happens in the world. Planning is necessary for the organization of large-scale activities because decisions about actions to be taken in the future have direct impact on what should be done in the shorter term. But even if well-constructed, the value of a plan decays as changing circumstances, resources, information, or objectives render the original course of action inappropriate. When changes occur before or during execution of the plan, it may be necessary to construct a new plan by starting from scratch or by revising a previous plan. only the portions of the plan actually affected by the changes. Given the information accrued during plan execution, which remaining parts of the original plan should be salvaged and in what ways should other parts be changed? Incremental replanning first involves localizing the potential changes or conflicts by identifying the subset of the extant beliefs and plans in which they occur. It then involves choosing which of the identified beliefs and plans to keep and which to change. For greatest efficiency, the choices of what portion of the plan to revise and how to revise it should be based on coherent expectations about and preferences among the consequences of different alternatives so as to be rational in the sense of decision theory (Savage 1972). Our work toward mechanizing rational planning and replanning has focussed on four main issues: This paper focusses on the latter three issues; for our approach to the first, see (Doyle 1988; 1992). Replanning in an incremental and local manner requires that the planning procedures routinely identify the assumptions made during planning and connect plan elements with these assumptions, so that replan-ning may seek to change only those portions of a plan dependent upon assumptions brought into question by new information. Consequently, the problem of revising plans to account for changed conditions has much"
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

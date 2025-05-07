@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2561 | Layer 0 | 20250506_233412:
+```json
+[
+  {"action_type": "rag_query", "query": "MDL Learning of Probabilistic Neural Networks", "top_k": 10}
+]
+```
+================================================================================

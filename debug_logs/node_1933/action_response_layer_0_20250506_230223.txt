@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1933 | Layer 0 | 20250506_230223:
+```json
+[
+  {"action_type": "rag_query", "query": "Continuous sigmoidal belief networks", "top_k": 10}
+]
+```
+================================================================================

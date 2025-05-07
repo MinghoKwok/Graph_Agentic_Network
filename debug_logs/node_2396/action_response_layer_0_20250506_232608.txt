@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2396 | Layer 0 | 20250506_232608:
+```json
+[
+  {"action_type": "rag_query", "query": "Genetic Representations of Neural Architectures", "top_k": 10}
+]
+```
+================================================================================

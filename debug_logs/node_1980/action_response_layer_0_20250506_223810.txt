@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1980 | Layer 0 | 20250506_223810:
+```json
+[
+  {"action_type": "rag_query", "query": "Evolutionary Computation", "top_k": 10}
+]
+```
+================================================================================

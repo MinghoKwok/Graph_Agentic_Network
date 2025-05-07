@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1864 | Layer 0 | 20250506_223201:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_0] "Formalising the knowledge content of case memory systems Abstract: Discussions of case-based reasoning often reflect an implicit assumption that a cas..."
+2. [Label_0] "Conceptual Analogy: Conceptual clustering for informed and efficient analogical reasoning Abstract: Conceptual analogy (CA) is a general approach that..."
+3. [Label_5] "Knowledge Acquisition with a Knowledge-Intensive Machine Learning System Abstract: In this paper, we investigate the integration of knowledge acquisit..."
+4. [Label_5] "An intelligent search method using Inductive Logic Programming Abstract: We propose a method to use Inductive Logic Programming to give heuristic func..."
+5. [Label_5] "Relational Knowledge Discovery in Databases Abstract: In this paper, we indicate some possible applications of ILP or similar techniques in the knowle..."
+
+Text to classify:
+"An Investigation of Marker-Passing Algorithms for Analogue Retrieval
+Abstract: If analogy and case-based reasoning systems are to scale up to very large case bases, it is important to analyze the various methods used for retrieving analogues to identify the features of the problem for which they are appropriate. This paper reports on one such analysis, a comparison of retrieval by marker passing or spreading activation in a semantic network with Knowledge-Directed Spreading Activation, a method developed to be well-suited for retrieving semantically distant analogues from a large knowledge base. The analysis has two complementary components: (1) a theoretical model of the retrieval time based on a number of problem characteristics, and (2) experiments showing how the retrieval time of the approaches varies with the knowledge base size. These two components, taken together, suggest that KDSA is more likely than SA to be able to scale up to retrieval in large knowledge bases."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

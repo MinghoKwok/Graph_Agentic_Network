@@ -1,0 +1,53 @@
+📤 [DEBUG] Fallback Prompt for Node 2489 | Layer 0 | 20250506_233040:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 9 examples
+- Label_5: 4 examples
+
+Memory:
+1. [Label_0] "Formalising the knowledge content of case memory systems Abstract: Discussions of case-based reasoning often reflect an implicit assumption that a cas..."
+2. [Label_0] "Modeling Case-based Planning for Repairing Reasoning Failures Abstract: One application of models of reasoning behavior is to allow a reasoner to intr..."
+3. [Label_0] "A Comparative Utility Analysis of Case-Based Reasoning and Control-Rule Learning Systems Abstract: The utility problem in learning systems occurs when..."
+4. [Label_0] "Conceptual Analogy: Conceptual clustering for informed and efficient analogical reasoning Abstract: Conceptual analogy (CA) is a general approach that..."
+5. [Label_5] "An intelligent search method using Inductive Logic Programming Abstract: We propose a method to use Inductive Logic Programming to give heuristic func..."
+
+Text to classify:
+"BECOMING AN EXPERT CASE-BASED REASONER: LEARNING TO ADAPT PRIOR CASES
+Abstract: Experience plays an important role in the development of human expertise. One computational model of how experience affects expertise is provided by research on case-based reasoning, which examines how stored cases encapsulating traces of specific prior problem-solving episodes can be retrieved and re-applied to facilitate new problem-solving. Much progress has been made in methods for accessing relevant cases, and case-based reasoning is receiving wide acceptance both as a technology for developing intelligent systems and as a cognitive model of a human reasoning process. However, one important aspect of case-based reasoning remains poorly understood: the process by which retrieved cases are adapted to fit new situations. The difficulty of encoding effective adaptation rules by hand is widely recognized as a serious impediment to the development of fully autonomous case-based reasoning systems. Consequently, an important question is how case-based reasoning systems might learn to improve their expertise at case adaptation. We present a framework for acquiring this expertise by using a combination of general adaptation rules, introspective reasoning, and case-based reasoning about the case adaptation task itself."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

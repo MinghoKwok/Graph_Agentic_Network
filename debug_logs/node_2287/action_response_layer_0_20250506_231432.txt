@@ -1,0 +1,8 @@
+🔁 [DEBUG] Action Response for Node 2287 | Layer 0 | 20250506_231432:
+```json
+[
+  {"action_type": "rag_query", "query": "Neural_Networks", "top_k": 10},
+  {"action_type": "rag_query", "query": "Bayesian_Methods", "top_k": 10}
+]
+```
+================================================================================

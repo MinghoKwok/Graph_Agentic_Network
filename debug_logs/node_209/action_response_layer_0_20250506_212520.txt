@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 209 | Layer 0 | 20250506_212520:
+```json
+[
+  {"action_type": "rag_query", "query": "Genetic Programming parallel implementation", "top_k": 10}
+]
+```
+================================================================================

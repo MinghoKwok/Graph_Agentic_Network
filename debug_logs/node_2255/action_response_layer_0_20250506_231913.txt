@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2255 | Layer 0 | 20250506_231913:
+```json
+[
+  {"action_type": "rag_query", "query": "Evolutionary Learning of the Crossover Operator", "top_k": 10}
+]
+```
+================================================================================

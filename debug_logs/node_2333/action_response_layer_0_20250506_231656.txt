@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2333 | Layer 0 | 20250506_231656:
+```json
+[
+  {"action_type": "rag_query", "query": "Recursive Automatic Algorithm Selection for Inductive Learning", "top_k": 10}
+]
+```
+================================================================================

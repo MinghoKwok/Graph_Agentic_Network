@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1827 | Layer 0 | 20250506_225026:
+```json
+[
+  {"action_type": "rag_query", "query": "Efficient Algorithms for Inverting Evolution", "top_k": 10}
+]
+```
+================================================================================

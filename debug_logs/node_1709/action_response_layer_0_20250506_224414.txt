@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1709 | Layer 0 | 20250506_224414:
+```json
+[
+  {"action_type": "rag_query", "query": "NEURAL NETWORK APPROACH TO BLIND SEPARATION AND ENHANCEMENT OF IMAGES", "top_k": 10}
+]
+```
+================================================================================

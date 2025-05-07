@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1845 | Layer 0 | 20250506_223101:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_4] "Reinforcement Learning Algorithm for Partially Observable Markov Decision Problems Abstract: Increasing attention has been paid to reinforcement learn..."
+2. [Label_4] "Truncating Temporal Differences: On the Efficient Implementation of TD() for Reinforcement Learning Abstract: Temporal difference (TD) methods constit..."
+3. [Label_4] "Scaling Reinforcement Learning Algorithms by Learning Variable Temporal Resolution Models Abstract: The close connection between reinforcement learnin..."
+4. [Label_4] "A Teaching Strategy for Memory-Based Control Abstract: Combining different machine learning algorithms in the same system can produce benefits above a..."
+5. [Label_0] "Unifying Empirical and Explanation-Based Learning by Modeling the Utility of Learned Knowledge Abstract: The overfit problem in empirical learning and..."
+
+Text to classify:
+"ON LEARNING HOW TO LEARN LEARNING STRATEGIES
+Abstract: This paper introduces the "incremental self-improvement paradigm". Unlike previous methods, incremental self-improvement encourages a reinforcement learning system to improve the way it learns, and to improve the way it improves the way it learns ..., without significant theoretical limitations | the system is able to "shift its inductive bias" in a universal way. Its major features are: (1) There is no explicit difference between "learning", "meta-learning", and other kinds of information processing. Using a Turing machine equivalent programming language, the system itself occasionally executes self-delimiting, initially highly random "self-modification programs" which modify the context-dependent probabilities of future action sequences (including future self-modification programs). (2) The system keeps only those probability modifications computed by "useful" self-modification programs: those which bring about more payoff (reward, reinforcement) per time than all previous self-modification programs. (3) The computation of payoff per time takes into account all the computation time required for learning | the entire system life is considered: boundaries between learning trials are ignored (if there are any). A particular implementation based on the novel paradigm is presented. It is designed to exploit what conventional digital machines are good at: fast storage addressing, arithmetic operations etc. Experiments illustrate the system's mode of operation. Keywords: Self-improvement, self-reference, introspection, machine-learning, reinforcement learning. Note: This is the revised and extended version of an earlier report from November 24, 1994."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

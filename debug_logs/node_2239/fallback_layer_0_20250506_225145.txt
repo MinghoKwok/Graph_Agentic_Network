@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 2239 | Layer 0 | 20250506_225145:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_2] "Tau Net: A Neural Network for Modeling Temporal Variability Abstract: The ability to handle temporal variation is important when dealing with real-wor..."
+2. [Label_4] "Machine Learning Research: Four Current Directions Abstract: Machine Learning research has been making great progress is many directions. This article..."
+3. [Label_2] "Learning from Bad Data Abstract: The data describing resolutions to telephone network local loop "troubles," from which we wish to learn rules for dis..."
+4. [Label_3] "Hidden Markov decision trees Abstract: We study a time series model that can be viewed as a decision tree with Markov temporal structure. The model is..."
+5. [Label_4] "Multi-Time Models for Reinforcement Learning Abstract: Reinforcement learning can be used not only to predict rewards, but also to predict states, i.e..."
+
+Text to classify:
+"Predicting Conditional Probability Distributions: A Connectionist Approach
+Abstract: Most traditional prediction techniques deliver the mean of the probability distribution (a single point). For multimodal processes, instead of predicting the mean of the probability distribution, it is important to predict the full distribution. This article presents a new connectionist method to predict the conditional probability distribution in response to an input. The main idea is to transform the problem from a regression to a classification problem. The conditional probability distribution network can perform both direct predictions and iterated predictions, a task which is specific for time series problems. We compare our method to fuzzy logic and discuss important differences, and also demonstrate the architecture on two time series. The first is the benchmark laser series used in the Santa Fe competition, a deterministic chaotic system. The second is a time series from a Markov process which exhibits structure on two time scales. The network produces multimodal predictions for this series. We compare the predictions of the network with a nearest-neighbor predictor and find that the conditional probability network is more than twice as likely a model."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

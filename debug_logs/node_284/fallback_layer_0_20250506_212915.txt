@@ -1,0 +1,51 @@
+📤 [DEBUG] Fallback Prompt for Node 284 | Layer 0 | 20250506_212915:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 7 examples
+- Label_3: 1 examples
+- Label_5: 3 examples
+
+Memory:
+1. [Label_0] "The Role of Generic Models in Conceptual Change Abstract: 1 This research was funded in part by NSF Grant No. IRI-92-10925 and in part by ONR Grant No..."
+2. [Label_0] "Conceptual Analogy: Conceptual clustering for informed and efficient analogical reasoning Abstract: Conceptual analogy (CA) is a general approach that..."
+3. [Label_3] "Abstract Abstract: Automated decision making is often complicated by the complexity of the knowledge involved. Much of this complexity arises from the..."
+4. [Label_0] "AN INCREMENTAL LEARNING MODEL FOR COMMONSENSE REASONING Abstract:"
+5. [Label_5] "An intelligent search method using Inductive Logic Programming Abstract: We propose a method to use Inductive Logic Programming to give heuristic func..."
+
+Text to classify:
+"Role of Ontology in Creative Understanding
+Abstract: In Proceedings of the 18th Annual Cognitive Science Conference, San Diego, CA, July 1996 This paper can also be found at the Georgia Tech WWW site: http://www.cc.gatech.edu/cogsci/ Abstract Successful creative understanding requires that a reasoner be able to manipulate known concepts in order to understand novel ones. A major problem arises, however, when one considers exactly how these manipulations are to be bounded. If a bound is imposed which is too loose, the reasoner is likely to create bizarre understandings rather than useful creative ones. On the other hand, if the bound is too tight, the reasoner will not have the flexibility needed to deal with a wide range of creative understanding experiences. Our approach is to make use of a principled ontology as one source of reasonable bounding. This allows our creative understanding theory to have good explanatory power about the process while allowing the computer implementation of the theory (the ISAAC system) to be flexible without being bizarre in the task domain of reading science fiction short stories."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

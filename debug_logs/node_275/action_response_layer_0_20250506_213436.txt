@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 275 | Layer 0 | 20250506_213436:
+```json
+[
+  {"action_type": "rag_query", "query": "belief revision", "top_k": 10}
+]
+```
+================================================================================

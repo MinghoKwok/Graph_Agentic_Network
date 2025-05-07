@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 2049 | Layer 0 | 20250506_230206:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_2: 2 examples
+- Label_5: 4 examples
+- Label_6: 3 examples
+
+Memory:
+1. [Label_6] "Feature Generation for Sequence Categorization Abstract: The problem of sequence categorization is to generalize from a corpus of labeled sequences pr..."
+2. [Label_2] "Tau Net: A Neural Network for Modeling Temporal Variability Abstract: The ability to handle temporal variation is important when dealing with real-wor..."
+3. [Label_5] "on Inductive Logic Programming (ILP-95) Inducing Logic Programs without Explicit Negative Examples Abstract: This paper presents a method for learning..."
+4. [Label_6] "Parity: The Problem that Won't Go Away Abstract: It is well-known that certain learning methods (e.g., the perceptron learning algorithm) cannot acqui..."
+5. [Label_5] "Learning Trees and Rules with Set-valued Features Abstract: In most learning systems examples are represented as fixed-length "feature vectors", the c..."
+
+Text to classify:
+"Learning Feature-based Semantics with Simple Recurrent Networks
+Abstract: The paper investigates the possibilities for using simple recurrent networks as transducers which map sequential natural language input into non-sequential feature-based semantics. The networks perform well on sentences containing a single main predicate (encoded by transitive verbs or prepositions) applied to multiple-feature objects (encoded as noun-phrases with adjectival modifiers), and shows robustness against ungrammatical inputs. A second set of experiments deals with sentences containing embedded structures. Here the network is able to process multiple levels of sentence-final embeddings but only one level of center-embedding. This turns out to be a consequence of the network's inability to retain information that is not reflected in the outputs over intermediate phases of processing. Two extensions to Elman's [9] original recurrent network architecture are introduced."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

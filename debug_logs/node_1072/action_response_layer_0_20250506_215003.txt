@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1072 | Layer 0 | 20250506_215003:
+```json
+[
+  {"action_type": "rag_query", "query": "Nonlinear PCA Learning Rule and Signal Separation", "top_k": 10}
+]
+```
+================================================================================

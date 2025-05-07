@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1172 | Layer 0 | 20250506_215527:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_3] "Algebraic Techniques for Efficient Inference in Bayesian Networks Abstract: A number of exact algorithms have been developed to perform probabilistic ..."
+2. [Label_3] "Abstract Abstract: Automated decision making is often complicated by the complexity of the knowledge involved. Much of this complexity arises from the..."
+3. [Label_3] "Discovering Structure in Continuous Variables Using Bayesian Networks Abstract: We study Bayesian networks for continuous variables using nonlinear co..."
+4. [Label_0] "A Comparative Utility Analysis of Case-Based Reasoning and Control-Rule Learning Systems Abstract: The utility problem in learning systems occurs when..."
+5. [Label_3] "On the Logic of Iterated Belief Revision Abstract: We show in this paper that the AGM postulates are too week to ensure the rational preservation of c..."
+
+Text to classify:
+"Introduction to the Special Section on Knowledge-Based Construction of Probabilistic and Decision Models (IEEE Transactions
+Abstract: Modeling techniques developed recently in the AI and uncertain reasoning communities permit significantly more flexible specifications of probabilistic knowledge. Specifically, graphical decision-modeling formalisms|belief networks, influence diagrams, and their variants|provide compact representation of probabilistic relationships, and support inference algorithms that automatically exploit the dependence structure in such models [1, 3, 4]. These advances have brought on a resurgence of interest in computational decision systems based on normative theories of belief and preference. However, graphical decision-modeling languages are still quite limited for purposes of knowledge representation because, while they can describe the relationships among particular event instances, they cannot capture general knowledge about probabilistic relationships across classes of events. The inability to capture general knowledge is a serious impediment for those AI tasks in which the relevant factors of a decision problem cannot be enumerated in advance. A graphical decision model encodes a particular set of probabilistic dependencies, a predefined set of decision alternatives, and a specific mathematical form for a utility function. Given a properly specified model, there exist relatively efficient algorithms for calculating posterior probabilities and optimal decision policies. A range of similar cases may be handled by parametric variations of the original model. However, if the structure of dependencies, the set of available alternatives, or the form of utility function changes from situation to situation, then a fixed network representation is no longer adequate. An ideal computational decision system would possess general, broad knowledge of a domain, but would have the ability to reason about the particular circumstances of any given decision problem within the domain. One obvious approach|which we call call knowledge-based model construction (KBMC)|is to generate a decision model dynamically at run-time, based on the problem description and information received thus far. Model construction consists of selection, instantiation, and assembly of causal and associational relationships from a broad knowledge base of general relationships among domain concepts. For example, suppose we wish to develop a system to recommend appropriate actions for maintaining a computer network. The natural graphical decision model would include chance"
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

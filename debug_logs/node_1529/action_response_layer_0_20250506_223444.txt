@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1529 | Layer 0 | 20250506_223444:
+```json
+[
+  {"action_type": "rag_query", "query": "Explanation Based Learning Neural Networks", "top_k": 10}
+]
+```
+================================================================================

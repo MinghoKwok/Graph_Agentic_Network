@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 1355 | Layer 0 | 20250506_222534:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 8 examples
+- Label_3: 1 examples
+- Label_5: 2 examples
+- Label_6: 1 examples
+
+Memory:
+1. [Label_0] "Conceptual Analogy: Conceptual clustering for informed and efficient analogical reasoning Abstract: Conceptual analogy (CA) is a general approach that..."
+2. [Label_0] "Use of Mental Models for Constraining Index Learning in Experience-Based Design Abstract: The power of the case-based method comes from the ability to..."
+3. [Label_0] "The Role of Generic Models in Conceptual Change Abstract: 1 This research was funded in part by NSF Grant No. IRI-92-10925 and in part by ONR Grant No..."
+4. [Label_5] "The Origins of Inductive Logic Programming: A Prehistoric Tale Abstract: This paper traces the development of the main ideas that have led to the pres..."
+5. [Label_0] "Formalising the knowledge content of case memory systems Abstract: Discussions of case-based reasoning often reflect an implicit assumption that a cas..."
+
+Text to classify:
+"Modeling Invention by Analogy in ACT-R
+Abstract: We investigate some aspects of cognition involved in invention, more precisely in the invention of the telephone by Alexander Graham Bell. We propose the use of the Structure-Behavior-Function (SBF) language for the representation of invention knowledge; we claim that because SBF has been shown to support a wide range of reasoning about physical devices, it constitutes a plausible account of how an inventor might represent knowledge of an invention. We further propose the use of the ACT-R architecture for the implementation of this model. ACT-R has been shown to very precisely model a wide range of human cognition. We draw upon the architecture for execution of productions and matching of declarative knowledge through spreading activation. Thus we present a model which combines the well-established cognitive validity of ACT-R with the powerful, specialized model-based reasoning methods facilitated by SBF."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

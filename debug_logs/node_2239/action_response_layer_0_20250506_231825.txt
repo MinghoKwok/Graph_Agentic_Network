@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2239 | Layer 0 | 20250506_231825:
+```json
+[
+  {"action_type": "rag_query", "query": "Predicting Conditional Probability Distributions: A Connectionist Approach", "top_k": 10}
+]
+```
+================================================================================

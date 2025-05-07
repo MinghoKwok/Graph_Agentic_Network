@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1537 | Layer 0 | 20250506_224119:
+```json
+[
+  {"action_type": "rag_query", "query": "incremental learning in AI", "top_k": 10}
+]
+```
+================================================================================

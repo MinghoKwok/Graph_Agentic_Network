@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 972 | Layer 0 | 20250506_221123:
+```json
+[
+  {"action_type": "rag_query", "query": "Genetic Programming Fuzzy Logic Control", "top_k": 10}
+]
+```
+================================================================================

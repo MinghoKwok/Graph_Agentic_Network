@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 517 | Layer 0 | 20250506_214131:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 2 examples
+- Label_4: 1 examples
+- Label_5: 2 examples
+- Label_6: 6 examples
+
+Memory:
+1. [Label_6] "On learning hierarchical classifications Abstract: Many significant real-world classification tasks involve a large number of categories which are arr..."
+2. [Label_5] "Knowledge Acquisition with a Knowledge-Intensive Machine Learning System Abstract: In this paper, we investigate the integration of knowledge acquisit..."
+3. [Label_0] "Improving Minority Class Prediction Using Case-Specific Feature Weights Abstract: This paper addresses the problem of handling skewed class distributi..."
+4. [Label_4] "Machine Learning Research: Four Current Directions Abstract: Machine Learning research has been making great progress is many directions. This article..."
+5. [Label_6] "An Interactive Model of Teaching Abstract: Previous teaching models in the learning theory community have been batch models. That is, in these models ..."
+
+Text to classify:
+"Active Learning with Committees for Text Categorization
+Abstract: In many real-world domains like text categorization, supervised learning requires a large number of training examples. In this paper we describe an active learning method that uses a committee of learners to reduce the number of training examples required for learning. Our approach is similar to the Query by Committee framework, where disagreement among the committee members on the predicted label for the input part of the example is used to signal the need for knowing the actual value of the label. Our experiments in text categorization using a committee of Winnow-based learners demonstrate that this approach can reduce the number of labeled training examples required over that used by a single Winnow learner by 1-2 orders of magnitude. This paper is not under review or accepted for publication in another conference or journal. Acknowledgements: The availability of the Reuters-22173 corpus [Reuters] and of the | STAT Data Manipulation and Analysis Programs [Perlman] has greatly assisted in our research to date."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

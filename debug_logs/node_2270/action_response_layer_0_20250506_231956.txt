@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2270 | Layer 0 | 20250506_231956:
+```json
+[
+  {"action_type": "rag_query", "query": "generative models for handwritten digit recognition", "top_k": 10}
+]
+```
+================================================================================

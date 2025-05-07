@@ -1,0 +1,51 @@
+📤 [DEBUG] Fallback Prompt for Node 381 | Layer 0 | 20250506_213422:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 2 examples
+- Label_5: 2 examples
+- Label_6: 6 examples
+
+Memory:
+1. [Label_6] "Efficient Algorithms for Identifying Relevant Features Abstract: This paper describes efficient methods for exact and approximate implementation of th..."
+2. [Label_6] "Feature Generation for Sequence Categorization Abstract: The problem of sequence categorization is to generalize from a corpus of labeled sequences pr..."
+3. [Label_0] "Context-Sensitive Feature Selection for Lazy Learners Abstract:"
+4. [Label_6] "On the Induction of Intelligible Ensembles Abstract: Ensembles of classifiers, e.g. decision trees, often exhibit greater predictive accuracy than sin..."
+5. [Label_5] "Learning Trees and Rules with Set-valued Features Abstract: In most learning systems examples are represented as fixed-length "feature vectors", the c..."
+
+Text to classify:
+"Compression-Based Feature Subset Selection  Keywords: Minimum Description Length Principle, Cross Validation, Noise
+Abstract: Irrelevant and redundant features may reduce both predictive accuracy and comprehensibility of induced concepts. Most common Machine Learning approaches for selecting a good subset of relevant features rely on cross-validation. As an alternative, we present the application of a particular Minimum Description Length (MDL) measure to the task of feature subset selection. Using the MDL principle allows taking into account all of the available data at once. The new measure is information-theoretically plausible and yet still simple and therefore efficiently computable. We show empirically that this new method for judging the value of feature subsets is more efficient than and performs at least as well as methods based on cross-validation. Domains with both a large number of training examples and a large number of possible features yield the biggest gains in efficiency. Thus our new approach seems to scale up better to large learning problems than previous methods."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

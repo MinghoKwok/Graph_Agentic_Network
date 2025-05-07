@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1941 | Layer 0 | 20250506_223606:
+```json
+[
+  {"action_type": "rag_query", "query": "Markov chain Monte Carlo", "top_k": 10}
+]
+```
+================================================================================

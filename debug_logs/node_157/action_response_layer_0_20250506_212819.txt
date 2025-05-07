@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 157 | Layer 0 | 20250506_212819:
+```json
+[
+  {"action_type": "rag_query", "query": "A Practical Bayesian Framework for Backprop Networks", "top_k": 10}
+]
+```
+================================================================================

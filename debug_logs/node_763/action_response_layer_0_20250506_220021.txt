@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 763 | Layer 0 | 20250506_220021:
+```json
+[
+  {"action_type": "rag_query", "query": "PREENS, a Parallel Research Execution Environment for Neural Systems", "top_k": 10}
+]
+```
+================================================================================

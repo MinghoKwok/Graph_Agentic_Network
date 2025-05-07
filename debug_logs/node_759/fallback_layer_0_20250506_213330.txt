@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 759 | Layer 0 | 20250506_213330:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_3] "Analysis of a Non-Reversible Markov Chain Sampler Abstract: Technical Report BU-1385-M, Biometrics Unit, Cornell University Abstract We analyse the co..."
+2. [Label_3] "On Convergence of the EM Algorithm and the Gibbs Sampler  SUMMARY Abstract: In this article we investigate the relationship between the two popular al..."
+3. [Label_3] "Analysis of the Gibbs sampler for a model related to James-Stein estimators Abstract: Summary. We analyze a hierarchical Bayes model which is related ..."
+4. [Label_3] "Discovering Structure in Continuous Variables Using Bayesian Networks Abstract: We study Bayesian networks for continuous variables using nonlinear co..."
+5. [Label_3] "Monte Carlo Implementation of Gaussian Process Models for Bayesian Regression and Classification Abstract: Technical Report No. 9702, Department of St..."
+
+Text to classify:
+"BAYESIAN STATISTICS 6, pp. 000--000  Exact sampling for Bayesian inference: towards general purpose algorithms
+Abstract: There are now methods for organising a Markov chain Monte Carlo simulation so that it can be guaranteed that the state of the process at a given time is exactly drawn from the target distribution. The question of assessing convergence totally vanishes. Such methods are known as exact or perfect sampling. The approach that has received most attention uses the protocol of coupling from the past devised by Propp and Wilson (Random Structures and Algorithms,1996), in which multiple dependent paths of the chain are run from different initial states at a sequence of initial times going backwards into the past, until they satisfy the condition of coalescence by time 0. When this is achieved the state at time 0 is distributed according to the required target. This process must be implemented very carefully to assure its validity (including appropriate re-use of random number streams), and also requires one of various tricks to enable us to follow infinitely many sample paths with a finite amount of work. With the ultimate objective of Bayesian MCMC with guaranteed convergence, the purpose of this paper is to describe recent efforts to construct exact sampling methods for continuous-state Markov chains. We review existing methods based on gamma-coupling and rejection sampling (Murdoch and Green, Scandinavian Journal of Statistics, 1998), that are quite straightforward to understand, but require a closed form for the transition kernel and entail cumbersome algebraic manipulation. We then introduce two new methods based on random walk Metropolis, that offer the prospect of more automatic use, not least because the difficult, continuous, part of the transition mechanism can be coupled in a generic way, using a proposal distribution of convenience. One of the methods is based on a neat decomposition of any unimodal (multivariate) symmetric density into pieces that may be re-assembled to construct any translated copy of itself: that allows coupling of a continuum of Metropolis proposals to a finite set, at least for a compact state space. We discuss methods for economically coupling the subsequent accept/reject decisions. Our second new method deals with unbounded state spaces, using a trick due to W. S. Kendall of running a coupled dominating process in parallel with the sample paths of interest. The random subset of the state space below the dominating path is compact, allowing efficient coupling and coalescence. We look towards the possibility that application of such methods could become sufficiently convenient that they could become the basis for routine Bayesian computation in the foreseeable future."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

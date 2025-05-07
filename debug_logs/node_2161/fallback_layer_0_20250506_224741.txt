@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 2161 | Layer 0 | 20250506_224741:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_3] "SINGLE FACTOR ANALYSIS BY MML ESTIMATION Abstract: The Minimum Message Length (MML) technique is applied to the problem of estimating the parameters o..."
+2. [Label_3] "group, and despite having just 337 subjects, the study strongly supports Identification of causal effects Abstract: Figure 8a and Figure 8b show the p..."
+3. [Label_6] "Bayesian Methods for Adaptive Models Abstract: nan"
+4. [Label_3] "On the Markov Equivalence of Chain Graphs, Undirected Graphs, and Acyclic Digraphs Abstract: Graphical Markov models use undirected graphs (UDGs), acy..."
+5. [Label_0] "The Role of Generic Models in Conceptual Change Abstract: 1 This research was funded in part by NSF Grant No. IRI-92-10925 and in part by ONR Grant No..."
+
+Text to classify:
+"On The Foundation Of Structural Equation Models or
+Abstract: When Can We Give Causal Interpretation Abstract The assumptions underlying statistical estimation are of fundamentally different character from the causal assumptions that underly structural equation models (SEM). The differences have been blurred through the years for the lack of a mathematical notation capable of distinguishing causal from equational relationships. Recent advances in graphical methods provide formal explication of these differences, and are destined to have profound impact on SEM's practice and philosophy."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2400 | Layer 0 | 20250506_232019:
+```json
+[
+  {"action_type": "rag_query", "query": "Neural Network Model of Visual Tilt Aftereffects", "top_k": 10}
+]
+```
+================================================================================

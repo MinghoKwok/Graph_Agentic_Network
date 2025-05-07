@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1605 | Layer 0 | 20250506_221819:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_0] "Observation and Generalisation in a Simulated Robot World Abstract: This paper describes a program which observes the behaviour of actors in a simulat..."
+2. [Label_4] "Scaling Reinforcement Learning Algorithms by Learning Variable Temporal Resolution Models Abstract: The close connection between reinforcement learnin..."
+3. [Label_0] "Modeling Case-based Planning for Repairing Reasoning Failures Abstract: One application of models of reasoning behavior is to allow a reasoner to intr..."
+4. [Label_1] "ADAPTIVE TESTING OF CONTROLLERS FOR AUTONOMOUS VEHICLES Abstract: Autonomous vehicles are likely to require sophisticated software controllers to main..."
+5. [Label_4] "Model of the Environment to Avoid Local Learning Abstract: Pier Luca Lanzi Technical Report N. 97.46 December 20 th , 1997"
+
+Text to classify:
+"Learning from the Environment by Experimentation: The Need for Few and Informative Examples
+Abstract: An intelligent system must be able to adapt and learn to correct and update its model of the environment incrementally and deliberately. In complex environments that have many parameters and where interactions have a cost, sampling the possible range of states to test the results of action executions is not a practical approach. We present a practical approach based on continuous and selective interaction with the environment that pinpoints the type of fault in the domain knowledge that causes any unexpected behavior of the environment, and resorts to experimentation when additional information is needed to correct the system's knowledge."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

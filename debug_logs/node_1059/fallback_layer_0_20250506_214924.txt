@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1059 | Layer 0 | 20250506_214924:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_5] "Machine learning in prognosis of the femoral neck fracture recovery examples, estimating attributes, explanation ability, Abstract: We compare the per..."
+2. [Label_6] "Pattern Theoretic Knowledge Discovery Abstract: Future research directions in Knowledge Discovery in Databases (KDD) include the ability to extract an..."
+3. [Label_6] "Efficient Algorithms for Identifying Relevant Features Abstract: This paper describes efficient methods for exact and approximate implementation of th..."
+4. [Label_1] "Unsupervised Learning with the Soft-Means Algorithm Abstract: This note describes a useful adaptation of the `peak seeking' regime used in unsupervise..."
+5. [Label_0] "On the Greediness of Feature Selection Algorithms Abstract: Based on our analysis and experiments using real-world datasets, we find that the greedine..."
+
+Text to classify:
+"Mathematical Programming in Data Mining
+Abstract: Mathematical programming approaches to three fundamental problems will be described: feature selection, clustering and robust representation. The feature selection problem considered is that of discriminating between two sets while recognizing irrelevant and redundant features and suppressing them. This creates a lean model that often generalizes better to new unseen data. Computational results on real data confirm improved generalization of leaner models. Clustering is exemplified by the unsupervised learning of patterns and clusters that may exist in a given database and is a useful tool for knowledge discovery in databases (KDD). A mathematical programming formulation of this problem is proposed that is theoretically justifiable and computationally implementable in a finite number of steps. A resulting k-Median Algorithm is utilized to discover very useful survival curves for breast cancer patients from a medical database. Robust representation is concerned with minimizing trained model degradation when applied to new problems. A novel approach is proposed that purposely tolerates a small error in the training process in order to avoid overfitting data that may contain errors. Examples of applications of these concepts are given."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 721 | Layer 0 | 20250506_213129:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_1] "Incremental Co-evolution of Organisms: A New Approach for Optimization and Discovery of Strategies Abstract: In the field of optimization and machine ..."
+2. [Label_1] "A STUDY OF CROSSOVER OPERATORS IN GENETIC PROGRAMMING Abstract: Holland's analysis of the sources of power of genetic algorithms has served as guidanc..."
+3. [Label_1] "A Transformation System for Interactive Reformulation of Design Optimization Strategies Abstract: Automatic design optimization is highly sensitive to..."
+4. [Label_1] "The Application of a Parallel Genetic Algorithm to the n=m=P=C max Flowshop Problem Abstract: Hard combinatorial problems in sequencing and scheduling..."
+5. [Label_1] "Fitness Landscapes and Difficulty in Genetic Programming Abstract: The structure of the fitness landscape on which genetic programming operates is exa..."
+
+Text to classify:
+"Learning Representations for Evolutionary Computation an example from the domain of two-dimensional shape designs. In
+Abstract: Evolutionary systems have been used in a variety of applications, from turbine design to scheduling problems. The basic algorithms are similar in all these applications, but the representation is always problem specific. Unfortunately, the search time for evolutionary systems very much depends on efficient codings, using problem specific domain knowledge to reduce the size of the search space. This paper describes an approach, where the user only specifies a very general, basic coding that can be used in a larger variety of problems. The system then learns a more efficient, problem specific coding. To do this, an evolutionary system with variable length coding is used. While the system optimizes an example problem, a meta process identifies successful combinations of genes in the population and combines them into higher level evolved genes. The extraction is repeated iteratively, allowing genes to evolve that have a high level complexity and encode a high number of the original, basic genes. This results in a continuous restructuring of the search space, allowing potentially successful solutions to be found in much shorter search time. The evolved coding can then be used to solve other, related problems. While not excluding any potentially desirable solutions, the evolved coding makes knowledge from the example problem available for the new problem."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

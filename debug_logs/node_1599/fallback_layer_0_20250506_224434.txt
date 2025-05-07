@@ -1,0 +1,55 @@
+📤 [DEBUG] Fallback Prompt for Node 1599 | Layer 0 | 20250506_224434:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_1: 2 examples
+- Label_4: 6 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_4] "Category: Control, Navigation and Planning. Key words: Reinforcement learning, Exploration, Hidden state. Prefer oral presentation. Abstract: This pap..."
+2. [Label_0] "Lazy Acquisition of Place Knowledge Abstract: In this paper we define the task of place learning and describe one approach to this problem. Our framew..."
+3. [Label_4] "Reinforcement Learning Algorithm for Partially Observable Markov Decision Problems Abstract: Increasing attention has been paid to reinforcement learn..."
+4. [Label_4] "A Teaching Strategy for Memory-Based Control Abstract: Combining different machine learning algorithms in the same system can produce benefits above a..."
+5. [Label_4] "Scaling Reinforcement Learning Algorithms by Learning Variable Temporal Resolution Models Abstract: The close connection between reinforcement learnin..."
+
+Text to classify:
+"Finding Promising Exploration Regions by Weighting Expected Navigation Costs continuous environments, some first-order approximations to
+Abstract: In many learning tasks, data-query is neither free nor of constant cost. Often the cost of a query depends on the distance from the current location in state space to the desired query point. This is easiest to visualize in robotics environments where a robot must physically move to a location in order to learn something there. The cost of this learning is the time and effort it takes to reach the new location. Furthermore, this cost is characterized by a distance relationship: When the robot moves as directly as possible from a source state to a destination state, the states through which it passes are closer (i.e., cheaper to reach) than is the destination state. Distance relationships hold in many real-world non-robotics tasks also | any environment where states are not immediately accessible. Optimiz- ing the performance of a chemical plant, for example, requires the adjustment of analog controls which have a continuum of intermediate states. Querying possibly optimal regions of state space in these environments is inadvisable if the path to the query point intersects a region of known volatility. In discrete environments with small numbers of states, it's possible to keep track of precisely where and to what degree learning has already been done sufficiently and where it still needs to be done. It is also possible to keep best known estimates of the distances from each state to each other (see Kaelbling, 1993). Kael- bling's DG-learning algorithm is based on Floyd's all- pairs shortest-path algorithm (Aho, Hopcroft, & Ull- man 1983) and is just slightly different from that used here. These "all-goals" algorithms (after Kaelbling) can provide a highly satisfying representation of the distance/benefit tradeoff. where E x is the exploration value of state x (the potential benefit of exploring state x), D xy is the distance to state y, and A xy is the action to take in state x to move most cheaply to state y. This information can be learned incrementally and completely : That is, it can be guaranteed that if a path from any state x to any state y is deducible from the state transitions seen so far, then (1) the algorithm will have a non-null entry for S xy (i.e., the algorithm will know a path from x to y), and (2) The current value for D xy will be the best deducible value from all data seen so far. With this information, decisions about which areas to explore next can be based on not just the amount to be gained from such exploration but also on the cost of reaching each area together with the benefit of incidental exploration done on the way. Though optimal exploration is NP-hard (i.e., it's at least as difficult as TSP) good approximations are easily computable. One such good approximation is to take the action at each state that leads in the direction of greatest accumulated exploration benefit:"
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

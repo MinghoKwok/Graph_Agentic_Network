@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 744 | Layer 0 | 20250506_215921:
+```json
+[
+  {"action_type": "rag_query", "query": "Genetic Algorithm for Continuous Design Space Search", "top_k": 10}
+]
+```
+================================================================================

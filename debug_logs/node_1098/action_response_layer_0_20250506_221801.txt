@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1098 | Layer 0 | 20250506_221801:
+```json
+[
+  {"action_type": "rag_query", "query": "Scheduling Maintenance of Electrical Power Transmission Networks Using Genetic Programming", "top_k": 5}
+]
+```
+================================================================================

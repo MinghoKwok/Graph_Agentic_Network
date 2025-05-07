@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1504 | Layer 0 | 20250506_221258:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_5] "The Difficulties of Learning Logic Programs with Cut Abstract: As real logic programmers normally use cut (!), an effective learning procedure for log..."
+2. [Label_5] "Pac-Learning Recursive Logic Programs: Efficient Algorithms Abstract: We present algorithms that learn certain classes of function-free recursive logi..."
+3. [Label_6] "Inductive Logic Programming Abstract: A new research area, Inductive Logic Programming, is presently emerging. While inheriting various positive chara..."
+4. [Label_5] "on Inductive Logic Programming (ILP-95) Inducing Logic Programs without Explicit Negative Examples Abstract: This paper presents a method for learning..."
+5. [Label_5] "The Origins of Inductive Logic Programming: A Prehistoric Tale Abstract: This paper traces the development of the main ideas that have led to the pres..."
+
+Text to classify:
+"From Inheritance Relation to Non-Axiomatic Logic
+Abstract: At the beginning of the paper, three binary term logics are defined. The first is based only on an inheritance relation. The second and the third suggest a novel way to process extension and intension, and they also have interesting relations with Aristotle's syllogistic logic. Based on the three simple systems, a Non-Axiomatic Logic is defined. It has a term-oriented language and an experience-grounded semantics. It can uniformly represents and processes randomness, fuzziness, and ignorance. It can also uniformly carries out deduction, abduction, induction, and revision."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

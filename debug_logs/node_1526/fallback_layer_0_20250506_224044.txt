@@ -1,0 +1,55 @@
+📤 [DEBUG] Fallback Prompt for Node 1526 | Layer 0 | 20250506_224044:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 2 examples
+- Label_2: 2 examples
+- Label_3: 8 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_3] "Maximum Likelihood and Covariant Algorithms for Independent Component Analysis somewhat more biologically plausible, involving no Abstract: Bell and S..."
+2. [Label_3] "SINGLE FACTOR ANALYSIS BY MML ESTIMATION Abstract: The Minimum Message Length (MML) technique is applied to the problem of estimating the parameters o..."
+3. [Label_3] "BAYESIAN TIME SERIES: Models and Computations for the Analysis of Time Series in the Physical Sciences Abstract: This articles discusses developments ..."
+4. [Label_3] "On Bayesian analysis of mixtures with an unknown number of components  Summary Abstract: New methodology for fully Bayesian mixture analysis is develo..."
+5. [Label_6] "Universal Portfolios With and Without Transaction Costs Abstract: A constant rebalanced portfolio is an investment strategy which keeps the same distr..."
+
+Text to classify:
+"Working Paper IS-97-22 (Information Systems) A First Application of Independent Component Analysis to Extracting Structure
+Abstract: This paper discusses the application of a modern signal processing technique known as independent component analysis (ICA) or blind source separation to multivariate financial time series such as a portfolio of stocks. The key idea of ICA is to linearly map the observed multivariate time series into a new space of statistically independent components (ICs). This can be viewed as a factorization of the portfolio since joint probabilities become simple products in the coordinate system of the ICs. We apply ICA to three years of daily returns of the 28 largest Japanese stocks and compare the results with those obtained using principal component analysis. The results indicate that the estimated ICs fall into two categories, (i) infrequent but large shocks (responsible for the major changes in the stock prices), and (ii) frequent smaller fluctuations (contributing little to the overall level of the stocks). We show that the overall stock price can be reconstructed surprisingly well by using a small number of thresholded weighted ICs. In contrast, when using shocks derived from principal components instead of independent components, the reconstructed price is less similar to the original one. Independent component analysis is a potentially powerful method of analyzing and understanding driving mechanisms in financial markets. There are further promising applications to risk management since ICA focuses on higher order statistics."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

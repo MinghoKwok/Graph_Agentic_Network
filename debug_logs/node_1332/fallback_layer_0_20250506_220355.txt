@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1332 | Layer 0 | 20250506_220355:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_1] "Fitness Landscapes and Difficulty in Genetic Programming Abstract: The structure of the fitness landscape on which genetic programming operates is exa..."
+2. [Label_1] "Incremental Co-evolution of Organisms: A New Approach for Optimization and Discovery of Strategies Abstract: In the field of optimization and machine ..."
+3. [Label_1] "The Application of a Parallel Genetic Algorithm to the n=m=P=C max Flowshop Problem Abstract: Hard combinatorial problems in sequencing and scheduling..."
+4. [Label_1] "A STUDY OF CROSSOVER OPERATORS IN GENETIC PROGRAMMING Abstract: Holland's analysis of the sources of power of genetic algorithms has served as guidanc..."
+5. [Label_1] "Testing the Robustness of the Genetic Algorithm on the Floating Building Block Representation. Abstract: Recent studies on a floating building block r..."
+
+Text to classify:
+"Statistical Dynamics of the Royal Road Genetic Algorithm
+Abstract: Metastability is a common phenomenon. Many evolutionary processes, both natural and artificial, alternate between periods of stasis and brief periods of rapid change in their behavior. In this paper an analytical model for the dynamics of a mutation-only genetic algorithm (GA) is introduced that identifies a new and general mechanism causing metastability in evolutionary dynamics. The GA's population dynamics is described in terms of flows in the space of fitness distributions. The trajectories through fitness distribution space are derived in closed form in the limit of infinite populations. We then show how finite populations induce metastability, even in regions where fitness does not exhibit a local optimum. In particular, the model predicts the occurrence of "fitness epochs"| periods of stasis in population fitness distributions|at finite population size and identifies the locations of these fitness epochs with the flow's hyperbolic fixed points. This enables exact predictions of the metastable fitness distributions during the fitness epochs, as well as giving insight into the nature of the periods of stasis and the innovations between them. All these results are obtained as closed-form expressions in terms of the GA's parameters. An analysis of the Jacobian matrices in the neighborhood of an epoch's metastable fitness distribution allows for the calculation of its stable and unstable manifold dimensions and so reveals the state space's topological structure. More general quantitative features of the dynamics|fitness fluctuation amplitudes, epoch stability, and speed of the innovations|are also determined from the Jacobian eigenvalues. The analysis shows how quantitative predictions for a range of dynamical behaviors, that are specific to the finite population dynamics, can be derived from the solution of the infinite population dynamics. The theoretical predictions are shown to agree very well with statistics from GA simulations. We also discuss the connections of our results with those from population genetics and molecular evolution theory."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

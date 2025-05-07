@@ -1,0 +1,55 @@
+📤 [DEBUG] Fallback Prompt for Node 1758 | Layer 0 | 20250506_225309:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 2 examples
+- Label_1: 1 examples
+- Label_3: 1 examples
+- Label_4: 7 examples
+
+Memory:
+1. [Label_0] "Lazy Acquisition of Place Knowledge Abstract: In this paper we define the task of place learning and describe one approach to this problem. Our framew..."
+2. [Label_4] "Scaling Reinforcement Learning Algorithms by Learning Variable Temporal Resolution Models Abstract: The close connection between reinforcement learnin..."
+3. [Label_4] "A Teaching Strategy for Memory-Based Control Abstract: Combining different machine learning algorithms in the same system can produce benefits above a..."
+4. [Label_4] "Reinforcement Learning with Modular Neural Networks for Control Abstract: Reinforcement learning methods can be applied to control problems with the o..."
+5. [Label_4] "Reinforcement Learning Algorithm for Partially Observable Markov Decision Problems Abstract: Increasing attention has been paid to reinforcement learn..."
+
+Text to classify:
+"Simultaneous Learning of Control Laws and Local Environment Representations for Intelligent Navigation Robots
+Abstract: Two issues of an intelligent navigation robot have been addressed in this work. First is the robot's ability to learn a representation of the local environment and use this representation to identify which local environment it is in. This is done by first extracting features from the sensors which are more informative than just distances of obstacles in various directions. Using these features a reduced ring representation (RRR) of the local environment is derived. As the robot navigates, it learns the RRR signatures of all the new environment types it encounters. For purpose of identification, a ring matching criteria is proposed where the robot tries to match the RRR from the sensory input to one of the RRRs in its library. The second issue addressed is that of learning hill climbing control laws in the local environments. Unlike conventional neuro-controllers, a reinforcement learning framework, where the robot first learns a model of the environment and then learns the control law in terms of a neural network is proposed here. The reinforcement function is generated from the sensory inputs of the robot before and after a control action is taken. Three key results shown in this work are that (1) The robot is able to build its library of RRR signatures perfectly even with significant sensor noise for eight different local environ-mets, (2) It was able to identify its local environment with an accuracy of more than 96%, once the library is build, and (3) the robot was able to learn adequate hill climbing control laws which take it to the distinctive state of the local environment for five different environment types."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

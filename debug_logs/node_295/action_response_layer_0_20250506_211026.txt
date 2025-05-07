@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 295 | Layer 0 | 20250506_211026:
+```json
+[
+  {"action_type": "rag_query", "query": "A Neuro-Dynamic Programming Approach to Retailer Inventory Management", "top_k": 10}
+]
+```
+================================================================================

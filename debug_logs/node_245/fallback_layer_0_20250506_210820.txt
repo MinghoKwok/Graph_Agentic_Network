@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 245 | Layer 0 | 20250506_210820:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_0] "LINNEO A Classification Methodology for Ill-structured Domains Abstract: In this work we present a classification methodology (LINNEO + ) to discover ..."
+2. [Label_5] "Learning Evolving Concepts Using Partial-Memory Approach  Machine Learning and Inference Laboratory Abstract: This paper addresses the problem of lear..."
+3. [Label_0] "Formalising the knowledge content of case memory systems Abstract: Discussions of case-based reasoning often reflect an implicit assumption that a cas..."
+4. [Label_5] "Knowledge Acquisition with a Knowledge-Intensive Machine Learning System Abstract: In this paper, we investigate the integration of knowledge acquisit..."
+5. [Label_5] "Learning Trees and Rules with Set-valued Features Abstract: In most learning systems examples are represented as fixed-length "feature vectors", the c..."
+
+Text to classify:
+"ICML-96 Workshop "Learning in context-sensitive domains" Bari, Italy. Dynamically Adjusting Concepts to Accommodate Changing Contexts
+Abstract: In concept learning, objects in a domain are grouped together based on similarity as determined by the attributes used to describe them. Existing concept learners require that this set of attributes be known in advance and presented in entirety before learning begins. Additionally, most systems do not possess mechanisms for altering the attribute set after concepts have been learned. Consequently, a veridical attribute set relevant to the task for which the concepts are to be used must be supplied at the onset of learning, and in turn, the usefulness of the concepts is limited to the task for which the attributes were originally selected. In order to efficiently accommodate changing contexts, a concept learner must be able to alter the set of descriptors without discarding its prior knowledge of the domain. We introduce the notion of attribute-incrementation, the dynamic modification of the attribute set used to describe instances in a problem domain. We have implemented the capability in a concept learning system that has been evaluated along several dimensions using an existing concept formation system for com parison."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

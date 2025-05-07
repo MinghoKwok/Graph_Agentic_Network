@@ -1,0 +1,56 @@
+📤 [DEBUG] Fallback Prompt for Node 1025 | Layer 0 | 20250506_221411:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 2 examples
+- Label_2: 1 examples
+- Label_4: 1 examples
+- Label_5: 2 examples
+- Label_6: 8 examples
+
+Memory:
+1. [Label_6] "Decision Tree Induction: How Effective is the Greedy Heuristic? Abstract: Most existing decision tree systems use a greedy approach to induce trees | ..."
+2. [Label_6] "On the Induction of Intelligible Ensembles Abstract: Ensembles of classifiers, e.g. decision trees, often exhibit greater predictive accuracy than sin..."
+3. [Label_5] "Incremental Reduced Error Pruning Abstract: This paper outlines some problems that may occur with Reduced Error Pruning in relational learning algorit..."
+4. [Label_6] "Constructing Conjunctions using Systematic Search on Decision Trees Abstract: This paper investigates a dynamic path-based method for constructing con..."
+5. [Label_0] "A systematic description of greedy optimisation algorithms for cost sensitive generalisation Abstract: This paper defines a class of problems involvin..."
+
+Text to classify:
+"Machine Learning 27(1):51-68, 1997. Predicting nearly as well as the best pruning of a decision tree
+Abstract: Many algorithms for inferring a decision tree from data involve a two-phase process: First, a very large decision tree is grown which typically ends up "over-fitting" the data. To reduce over-fitting, in the second phase, the tree is pruned using one of a number of available methods. The final tree is then output and used for classification on test data. In this paper, we suggest an alternative approach to the pruning phase. Using a given unpruned decision tree, we present a new method of making predictions on test data, and we prove that our algorithm's performance will not be "much worse" (in a precise technical sense) than the predictions made by the best reasonably small pruning of the given decision tree. Thus, our procedure is guaranteed to be competitive (in terms of the quality of its predictions) with any pruning algorithm. We prove that our procedure is very efficient and highly robust. Our method can be viewed as a synthesis of two previously studied techniques. First, we apply Cesa-Bianchi et al.'s [4] results on predicting using "expert advice" (where we view each pruning as an "expert") to obtain an algorithm that has provably low prediction loss, but that is com-putationally infeasible. Next, we generalize and apply a method developed by Buntine [3], [2] and Willems, Shtarkov and Tjalkens [20], [21] to derive a very efficient implementation of this procedure."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1532 | Layer 0 | 20250506_224103:
+```json
+[
+  {"action_type": "rag_query", "query": "model-based learning problems", "top_k": 10}
+]
+```
+================================================================================

@@ -1,0 +1,53 @@
+📤 [DEBUG] Fallback Prompt for Node 2351 | Layer 0 | 20250506_231748:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 1 examples
+- Label_2: 2 examples
+- Label_4: 3 examples
+- Label_5: 1 examples
+- Label_6: 4 examples
+
+Memory:
+1. [Label_4] "Generalization in Reinforcement Learning: Safely Approximating the Value Function Abstract: To appear in: G. Tesauro, D. S. Touretzky and T. K. Leen, ..."
+2. [Label_2] "MBP on T0: mixing floating- and fixed-point formats in BP learning Abstract: We examine the efficient implementation of back prop type algorithms on T..."
+3. [Label_2] "Shattering all sets of k points in "general position" requires (k 1)=2 parameters Abstract: For classes of concepts defined by certain classes of anal..."
+4. [Label_6] "Separating Formal Bounds from Practical Performance in Learning Systems Abstract: nan"
+5. [Label_4] "Improving Policies without Measuring Merits Abstract: Performing policy iteration in dynamic programming should only require knowledge of relative rat..."
+
+Text to classify:
+"ERROR STABILITY PROPERTIES OF GENERALIZED GRADIENT-TYPE ALGORITHMS
+Abstract: We present a unified framework for convergence analysis of the generalized subgradient-type algorithms in the presence of perturbations. One of the principal novel features of our analysis is that perturbations need not tend to zero in the limit. It is established that the iterates of the algorithms are attracted, in a certain sense, to an "-stationary set of the problem, where " depends on the magnitude of perturbations. Characterization of those attraction sets is given in the general (nonsmooth and nonconvex) case. The results are further strengthened for convex, weakly sharp and strongly convex problems. Our analysis extends and unifies previously known results on convergence and stability properties of gradient and subgradient methods, including their incremental, parallel and "heavy ball" modifications. fl The first author is supported in part by CNPq grant 300734/95-6. Research of the second author was supported in part by the International Science Foundation Grant NBY000, the International Science Foundation and Russian Goverment Grant NBY300 and the Russian Foundation for Fundamental Research Grant N 95-01-01448. y Instituto de Matematica Pura e Aplicada, Estrada Dona Castorina 110, Jardim Bot^anico, Rio de Janeiro, RJ, CEP 22460-320, Brazil. Email : solodov@impa.br. z Operations Research Department, Faculty of Computational Mathematics and Cybernetics, Moscow State University, Moscow, Russia, 119899."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -122,10 +122,11 @@ class NodeAgent:
         # Trigger fallback update if:
         # - in the last layer
         # - no update action occurred
-        if layer == NUM_LAYERS - 1 and not any(m.get("action") == "update" for m in self.state.memory):
+        # if layer == NUM_LAYERS - 1 and not any(m.get("action") == "update" for m in self.state.memory):
+        if layer >= 0:
             # 检查是否执行过retrieve
             has_retrieved = any(m.get("action") == "retrieve" for m in self.state.memory)
-            if not has_retrieved:
+            if True:  ## 测试用 两次retrieve
                 # 先执行一次retrieve
                 print(f"\n🔄 [Fallback Retrieve] Node {self.state.node_id} | Layer {layer}")
                 retrieve_action = RetrieveAction(
@@ -208,42 +209,41 @@ class NodeAgent:
                 return UpdateAction(updates)
         return NoOpAction()
 
-    def _format_fallback_label_prompt(self, node_text: str, memory: List[Dict[str, Any]]) -> str:
+
+    def _format_fallback_label_prompt(self, node_text: str, memory: List[Dict[str, Any]], top_k: int = 5) -> str:
+        from difflib import SequenceMatcher
+
+        def similarity(a: str, b: str) -> float:
+            return SequenceMatcher(None, a, b).ratio()
+
+        labeled_memory = [m for m in memory if m.get("label") is not None and m.get("text")]
+        # 根据语义相似度排序 memory
+        sorted_memory = sorted(
+            labeled_memory,
+            key=lambda m: similarity(node_text.lower(), m["text"].lower()),
+            reverse=True
+        )[:top_k]
+
         prompt = "You are a label prediction agent.\n\n"
-        prompt += f"Text to classify:\n\"{node_text}\"\n\n"
-        if memory:
+        prompt += f"Text to classify:\n\"{node_text.strip()}\"\n\n"
+        if sorted_memory:
             prompt += "Memory items:\n"
-            for m in memory:
-                label = m.get("label", None)
-                text = m.get("text", "")
-                if label is not None:
-                    label_str = inv_label_vocab.get(label, f"Label_{label}")
-                    short_text = text[:60] + "..." if len(text) > 60 else text
-                    prompt += f"- \"{short_text}\" — label: {label_str}\n"
+            for m in sorted_memory:
+                label = m["label"]
+                label_str = inv_label_vocab.get(label, f"Label_{label}")
+                short_text = m["text"].strip().replace("\n", " ")
+                short_text = short_text[:60] + "..." if len(short_text) > 60 else short_text
+                prompt += f'- "{short_text}" — label: {label_str}\n'
         else:
             prompt += "Memory items: (No memory available)\n"
 
-        # prompt += "\nOfficial Label Definitions:\n"
-#         prompt += """
-# [label=Label_6]
-# - Development of abstract models.
-# [label=Neural_Networks]
-# - Multi-layered network models.
-# [label=Case_Based]
-# - Reasoning by past examples.
-# [label=Genetic_Algorithms]
-# - Evolutionary optimization methods.
-# [label=Probabilistic_Methods]
-# - Probability and Bayesian methods.
-# [label=Reinforcement_Learning]
-# - Learning from rewards and actions.
-# [label=Rule_Learning]
-# - Extracting if-then symbolic rules.
-# """
+        prompt += "\nPlease think step by step: First analyze memory examples and their labels, then compare them to the input text. Identify the most semantically similar memory items and explain why. Finally, decide which label best matches and explain your reasoning."
         prompt += "\nRespond strictly in JSON format:\n{\"action_type\": \"update\", \"predicted_label\": \"label_string\"}\n"
         label_list = ", ".join(f'\"{v}\"' for v in inv_label_vocab.values())
         prompt += f"Allowed labels: [{label_list}]\n"
         return prompt
+
+
 
     def _format_simple_fallback_action_prompt(self, context: Dict[str, Any]) -> str:
         return f"Based on context {context}, choose one action: retrieve, broadcast, update, or rag_query."

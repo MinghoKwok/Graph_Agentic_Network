@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1977 | Layer 0 | 20250506_223801:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_3] "Analysis of a Non-Reversible Markov Chain Sampler Abstract: Technical Report BU-1385-M, Biometrics Unit, Cornell University Abstract We analyse the co..."
+2. [Label_3] "Analysis of the Gibbs sampler for a model related to James-Stein estimators Abstract: Summary. We analyze a hierarchical Bayes model which is related ..."
+3. [Label_3] "On Convergence of the EM Algorithm and the Gibbs Sampler  SUMMARY Abstract: In this article we investigate the relationship between the two popular al..."
+4. [Label_3] "On the Markov Equivalence of Chain Graphs, Undirected Graphs, and Acyclic Digraphs Abstract: Graphical Markov models use undirected graphs (UDGs), acy..."
+5. [Label_4] "Incremental Pruning: A Simple, Fast, Exact Algorithm for Partially Observable Markov Decision Processes Abstract: Most exact algorithms for general po..."
+
+Text to classify:
+"A note on acceptance rate criteria for CLTs for Hastings-Metropolis algorithms
+Abstract: This note considers positive recurrent Markov chains where the probability of remaining in the current state is arbitrarily close to 1. Specifically, conditions are given which ensure the non-existence of central limit theorems for ergodic averages of functionals of the chain. The results are motivated by applications for Metropolis-Hastings algorithms which are constructed in terms of a rejection probability, (where a rejection involves remaining at the current state). Two examples for commonly used algorithms are given, for the independence sampler and the Metropolis adjusted Langevin algorithm. The examples are rather specialised, although in both cases, the problems which arise are typical of problems commonly occurring for the particular algorithm being used. 0 I would like to thank Kerrie Mengersen Jeff Rosenthal and Richard Tweedie for useful conversations on the subject of this paper."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2462 | Layer 0 | 20250506_232921:
+```json
+[
+  {"action_type": "rag_query", "query": "Building Classifiers using Bayesian Networks", "top_k": 10}
+]
+```
+================================================================================

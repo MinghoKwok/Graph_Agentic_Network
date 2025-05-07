@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2316 | Layer 0 | 20250506_225549:
+```json
+[
+  {"action_type": "rag_query", "query": "Genetic_Algorithm_Optimization", "top_k": 10}
+]
+```
+================================================================================

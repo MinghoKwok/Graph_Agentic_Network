@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1277 | Layer 0 | 20250506_222130:
+```json
+[
+  {"action_type": "rag_query", "query": "Evolution of Pseudo-colouring Algorithms for Image Enhancement with Interactive Genetic Programming", "top_k": 5}
+]
+```
+================================================================================

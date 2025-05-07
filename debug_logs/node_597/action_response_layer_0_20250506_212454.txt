@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 597 | Layer 0 | 20250506_212454:
+```json
+[
+  {"action_type": "rag_query", "query": "Learning Semantic Grammars with Constructive Inductive Logic Programming", "top_k": 10}
+]
+```
+================================================================================

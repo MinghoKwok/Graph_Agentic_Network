@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1460 | Layer 0 | 20250506_223714:
+```json
+[
+  {"action_type": "rag_query", "query": "Learning from Queries and Examples with Tree-structured Bias", "top_k": 5}
+]
+```
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1519 | Layer 0 | 20250506_223412:
+```json
+[
+  {"action_type": "rag_query", "query": "online Machine Learning Knowledge Acquisition", "top_k": 10}
+]
+```
+================================================================================

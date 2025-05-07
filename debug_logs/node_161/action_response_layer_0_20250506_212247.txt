@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 161 | Layer 0 | 20250506_212247:
+```json
+[
+  {"action_type": "rag_query", "query": "Bayesian analysis of mixtures with an unknown number of components", "top_k": 10}
+]
+```
+================================================================================

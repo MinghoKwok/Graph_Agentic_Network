@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2600 | Layer 0 | 20250506_233559:
+```json
+[
+  {"action_type": "rag_query", "query": "Genetic Programming", "top_k": 10}
+]
+```
+================================================================================

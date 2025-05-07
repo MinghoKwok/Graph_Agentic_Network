@@ -1,0 +1,54 @@
+📤 [DEBUG] Fallback Prompt for Node 1672 | Layer 0 | 20250506_224218:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 3 examples
+- Label_2: 3 examples
+- Label_3: 1 examples
+- Label_4: 8 examples
+- Label_5: 1 examples
+- Label_6: 1 examples
+
+Memory:
+1. [Label_3] "Bumptrees for Efficient Function, Constraint, and Classification Learning Abstract: A new class of data structures called bumptrees is described. Thes..."
+2. [Label_4] "Reinforcement Learning with Modular Neural Networks for Control Abstract: Reinforcement learning methods can be applied to control problems with the o..."
+3. [Label_2] "Learning Symbolic Rules Using Artificial Neural Networks Abstract: A distinct advantage of symbolic learning algorithms over artificial neural network..."
+4. [Label_2] "Two Constructive Methods for Designing Compact Feedforward Networks of Threshold Units Abstract: We propose two algorithms for constructing and traini..."
+5. [Label_1] "ADAPTIVE TESTING OF CONTROLLERS FOR AUTONOMOUS VEHICLES Abstract: Autonomous vehicles are likely to require sophisticated software controllers to main..."
+
+Text to classify:
+"Learning Controllers for Industrial Robots
+Abstract: One of the most significant cost factors in robotics applications is the design and development of real-time robot control software. Control theory helps when linear controllers have to be developed, but it doesn't sufficiently support the generation of non-linear controllers, although in many cases (such as in compliance control), nonlinear control is essential for achieving high performance. This paper discusses how Machine Learning has been applied to the design of (non-)linear controllers. Several alternative function approximators, including Multilayer Perceptrons (MLP), Radial Basis Function Networks (RBFNs), and Fuzzy Controllers are analyzed and compared, leading to the definition of two major families: Open Field Function Function Approximators and Locally Receptive Field Function Approximators. It is shown that RBFNs and Fuzzy Controllers bear strong similarities, and that both have a symbolic interpretation. This characteristics allows for applying both symbolic and statistic learning algorithms to synthesize the network layout from a set of examples and, possibly, some background knowledge. Three integrated learning algorithms, two of which are original, are described and evaluated on experimental test cases. The first test case is provided by a robot KUKA IR-361 engaged into the "peg-into-hole" task, whereas the second is represented by a classical prediction task on the Mackey-Glass time series. From the experimental comparison, it appears that both Fuzzy Controllers and RBFNs synthesised from examples are excellent approximators, and that, in practice, they can be even more accurate than MLPs."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

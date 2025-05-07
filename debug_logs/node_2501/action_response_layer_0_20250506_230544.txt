@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2501 | Layer 0 | 20250506_230544:
+```json
+[
+  {"action_type": "rag_query", "query": "Radial Basis Function neural networks", "top_k": 10}
+]
+```
+================================================================================

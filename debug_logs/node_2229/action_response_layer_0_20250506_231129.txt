@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2229 | Layer 0 | 20250506_231129:
+```json
+[
+  {"action_type": "rag_query", "query": "logic program induction", "top_k": 10}
+]
+```
+================================================================================

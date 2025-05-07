@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1806 | Layer 0 | 20250506_222858:
+```json
+[
+  {"action_type": "rag_query", "query": "Matrix Back Prop neural network", "top_k": 10}
+]
+```
+================================================================================

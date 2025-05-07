@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 704 | Layer 0 | 20250506_213036:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_3] "On Bayesian analysis of mixtures with an unknown number of components  Summary Abstract: New methodology for fully Bayesian mixture analysis is develo..."
+2. [Label_3] "Discovering Structure in Continuous Variables Using Bayesian Networks Abstract: We study Bayesian networks for continuous variables using nonlinear co..."
+3. [Label_2] "The megaprior heuristic for discovering protein sequence patterns Abstract: Several computer algorithms for discovering patterns in groups of protein ..."
+4. [Label_3] "IMPROVING THE MEAN FIELD APPROXIMATION VIA THE USE OF MIXTURE DISTRIBUTIONS Abstract: Mean field methods provide computationally efficient approximati..."
+5. [Label_3] "Monte Carlo Implementation of Gaussian Process Models for Bayesian Regression and Classification Abstract: Technical Report No. 9702, Department of St..."
+
+Text to classify:
+"EXPERIMENTING WITH THE CHEESEMAN-STUTZ EVIDENCE APPROXIMATION FOR PREDICTIVE MODELING AND DATA MINING
+Abstract: The work discussed in this paper is motivated by the need of building decision support systems for real-world problem domains. Our goal is to use these systems as a tool for supporting Bayes optimal decision making, where the action maximizing the expected utility, with respect to predicted probabilities of the possible outcomes, should be selected. For this reason, the models used need to be probabilistic in nature | the output of a model has to be a probability distribution, not just a set of numbers. For the model family, we have chosen the set of simple discrete finite mixture models which have the advantage of being computationally very efficient. In this work, we describe a Bayesian approach for constructing finite mixture models from sample data. Our approach is based on a two-phase unsupervised learning process which can be used both for exploratory analysis and model construction. In the first phase, the selection of a model class, i.e., the number of parameters, is performed by calculating the Cheeseman-Stutz approximation for the model class evidence. In the second phase, the MAP parameters in the selected class are estimated by the EM algorithm. In this framework, the overfitting problem common to many traditional learning approaches can be avoided, as the learning process automatically regulates the complexity of the model. This paper focuses on the model class selection phase and the approach is validated by presenting empirical results with both natural and synthetic data."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

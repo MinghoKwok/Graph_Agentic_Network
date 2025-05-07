@@ -1,0 +1,56 @@
+📤 [DEBUG] Fallback Prompt for Node 268 | Layer 0 | 20250506_213414:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 3 examples
+- Label_2: 5 examples
+- Label_3: 2 examples
+- Label_5: 1 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_2] "Homology Detection via Family Pairwise Search a straightforward generalization of pairwise sequence comparison algorithms to Abstract: The function of..."
+2. [Label_2] "The megaprior heuristic for discovering protein sequence patterns Abstract: Several computer algorithms for discovering patterns in groups of protein ..."
+3. [Label_6] "Feature Generation for Sequence Categorization Abstract: The problem of sequence categorization is to generalize from a corpus of labeled sequences pr..."
+4. [Label_3] "Hidden Markov decision trees Abstract: We study a time series model that can be viewed as a decision tree with Markov temporal structure. The model is..."
+5. [Label_1] "Testing the Robustness of the Genetic Algorithm on the Floating Building Block Representation. Abstract: Recent studies on a floating building block r..."
+
+Text to classify:
+"Finding Genes in DNA with a Hidden Markov Model
+Abstract: This study describes a new Hidden Markov Model (HMM) system for segmenting uncharacterized genomic DNA sequences into exons, introns, and intergenic regions. Separate HMM modules were designed and trained for specific regions of DNA: exons, introns, intergenic regions, and splice sites. The models were then tied together to form a biologically feasible topology. The integrated HMM was trained further on a set of eukaryotic DNA sequences, and tested by using it to segment a separate set of sequences. The resulting HMM system, which is called VEIL (Viterbi Exon-Intron Locator), obtains an overall accuracy on test data of 92% of total bases correctly labelled, with a correlation coefficient of 0.73. Using the more stringent test of exact exon prediction, VEIL correctly located both ends of 53% of the coding exons, and 49% of the exons it predicts are exactly correct. These results compare favorably to the best previous results for gene structure prediction, and demonstrate the benefits of using HMMs for this problem."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

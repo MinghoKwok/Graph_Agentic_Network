@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 1912 | Layer 0 | 20250506_225455:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 2 examples
+- Label_2: 6 examples
+- Label_3: 2 examples
+- Label_5: 1 examples
+
+Memory:
+1. [Label_2] "Theory of Correlations in Stochastic Neural Networks Abstract: One of the main experimental tools in probing the interactions between neurons has been..."
+2. [Label_1] "Growing neural networks Abstract: nan"
+3. [Label_2] "Tau Net: A Neural Network for Modeling Temporal Variability Abstract: The ability to handle temporal variation is important when dealing with real-wor..."
+4. [Label_2] "Modeling Cortical Plasticity Based on Adapting Lateral Interaction Abstract: A neural network model called LISSOM for the cooperative self-organizatio..."
+5. [Label_2] "Separating hippocampal maps  Spatial Functions of the Hippocampal Formation and the Abstract: The place fields of hippocampal cells in old animals som..."
+
+Text to classify:
+"Theory of Correlations in Stochastic Neural Networks
+Abstract: One of the main experimental tools in probing the interactions between neurons has been the measurement of the correlations in their activity. In general, however the interpretation of the observed correlations is difficult, since the correlation between a pair of neurons is influenced not only by the direct interaction between them but also by the dynamic state of the entire network to which they belong. Thus, a comparison between the observed correlations and the predictions from specific model networks is needed. In this paper we develop the theory of neuronal correlation functions in large networks comprising of several highly connected subpopulations, and obeying stochastic dynamic rules. When the networks are in asynchronous states, the cross-correlations are relatively weak, i.e., their amplitude relative to that of the auto-correlations is of order of 1=N , N being the size of the interacting populations. Using the weakness of the cross-correlations, general equations which express the matrix of cross-correlations in terms of the mean neuronal activities, and the effective interaction matrix are presented. The effective interactions are the synaptic efficacies multiplied by the the gain of the postsynaptic neurons. The time-delayed cross-correlation matrix can be expressed as a sum of exponentially decaying modes that correspond to the (non-orthogonal) eigenvectors of the effective interaction matrix. The theory is extended to networks with random connectivity, such as randomly dilute networks. This allows for the comparison between the contribution from the internal common input and that from the direct"
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

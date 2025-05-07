@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 1397 | Layer 0 | 20250506_222746:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_2: 2 examples
+- Label_3: 7 examples
+- Label_4: 1 examples
+- Label_6: 3 examples
+
+Memory:
+1. [Label_2] "Tau Net: A Neural Network for Modeling Temporal Variability Abstract: The ability to handle temporal variation is important when dealing with real-wor..."
+2. [Label_3] "Hidden Markov decision trees Abstract: We study a time series model that can be viewed as a decision tree with Markov temporal structure. The model is..."
+3. [Label_4] "Reinforcement Learning Algorithm for Partially Observable Markov Decision Problems Abstract: Increasing attention has been paid to reinforcement learn..."
+4. [Label_3] "Algebraic Techniques for Efficient Inference in Bayesian Networks Abstract: A number of exact algorithms have been developed to perform probabilistic ..."
+5. [Label_2] "The megaprior heuristic for discovering protein sequence patterns Abstract: Several computer algorithms for discovering patterns in groups of protein ..."
+
+Text to classify:
+"Speech Recognition with Dynamic Bayesian Networks
+Abstract: Dynamic Bayesian networks (DBNs) are a useful tool for representing complex stochastic processes. Recent developments in inference and learning in DBNs allow their use in real-world applications. In this paper, we apply DBNs to the problem of speech recognition. The factored state representation enabled by DBNs allows us to explicitly represent long-term articulatory and acoustic context in addition to the phonetic-state information maintained by hidden Markov models (HMMs). Furthermore, it enables us to model the short-term correlations among multiple observation streams within single time-frames. Given a DBN structure capable of representing these long- and short-term correlations, we applied the EM algorithm to learn models with up to 500,000 parameters. The use of structured DBN models decreased the error rate by 12 to 29% on a large-vocabulary isolated-word recognition task, compared to a discrete HMM; it also improved significantly on other published results for the same task. This is the first successful application of DBNs to a large-scale speech recognition problem. Investigation of the learned models indicates that the hidden state variables are strongly correlated with acoustic properties of the speech signal."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

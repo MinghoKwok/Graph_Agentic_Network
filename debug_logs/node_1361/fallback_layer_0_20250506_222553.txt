@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 1361 | Layer 0 | 20250506_222553:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 2 examples
+- Label_4: 1 examples
+- Label_5: 1 examples
+- Label_6: 6 examples
+
+Memory:
+1. [Label_6] "On the Induction of Intelligible Ensembles Abstract: Ensembles of classifiers, e.g. decision trees, often exhibit greater predictive accuracy than sin..."
+2. [Label_6] "Decision Tree Induction: How Effective is the Greedy Heuristic? Abstract: Most existing decision tree systems use a greedy approach to induce trees | ..."
+3. [Label_6] "A Statistical Approach to Solving the EBL Utility Problem Abstract: Many "learning from experience" systems use information extracted from problem sol..."
+4. [Label_4] "Machine Learning Research: Four Current Directions Abstract: Machine Learning research has been making great progress is many directions. This article..."
+5. [Label_6] "Efficient Algorithms for Identifying Relevant Features Abstract: This paper describes efficient methods for exact and approximate implementation of th..."
+
+Text to classify:
+"An Efficient Method To Estimate Bagging's Generalization Error
+Abstract: In bagging [Bre94a] one uses bootstrap replicates of the training set [Efr79, ET93] to try to improve a learning algorithm's performance. The computational requirements for estimating the resultant generalization error on a test set by means of cross-validation are often prohibitive; for leave-one-out cross-validation one needs to train the underlying algorithm on the order of m- times, where m is the size of the training set and is the number of replicates. This paper presents several techniques for exploiting the bias-variance decomposition [GBD92, Wol96] to estimate the generalization error of a bagged learning algorithm without invoking yet more training of the underlying learning algorithm. The best of our estimators exploits stacking [Wol92]. In a set of experiments reported here, it was found to be more accurate than both the alternative cross-validation-based estimator of the bagged algorithm's error and the cross-validation-based estimator of the underlying algorithm's error. This improvement was particularly pronounced for small test sets. This suggests a novel justification for using bagging| im proved estimation of generalization error."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

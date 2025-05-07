@@ -1,0 +1,51 @@
+📤 [DEBUG] Fallback Prompt for Node 1745 | Layer 0 | 20250506_224608:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 5 examples
+- Label_5: 3 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_1] "Type Inheritance in Strongly Typed Genetic Programming Abstract: This paper appears as chapter 18 of Kenneth E. Kinnear, Jr. and Peter J. Angeline, ed..."
+2. [Label_5] "Pac-Learning Recursive Logic Programs: Efficient Algorithms Abstract: We present algorithms that learn certain classes of function-free recursive logi..."
+3. [Label_1] "17 Massively Parallel Genetic Programming Abstract: As the field of Genetic Programming (GP) matures and its breadth of application increases, the nee..."
+4. [Label_1] "A STUDY OF CROSSOVER OPERATORS IN GENETIC PROGRAMMING Abstract: Holland's analysis of the sources of power of genetic algorithms has served as guidanc..."
+5. [Label_5] "An intelligent search method using Inductive Logic Programming Abstract: We propose a method to use Inductive Logic Programming to give heuristic func..."
+
+Text to classify:
+"Learning Recursive Sequences via Evolution of Machine-Language Programs
+Abstract: We use directed search techniques in the space of computer programs to learn recursive sequences of positive integers. Specifically, the integer sequences of squares, x 2 ; cubes, x 3 ; factorial, x!; and Fibonacci numbers are studied. Given a small finite prefix of a sequence, we show that three directed searches|machine-language genetic programming with crossover, exhaustive iterative hill climbing, and a hybrid (crossover and hill climbing)|can automatically discover programs that exactly reproduce the finite target prefix and, moreover, that correctly produce the remaining sequence up to the underlying machine's precision. Our machine-language representation is generic|it contains instructions for arithmetic, register manipulation and comparison, and control flow. We also introduce an output instruction that allows variable-length sequences as result values. Importantly, this representation does not contain recursive operators; recursion, when needed, is automatically synthesized from primitive instructions. For a fixed set of search parameters (e.g., instruction set, program size, fitness criteria), we compare the efficiencies of the three directed search techniques on the four sequence problems. For this parameter set, an evolutionary-based search always outperforms exhaustive hill climbing as well as undirected random search. Since only the prefix of the target sequence is variable in our experiments, we posit that this approach to sequence induction is potentially quite general."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1123 | Layer 0 | 20250506_215251:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_0] "Conceptual Analogy: Conceptual clustering for informed and efficient analogical reasoning Abstract: Conceptual analogy (CA) is a general approach that..."
+2. [Label_0] "Formalising the knowledge content of case memory systems Abstract: Discussions of case-based reasoning often reflect an implicit assumption that a cas..."
+3. [Label_6] "Feature Generation for Sequence Categorization Abstract: The problem of sequence categorization is to generalize from a corpus of labeled sequences pr..."
+4. [Label_0] "Use of Mental Models for Constraining Index Learning in Experience-Based Design Abstract: The power of the case-based method comes from the ability to..."
+5. [Label_5] "Learning Evolving Concepts Using Partial-Memory Approach  Machine Learning and Inference Laboratory Abstract: This paper addresses the problem of lear..."
+
+Text to classify:
+"MAC/FAC: A Model of Similarity-based Retrieval
+Abstract: We present a model of similarity-based retrieval which attempts to capture three psychological phenomena: (1) people are extremely good at judging similarity and analogy when given items to compare. (2) Superficial remindings are much more frequent than structural remindings. (3) People sometimes experience and use purely structural analogical re-mindings. Our model, called MAC/FAC (for "many are called but few are chosen") consists of two stages. The first stage (MAC) uses a computationally cheap, non-structural matcher to filter candidates from a pool of memory items. That is, we redundantly encode structured representations as content vectors, whose dot product yields an estimate of how well the corresponding structural representations will match. The second stage (FAC) uses SME to compute a true structural match between the probe and output from the first stage. MAC/FAC has been fully implemented, and we show that it is capable of modeling patterns of access found in psychological data."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

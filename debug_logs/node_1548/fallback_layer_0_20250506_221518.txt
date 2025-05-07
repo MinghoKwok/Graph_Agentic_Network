@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1548 | Layer 0 | 20250506_221518:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_3] "Trellis-Constrained Codes Abstract: We introduce a class of iteratively decodable trellis-constrained codes as a generalization of turbocodes, low-den..."
+2. [Label_1] "Testing the Robustness of the Genetic Algorithm on the Floating Building Block Representation. Abstract: Recent studies on a floating building block r..."
+3. [Label_6] "Error-Correcting Output Codes: A General Method for Improving Multiclass Inductive Learning Programs Abstract: Multiclass learning problems involve fi..."
+4. [Label_6] "A Statistical Approach to Solving the EBL Utility Problem Abstract: Many "learning from experience" systems use information extracted from problem sol..."
+5. [Label_6] "The Weighted Majority Algorithm Abstract: fl This research was primarily conducted while this author was at the University of Calif. at Santa Cruz wit..."
+
+Text to classify:
+"Free energy coding  In
+Abstract: In this paper, we introduce a new approach to the problem of optimal compression when a source code produces multiple codewords for a given symbol. It may seem that the most sensible codeword to use in this case is the shortest one. However, in the proposed free energy approach, random codeword selection yields an effective codeword length that can be less than the shortest codeword length. If the random choices are Boltzmann distributed, the effective length is optimal for the given source code. The expectation-maximization parameter estimation algorithms minimize this effective codeword length. We illustrate the performance of free energy coding on a simple problem where a compression factor of two is gained by using the new method."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

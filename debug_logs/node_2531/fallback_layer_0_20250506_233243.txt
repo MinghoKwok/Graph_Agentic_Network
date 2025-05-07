@@ -1,0 +1,53 @@
+📤 [DEBUG] Fallback Prompt for Node 2531 | Layer 0 | 20250506_233243:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 6 examples
+- Label_6: 4 examples
+
+Memory:
+1. [Label_6] "A Statistical Approach to Solving the EBL Utility Problem Abstract: Many "learning from experience" systems use information extracted from problem sol..."
+2. [Label_0] "A Comparative Utility Analysis of Case-Based Reasoning and Control-Rule Learning Systems Abstract: The utility problem in learning systems occurs when..."
+3. [Label_6] "Efficient Algorithms for Identifying Relevant Features Abstract: This paper describes efficient methods for exact and approximate implementation of th..."
+4. [Label_0] "Unifying Empirical and Explanation-Based Learning by Modeling the Utility of Learned Knowledge Abstract: The overfit problem in empirical learning and..."
+5. [Label_0] "EXPLORING A FRAMEWORK FOR INSTANCE BASED LEARNING AND NAIVE BAYESIAN CLASSIFIERS Abstract: The relative performance of different methods for classifie..."
+
+Text to classify:
+"Utility Elicitation as a Classification Problem
+Abstract: We investigate the application of classification techniques to utility elicitation. In a decision problem, two sets of parameters must generally be elicited: the probabilities and the utilities. While the prior and conditional probabilities in the model do not change from user to user, the utility models do. Thus it is necessary to elicit a utility model separately for each new user. Elicitation is long and tedious, particularly if the outcome space is large and not decomposable. There are two common approaches to utility function elicitation. The first is to base the determination of the user's utility function solely on elicitation of qualitative preferences. The second makes assumptions about the form and decomposability of the utility function. Here we take a different approach: we attempt to identify the new user's utility function based on classification relative to a database of previously collected utility functions. We do this by identifying clusters of utility functions that minimize an appropriate distance measure. Having identified the clusters, we develop a classification scheme that requires many fewer and simpler assessments than full utility elicitation and is more robust than utility elicitation based solely on preferences. We have tested our algorithm on a small database of utility functions in a prenatal diagnosis domain and the results are quite promising."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

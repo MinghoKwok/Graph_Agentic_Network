@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1555 | Layer 0 | 20250506_223607:
+```json
+[
+  {"action_type": "rag_query", "query": "Bayesian Network Parameters", "top_k": 10}
+]
+```
+================================================================================

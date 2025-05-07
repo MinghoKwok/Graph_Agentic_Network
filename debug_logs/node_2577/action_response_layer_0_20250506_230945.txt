@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2577 | Layer 0 | 20250506_230945:
+```json
+[
+  {"action_type": "rag_query", "query": "decision table classifiers", "top_k": 10}
+]
+```
+================================================================================

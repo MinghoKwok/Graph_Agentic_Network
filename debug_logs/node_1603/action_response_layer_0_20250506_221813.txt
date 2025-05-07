@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1603 | Layer 0 | 20250506_221813:
+```json
+[
+  {"action_type": "rag_query", "query": "cooperative coevolution machine learning", "top_k": 10}
+]
+```
+================================================================================

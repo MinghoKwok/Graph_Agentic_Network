@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2488 | Layer 0 | 20250506_232435:
+```json
+[
+  {"action_type": "rag_query", "query": "density and hazard rate estimation using wavelet methods", "top_k": 10}
+]
+```
+================================================================================

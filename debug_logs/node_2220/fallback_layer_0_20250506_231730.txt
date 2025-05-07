@@ -1,0 +1,55 @@
+📤 [DEBUG] Fallback Prompt for Node 2220 | Layer 0 | 20250506_231730:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_1: 10 examples
+- Label_4: 3 examples
+- Label_5: 3 examples
+
+Memory:
+1. [Label_0] "Observation and Generalisation in a Simulated Robot World Abstract: This paper describes a program which observes the behaviour of actors in a simulat..."
+2. [Label_5] "Learning Evolving Concepts Using Partial-Memory Approach  Machine Learning and Inference Laboratory Abstract: This paper addresses the problem of lear..."
+3. [Label_4] "Planning by Incremental Dynamic Programming Abstract: This paper presents the basic results and ideas of dynamic programming as they relate most direc..."
+4. [Label_5] "The Origins of Inductive Logic Programming: A Prehistoric Tale Abstract: This paper traces the development of the main ideas that have led to the pres..."
+5. [Label_1] "Type Inheritance in Strongly Typed Genetic Programming Abstract: This paper appears as chapter 18 of Kenneth E. Kinnear, Jr. and Peter J. Angeline, ed..."
+
+Text to classify:
+"The Automatic Programming of Agents that Learn Mental Models and Create Simple Plans of Action
+Abstract: An essential component of an intelligent agent is the ability to notice, encode, store, and utilize information about its environment. Traditional approaches to program induction have focused on evolving functional or reactive programs. This paper presents MAPMAKER, an approach to the automatic generation of agents that discover information about their environment, encode this information for later use, and create simple plans utilizing the stored mental models. In this approach, agents are multipart computer programs that communicate through a shared memory. Both the programs and the representation scheme are evolved using genetic programming. An illustrative problem of 'gold' collection is used to demonstrate the approach in which one part of a program makes a map of the world and stores it in memory, and the other part uses this map to find the gold The results indicate that the approach can evolve programs that store simple representations of their environments and use these representations to produce simple plans. 1. Introduction"
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

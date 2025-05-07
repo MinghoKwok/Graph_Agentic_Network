@@ -1,0 +1,53 @@
+📤 [DEBUG] Fallback Prompt for Node 1399 | Layer 0 | 20250506_222753:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 2 examples
+- Label_2: 2 examples
+- Label_3: 2 examples
+- Label_5: 1 examples
+- Label_6: 4 examples
+
+Memory:
+1. [Label_3] "Monte Carlo Implementation of Gaussian Process Models for Bayesian Regression and Classification Abstract: Technical Report No. 9702, Department of St..."
+2. [Label_6] "Pac Learning, Noise, and Geometry Abstract: This paper describes the probably approximately correct model of concept learning, paying special attentio..."
+3. [Label_5] "First Order Regression Abstract: We present a new approach, called First Order Regression (FOR), to handling numerical information in Inductive Logic ..."
+4. [Label_6] "A Statistical Approach to Solving the EBL Utility Problem Abstract: Many "learning from experience" systems use information extracted from problem sol..."
+5. [Label_6] "General Bounds on Statistical Query Learning and PAC Learning with Noise via Hypothesis Boosting Abstract: We derive general bounds on the complexity ..."
+
+Text to classify:
+"Parametric regression 1.1 Learning problem model f bw b w in turn is an estimator
+Abstract: Let us present briefly the learning problem we will address in this chapter and the following. The ultimate goal is the modelling of a mapping f : x 7! y from multidimensional input x to output y. The output can be multi-dimensional, but we will mostly address situations where it is a one dimensional real value. Furthermore, we should take into account the fact that we scarcely ever observe the actual true mapping y = f (x). This is due to perturbations such as e.g. observational noise. We will rather have a joint probability p (x; y). We expect this probability to be peaked for values of x and y corresponding to the mapping. We focus on automatic learning by example. A set D = of data sampled from the joint distribution p (x; y) = p (yjx) p (x) is collected. With the help of this set, we try to identify a model of the data, parameterised by a set of 1.2 Learning and optimisation The fit of the model to the system in a given point x is measured using a criterion representing the distance from the model prediction b y to the system, e (y; f w (x)). This is the local risk . The performance of the model is measured by the expected This quantity represents the ability to yield good performance for all the possible situations (i.e. (x; y) pairs) and is thus called generalisation error . The optimal set 1 parameters w: f w : x 7! b y."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

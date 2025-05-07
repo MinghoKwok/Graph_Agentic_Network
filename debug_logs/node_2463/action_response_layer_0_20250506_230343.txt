@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2463 | Layer 0 | 20250506_230343:
+```json
+[
+  {"action_type": "rag_query", "query": "Learning Belief Networks in the Presence of Missing Values and Hidden Variables", "top_k": 10}
+]
+```
+================================================================================

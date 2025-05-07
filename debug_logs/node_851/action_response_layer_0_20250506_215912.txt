@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 851 | Layer 0 | 20250506_215912:
+```json
+[
+  {"action_type": "rag_query", "query": "Bayesian Probability Theory A General Method for Machine Learning", "top_k": 10}
+]
+```
+================================================================================

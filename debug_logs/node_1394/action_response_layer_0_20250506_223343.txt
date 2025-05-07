@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1394 | Layer 0 | 20250506_223343:
+```json
+[
+  {"action_type": "rag_query", "query": "Vapnik-Chervonenkis entropy of the spherical perceptron", "top_k": 10}
+]
+```
+================================================================================

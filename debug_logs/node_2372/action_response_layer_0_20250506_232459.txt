@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2372 | Layer 0 | 20250506_232459:
+```json
+[
+  {"action_type": "rag_query", "query": "goal-driven learning", "top_k": 10}
+]
+```
+================================================================================

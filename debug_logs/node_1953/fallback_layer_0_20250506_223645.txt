@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1953 | Layer 0 | 20250506_223645:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_3] "Logarithmic Time Parallel Bayesian Inference Abstract: I present a parallel algorithm for exact probabilistic inference in Bayesian networks. For poly..."
+2. [Label_2] "Homology Detection via Family Pairwise Search a straightforward generalization of pairwise sequence comparison algorithms to Abstract: The function of..."
+3. [Label_2] "The megaprior heuristic for discovering protein sequence patterns Abstract: Several computer algorithms for discovering patterns in groups of protein ..."
+4. [Label_3] "Analysis of a Non-Reversible Markov Chain Sampler Abstract: Technical Report BU-1385-M, Biometrics Unit, Cornell University Abstract We analyse the co..."
+5. [Label_3] "Analysis of the Gibbs sampler for a model related to James-Stein estimators Abstract: Summary. We analyze a hierarchical Bayes model which is related ..."
+
+Text to classify:
+"that fits the asymptotics of the problem. References
+Abstract: 1] D. Aldous and P. Shields. A diffusion limit for a class of randomly growing binary trees. Probability Theory, 79:509-542, 1988. [2] R. Breathnach, C. Benoist, K. O'Hare, F. Gannon, and P. Chambon. Ovalbumin gene: Evidence for leader sequence in mRNA and DNA sequences at the exon-intron boundaries. Proceedings of the National Academy of Science, 75:4853-4857, 1978. [3] S. Brunak, J. Engelbrecht, and S. Knudsen. Prediction of human mRNA donor and acceptor sites from the DNA sequence. Journal of Molecular Biology, 220:49, 1991. [4] Jack Cophen and Ian Stewart. The information in your hand. The Mathematical Intelligencer, 13(3), 1991. [5] R. G. Gallager. Information Theory and Reliable Communication. John Wiley & Sons, Inc., 1968. [6] Ali Hariri, Bruce Weber, and John Olmstead. On the validity of Shannon-information calculations for molecular biological sequence. Journal of Theoretical Biology, 147:235-254, 1990. [7] W. B. Davenport Jr. and W. L. Root. An Introduction to the Theory of Random Signals and Noise. McGraw-Hill, 1958. [8] Andrzej Knopka and John Owens. Complexity charts can be used to map functional domains in DNA. Gene Anal. Techn., 6, 1989. [9] S.M. Mount. A catalogue of splice-junction sequences. Nucleic Acids Research, 10:459-472, 1982. [10] H.M. Seidel, D.L. Pompliano, and J.R. Knowles. Exons as microgenes? Science, 257, September 1992. [11] C. E. Shannon. A mathematical theory of communication. Bell System Tech. J., 27:379-423, 623-656, 1948. [12] Peter S. Shenkin, Batu Erman, and Lucy D. Mastrandrea. Information-theoretical entropy as a measure of sequence variability. Proteins, 11(4):297, 1991. [13] R. Staden. Measurements of the effects that coding for a protein has on a DNA sequence and their use for finding genes. Nucleic Acids Research, 12:551-567, 1984. [14] J.A. Steitz. Snurps. Scientific American, 258(6), June 1988. [15] H. van Trees. Detection, estimation and modulation theory. Wiley, 1971. [16] J. D. Watson, N. H. Hopkins, J. W. Roberts, J. Ar-getsinger Steitz, and A. M. Weiner. Molecular Biology of the Gene. Benjamin/Cummings, Menlo Park, CA, fourth edition, 1987. [17] A.D. Wyner and A.J. Wyner. An improved version of the Lempel-Ziv algorithm. Transactions of Information Theory. [18] A.J. Wyner. String Matching Theorems and Applications to Data Compression and Statistics. PhD thesis, Stanford University, 1993. [19] J. Ziv and A. Lempel. A universal algorithm for sequential data compression. IEEE Transactions on Information Theory, IT-23(3):337-343, 1977."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

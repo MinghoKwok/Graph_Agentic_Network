@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1373 | Layer 0 | 20250506_220605:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_4] "Truncating Temporal Differences: On the Efficient Implementation of TD() for Reinforcement Learning Abstract: Temporal difference (TD) methods constit..."
+2. [Label_2] "Tau Net: A Neural Network for Modeling Temporal Variability Abstract: The ability to handle temporal variation is important when dealing with real-wor..."
+3. [Label_4] "Multi-Time Models for Reinforcement Learning Abstract: Reinforcement learning can be used not only to predict rewards, but also to predict states, i.e..."
+4. [Label_4] "Machine Learning Research: Four Current Directions Abstract: Machine Learning research has been making great progress is many directions. This article..."
+5. [Label_4] "Planning by Incremental Dynamic Programming Abstract: This paper presents the basic results and ideas of dynamic programming as they relate most direc..."
+
+Text to classify:
+"Direct Multi-Step Time Series Prediction Using TD()
+Abstract: This paper explores the application of Temporal Difference (TD) learning (Sutton, 1988) to forecasting the behavior of dynamical systems with real-valued outputs (as opposed to game-like situations). The performance of TD learning in comparison to standard supervised learning depends on the amount of noise present in the data. In this paper, we use a deterministic chaotic time series from a low-noise laser. For the task of direct five-step ahead predictions, our experiments show that standard supervised learning is better than TD learning. The TD algorithm can be viewed as linking adjacent predictions. A similar effect can be obtained by sharing the internal representation in the network. We thus compare two architectures for both paradigms: the first architecture (separate hidden units) consists of individual networks for each of the five direct multi-step prediction tasks, the second (shared hidden units) has a single (larger) hidden layer that finds a representation from which all five predictions for the next five steps are generated. For this data set we do not find any significant difference between the two architectures. fl http://www.cs.colorado.edu/~andreas/Home.html. This paper is available as ftp://ftp.cs.colorado.edu/pub/Time-Series/MyPapers/kazlas.weigend nips7.ps.Z"
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

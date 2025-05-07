@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1247 | Layer 0 | 20250506_215923:
+```json
+[
+  {"action_type": "rag_query", "query": "natural gradient descent machine learning", "top_k": 10}
+]
+```
+================================================================================

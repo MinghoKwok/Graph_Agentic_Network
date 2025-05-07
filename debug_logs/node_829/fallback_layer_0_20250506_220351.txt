@@ -1,0 +1,57 @@
+📤 [DEBUG] Fallback Prompt for Node 829 | Layer 0 | 20250506_220351:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 1 examples
+- Label_2: 4 examples
+- Label_3: 1 examples
+- Label_4: 3 examples
+- Label_5: 1 examples
+- Label_6: 1 examples
+
+Memory:
+1. [Label_2] "Fast Bounded Smooth Regression with Lazy Neural Trees Abstract: We propose the lazy neural tree (LNT) as the appropriate architecture for the realizat..."
+2. [Label_2] "Word Perfect Corp. LIA: A Location-Independent Transformation for ASOCS Adaptive Algorithm 2 Abstract: Most Artificial Neural Networks (ANNs) have a f..."
+3. [Label_1] "Growing neural networks Abstract: nan"
+4. [Label_3] "Bumptrees for Efficient Function, Constraint, and Classification Learning Abstract: A new class of data structures called bumptrees is described. Thes..."
+5. [Label_4] "Generalization in Reinforcement Learning: Safely Approximating the Value Function Abstract: To appear in: G. Tesauro, D. S. Touretzky and T. K. Leen, ..."
+
+Text to classify:
+"Approximation with neural networks: Between local and global approximation
+Abstract: We investigate neural network based approximation methods. These methods depend on the locality of the basis functions. After discussing local and global basis functions, we propose a a multi-resolution hierarchical method. The various resolutions are stored at various levels in a tree. At the root of the tree, a global approximation is kept; the leafs store the learning samples themselves. Intermediate nodes store intermediate representations. In order to find an optimal partitioning of the input space, self-organising maps (SOM's) are used. The proposed method has implementational problems reminiscent of those encountered in many-particle simulations. We will investigate the parallel implementation of this method, using parallel hierarchical meth ods for many-particle simulations as a starting point."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

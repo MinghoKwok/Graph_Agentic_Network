@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1106 | Layer 0 | 20250506_215151:
+```json
+[
+  {"action_type": "rag_query", "query": "Genetic Algorithms for Combinatorial Optimization", "top_k": 5}
+]
+```
+================================================================================

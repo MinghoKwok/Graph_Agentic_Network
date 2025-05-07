@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 2126 | Layer 0 | 20250506_230605:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_2: 1 examples
+- Label_5: 5 examples
+- Label_6: 5 examples
+
+Memory:
+1. [Label_0] "LINNEO A Classification Methodology for Ill-structured Domains Abstract: In this work we present a classification methodology (LINNEO + ) to discover ..."
+2. [Label_5] "Distance Induction in First Order Logic used for classification via a k-nearest-neighbor process. Experiments on Abstract: This paper tackles the supe..."
+3. [Label_6] "Pattern Theoretic Knowledge Discovery Abstract: Future research directions in Knowledge Discovery in Databases (KDD) include the ability to extract an..."
+4. [Label_6] "Machine Learning by Function Decomposition Abstract: We present a new machine learning method that, given a set of training examples, induces a defini..."
+5. [Label_5] "A Comparison of Pruning Methods for Relational Concept Learning Abstract: Pre-Pruning and Post-Pruning are two standard methods of dealing with noise ..."
+
+Text to classify:
+"Applying ILP to Diterpene Structure Elucidation from 13 C NMR Spectra
+Abstract: We present a novel application of ILP to the problem of diterpene structure elucidation from 13 C NMR spectra. Diterpenes are organic compounds of low molecular weight that are based on a skeleton of 20 carbon atoms. They are of significant chemical and commercial interest because of their use as lead compounds in the search for new pharmaceutical effectors. The structure elucidation of diterpenes based on 13 C NMR spectra is usually done manually by human experts with specialized background knowledge on peak patterns and chemical structures. In the process, each of the 20 skeletal atoms is assigned an atom number that corresponds to its proper place in the skeleton and the diterpene is classified into one of the possible skeleton types. We address the problem of learning classification rules from a database of peak patterns for diterpenes with known structure. Recently, propositional learning was successfully applied to learn classification rules from spectra with assigned atom numbers. As the assignment of atom numbers is a difficult process in itself (and possibly indistinguishable from the classification process), we apply ILP, i.e., relational learning, to the problem of classifying spectra without assigned atom numbers."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2401 | Layer 0 | 20250506_232623:
+```json
+[
+  {"action_type": "rag_query", "query": "factor graphs machine learning", "top_k": 10}
+]
+```
+================================================================================

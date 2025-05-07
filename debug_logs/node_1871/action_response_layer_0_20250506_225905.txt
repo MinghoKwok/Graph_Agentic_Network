@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1871 | Layer 0 | 20250506_225905:
+```json
+[
+  {"action_type": "rag_query", "query": "3D Object Recognition Using Unsupervised Feature Extraction", "top_k": 10}
+]
+```
+================================================================================

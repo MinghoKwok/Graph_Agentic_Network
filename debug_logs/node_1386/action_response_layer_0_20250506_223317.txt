@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1386 | Layer 0 | 20250506_223317:
+```json
+[
+  {"action_type": "rag_query", "query": "state merging algorithm", "top_k": 10}
+]
+```
+================================================================================

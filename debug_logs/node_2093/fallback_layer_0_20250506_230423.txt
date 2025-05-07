@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 2093 | Layer 0 | 20250506_230423:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 1 examples
+- Label_2: 7 examples
+- Label_4: 2 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_2] "Tau Net: A Neural Network for Modeling Temporal Variability Abstract: The ability to handle temporal variation is important when dealing with real-wor..."
+2. [Label_2] "The Canonical Distortion Measure in Feature Space and 1-NN Classification Abstract: We prove that the Canonical Distortion Measure (CDM) [2, 3] is the..."
+3. [Label_1] "Growing neural networks Abstract: nan"
+4. [Label_6] "Error-Correcting Output Codes: A General Method for Improving Multiclass Inductive Learning Programs Abstract: Multiclass learning problems involve fi..."
+5. [Label_2] "Two Constructive Methods for Designing Compact Feedforward Networks of Threshold Units Abstract: We propose two algorithms for constructing and traini..."
+
+Text to classify:
+"Locally Connected Recurrent Networks
+Abstract: Lai-Wan CHAN and Evan Fung-Yu YOUNG Computer Science Department, The Chinese University of Hong Kong New Territories, Hong Kong Email : lwchan@cs.cuhk.hk Technical Report : CS-TR-95-10 Abstract The fully connected recurrent network (FRN) using the on-line training method, Real Time Recurrent Learning (RTRL), is computationally expensive. It has a computational complexity of O(N 4 ) and storage complexity of O(N 3 ), where N is the number of non-input units. We have devised a locally connected recurrent model which has a much lower complexity in both computational time and storage space. The ring-structure recurrent network (RRN), the simplest kind of the locally connected has the corresponding complexity of O(mn+np) and O(np) respectively, where p, n and m are the number of input, hidden and output units respectively. We compare the performance between RRN and FRN in sequence recognition and time series prediction. We tested the networks' ability in temporal memorizing power and time warpping ability in the sequence recognition task. In the time series prediction task, we used both networks to train and predict three series; a periodic series with white noise, a deterministic chaotic series and the sunspots data. Both tasks show that RRN needs a much shorter training time and the performance of RRN is comparable to that of FRN."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

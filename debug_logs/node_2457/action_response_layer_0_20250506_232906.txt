@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2457 | Layer 0 | 20250506_232906:
+```json
+[
+  {"action_type": "rag_query", "query": "real-valued schemata search in neural networks", "top_k": 10}
+]
+```
+================================================================================

@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 1289 | Layer 0 | 20250506_222209:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_3: 6 examples
+- Label_4: 2 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_3] "Discovering Structure in Continuous Variables Using Bayesian Networks Abstract: We study Bayesian networks for continuous variables using nonlinear co..."
+2. [Label_6] "Bayesian Methods for Adaptive Models Abstract: nan"
+3. [Label_3] "Robustness Analysis of Bayesian Networks with Global Neighborhoods Abstract: This paper presents algorithms for robustness analysis of Bayesian networ..."
+4. [Label_0] "EXPLORING A FRAMEWORK FOR INSTANCE BASED LEARNING AND NAIVE BAYESIAN CLASSIFIERS Abstract: The relative performance of different methods for classifie..."
+5. [Label_3] "Algebraic Techniques for Efficient Inference in Bayesian Networks Abstract: A number of exact algorithms have been developed to perform probabilistic ..."
+
+Text to classify:
+"5 Bayesian estimation 5.1 Introduction
+Abstract: This chapter takes a different standpoint to address the problem of learning. We will here reason only in terms of probability, and make extensive use of the chain rule known as "Bayes' rule". A fast definition of the basics in probability is provided in appendix A for quick reference. Most of this chapter is a review of the methods of Bayesian learning applied to our modelling purposes. Some original analyses and comments are also provided in section 5.8, 5.11 and 5.12. There is a latent rivalry between "Bayesian" and "Orthodox" statistics. It is by no means our intention to enter this kind of controversy. We are perfectly willing to accept orthodox as well as unorthodox methods, as long as they are scientifically sound and provide good results when applied to learning tasks. The same disclaimer applies to the two frameworks presented here. They have been the object of heated controversy in the past 3 years in the neural networks community. We will not take side, but only present both frameworks, with their strong points and their weaknesses. In the context of this work, the "Bayesian frameworks" are especially interesting as the provide some continuous update rules that can be used during regularised cost minimisation to yield an automatic selection of the regularisation level. Unlike the methods presented in chapter 3, it is not necessary to try several regularisation levels and perform as many optimisations. The Bayesian framework is the only one in which training is achieved through a one-pass optimisation procedure."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

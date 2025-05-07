@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 1375 | Layer 0 | 20250506_222637:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 1 examples
+- Label_2: 1 examples
+- Label_3: 6 examples
+- Label_6: 3 examples
+
+Memory:
+1. [Label_3] "Logarithmic Time Parallel Bayesian Inference Abstract: I present a parallel algorithm for exact probabilistic inference in Bayesian networks. For poly..."
+2. [Label_3] "Robustness Analysis of Bayesian Networks with Global Neighborhoods Abstract: This paper presents algorithms for robustness analysis of Bayesian networ..."
+3. [Label_3] "Algebraic Techniques for Efficient Inference in Bayesian Networks Abstract: A number of exact algorithms have been developed to perform probabilistic ..."
+4. [Label_1] "Growing neural networks Abstract: nan"
+5. [Label_3] "group, and despite having just 337 subjects, the study strongly supports Identification of causal effects Abstract: Figure 8a and Figure 8b show the p..."
+
+Text to classify:
+"Priors for Infinite Networks
+Abstract: Technical Report CRG-TR-94-1 Department of Computer Science University of Toronto 10 King's College Road Toronto, Canada M5S 1A4 Abstract Bayesian inference begins with a prior distribution for model parameters that is meant to capture prior beliefs about the relationship being modeled. For multilayer perceptron networks, where the parameters are the connection weights, the prior lacks any direct meaning | what matters is the prior over functions computed by the network that is implied by this prior over weights. In this paper, I show that priors over weights can be defined in such a way that the corresponding priors over functions reach reasonable limits as the number of hidden units in the network goes to infinity. When using such priors, there is thus no need to limit the size of the network in order to avoid "overfitting". The infinite network limit also provides insight into the properties of different priors. A Gaussian prior for hidden-to-output weights results in a Gaussian process prior for functions, which can be smooth, Brownian, or fractional Brownian, depending on the hidden unit activation function and the prior for input-to-hidden weights. Quite different effects can be obtained using priors based on non-Gaussian stable distributions. In networks with more than one hidden layer, a combination of Gaussian and non-Gaussian priors appears most interesting."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

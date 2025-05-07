@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1803 | Layer 0 | 20250506_222848:
+```json
+[
+  {"action_type": "rag_query", "query": "change point modeling stochastic processes", "top_k": 10}
+]
+```
+================================================================================

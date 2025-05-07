@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1419 | Layer 0 | 20250506_220829:
+```json
+[
+  {"action_type": "rag_query", "query": "Bayesian estimation of von Mises distribution", "top_k": 10}
+]
+```
+================================================================================

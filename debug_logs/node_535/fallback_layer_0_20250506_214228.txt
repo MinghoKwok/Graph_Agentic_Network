@@ -1,0 +1,53 @@
+📤 [DEBUG] Fallback Prompt for Node 535 | Layer 0 | 20250506_214228:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_2: 1 examples
+- Label_4: 2 examples
+- Label_5: 1 examples
+- Label_6: 6 examples
+
+Memory:
+1. [Label_6] "General Bounds on Statistical Query Learning and PAC Learning with Noise via Hypothesis Boosting Abstract: We derive general bounds on the complexity ..."
+2. [Label_6] "Separating Formal Bounds from Practical Performance in Learning Systems Abstract: nan"
+3. [Label_5] "Pac-Learning Recursive Logic Programs: Efficient Algorithms Abstract: We present algorithms that learn certain classes of function-free recursive logi..."
+4. [Label_6] "Inductive Logic Programming Abstract: A new research area, Inductive Logic Programming, is presently emerging. While inheriting various positive chara..."
+5. [Label_4] "Truncating Temporal Differences: On the Efficient Implementation of TD() for Reinforcement Learning Abstract: Temporal difference (TD) methods constit..."
+
+Text to classify:
+"Sequential PAC Learning
+Abstract: We consider the use of "on-line" stopping rules to reduce the number of training examples needed to pac-learn. Rather than collect a large training sample that can be proved sufficient to eliminate all bad hypotheses a priori, the idea is instead to observe training examples one-at-a-time and decide "on-line" whether to stop and return a hypothesis, or continue training. The primary benefit of this approach is that we can detect when a hypothesizer has actually "converged," and halt training before the standard fixed-sample-size bounds. This paper presents a series of such sequential learning procedures for: distribution-free pac-learning, "mistake-bounded to pac" conversion, and distribution-specific pac-learning, respectively. We analyze the worst case expected training sample size of these procedures, and show that this is often smaller than existing fixed sample size bounds | while providing the exact same worst case pac-guarantees. We also provide lower bounds that show these reductions can at best involve constant (and possibly log) factors. However, empirical studies show that these sequential learning procedures actually use many times fewer training examples in prac tice."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

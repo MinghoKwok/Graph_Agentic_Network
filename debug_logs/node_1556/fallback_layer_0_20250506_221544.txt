@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1556 | Layer 0 | 20250506_221544:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_5] "Learning Evolving Concepts Using Partial-Memory Approach  Machine Learning and Inference Laboratory Abstract: This paper addresses the problem of lear..."
+2. [Label_0] "Goal-Driven Learning: Fundamental Issues (A Symposium Report) Abstract: In Artificial Intelligence, Psychology, and Education, a growing body of resea..."
+3. [Label_0] "Formalising the knowledge content of case memory systems Abstract: Discussions of case-based reasoning often reflect an implicit assumption that a cas..."
+4. [Label_5] "Knowledge Acquisition with a Knowledge-Intensive Machine Learning System Abstract: In this paper, we investigate the integration of knowledge acquisit..."
+5. [Label_5] "An intelligent search method using Inductive Logic Programming Abstract: We propose a method to use Inductive Logic Programming to give heuristic func..."
+
+Text to classify:
+"A Goal-Based Approach to Intelligent Information Retrieval
+Abstract: Intelligent information retrieval (IIR) requires inference. The number of inferences that can be drawn by even a simple reasoner is very large, and the inferential resources available to any practical computer system are limited. This problem is one long faced by AI researchers. In this paper, we present a method used by two recent machine learning programs for control of inference that is relevant to the design of IIR systems. The key feature of the approach is the use of explicit representations of desired knowledge, which we call knowledge goals. Our theory addresses the representation of knowledge goals, methods for generating and transforming these goals, and heuristics for selecting among potential inferences in order to feasibly satisfy such goals. In this view, IIR becomes a kind of planning: decisions about what to infer, how to infer and when to infer are based on representations of desired knowledge, as well as internal representations of the system's inferential abilities and current state. The theory is illustrated using two case studies, a natural language understanding program that learns by reading novel newspaper stories, and a differential diagnosis program that improves its accuracy with experience. We conclude by making several suggestions on how this machine learning framework can be integrated with existing information retrieval methods."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

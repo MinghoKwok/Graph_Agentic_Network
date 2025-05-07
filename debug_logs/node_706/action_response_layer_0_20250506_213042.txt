@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 706 | Layer 0 | 20250506_213042:
+```json
+[
+  {"action_type": "rag_query", "query": "Large Margin Classification Using the Perceptron Algorithm", "top_k": 10}
+]
+```
+================================================================================

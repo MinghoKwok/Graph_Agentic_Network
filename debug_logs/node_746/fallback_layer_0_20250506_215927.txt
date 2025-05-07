@@ -1,0 +1,54 @@
+📤 [DEBUG] Fallback Prompt for Node 746 | Layer 0 | 20250506_215927:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 6 examples
+- Label_2: 5 examples
+- Label_6: 1 examples
+
+Memory:
+1. [Label_2] "Homology Detection via Family Pairwise Search a straightforward generalization of pairwise sequence comparison algorithms to Abstract: The function of..."
+2. [Label_2] "Optimal Alignments in Linear Space using Automaton-derived Cost Functions (Extended Abstract) Submitted to CPM'96 Abstract: In a previous paper [SM95]..."
+3. [Label_2] "The megaprior heuristic for discovering protein sequence patterns Abstract: Several computer algorithms for discovering patterns in groups of protein ..."
+4. [Label_1] "Incremental Co-evolution of Organisms: A New Approach for Optimization and Discovery of Strategies Abstract: In the field of optimization and machine ..."
+5. [Label_1] "17 Massively Parallel Genetic Programming Abstract: As the field of Genetic Programming (GP) matures and its breadth of application increases, the nee..."
+
+Text to classify:
+"A New Look at Tree Models for Multiple Sequence Alignment
+Abstract: Evolutionary trees are frequently used as the underlying model in the design of algorithms, optimization criteria and software packages for multiple sequence alignment (MSA). In this paper, we reexamine the suitability of trees as a universal model for MSA in light of the broad range of biological questions that MSA's are used to address. A tree model consists of a tree topology and a model of accepted mutations along the branches. After surveying the major applications of MSA, examples from the molecular biology literature are used to illustrate situations in which this tree model fails. This occurs when the relationship between residues in a column cannot be described by a tree; for example, in some structural and functional applications of MSA. It also occurs in situations, such as lateral gene transfer, where an entire gene cannot be modeled by a unique tree. In cases of nonparsimonous data or convergent evolution, it may be difficult to find a consistent mutational model. We hope that this survey will promote dialogue between biologists and computer scientists, leading to more biologically realistic research on MSA."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

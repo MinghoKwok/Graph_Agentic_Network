@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1245 | Layer 0 | 20250506_215917:
+```json
+[
+  {"action_type": "rag_query", "query": "blind source separation", "top_k": 10}
+]
+```
+================================================================================

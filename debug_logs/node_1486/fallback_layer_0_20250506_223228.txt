@@ -1,0 +1,53 @@
+📤 [DEBUG] Fallback Prompt for Node 1486 | Layer 0 | 20250506_223228:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 3 examples
+- Label_2: 1 examples
+- Label_4: 1 examples
+- Label_5: 3 examples
+- Label_6: 4 examples
+
+Memory:
+1. [Label_5] "Machine learning in prognosis of the femoral neck fracture recovery examples, estimating attributes, explanation ability, Abstract: We compare the per..."
+2. [Label_0] "EXPLORING A FRAMEWORK FOR INSTANCE BASED LEARNING AND NAIVE BAYESIAN CLASSIFIERS Abstract: The relative performance of different methods for classifie..."
+3. [Label_6] "Constructing Conjunctions using Systematic Search on Decision Trees Abstract: This paper investigates a dynamic path-based method for constructing con..."
+4. [Label_0] "LINNEO A Classification Methodology for Ill-structured Domains Abstract: In this work we present a classification methodology (LINNEO + ) to discover ..."
+5. [Label_4] "Machine Learning Research: Four Current Directions Abstract: Machine Learning research has been making great progress is many directions. This article..."
+
+Text to classify:
+"Induction of decision trees and Bayesian classification applied to diagnosis of sport injuries
+Abstract: Machine learning techniques can be used to extract knowledge from data stored in medical databases. In our application, various machine learning algorithms were used to extract diagnostic knowledge to support the diagnosis of sport injuries. The applied methods include variants of the Assistant algorithm for top-down induction of decision trees, and variants of the Bayesian classifier. The available dataset was insufficent for reliable diagnosis of all sport injuries considered by the system. Consequently, expert-defined diagnostic rules were added and used as pre-classifiers or as generators of additional training instances for injuries with few training examples. Experimental results show that the classification accuracy and the explanation capability of the naive Bayesian classifier with the fuzzy discretization of numerical attributes was superior to other methods and was estimated as the most appro priate for practical use."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

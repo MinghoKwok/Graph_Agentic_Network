@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1427 | Layer 0 | 20250506_220856:
+```json
+[
+  {"action_type": "rag_query", "query": "Minimum Message Length MML estimation", "top_k": 10}
+]
+```
+================================================================================

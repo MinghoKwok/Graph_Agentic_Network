@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1504 | Layer 0 | 20250506_221258:
+```json
+[
+  {"action_type": "rag_query", "query": "Non-Axiomatic Logic", "top_k": 10}
+]
+```
+================================================================================

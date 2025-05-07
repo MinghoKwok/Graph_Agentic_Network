@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 955 | Layer 0 | 20250506_221029:
+```json
+[
+  {"action_type": "rag_query", "query": "separating formal bounds from practical performance in learning systems", "top_k": 10}
+]
+```
+================================================================================

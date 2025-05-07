@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 780 | Layer 0 | 20250506_220115:
+```json
+[
+  {"action_type": "rag_query", "query": "evolution of mutation-rate and virulence", "top_k": 10}
+]
+```
+================================================================================

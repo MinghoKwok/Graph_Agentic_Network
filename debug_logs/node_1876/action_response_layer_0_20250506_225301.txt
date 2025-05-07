@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1876 | Layer 0 | 20250506_225301:
+```json
+[
+  {"action_type": "rag_query", "query": "Improved Model for Spatially Correlated Binary Responses", "top_k": 10}
+]
+```
+================================================================================

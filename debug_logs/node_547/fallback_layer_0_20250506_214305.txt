@@ -1,0 +1,54 @@
+📤 [DEBUG] Fallback Prompt for Node 547 | Layer 0 | 20250506_214305:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_1: 1 examples
+- Label_2: 1 examples
+- Label_3: 2 examples
+- Label_4: 6 examples
+- Label_6: 1 examples
+
+Memory:
+1. [Label_4] "Category: Control, Navigation and Planning. Key words: Reinforcement learning, Exploration, Hidden state. Prefer oral presentation. Abstract: This pap..."
+2. [Label_4] "Reinforcement Learning Algorithm for Partially Observable Markov Decision Problems Abstract: Increasing attention has been paid to reinforcement learn..."
+3. [Label_1] "ADAPTIVE TESTING OF CONTROLLERS FOR AUTONOMOUS VEHICLES Abstract: Autonomous vehicles are likely to require sophisticated software controllers to main..."
+4. [Label_4] "Planning by Incremental Dynamic Programming Abstract: This paper presents the basic results and ideas of dynamic programming as they relate most direc..."
+5. [Label_0] "Lazy Acquisition of Place Knowledge Abstract: In this paper we define the task of place learning and describe one approach to this problem. Our framew..."
+
+Text to classify:
+"Expectation-Based Selective Attention for Visual Monitoring and Control of a Robot Vehicle
+Abstract: Reliable vision-based control of an autonomous vehicle requires the ability to focus attention on the important features in an input scene. Previous work with an autonomous lane following system, ALVINN [Pomerleau, 1993], has yielded good results in uncluttered conditions. This paper presents an artificial neural network based learning approach for handling difficult scenes which will confuse the ALVINN system. This work presents a mechanism for achieving task-specific focus of attention by exploiting temporal coherence. A saliency map, which is based upon a computed expectation of the contents of the inputs in the next time step, indicates which regions of the input retina are important for performing the task. The saliency map can be used to accentuate the features which are important for the task, and de-emphasize those which are not."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

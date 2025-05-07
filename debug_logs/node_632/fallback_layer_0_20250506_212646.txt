@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 632 | Layer 0 | 20250506_212646:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_6] "Efficient Algorithms for Identifying Relevant Features Abstract: This paper describes efficient methods for exact and approximate implementation of th..."
+2. [Label_0] "Oblivious Decision Trees and Abstract Cases Abstract: In this paper, we address the problem of case-based learning in the presence of irrelevant featu..."
+3. [Label_0] "On the Greediness of Feature Selection Algorithms Abstract: Based on our analysis and experiments using real-world datasets, we find that the greedine..."
+4. [Label_0] "Context-Sensitive Feature Selection for Lazy Learners Abstract:"
+5. [Label_0] "A systematic description of greedy optimisation algorithms for cost sensitive generalisation Abstract: This paper defines a class of problems involvin..."
+
+Text to classify:
+"Toward Optimal Feature Selection
+Abstract: In this paper, we examine a method for feature subset selection based on Information Theory. Initially, a framework for defining the theoretically optimal, but computation-ally intractable, method for feature subset selection is presented. We show that our goal should be to eliminate a feature if it gives us little or no additional information beyond that subsumed by the remaining features. In particular, this will be the case for both irrelevant and redundant features. We then give an efficient algorithm for feature selection which computes an approximation to the optimal feature selection criterion. The conditions under which the approximate algorithm is successful are examined. Empirical results are given on a number of data sets, showing that the algorithm effectively han dles datasets with large numbers of features."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

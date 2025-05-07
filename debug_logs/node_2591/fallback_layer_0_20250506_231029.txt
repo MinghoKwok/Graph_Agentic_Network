@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 2591 | Layer 0 | 20250506_231029:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_6] "Separating Formal Bounds from Practical Performance in Learning Systems Abstract: nan"
+2. [Label_5] "First Order Regression Abstract: We present a new approach, called First Order Regression (FOR), to handling numerical information in Inductive Logic ..."
+3. [Label_6] "Inductive Logic Programming Abstract: A new research area, Inductive Logic Programming, is presently emerging. While inheriting various positive chara..."
+4. [Label_5] "Learning by Refining Algorithm Sketches Abstract: In this paper we suggest a mechanism that improves significantly the performance of a top-down induc..."
+5. [Label_5] "Pac-Learning Recursive Logic Programs: Efficient Algorithms Abstract: We present algorithms that learn certain classes of function-free recursive logi..."
+
+Text to classify:
+"Lookahead and Discretization in ILP
+Abstract: We present and evaluate two methods for improving the performance of ILP systems. One of them is discretization of numerical attributes, based on Fayyad and Irani's text [9], but adapted and extended in such a way that it can cope with some aspects of discretization that only occur in relational learning problems (when indeterminate literals occur). The second technique is lookahead. It is a well-known problem in ILP that a learner cannot always assess the quality of a refinement without knowing which refinements will be enabled afterwards, i.e. without looking ahead in the refinement lattice. We present a simple method for specifying when lookahead is to be used, and what kind of lookahead is interesting. Both the discretization and lookahead techniques are evaluated experimentally. The results show that both techniques improve the quality of the induced theory, while computational costs are acceptable."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,56 @@
+📤 [DEBUG] Fallback Prompt for Node 527 | Layer 0 | 20250506_214754:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 2 examples
+- Label_2: 4 examples
+- Label_3: 2 examples
+- Label_4: 1 examples
+- Label_5: 1 examples
+
+Memory:
+1. [Label_2] "A Mixture of Experts Model Exhibiting Prosopagnosia Abstract: A considerable body of evidence from prosopagnosia, a deficit in face recognition dissoc..."
+2. [Label_4] "Category: Control, Navigation and Planning. Key words: Reinforcement learning, Exploration, Hidden state. Prefer oral presentation. Abstract: This pap..."
+3. [Label_2] "Two Constructive Methods for Designing Compact Feedforward Networks of Threshold Units Abstract: We propose two algorithms for constructing and traini..."
+4. [Label_5] "Learning Evolving Concepts Using Partial-Memory Approach  Machine Learning and Inference Laboratory Abstract: This paper addresses the problem of lear..."
+5. [Label_1] "nan Abstract: Co-evolution of Pursuit and Evasion II: Simulation Methods and Results fl Abstract In a previous SAB paper [10], we presented the scient..."
+
+Text to classify:
+"VISIT: An Efficient Computational Model of Human Visual Attention
+Abstract: One of the challenges for models of cognitive phenomena is the development of efficient and exible interfaces between low level sensory information and high level processes. For visual processing, researchers have long argued that an attentional mechanism is required to perform many of the tasks required by high level vision. This thesis presents VISIT, a connectionist model of covert visual attention that has been used as a vehicle for studying this interface. The model is efficient, exible, and is biologically plausible. The complexity of the network is linear in the number of pixels. Effective parallel strategies are used to minimize the number of iterations required. The resulting system is able to efficiently solve two tasks that are particularly difficult for standard bottom-up models of vision: computing spatial relations and visual search. Simulations show that the networks behavior matches much of the known psychophysical data on human visual attention. The general architecture of the model also closely matches the known physiological data on the human attention system. Various extensions to VISIT are discussed, including methods for learning the component modules."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

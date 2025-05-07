@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1564 | Layer 0 | 20250506_224244:
+```json
+[
+  {"action_type": "rag_query", "query": "Radial Basis Function Networks", "top_k": 10}
+]
+```
+================================================================================

@@ -1,0 +1,53 @@
+📤 [DEBUG] Fallback Prompt for Node 25 | Layer 0 | 20250506_212122:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_5: 3 examples
+- Label_6: 8 examples
+
+Memory:
+1. [Label_6] "General Bounds on Statistical Query Learning and PAC Learning with Noise via Hypothesis Boosting Abstract: We derive general bounds on the complexity ..."
+2. [Label_6] "PAC Learning Intersections of Halfspaces with Membership Queries (Extended Abstract) Abstract:"
+3. [Label_6] "Pac Learning, Noise, and Geometry Abstract: This paper describes the probably approximately correct model of concept learning, paying special attentio..."
+4. [Label_5] "Pac-Learning Recursive Logic Programs: Efficient Algorithms Abstract: We present algorithms that learn certain classes of function-free recursive logi..."
+5. [Label_6] "Separating Formal Bounds from Practical Performance in Learning Systems Abstract: nan"
+
+Text to classify:
+"General Bounds on Statistical Query Learning and PAC Learning with Noise via Hypothesis Boosting
+Abstract: We derive general bounds on the complexity of learning in the Statistical Query model and in the PAC model with classification noise. We do so by considering the problem of boosting the accuracy of weak learning algorithms which fall within the Statistical Query model. This new model was introduced by Kearns [12] to provide a general framework for efficient PAC learning in the presence of classification noise. We first show a general scheme for boosting the accuracy of weak SQ learning algorithms, proving that weak SQ learning is equivalent to strong SQ learning. The boosting is efficient and is used to show our main result of the first general upper bounds on the complexity of strong SQ learning. Specifically, we derive simultaneous upper bounds with respect to * on the number of queries, O(log 2 1 * ), the Vapnik-Chervonenkis dimension of the query space, O(log 1 * ), and the inverse of the minimum tolerance, O( 1 * log 1 * ). In addition, we show that these general upper bounds are nearly optimal by describing a class of learning problems for which we simultaneously lower bound the number of queries by (log 1 * ) We further apply our boosting results in the SQ model to learning in the PAC model with classification noise. Since nearly all PAC learning algorithms can be cast in the SQ model, we can apply our boosting techniques to convert these PAC algorithms into highly efficient SQ algorithms. By simulating these efficient SQ algorithms in the PAC model with classification noise, we show that nearly all PAC algorithms can be converted into highly efficient PAC algorithms which tolerate classification noise. We give an upper bound on the sample complexity of these noise-tolerant PAC algorithms which is nearly optimal with respect to the noise rate. We also give upper bounds on space complexity and hypothesis size and show that these two measures are in fact independent of the noise rate. We note that the running times of these noise-tolerant PAC algorithms are efficient. This sequence of simulations also demonstrates that it is possible to boost the accuracy of nearly all PAC algorithms even in the presence of noise. This provides a partial answer to an open problem of Schapire [15] and the first theoretical evidence for an empirical result of Drucker, Schapire and Simard [4]."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

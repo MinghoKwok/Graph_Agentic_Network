@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 173 | Layer 0 | 20250506_210518:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_4] "Generalization in Reinforcement Learning: Safely Approximating the Value Function Abstract: To appear in: G. Tesauro, D. S. Touretzky and T. K. Leen, ..."
+2. [Label_4] "Truncating Temporal Differences: On the Efficient Implementation of TD() for Reinforcement Learning Abstract: Temporal difference (TD) methods constit..."
+3. [Label_4] "Reinforcement Learning Algorithm for Partially Observable Markov Decision Problems Abstract: Increasing attention has been paid to reinforcement learn..."
+4. [Label_4] "Towards a Reactive Critic Abstract: In this paper we propose a reactive critic, that is able to respond to changing situations. We will explain why th..."
+5. [Label_4] "Scaling Reinforcement Learning Algorithms by Learning Variable Temporal Resolution Models Abstract: The close connection between reinforcement learnin..."
+
+Text to classify:
+"An Upper Bound on the Loss from Approximate Optimal-Value Functions
+Abstract: Many reinforcement learning (RL) approaches can be formulated from the theory of Markov decision processes and the associated method of dynamic programming (DP). The value of this theoretical understanding, however, is tempered by many practical concerns. One important question is whether DP-based approaches that use function approximation rather than lookup tables, can avoid catastrophic effects on performance. This note presents a result in Bertsekas (1987) which guarantees that small errors in the approximation of a task's optimal value function cannot produce arbitrarily bad performance when actions are selected greedily. We derive an upper bound on performance loss which is slightly tighter than that in Bertsekas (1987), and we show the extension of the bound to Q-learning (Watkins, 1989). These results provide a theoretical justification for a practice that is common in reinforcement learning."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 2555 | Layer 0 | 20250506_230836:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_0] "Oblivious Decision Trees and Abstract Cases Abstract: In this paper, we address the problem of case-based learning in the presence of irrelevant featu..."
+2. [Label_6] "Inductive Logic Programming Abstract: A new research area, Inductive Logic Programming, is presently emerging. While inheriting various positive chara..."
+3. [Label_0] "Unifying Empirical and Explanation-Based Learning by Modeling the Utility of Learned Knowledge Abstract: The overfit problem in empirical learning and..."
+4. [Label_5] "Learning Trees and Rules with Set-valued Features Abstract: In most learning systems examples are represented as fixed-length "feature vectors", the c..."
+5. [Label_6] "Decision Tree Induction: How Effective is the Greedy Heuristic? Abstract: Most existing decision tree systems use a greedy approach to induce trees | ..."
+
+Text to classify:
+"Knowing What Doesn't Matter: Exploiting Omitted Superfluous Data
+Abstract: Most inductive inference algorithms (i.e., "learners") work most effectively when their training data contain completely specified labeled samples. In many diagnostic tasks, however, the data will include the values of only some of the attributes; we model this as a blocking process that hides the values of those attributes from the learner. While blockers that remove the values of critical attributes can handicap a learner, this paper instead focuses on blockers that remove only superfluous attribute values, i.e., values that are not needed to classify an instance, given the values of the other unblocked attributes. We first motivate and formalize this model of "superfluous-value blocking," and then demonstrate that these omissions can be useful, by showing that certain classes that seem hard to learn in the general PAC model | viz., decision trees | are trivial to learn in this setting, and can even be learned in a manner that is very robust to classification noise. We also discuss how this model can be extended to deal with (1) theory revision (i.e., modifying an existing decision tree); (2) "complex" attributes (which correspond to combinations of other atomic attributes); (3) blockers that occasionally include superfluous values or exclude re quired values; and (4) other hypothesis classes (e.g., DNF formulae). Declaration: This paper has not already been accepted by and is not currently under review for a journal or another conference, nor will it be submitted for such during IJCAI's review period. fl This is an extended version of a paper that appeared in working notes of the 1994 AAAI Fall Symposium on "Relevance", New Orleans, November 1994. y Authors listed alphabetically. We gratefully acknowledge receiving helpful comments from Dale Schuurmans and George Drastal."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1629 | Layer 0 | 20250506_221936:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_0] "EXPLORING A FRAMEWORK FOR INSTANCE BASED LEARNING AND NAIVE BAYESIAN CLASSIFIERS Abstract: The relative performance of different methods for classifie..."
+2. [Label_6] "On the Induction of Intelligible Ensembles Abstract: Ensembles of classifiers, e.g. decision trees, often exhibit greater predictive accuracy than sin..."
+3. [Label_2] "The Canonical Distortion Measure in Feature Space and 1-NN Classification Abstract: We prove that the Canonical Distortion Measure (CDM) [2, 3] is the..."
+4. [Label_3] "Bumptrees for Efficient Function, Constraint, and Classification Learning Abstract: A new class of data structures called bumptrees is described. Thes..."
+5. [Label_5] "Machine learning in prognosis of the femoral neck fracture recovery examples, estimating attributes, explanation ability, Abstract: We compare the per..."
+
+Text to classify:
+"Regional Stability of an ERS/JERS-1 Classifer
+Abstract: The potential of combined ERS/JERS-1 SAR images for land cover classification was demonstrated for the Raco test site (Michigan) in recent papers and articles. Our goal is to develop a classification algorithm which is stable in terms of applicability in different geographical regions. Unlike optical remote sensing techniques, radar remote sensing can provide calibrated data where the image signal is solely determined by the physical (structural) and electrical properties of the targets on the Earth's surface and near subsurface. Hence, a classifier based on radar signatures of object classes should be applicable on new calibrated images without the need to train the classifier again. This article discusses the design and applicability of a classification algorithm, which is based on calibrated radar signatures measured from ERS-1 (C-band, vv polarized) and JERS-1 (L-band, hh polarized) SAR image data. The applicability is compared in two different test sites, Raco, Michigan and the Cedar Creek LTER site, Minnesota. It was found, that classes separate very well, when certain boundary conditions like comparable seasonality or soil moisture conditions are observed."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 602 | Layer 0 | 20250506_215152:
+```json
+[
+  {"action_type": "rag_query", "query": "Genetic_Algorithm Niching_Methods", "top_k": 10}
+]
+```
+================================================================================

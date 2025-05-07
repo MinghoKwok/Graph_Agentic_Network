@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1755 | Layer 0 | 20250506_222618:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_4] "A Teaching Strategy for Memory-Based Control Abstract: Combining different machine learning algorithms in the same system can produce benefits above a..."
+2. [Label_4] "Generalization in Reinforcement Learning: Safely Approximating the Value Function Abstract: To appear in: G. Tesauro, D. S. Touretzky and T. K. Leen, ..."
+3. [Label_1] "ADAPTIVE TESTING OF CONTROLLERS FOR AUTONOMOUS VEHICLES Abstract: Autonomous vehicles are likely to require sophisticated software controllers to main..."
+4. [Label_4] "Reinforcement Learning with Modular Neural Networks for Control Abstract: Reinforcement learning methods can be applied to control problems with the o..."
+5. [Label_3] "Bumptrees for Efficient Function, Constraint, and Classification Learning Abstract: A new class of data structures called bumptrees is described. Thes..."
+
+Text to classify:
+"Learning Controllers from Examples  a motivation for searching alternative, empirical techniques for generating controllers.
+Abstract: Today there is a great interest in discovering methods that allow a faster design and development of real-time control software. Control theory helps when linear controllers have to be developed but it does not support the generation In this paper, it is discussed how Machine Learning has been applied to the Function, and Locally Receptive Field Function Approximators. Three integrated learning algorithms, two of which are original, are described and then tried on two experimental test cases. The first test case is provided by an industrial robot KUKA IR-361 engaged into the "peg-into-hole" task, while the second is a classical prediction task on the Mackey-Glass chaotic series. From the experimental comparison, it appears that both Fuzzy Controllers and RBFNs synthesised from examples are excellent approximators, and that they can be even more accurate than MLPs. of non-linear controllers, which in many cases (such as in compliant motion control)"
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

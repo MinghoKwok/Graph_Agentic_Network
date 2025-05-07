@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1382 | Layer 0 | 20250506_222700:
+```json
+[
+  {"action_type": "rag_query", "query": "adaptive neural network parser", "top_k": 10}
+]
+```
+================================================================================

@@ -1,0 +1,55 @@
+📤 [DEBUG] Fallback Prompt for Node 1038 | Layer 0 | 20250506_221451:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 1 examples
+- Label_2: 6 examples
+- Label_4: 1 examples
+- Label_6: 4 examples
+
+Memory:
+1. [Label_2] "Two Constructive Methods for Designing Compact Feedforward Networks of Threshold Units Abstract: We propose two algorithms for constructing and traini..."
+2. [Label_1] "Growing neural networks Abstract: nan"
+3. [Label_2] "Learning Symbolic Rules Using Artificial Neural Networks Abstract: A distinct advantage of symbolic learning algorithms over artificial neural network..."
+4. [Label_2] "Shattering all sets of k points in "general position" requires (k 1)=2 parameters Abstract: For classes of concepts defined by certain classes of anal..."
+5. [Label_4] "Generalization in Reinforcement Learning: Safely Approximating the Value Function Abstract: To appear in: G. Tesauro, D. S. Touretzky and T. K. Leen, ..."
+
+Text to classify:
+"Brief Papers Computing Second Derivatives in Feed-Forward Networks: A Review
+Abstract: The calculation of second derivatives is required by recent training and analysis techniques of connectionist networks, such as the elimination of superfluous weights, and the estimation of confidence intervals both for weights and network outputs. We here review and develop exact and approximate algorithms for calculating second derivatives. For networks with jwj weights, simply writing the full matrix of second derivatives requires O(jwj 2 ) operations. For networks of radial basis units or sigmoid units, exact calculation of the necessary intermediate terms requires of the order of 2h + 2 backward/forward-propagation passes where h is the number of hidden units in the network. We also review and compare three approximations (ignoring some components of the second derivative, numerical differentiation, and scoring). Our algorithms apply to arbitrary activation functions, networks, and error functions (for instance, with connections that skip layers, or radial basis functions, or cross-entropy error and Softmax units, etc.)."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 529 | Layer 0 | 20250506_214209:
+```json
+[
+  {"action_type": "rag_query", "query": "SDM memory efficiency", "top_k": 10}
+]
+```
+================================================================================

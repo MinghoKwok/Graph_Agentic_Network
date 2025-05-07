@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 637 | Layer 0 | 20250506_212702:
+```json
+[
+  {"action_type": "rag_query", "query": "computational complexity reduction for BN2O networks", "top_k": 5}
+]
+```
+================================================================================

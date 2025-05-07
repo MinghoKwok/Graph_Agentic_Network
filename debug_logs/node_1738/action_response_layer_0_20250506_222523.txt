@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1738 | Layer 0 | 20250506_222523:
+```json
+[
+  {"action_type": "rag_query", "query": "Evolving nonTrivial Behaviors on Real Robots", "top_k": 10}
+]
+```
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1860 | Layer 0 | 20250506_225211:
+```json
+[
+  {"action_type": "rag_query", "query": "Locally Weighted Polynomial Regression", "top_k": 10}
+]
+```
+================================================================================

@@ -1,0 +1,51 @@
+📤 [DEBUG] Fallback Prompt for Node 1510 | Layer 0 | 20250506_223343:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_4: 1 examples
+- Label_5: 3 examples
+- Label_6: 8 examples
+
+Memory:
+1. [Label_5] "A Comparison of Pruning Methods for Relational Concept Learning Abstract: Pre-Pruning and Post-Pruning are two standard methods of dealing with noise ..."
+2. [Label_6] "Inductive Logic Programming Abstract: A new research area, Inductive Logic Programming, is presently emerging. While inheriting various positive chara..."
+3. [Label_6] "Pac Learning, Noise, and Geometry Abstract: This paper describes the probably approximately correct model of concept learning, paying special attentio..."
+4. [Label_6] "General Bounds on Statistical Query Learning and PAC Learning with Noise via Hypothesis Boosting Abstract: We derive general bounds on the complexity ..."
+5. [Label_6] "Decision Tree Induction: How Effective is the Greedy Heuristic? Abstract: Most existing decision tree systems use a greedy approach to induce trees | ..."
+
+Text to classify:
+"The Problem with Noise and Small Disjuncts
+Abstract: Systems that learn from examples often create a disjunctive concept definition. The disjuncts in the concept definition which cover only a few training examples are referred to as small disjuncts. The problem with small disjuncts is that they are more error prone than large disjuncts, but may be necessary to achieve a high level of predictive accuracy [Holte, Acker, and Porter, 1989]. This paper extends previous work done on the problem of small disjuncts by taking noise into account. It investigates the assertion that it is hard to learn from noisy data because it is difficult to distinguish between noise and true exceptions. In the process of evaluating this assertion, insights are gained into the mechanisms by which noise affects learning. Two domains are investigated. The experimental results in this paper suggest that for both Shapiro's chess endgame domain [Shapiro, 1987] and for the Wisconsin breast cancer domain [Wolberg, 1990], the assertion is true, at least for low levels (5-10%) of class noise."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

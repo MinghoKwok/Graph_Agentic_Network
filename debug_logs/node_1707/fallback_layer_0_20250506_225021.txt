@@ -1,0 +1,54 @@
+📤 [DEBUG] Fallback Prompt for Node 1707 | Layer 0 | 20250506_225021:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 8 examples
+- Label_4: 4 examples
+- Label_5: 1 examples
+
+Memory:
+1. [Label_0] "Modeling Case-based Planning for Repairing Reasoning Failures Abstract: One application of models of reasoning behavior is to allow a reasoner to intr..."
+2. [Label_4] "Planning by Incremental Dynamic Programming Abstract: This paper presents the basic results and ideas of dynamic programming as they relate most direc..."
+3. [Label_0] "Learning to Predict User Operations for Adaptive Scheduling Abstract: Mixed-initiative systems present the challenge of finding an effective level of ..."
+4. [Label_0] "Conceptual Analogy: Conceptual clustering for informed and efficient analogical reasoning Abstract: Conceptual analogy (CA) is a general approach that..."
+5. [Label_5] "An intelligent search method using Inductive Logic Programming Abstract: We propose a method to use Inductive Logic Programming to give heuristic func..."
+
+Text to classify:
+"Supporting Combined Human and Machine Planning: The Prodigy 4.0 User Interface Version 2.0*
+Abstract: Realistic and complex planning situations require a mixed-initiative planning framework in which human and automated planners interact to mutually construct a desired plan. Ideally, this joint cooperation has the potential of achieving better plans than either the human or the machine can create alone. Human planners often take a case-based approach to planning, relying on their past experience and planning by retrieving and adapting past planning cases. Planning by analogical reasoning in which generative and case-based planning are combined, as in Prodigy/Analogy, provides a suitable framework to study this mixed-initiative integration. However, having a human user engaged in this planning loop creates a variety of new research questions. The challenges we found creating a mixed-initiative planning system fall into three categories: planning paradigms differ in human and machine planning; visualization of the plan and planning process is a complex, but necessary task; and human users range across a spectrum of experience, both with respect to the planning domain and the underlying planning technology. This paper presents our approach to these three problems when designing an interface to incorporate a human into the process of planning by analogical reasoning with Prodigy/Analogy. The interface allows the user to follow both generative and case-based planning, it supports visualization of both plan and the planning rationale, and it addresses the variance in the experience of the user by allowing the user to control the presentation of information. * This research is sponsored as part of the DARPA/RL Knowledge Based Planning and Scheduling Initiative under grant number F30602-95-1-0018. A short version of this document appeared as Cox, M. T., & Veloso, M. M. (1997). Supporting combined human and machine planning: An interface for planning by analogical reasoning. In D. B. Leake & E. Plaza (Eds.), Case-Based Reasoning Research and Development: Second International Conference on Case-Based Reasoning (pp. 531-540). Berlin: Springer-Verlag."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

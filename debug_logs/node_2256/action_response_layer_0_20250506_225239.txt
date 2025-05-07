@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2256 | Layer 0 | 20250506_225239:
+```json
+[
+  {"action_type": "rag_query", "query": "Probabilistic Neural Networks", "top_k": 10}
+]
+```
+================================================================================

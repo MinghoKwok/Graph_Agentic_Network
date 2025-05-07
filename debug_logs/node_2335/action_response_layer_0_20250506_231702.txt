@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2335 | Layer 0 | 20250506_231702:
+```json
+[
+  {"action_type": "rag_query", "query": "function approximation with neural networks", "top_k": 10}
+]
+```
+================================================================================

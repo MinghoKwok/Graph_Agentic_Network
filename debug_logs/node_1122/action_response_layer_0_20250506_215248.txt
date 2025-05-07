@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1122 | Layer 0 | 20250506_215248:
+```json
+[
+  {"action_type": "rag_query", "query": "A Comparative Utility Analysis of Case-Based Reasoning and Control-Rule Learning Systems", "top_k": 10}
+]
+```
+================================================================================

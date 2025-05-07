@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 564 | Layer 0 | 20250506_214950:
+```json
+[
+  {"action_type": "rag_query", "query": "Reinforcement Learning with Soft State Aggregation", "top_k": 10}
+]
+```
+================================================================================

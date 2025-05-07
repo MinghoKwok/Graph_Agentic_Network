@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1104 | Layer 0 | 20250506_215145:
+```json
+[
+  {"action_type": "rag_query", "query": "Feature Generation for Sequence Categorization", "top_k": 5}
+]
+```
+================================================================================

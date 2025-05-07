@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 471 | Layer 0 | 20250506_214452:
+```json
+[
+  {"action_type": "rag_query", "query": "Improving Elevator Performance Using Reinforcement Learning", "top_k": 10}
+]
+```
+================================================================================

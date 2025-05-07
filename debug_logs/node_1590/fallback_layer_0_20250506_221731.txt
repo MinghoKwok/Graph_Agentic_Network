@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1590 | Layer 0 | 20250506_221731:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_1] "Incremental Co-evolution of Organisms: A New Approach for Optimization and Discovery of Strategies Abstract: In the field of optimization and machine ..."
+2. [Label_1] "Fitness Landscapes and Difficulty in Genetic Programming Abstract: The structure of the fitness landscape on which genetic programming operates is exa..."
+3. [Label_1] "nan Abstract: Co-evolution of Pursuit and Evasion II: Simulation Methods and Results fl Abstract In a previous SAB paper [10], we presented the scient..."
+4. [Label_4] "A Teaching Strategy for Memory-Based Control Abstract: Combining different machine learning algorithms in the same system can produce benefits above a..."
+5. [Label_1] "Coevolving Communicative Behavior in a Linear Pursuer-Evader Game Abstract: The pursuer-evader (PE) game is recognized as an important domain in which..."
+
+Text to classify:
+"The Exploitation of Cooperation in Iterated Prisoner's Dilemma
+Abstract: We follow Axelrod [2] in using the genetic algorithm to play Iterated Prisoner's Dilemma. Each member of the population (i.e., each strategy) is evaluated by how it performs against the other members of the current population. This creates a dynamic environment in which the algorithm is optimising to a moving target instead of the usual evaluation against some fixed set of strategies, causing an "arms race" of innovation [3]. We conduct two sets of experiments. The first set investigates what conditions evolve the best strategies. The second set studies the robustness of the strategies thus evolved, that is, are the strategies useful only in the round robin of its population or are they effective against a wide variety of opponents? Our results indicate that the population has nearly always converged by about 250 generations, by which time the bias in the population has almost always stabilised at 85%. Our results confirm that cooperation almost always becomes the dominant strategy [1, 2]. We can also confirm that seeding the population with expert strategies is best done in small amounts so as to leave the initial population with plenty of genetic diversity [7]. The lack of robustness in strategies produced in the round robin evaluation is demonstrated by some examples of a population of nave cooperators being exploited by a defect-first strategy. This causes a sudden but ephemeral decline in the population's average score, but it recovers when less nave cooperators emerge and do well against the exploiting strategies. This example of runaway evolution is brought back to reality by a suitable mutation, reminiscent of punctuated equilibria [12]. We find that a way to reduce such navity is to make the GA population play against an extra,"
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

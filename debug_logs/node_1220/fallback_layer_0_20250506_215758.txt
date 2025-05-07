@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1220 | Layer 0 | 20250506_215758:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_6] "Efficient Algorithms for Identifying Relevant Features Abstract: This paper describes efficient methods for exact and approximate implementation of th..."
+2. [Label_2] "Using Neural Networks for Descriptive Statistical Analysis of Educational Data Abstract: In this paper we discuss the methodological issues of using a..."
+3. [Label_0] "On the Greediness of Feature Selection Algorithms Abstract: Based on our analysis and experiments using real-world datasets, we find that the greedine..."
+4. [Label_5] "Machine learning in prognosis of the femoral neck fracture recovery examples, estimating attributes, explanation ability, Abstract: We compare the per..."
+5. [Label_6] "Error-Correcting Output Codes: A General Method for Improving Multiclass Inductive Learning Programs Abstract: Multiclass learning problems involve fi..."
+
+Text to classify:
+"A Method of Combining Multiple Probabilistic Classifiers through Soft Competition on Different Feature Sets
+Abstract: A novel method is proposed for combining multiple probabilistic classifiers on different feature sets. In order to achieve the improved classification performance, a generalized finite mixture model is proposed as a linear combination scheme and implemented based on radial basis function networks. In the linear combination scheme, soft competition on different feature sets is adopted as an automatic feature rank mechanism so that different feature sets can be always simultaneously used in an optimal way to determine linear combination weights. For training the linear combination scheme, a learning algorithm is developed based on Expectation-Maximization (EM) algorithm. The proposed method has been applied to a typical real world problem, viz. speaker identification, in which different feature sets often need consideration simultaneously for robustness. Simulation results show that the proposed method yields good performance in speaker identification."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

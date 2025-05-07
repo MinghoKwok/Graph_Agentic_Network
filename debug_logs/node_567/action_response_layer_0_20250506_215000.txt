@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 567 | Layer 0 | 20250506_215000:
+```json
+[
+  {"action_type": "rag_query", "query": "Reinforcement_Learning", "top_k": 10}
+]
+```
+================================================================================

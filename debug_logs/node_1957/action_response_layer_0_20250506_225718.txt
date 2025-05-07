@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1957 | Layer 0 | 20250506_225718:
+```json
+[
+  {"action_type": "rag_query", "query": "reinforcement learning fuzzy rule tuning", "top_k": 10}
+]
+```
+================================================================================

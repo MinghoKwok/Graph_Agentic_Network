@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 960 | Layer 0 | 20250506_221045:
+```json
+[
+  {"action_type": "rag_query", "query": "constructive induction machine learning", "top_k": 10}
+]
+```
+================================================================================

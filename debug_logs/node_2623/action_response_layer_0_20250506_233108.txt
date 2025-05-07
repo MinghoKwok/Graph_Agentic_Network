@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2623 | Layer 0 | 20250506_233108:
+```json
+[
+  {"action_type": "rag_query", "query": "Theoretical Models of Learning to Learn", "top_k": 10}
+]
+```
+================================================================================

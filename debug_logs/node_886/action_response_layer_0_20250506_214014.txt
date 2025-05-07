@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 886 | Layer 0 | 20250506_214014:
+```json
+[
+  {"action_type": "rag_query", "query": "recurrent attractor networks", "top_k": 10}
+]
+```
+================================================================================

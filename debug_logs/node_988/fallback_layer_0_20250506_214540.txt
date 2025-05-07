@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 988 | Layer 0 | 20250506_214540:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_4] "Truncating Temporal Differences: On the Efficient Implementation of TD() for Reinforcement Learning Abstract: Temporal difference (TD) methods constit..."
+2. [Label_4] "Emergent Hierarchical Control Structures: Learning Reactive/Hierarchical Relationships in Reinforcement Environments Abstract: The use of externally i..."
+3. [Label_4] "Reinforcement Learning Algorithm for Partially Observable Markov Decision Problems Abstract: Increasing attention has been paid to reinforcement learn..."
+4. [Label_4] "Generalization in Reinforcement Learning: Safely Approximating the Value Function Abstract: To appear in: G. Tesauro, D. S. Touretzky and T. K. Leen, ..."
+5. [Label_4] "A Teaching Strategy for Memory-Based Control Abstract: Combining different machine learning algorithms in the same system can produce benefits above a..."
+
+Text to classify:
+"A COMPARISON OF Q-LEARNING AND CLASSIFIER SYSTEMS
+Abstract: Reinforcement Learning is a class of problems in which an autonomous agent acting in a given environment improves its behavior by progressively maximizing a function calculated just on the basis of a succession of scalar responses received from the environment. Q-learning and classifier systems (CS) are two methods among the most used to solve reinforcement learning problems. Notwithstanding their popularity and their shared goal, they have been in the past often considered as two different models. In this paper we first show that the classifier system, when restricted to a sharp simplification called discounted max very simple classifier system (D MAX - VSCS), boils down to tabular Q-learning. It follows that D MAX -VSCS converges to the optimal policy as proved by Watkins & Dayan (1992), and that it can draw profit from the results of experimental and theoretical works dedicated to improve Q-learning and to facilitate its use in concrete applications. In the second part of the paper, we show that three of the restrictions we need to impose to the CS for deriving its equivalence with Q-learning, that is, no internal states, no don't care symbols, and no structural changes, turn out so essential as to be recently rediscovered and reprogrammed by Q-learning adepts. Eventually, we sketch further similarities among ongoing work within both research contexts. The main contribution of the paper is therefore to make explicit the strong similarities existing between Q-learning and classifier systems, and to show that experience gained with research within one domain can be useful to direct future research in the other one."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

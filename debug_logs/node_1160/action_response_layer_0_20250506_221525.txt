@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1160 | Layer 0 | 20250506_221525:
+```json
+[
+  {"action_type": "rag_query", "query": "PFSA Modelling of Behavioural Sequences", "top_k": 10}
+]
+```
+================================================================================

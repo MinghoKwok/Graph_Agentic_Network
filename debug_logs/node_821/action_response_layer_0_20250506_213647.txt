@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 821 | Layer 0 | 20250506_213647:
+```json
+[
+  {"action_type": "rag_query", "query": "massive data discrimination via linear support vector machines", "top_k": 10}
+]
+```
+================================================================================

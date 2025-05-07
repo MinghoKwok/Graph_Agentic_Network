@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2403 | Layer 0 | 20250506_232028:
+```json
+[
+  {"action_type": "rag_query", "query": "reasoning with portions of precedents", "top_k": 10}
+]
+```
+================================================================================

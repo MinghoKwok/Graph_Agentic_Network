@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 251 | Layer 0 | 20250506_210835:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_6] "A Statistical Approach to Solving the EBL Utility Problem Abstract: Many "learning from experience" systems use information extracted from problem sol..."
+2. [Label_0] "Unifying Empirical and Explanation-Based Learning by Modeling the Utility of Learned Knowledge Abstract: The overfit problem in empirical learning and..."
+3. [Label_0] "A Comparative Utility Analysis of Case-Based Reasoning and Control-Rule Learning Systems Abstract: The utility problem in learning systems occurs when..."
+4. [Label_0] "A systematic description of greedy optimisation algorithms for cost sensitive generalisation Abstract: This paper defines a class of problems involvin..."
+5. [Label_5] "Incremental Reduced Error Pruning Abstract: This paper outlines some problems that may occur with Reduced Error Pruning in relational learning algorit..."
+
+Text to classify:
+"A Statistical Approach to Solving the EBL Utility Problem
+Abstract: Many "learning from experience" systems use information extracted from problem solving experiences to modify a performance element PE, forming a new element PE 0 that can solve these and similar problems more efficiently. However, as transformations that improve performance on one set of problems can degrade performance on other sets, the new PE 0 is not always better than the original PE; this depends on the distribution of problems. We therefore seek the performance element whose expected performance, over this distribution, is optimal. Unfortunately, the actual distribution, which is needed to determine which element is optimal, is usually not known. Moreover, the task of finding the optimal element, even knowing the distribution, is intractable for most interesting spaces of elements. This paper presents a method, palo, that side-steps these problems by using a set of samples to estimate the unknown distribution, and by using a set of transformations to hill-climb to a local optimum. This process is based on a mathematically rigorous form of utility analysis: in particular, it uses statistical techniques to determine whether the result of a proposed transformation will be better than the original system. We also present an efficient way of implementing this learning system in the context of a general class of performance elements, and include empirical evidence that this approach can work effectively. fl Much of this work was performed at the University of Toronto, where it was supported by the Institute for Robotics and Intelligent Systems and by an operating grant from the National Science and Engineering Research Council of Canada. We also gratefully acknowledge receiving many helpful comments from William Cohen, Dave Mitchell, Dale Schuurmans and the anonymous referees."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

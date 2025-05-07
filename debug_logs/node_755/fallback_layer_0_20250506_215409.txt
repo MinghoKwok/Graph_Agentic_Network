@@ -1,0 +1,50 @@
+📤 [DEBUG] Fallback Prompt for Node 755 | Layer 0 | 20250506_215409:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 2 examples
+- Label_1: 9 examples
+
+Memory:
+1. [Label_1] "An Artificial Life Model for Investigating the Evolution of Modularity Abstract: To investigate the issue of how modularity emerges in nature, we pres..."
+2. [Label_1] "Incremental Co-evolution of Organisms: A New Approach for Optimization and Discovery of Strategies Abstract: In the field of optimization and machine ..."
+3. [Label_1] "A Transformation System for Interactive Reformulation of Design Optimization Strategies Abstract: Automatic design optimization is highly sensitive to..."
+4. [Label_1] "Fitness Landscapes and Difficulty in Genetic Programming Abstract: The structure of the fitness landscape on which genetic programming operates is exa..."
+5. [Label_1] "Testing the Robustness of the Genetic Algorithm on the Floating Building Block Representation. Abstract: Recent studies on a floating building block r..."
+
+Text to classify:
+"of a simulator for evolving morphology are: Universal the simulator should cover an infinite gen
+Abstract: Funes, P. and Pollack, J. (1997) Computer Evolution of Buildable Objects. Fourth European Conference on Artificial Life. P. Husbands and I. Harvey, eds., MIT Press. pp 358-367. knowledge into the program, which would result in familiar structures, we provided the algorithm with a model of the physical reality and a purely utilitarian fitness function, thus supplying measures of feasibility and functionality. In this way the evolutionary process runs in an environment that has not been unnecessarily constrained. We added, however, a requirement of computability to reject overly complex structures when they took too long for our simulations to evaluate. The results are encouraging. The evolved structures had a surprisingly alien look: they are not based in common knowledge on how to build with brick toys; instead, the computer found ways of its own through the evolutionary search process. We were able to assemble the final designs manually and confirm that they accomplish the objectives introduced with our fitness functions. After some background on related problems, we describe our physical simulation model for two-dimensional Lego structures, and the representation for encoding them and applying evolution. We demonstrate the feasibility of our work with photos of actual objects which were the result of particular optimizations. Finally, we discuss future work and draw some conclusions. In order to evolve both the morphology and behavior of autonomous mechanical devices which can be manufactured, one must have a simulator which operates under several constraints, and a resultant controller which is adaptive enough to cover the gap between simulated and real world. eral space of mechanisms. Conservative - because simulation is never perfect, it should preserve a margin of safety. Efficient - it should be quicker to test in simulation than through physical production and test. Buildable - results should be convertible from a simula tion to a real object Computer Evolution of Buildable Objects Abstract The idea of co-evolution of bodies and brains is becoming popular, but little work has been done in evolution of physical structure because of the lack of a general framework for doing it. Evolution of creatures in simulation has been constrained by the reality gap which implies that resultant objects are usually not buildable. The work we present takes a step in the problem of body evolution by applying evolutionary techniques to the design of structures assembled out of parts. Evolution takes place in a simulator we designed, which computes forces and stresses and predicts failure for 2-dimensional Lego structures. The final printout of our program is a schematic assembly, which can then be built physically. We demonstrate its functionality in several different evolved entities."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

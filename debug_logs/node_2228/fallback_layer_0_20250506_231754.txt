@@ -1,0 +1,55 @@
+📤 [DEBUG] Fallback Prompt for Node 2228 | Layer 0 | 20250506_231754:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_1: 3 examples
+- Label_2: 10 examples
+- Label_4: 1 examples
+
+Memory:
+1. [Label_2] "Modeling Cortical Plasticity Based on Adapting Lateral Interaction Abstract: A neural network model called LISSOM for the cooperative self-organizatio..."
+2. [Label_2] "A Mixture of Experts Model Exhibiting Prosopagnosia Abstract: A considerable body of evidence from prosopagnosia, a deficit in face recognition dissoc..."
+3. [Label_1] "nan Abstract: Co-evolution of Pursuit and Evasion II: Simulation Methods and Results fl Abstract In a previous SAB paper [10], we presented the scient..."
+4. [Label_2] "Separating hippocampal maps  Spatial Functions of the Hippocampal Formation and the Abstract: The place fields of hippocampal cells in old animals som..."
+5. [Label_4] "Generalization in Reinforcement Learning: Safely Approximating the Value Function Abstract: To appear in: G. Tesauro, D. S. Touretzky and T. K. Leen, ..."
+
+Text to classify:
+"Modeling dynamic receptive field changes in primary visual cortex using inhibitory learning
+Abstract: The position, size, and shape of the visual receptive field (RF) of some primary visual cortical neurons change dynamically, in response to artificial scotoma conditioning in cats (Pettet & Gilbert, 1992) and to retinal lesions in cats and monkeys (Darian-Smith & Gilbert, 1995). The "EXIN" learning rules (Marshall, 1995) are used to model dynamic RF changes. The EXIN model is compared with an adaptation model (Xing & Gerstein, 1994) and the LISSOM model (Sirosh & Miikkulainen, 1994; Sirosh et al., 1996). To emphasize the role of the lateral inhibitory learning rules, the EXIN and the LISSOM simulations were done with only lateral inhibitory learning. During scotoma conditioning, the EXIN model without feedforward learning produces centrifugal expansion of RFs initially inside the scotoma region, accompanied by increased responsiveness, without changes in spontaneous activation. The EXIN model without feedforward learning is more consistent with the neurophysiological data than are the adaptation model and the LISSOM model. The comparison between the EXIN and the LISSOM models suggests experiments to determine the role of feedforward excitatory and lateral inhibitory learning in producing dynamic RF changes during scotoma conditioning."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

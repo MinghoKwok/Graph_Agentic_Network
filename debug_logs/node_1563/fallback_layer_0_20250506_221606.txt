@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1563 | Layer 0 | 20250506_221606:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_1] "Fast EquiPartitioning of Rectangular Domains using Stripe Decomposition Abstract: This paper presents a fast algorithm that provides optimal or near o..."
+2. [Label_1] "The Application of a Parallel Genetic Algorithm to the n=m=P=C max Flowshop Problem Abstract: Hard combinatorial problems in sequencing and scheduling..."
+3. [Label_5] "Abstract Abstract: This paper is a scientific comparison of two code generation techniques with identical goals generation of the best possible softwa..."
+4. [Label_1] "Testing the Robustness of the Genetic Algorithm on the Floating Building Block Representation. Abstract: Recent studies on a floating building block r..."
+5. [Label_1] "Genetic Algorithms For Vertex Splitting in DAGs 1 Abstract: 1 This paper has been submitted to the 5th International Conference on Genetic Algorithms ..."
+
+Text to classify:
+"Fast EquiPartitioning of Rectangular Domains using Stripe Decomposition
+Abstract: This paper presents a fast algorithm that provides optimal or near optimal solutions to the minimum perimeter problem on a rectangular grid. The minimum perimeter problem is to partition a grid of size M N into P equal area regions while minimizing the total perimeter of the regions. The approach taken here is to divide the grid into stripes that can be filled completely with an integer number of regions . This striping method gives rise to a knapsack integer program that can be efficiently solved by existing codes. The solution of the knapsack problem is then used to generate the grid region assignments. An implementation of the algorithm partitioned a 1000 1000 grid into 1000 regions to a provably optimal solution in less than one second. With sufficient memory to hold the M N grid array, extremely large minimum perimeter problems can be solved easily."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

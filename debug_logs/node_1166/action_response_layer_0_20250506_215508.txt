@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1166 | Layer 0 | 20250506_215508:
+```json
+[
+  {"action_type": "rag_query", "query": "finite state machine", "top_k": 10}
+]
+```
+================================================================================

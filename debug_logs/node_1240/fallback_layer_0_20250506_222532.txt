@@ -1,0 +1,56 @@
+📤 [DEBUG] Fallback Prompt for Node 1240 | Layer 0 | 20250506_222532:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_2: 1 examples
+- Label_3: 17 examples
+- Label_5: 1 examples
+- Label_6: 4 examples
+
+Memory:
+1. [Label_6] "Bayesian Methods for Adaptive Models Abstract: nan"
+2. [Label_5] "First Order Regression Abstract: We present a new approach, called First Order Regression (FOR), to handling numerical information in Inductive Logic ..."
+3. [Label_3] "Robustness Analysis of Bayesian Networks with Global Neighborhoods Abstract: This paper presents algorithms for robustness analysis of Bayesian networ..."
+4. [Label_3] "Analysis of the Gibbs sampler for a model related to James-Stein estimators Abstract: Summary. We analyze a hierarchical Bayes model which is related ..."
+5. [Label_3] "On the Logic of Iterated Belief Revision Abstract: We show in this paper that the AGM postulates are too week to ensure the rational preservation of c..."
+
+Text to classify:
+"Model Selection and Accounting for Model Uncertainty in Linear Regression Models
+Abstract: 1 Adrian E. Raftery is Professor of Statistics and Sociology, David Madigan is Assistant Professor of Statistics, and Jennifer Hoeting is a Ph.D. Candidate, all at the Department of Statistics, GN-22, University of Washington, Seattle, WA 98195. The research of Raftery and Hoeting was supported by ONR Contract N-00014-91-J-1074. Madigan's research was partially supported by NSF grant no. DMS 92111627. The authors are grateful to Danika Lew for research assistance."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

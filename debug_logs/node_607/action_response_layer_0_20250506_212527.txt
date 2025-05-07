@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 607 | Layer 0 | 20250506_212527:
+```json
+[
+  {"action_type": "rag_query", "query": "Support Vector Machine Approach to Decision Trees", "top_k": 10}
+]
+```
+================================================================================

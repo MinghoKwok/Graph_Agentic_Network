@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2612 | Layer 0 | 20250506_233036:
+```json
+[
+  {"action_type": "rag_query", "query": "Models of Parallel Adaptive Logic", "top_k": 10}
+]
+```
+================================================================================

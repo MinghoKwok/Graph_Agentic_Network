@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 535 | Layer 0 | 20250506_212136:
+```json
+[
+  {"action_type": "rag_query", "query": "sequential pac learning", "top_k": 10}
+]
+```
+================================================================================

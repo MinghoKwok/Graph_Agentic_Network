@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 459 | Layer 0 | 20250506_211743:
+```json
+[
+  {"action_type": "rag_query", "query": "Pac Learning Noise Geometry", "top_k": 10}
+]
+```
+================================================================================

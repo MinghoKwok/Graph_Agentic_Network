@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 256 | Layer 0 | 20250506_210848:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_0] "Improving Minority Class Prediction Using Case-Specific Feature Weights Abstract: This paper addresses the problem of handling skewed class distributi..."
+2. [Label_0] "Formalising the knowledge content of case memory systems Abstract: Discussions of case-based reasoning often reflect an implicit assumption that a cas..."
+3. [Label_0] "LINNEO A Classification Methodology for Ill-structured Domains Abstract: In this work we present a classification methodology (LINNEO + ) to discover ..."
+4. [Label_0] "EXPLORING A FRAMEWORK FOR INSTANCE BASED LEARNING AND NAIVE BAYESIAN CLASSIFIERS Abstract: The relative performance of different methods for classifie..."
+5. [Label_0] "Oblivious Decision Trees and Abstract Cases Abstract: In this paper, we address the problem of case-based learning in the presence of irrelevant featu..."
+
+Text to classify:
+"Using Decision Trees to Improve Case-Based Learning
+Abstract: This paper shows that decision trees can be used to improve the performance of case-based learning (CBL) systems. We introduce a performance task for machine learning systems called semi-flexible prediction that lies between the classification task performed by decision tree algorithms and the flexible prediction task performed by conceptual clustering systems. In semi-flexible prediction, learning should improve prediction of a specific set of features known a priori rather than a single known feature (as in classification) or an arbitrary set of features (as in conceptual clustering). We describe one such task from natural language processing and present experiments that compare solutions to the problem using decision trees, CBL, and a hybrid approach that combines the two. In the hybrid approach, decision trees are used to specify the features to be included in k-nearest neighbor case retrieval. Results from the experiments show that the hybrid approach outperforms both the decision tree and case-based approaches as well as two case-based systems that incorporate expert knowledge into their case retrieval algorithms. Results clearly indicate that decision trees can be used to improve the performance of CBL systems and do so without reliance on potentially expensive expert knowledge."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

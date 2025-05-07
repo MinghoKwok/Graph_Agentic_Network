@@ -1,0 +1,57 @@
+📤 [DEBUG] Fallback Prompt for Node 1630 | Layer 0 | 20250506_224618:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_1: 2 examples
+- Label_2: 2 examples
+- Label_4: 4 examples
+- Label_5: 1 examples
+- Label_6: 3 examples
+
+Memory:
+1. [Label_2] "Learning from Bad Data Abstract: The data describing resolutions to telephone network local loop "troubles," from which we wish to learn rules for dis..."
+2. [Label_4] "Machine Learning Research: Four Current Directions Abstract: Machine Learning research has been making great progress is many directions. This article..."
+3. [Label_6] "General Bounds on Statistical Query Learning and PAC Learning with Noise via Hypothesis Boosting Abstract: We derive general bounds on the complexity ..."
+4. [Label_0] "Unifying Empirical and Explanation-Based Learning by Modeling the Utility of Learned Knowledge Abstract: The overfit problem in empirical learning and..."
+5. [Label_1] "Growing neural networks Abstract: nan"
+
+Text to classify:
+"Averaging and Data Snooping
+Abstract: Presenting and Analyzing the Results of AI Experiments: Data Averaging and Data Snooping, Proceedings of the Fourteenth National Conference on Artificial Intelligence, AAAI-97, AAAI Press, Menlo Park, California, pp. 362367, 1997. Copyright AAAI. Presenting and Analyzing the Results of AI Experiments: Abstract Experimental results reported in the machine learning AI literature can be misleading. This paper investigates the common processes of data averaging (reporting results in terms of the mean and standard deviation of the results from multiple trials) and data snooping in the context of neural networks, one of the most popular AI machine learning models. Both of these processes can result in misleading results and inaccurate conclusions. We demonstrate how easily this can happen and propose techniques for avoiding these very important problems. For data averaging, common presentation assumes that the distribution of individual results is Gaussian. However, we investigate the distribution for common problems and find that it often does not approximate the Gaussian distribution, may not be symmetric, and may be multimodal. We show that assuming Gaussian distributions can significantly affect the interpretation of results, especially those of comparison studies. For a controlled task, we find that the distribution of performance is skewed towards better performance for smoother target functions and skewed towards worse performance for more complex target functions. We propose new guidelines for reporting performance which provide more information about the actual distribution (e.g. box-whiskers plots). For data snooping, we demonstrate that optimization of performance via experimentation with multiple parameters can lead to significance being assigned to results which are due to chance. We suggest that precise descriptions of experimental techniques can be very important to the evaluation of results, and that we need to be aware of potential data snooping biases when formulating these experimental techniques (e.g. selecting the test procedure). Additionally, it is important to only rely on appropriate statistical tests and to ensure that any assumptions made in the tests are valid (e.g. normality of the distribution)."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

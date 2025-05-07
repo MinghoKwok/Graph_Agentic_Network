@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 897 | Layer 0 | 20250506_214048:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_3] "On Convergence of the EM Algorithm and the Gibbs Sampler  SUMMARY Abstract: In this article we investigate the relationship between the two popular al..."
+2. [Label_3] "Analysis of a Non-Reversible Markov Chain Sampler Abstract: Technical Report BU-1385-M, Biometrics Unit, Cornell University Abstract We analyse the co..."
+3. [Label_3] "On Bayesian analysis of mixtures with an unknown number of components  Summary Abstract: New methodology for fully Bayesian mixture analysis is develo..."
+4. [Label_3] "Monte Carlo Implementation of Gaussian Process Models for Bayesian Regression and Classification Abstract: Technical Report No. 9702, Department of St..."
+5. [Label_3] "Analysis of the Gibbs sampler for a model related to James-Stein estimators Abstract: Summary. We analyze a hierarchical Bayes model which is related ..."
+
+Text to classify:
+"Parallel Markov chain Monte Carlo sampling.
+Abstract: Markov chain Monte Carlo (MCMC) samplers have proved remarkably popular as tools for Bayesian computation. However, problems can arise in their application when the density of interest is high dimensional and strongly correlated. In these circumstances the sampler may be slow to traverse the state space and mixing is poor. In this article we offer a partial solution to this problem. The state space of the Markov chain is augmented to accommodate multiple chains in parallel. Updates to individual chains are based around a genetic style crossover operator acting on `parent' states drawn from the population of chains. This process makes efficient use of gradient information implicitly encoded within the distribution of states across the population. Empirical studies support the claim that the crossover operator acting on a parallel population of chains improves mixing. This is illustrated with an example of sampling a high dimensional posterior probability density from a complex predictive model. By adopting a latent variable approach the methodology is extended to deal with variable selection and model averaging in high dimensions. This is illustrated with an example of knot selection for a spline interpolant."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

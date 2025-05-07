@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 167 | Layer 0 | 20250506_212306:
+```json
+[
+  {"action_type": "rag_query", "query": "Auto-exploratory Average Reward Reinforcement Learning", "top_k": 10}
+]
+```
+================================================================================

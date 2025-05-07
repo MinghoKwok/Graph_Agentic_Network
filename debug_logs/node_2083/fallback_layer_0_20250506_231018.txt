@@ -1,0 +1,56 @@
+📤 [DEBUG] Fallback Prompt for Node 2083 | Layer 0 | 20250506_231018:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_1: 3 examples
+- Label_2: 3 examples
+- Label_3: 2 examples
+- Label_6: 3 examples
+
+Memory:
+1. [Label_6] "Decision Tree Induction: How Effective is the Greedy Heuristic? Abstract: Most existing decision tree systems use a greedy approach to induce trees | ..."
+2. [Label_3] "Logarithmic Time Parallel Bayesian Inference Abstract: I present a parallel algorithm for exact probabilistic inference in Bayesian networks. For poly..."
+3. [Label_2] "Homology Detection via Family Pairwise Search a straightforward generalization of pairwise sequence comparison algorithms to Abstract: The function of..."
+4. [Label_1] "Genetic Algorithms For Vertex Splitting in DAGs 1 Abstract: 1 This paper has been submitted to the 5th International Conference on Genetic Algorithms ..."
+5. [Label_0] "A systematic description of greedy optimisation algorithms for cost sensitive generalisation Abstract: This paper defines a class of problems involvin..."
+
+Text to classify:
+"TREE CONTRACTIONS AND EVOLUTIONARY TREES
+Abstract: An evolutionary tree is a rooted tree where each internal vertex has at least two children and where the leaves are labeled with distinct symbols representing species. Evolutionary trees are useful for modeling the evolutionary history of species. An agreement subtree of two evolutionary trees is an evolutionary tree which is also a topological subtree of the two given trees. We give an algorithm to determine the largest possible number of leaves in any agreement subtree of two trees T 1 and T 2 with n leaves each. If the maximum degree d of these trees is bounded by a constant, the time complexity is O(n log 2 n) and is within a log n factor of optimal. For general d, this algorithm runs in O(nd 2 log d log 2 n) time or alternately in O(nd p d log 3 n) time."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

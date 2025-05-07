@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1972 | Layer 0 | 20250506_223745:
+```json
+[
+  {"action_type": "rag_query", "query": "MCMC Methods Bayesian Regression Analysis Model Selection", "top_k": 10}
+]
+```
+================================================================================

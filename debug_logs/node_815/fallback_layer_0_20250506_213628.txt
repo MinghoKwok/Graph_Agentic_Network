@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 815 | Layer 0 | 20250506_213628:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_1] "A Search Space Analysis of the Job Shop Scheduling Problem Abstract: A computational study for the Job Shop Scheduling Problem is presented. Thereby e..."
+2. [Label_1] "The Application of a Parallel Genetic Algorithm to the n=m=P=C max Flowshop Problem Abstract: Hard combinatorial problems in sequencing and scheduling..."
+3. [Label_1] "A Genetic Algorithm for File and Task Placement in a Distributed System Abstract: In this paper we explore the distributed file and task placement pro..."
+4. [Label_1] "Testing the Robustness of the Genetic Algorithm on the Floating Building Block Representation. Abstract: Recent studies on a floating building block r..."
+5. [Label_1] "A STUDY OF CROSSOVER OPERATORS IN GENETIC PROGRAMMING Abstract: Holland's analysis of the sources of power of genetic algorithms has served as guidanc..."
+
+Text to classify:
+"Genetic Algorithm based Scheduling in a Dynamic Manufacturing Environment
+Abstract: The application of adaptive optimization strategies to scheduling in manufacturing systems has recently become a research topic of broad interest. Population based approaches to scheduling predominantly treat static data models, whereas real-world scheduling tends to be a dynamic problem. This paper briefly outlines the application of a genetic algorithm to the dynamic job shop problem arising in production scheduling. First we sketch a genetic algorithm which can handle release times of jobs. In a second step a preceding simulation method is used to improve the performance of the algorithm. Finally the job shop is regarded as a nondeterministic optimization problem arising from the occurrence of job releases. Temporal Decomposition leads to a scheduling control that interweaves both simulation in time and genetic search."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2259 | Layer 0 | 20250506_225248:
+```json
+[
+  {"action_type": "rag_query", "query": "Genetic Programming schema theory", "top_k": 10}
+]
+```
+================================================================================

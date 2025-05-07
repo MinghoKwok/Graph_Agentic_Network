@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2518 | Layer 0 | 20250506_230638:
+```json
+[
+  {"action_type": "rag_query", "query": "Genetic Algorithms Expected Values Bit Products Walsh Products", "top_k": 10}
+]
+```
+================================================================================

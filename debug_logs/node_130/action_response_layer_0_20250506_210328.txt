@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 130 | Layer 0 | 20250506_210328:
+```json
+[
+  {"action_type": "rag_query", "query": "PAC-Learning PROLOG clauses", "top_k": 10}
+]
+```
+================================================================================

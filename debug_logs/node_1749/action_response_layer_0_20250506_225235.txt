@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1749 | Layer 0 | 20250506_225235:
+```json
+[
+  {"action_type": "rag_query", "query": "Algebraic Techniques for Efficient Inference in Bayesian Networks", "top_k": 10}
+]
+```
+================================================================================

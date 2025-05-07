@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1406 | Layer 0 | 20250506_220748:
+```json
+[
+  {"action_type": "rag_query", "query": "time-series modelling", "top_k": 10}
+]
+```
+================================================================================

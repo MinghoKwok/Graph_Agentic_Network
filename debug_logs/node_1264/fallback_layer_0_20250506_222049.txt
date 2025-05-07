@@ -1,0 +1,50 @@
+📤 [DEBUG] Fallback Prompt for Node 1264 | Layer 0 | 20250506_222049:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 5 examples
+- Label_4: 1 examples
+
+Memory:
+1. [Label_1] "An Artificial Life Model for Investigating the Evolution of Modularity Abstract: To investigate the issue of how modularity emerges in nature, we pres..."
+2. [Label_1] "Environmental Effects on Minimal Behaviors in the Minimat World Abstract: The structure of an environment affects the behaviors of the organisms that ..."
+3. [Label_1] "Incremental Co-evolution of Organisms: A New Approach for Optimization and Discovery of Strategies Abstract: In the field of optimization and machine ..."
+4. [Label_1] "nan Abstract: Co-evolution of Pursuit and Evasion II: Simulation Methods and Results fl Abstract In a previous SAB paper [10], we presented the scient..."
+5. [Label_4] "Reinforcement Learning with Modular Neural Networks for Control Abstract: Reinforcement learning methods can be applied to control problems with the o..."
+
+Text to classify:
+"An Artificial Life Model for Investigating the Evolution of Modularity
+Abstract: To investigate the issue of how modularity emerges in nature, we present an Artificial Life model that allow us to reproduce on the computer both the organisms (i.e., robots that have a genotype, a nervous system, and sensory and motor organs) and the environment in which organisms live, behave and reproduce. In our simulations neural networks are evolutionarily trained to control a mobile robot designed to keep an arena clear by picking up trash objects and releasing them outside the arena. During the evolutionary process modular neural networks, which control the robot's behavior, emerge as a result of genetic duplications. Preliminary simulation results show that duplication-based modular architecture outperforms the nonmod-ular architecture, which represents the starting architecture in our simulations. Moreover, an interaction between mutation and duplication rate emerges from our results. Our future goal is to use this model in order to explore the relationship between the evolutionary emergence of modularity and the phenomenon of gene duplication."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

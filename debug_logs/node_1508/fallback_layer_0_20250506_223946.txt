@@ -1,0 +1,57 @@
+📤 [DEBUG] Fallback Prompt for Node 1508 | Layer 0 | 20250506_223946:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_1: 2 examples
+- Label_2: 3 examples
+- Label_3: 3 examples
+- Label_4: 1 examples
+- Label_5: 1 examples
+
+Memory:
+1. [Label_3] "BAYESIAN TIME SERIES: Models and Computations for the Analysis of Time Series in the Physical Sciences Abstract: This articles discusses developments ..."
+2. [Label_3] "Hidden Markov decision trees Abstract: We study a time series model that can be viewed as a decision tree with Markov temporal structure. The model is..."
+3. [Label_5] "Modeling Superscalar Processors via Statistical Simulation Abstract: nan"
+4. [Label_1] "Unsupervised Learning with the Soft-Means Algorithm Abstract: This note describes a useful adaptation of the `peak seeking' regime used in unsupervise..."
+5. [Label_3] "Monte Carlo Implementation of Gaussian Process Models for Bayesian Regression and Classification Abstract: Technical Report No. 9702, Department of St..."
+
+Text to classify:
+"Segmenting Time Series using Gated Experts with Simulated Annealing
+Abstract: Many real-world time series are multi-stationary, where the underlying data generating process (DGP) switches between different stationary subprocesses, or modes of operation. An important problem in modeling such systems is to discover the underlying switching process, which entails identifying the number of subprocesses and the dynamics of each subprocess. For many time series, this problem is ill-defined, since there are often no obvious means to distinguish the different subprocesses. We discuss the use of nonlinear gated experts to perform the segmentation and system identification of the time series. Unlike standard gated experts methods, however, we use concepts from statistical physics to enhance the segmentation for high-noise problems where only a few experts are required."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

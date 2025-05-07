@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1872 | Layer 0 | 20250506_223226:
+```json
+[
+  {"action_type": "rag_query", "query": "Building-Block Hypothesis in machine learning", "top_k": 10}
+]
+```
+================================================================================

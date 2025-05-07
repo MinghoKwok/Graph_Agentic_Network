@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 438 | Layer 0 | 20250506_213720:
+```json
+[
+  {"action_type": "rag_query", "query": "OC1 system for induction of oblique decision trees", "top_k": 10}
+]
+```
+================================================================================

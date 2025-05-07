@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1813 | Layer 0 | 20250506_225601:
+```json
+[
+  {"action_type": "rag_query", "query": "pruning strategies for neural networks", "top_k": 10}
+]
+```
+================================================================================

@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 134 | Layer 0 | 20250506_212122:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_3: 2 examples
+- Label_4: 4 examples
+- Label_6: 3 examples
+
+Memory:
+1. [Label_6] "Bayesian Methods for Adaptive Models Abstract: nan"
+2. [Label_4] "Machine Learning Research: Four Current Directions Abstract: Machine Learning research has been making great progress is many directions. This article..."
+3. [Label_6] "Pac Learning, Noise, and Geometry Abstract: This paper describes the probably approximately correct model of concept learning, paying special attentio..."
+4. [Label_4] "On-Line Adaptation of a Signal Predistorter through Dual Reinforcement Learning Abstract: Several researchers have demonstrated how neural networks ca..."
+5. [Label_3] "BAYESIAN TIME SERIES: Models and Computations for the Analysis of Time Series in the Physical Sciences Abstract: This articles discusses developments ..."
+
+Text to classify:
+"Gain Adaptation Beats Least Squares?
+Abstract: I present computational results suggesting that gain-adaptation algorithms based in part on connectionist learning methods may improve over least squares and other classical parameter-estimation methods for stochastic time-varying linear systems. The new algorithms are evaluated with respect to classical methods along three dimensions: asymptotic error, computational complexity, and required prior knowledge about the system. The new algorithms are all of the same order of complexity as LMS methods, O(n), where n is the dimensionality of the system, whereas least-squares methods and the Kalman filter are O(n 2 ). The new methods also improve over the Kalman filter in that they do not require a complete statistical model of how the system varies over time. In a simple computational experiment, the new methods are shown to produce asymptotic error levels near that of the optimal Kalman filter and significantly below those of least-squares and LMS methods. The new methods may perform better even than the Kalman filter if there is any error in the filter's model of how the system varies over time."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 715 | Layer 0 | 20250506_213110:
+```json
+[
+  {"action_type": "rag_query", "query": "Covariate Selection in Hierarchical Models of Hospital Admission Counts: A Bayes Factor Approach", "top_k": 10}
+]
+```
+================================================================================

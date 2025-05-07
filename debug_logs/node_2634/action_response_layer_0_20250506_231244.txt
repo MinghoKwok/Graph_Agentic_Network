@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2634 | Layer 0 | 20250506_231244:
+```json
+[
+  {"action_type": "rag_query", "query": "Bayesian Model Averaging", "top_k": 10}
+]
+```
+================================================================================

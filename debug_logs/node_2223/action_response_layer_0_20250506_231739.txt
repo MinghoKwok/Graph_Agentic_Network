@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2223 | Layer 0 | 20250506_231739:
+```json
+[
+  {"action_type": "rag_query", "query": "Smoothing Spline Models With Correlated Random Errors", "top_k": 10}
+]
+```
+================================================================================

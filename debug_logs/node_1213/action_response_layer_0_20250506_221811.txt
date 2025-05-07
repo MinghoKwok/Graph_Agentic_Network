@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1213 | Layer 0 | 20250506_221811:
+```json
+[
+  {"action_type": "rag_query", "query": "Learning in Multi-Robot Systems", "top_k": 10}
+]
+```
+================================================================================

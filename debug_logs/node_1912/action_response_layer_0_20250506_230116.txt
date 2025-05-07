@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1912 | Layer 0 | 20250506_230116:
+```json
+[
+  {"action_type": "rag_query", "query": "Theory of Correlations in Stochastic Neural Networks", "top_k": 10}
+]
+```
+================================================================================

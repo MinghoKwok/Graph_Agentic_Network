@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 2093 | Layer 0 | 20250506_231050:
+```json
+[
+  {"action_type": "rag_query", "query": "Locally Connected Recurrent Networks", "top_k": 10}
+]
+```
+================================================================================

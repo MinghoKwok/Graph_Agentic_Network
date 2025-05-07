@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 2497 | Layer 0 | 20250506_232502:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 1 examples
+- Label_2: 5 examples
+- Label_3: 1 examples
+- Label_6: 3 examples
+
+Memory:
+1. [Label_2] "A Mixture of Experts Model Exhibiting Prosopagnosia Abstract: A considerable body of evidence from prosopagnosia, a deficit in face recognition dissoc..."
+2. [Label_2] "Separating hippocampal maps  Spatial Functions of the Hippocampal Formation and the Abstract: The place fields of hippocampal cells in old animals som..."
+3. [Label_1] "nan Abstract: Co-evolution of Pursuit and Evasion II: Simulation Methods and Results fl Abstract In a previous SAB paper [10], we presented the scient..."
+4. [Label_2] "The Canonical Distortion Measure in Feature Space and 1-NN Classification Abstract: We prove that the Canonical Distortion Measure (CDM) [2, 3] is the..."
+5. [Label_6] "On learning hierarchical classifications Abstract: Many significant real-world classification tasks involve a large number of categories which are arr..."
+
+Text to classify:
+"Learning a Specialization for Face Recognition: The Effect of Spatial Frequency
+Abstract: The double dissociation between prosopagnosia, a face recognition deficit occurring after brain damage, and visual object agnosia, difficulty recognizing other kinds of complex objects, indicates that face and non-face object recognition may be served by partially independent mechanisms in the brain. Such a dissociation could be the result of a competitive learning mechanism that, during development, devotes neural resources to the tasks they are best at performing. Studies of normal adult performance on face and object recognition tasks seem to indicate that face recognition is primarily configural, involving the low spatial frequency information present in a stimulus over relatively large distances, whereas object recognition is primarily featural, involving analysis of the object's parts using local, high spatial frequency information. In a feed-forward computational model of visual processing, two modules compete to classify input stimuli; when one module receives low spatial frequency information and the other receives high spatial frequency information, the low-frequency module shows a strong specialization for face recognition in a combined face identification/object classification task. The series of experiments shows that the fine discrimination necessary for distinguishing members of a visually homoge neous class such as faces relies heavily on the low spatial frequencies present in a stimulus."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

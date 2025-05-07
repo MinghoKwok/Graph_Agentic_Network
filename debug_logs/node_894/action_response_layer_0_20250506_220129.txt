@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 894 | Layer 0 | 20250506_220129:
+```json
+[
+  {"action_type": "rag_query", "query": "Bayesian Analysis of Agricultural Field Experiments", "top_k": 10}
+]
+```
+================================================================================

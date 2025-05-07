@@ -1,0 +1,54 @@
+📤 [DEBUG] Fallback Prompt for Node 2107 | Layer 0 | 20250506_230507:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_1: 1 examples
+- Label_2: 4 examples
+- Label_3: 3 examples
+- Label_5: 3 examples
+- Label_6: 2 examples
+
+Memory:
+1. [Label_6] "Feature Generation for Sequence Categorization Abstract: The problem of sequence categorization is to generalize from a corpus of labeled sequences pr..."
+2. [Label_5] "Machine Learning and Inference Abstract: Constructive induction divides the problem of learning an inductive hypothesis into two intertwined searches:..."
+3. [Label_2] "Homology Detection via Family Pairwise Search a straightforward generalization of pairwise sequence comparison algorithms to Abstract: The function of..."
+4. [Label_5] "Machine learning in prognosis of the femoral neck fracture recovery examples, estimating attributes, explanation ability, Abstract: We compare the per..."
+5. [Label_2] "Application of Neural Networks for the Classification of Diffuse Liver Disease by Quantitative Echography Abstract: Three different methods were inves..."
+
+Text to classify:
+"Prediction of human mRNA donor and acceptor sites from the DNA sequence
+Abstract: Artificial neural networks have been applied to the prediction of splice site location in human pre-mRNA. A joint prediction scheme where prediction of transition regions between introns and exons regulates a cutoff level for splice site assignment was able to predict splice site locations with confidence levels far better than previously reported in the literature. The problem of predicting donor and acceptor sites in human genes is hampered by the presence of numerous amounts of false positives | in the paper the distribution of these false splice sites is examined and linked to a possible scenario for the splicing mechanism in vivo. When the presented method detects 95% of the true donor and acceptor sites it makes less than 0.1% false donor site assignments and less than 0.4% false acceptor site assignments. For the large data set used in this study this means that on the average there are one and a half false donor sites per true donor site and six false acceptor sites per true acceptor site. With the joint assignment method more than a fifth of the true donor sites and around one fourth of the true acceptor sites could be detected without accompaniment of any false positive predictions. Highly confident splice sites could not be isolated with a widely used weight matrix method or by separate splice site networks. A complementary relation between the confidence levels of the coding/non-coding and the separate splice site networks was observed, with many weak splice sites having sharp transitions in the coding/non-coding signal and many stronger splice sites having more ill-defined transitions between coding and non-coding."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

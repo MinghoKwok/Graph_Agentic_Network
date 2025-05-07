@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 2583 | Layer 0 | 20250506_232913:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 4 examples
+- Label_4: 1 examples
+- Label_5: 4 examples
+- Label_6: 8 examples
+
+Memory:
+1. [Label_0] "A systematic description of greedy optimisation algorithms for cost sensitive generalisation Abstract: This paper defines a class of problems involvin..."
+2. [Label_6] "Constructing Conjunctions using Systematic Search on Decision Trees Abstract: This paper investigates a dynamic path-based method for constructing con..."
+3. [Label_4] "Machine Learning Research: Four Current Directions Abstract: Machine Learning research has been making great progress is many directions. This article..."
+4. [Label_5] "Learning Evolving Concepts Using Partial-Memory Approach  Machine Learning and Inference Laboratory Abstract: This paper addresses the problem of lear..."
+5. [Label_6] "Machine Learning by Function Decomposition Abstract: We present a new machine learning method that, given a set of training examples, induces a defini..."
+
+Text to classify:
+"Dynamic Automatic Model Selection
+Abstract: COINS Technical Report 92-30 February 1992 Abstract The problem of how to learn from examples has been studied throughout the history of machine learning, and many successful learning algorithms have been developed. A problem that has received less attention is how to select which algorithm to use for a given learning task. The ability of a chosen algorithm to induce a good generalization depends on how appropriate the model class underlying the algorithm is for the given task. We define an algorithm's model class to be the representation language it uses to express a generalization of the examples. Supervised learning algorithms differ in their underlying model class and in how they search for a good generalization. Given this characterization, it is not surprising that some algorithms find better generalizations for some, but not all tasks. Therefore, in order to find the best generalization for each task, an automated learning system must search for the appropriate model class in addition to searching for the best generalization within the chosen class. This thesis proposal investigates the issues involved in automating the selection of the appropriate model class. The presented approach has two facets. Firstly, the approach combines different model classes in the form of a model combination decision tree, which allows the best representation to be found for each subconcept of the learning task. Secondly, which model class is the most appropriate is determined dynamically using a set of heuristic rules. Explicit in each rule are the conditions in which a particular model class is appropriate and if it is not, what should be done next. In addition to describing the approach, this proposal describes how the approach will be evaluated in order to demonstrate that it is both an efficient and effective method for automatic model selection."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

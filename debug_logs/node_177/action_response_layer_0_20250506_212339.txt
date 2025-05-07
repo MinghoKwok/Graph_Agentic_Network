@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 177 | Layer 0 | 20250506_212339:
+```json
+[
+  {"action_type": "rag_query", "query": "Evaluation and Selection of Biases in Machine Learning", "top_k": 10}
+]
+```
+================================================================================

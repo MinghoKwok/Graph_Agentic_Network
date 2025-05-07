@@ -1,0 +1,55 @@
+📤 [DEBUG] Fallback Prompt for Node 1158 | Layer 0 | 20250506_222113:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.
+Do not rely on abstract or popular terms alone (like "system" or "accuracy") unless those match the label examples provided.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_3: 3 examples
+- Label_5: 1 examples
+- Label_6: 5 examples
+
+Memory:
+1. [Label_3] "SINGLE FACTOR ANALYSIS BY MML ESTIMATION Abstract: The Minimum Message Length (MML) technique is applied to the problem of estimating the parameters o..."
+2. [Label_6] "Inductive Logic Programming Abstract: A new research area, Inductive Logic Programming, is presently emerging. While inheriting various positive chara..."
+3. [Label_5] "Incremental Reduced Error Pruning Abstract: This paper outlines some problems that may occur with Reduced Error Pruning in relational learning algorit..."
+4. [Label_6] "Efficient Algorithms for Identifying Relevant Features Abstract: This paper describes efficient methods for exact and approximate implementation of th..."
+5. [Label_3] "Maximum Likelihood and Covariant Algorithms for Independent Component Analysis somewhat more biologically plausible, involving no Abstract: Bell and S..."
+
+Text to classify:
+"Stochastic Complexity Based Estimation of Missing Elements in Questionnaire Data
+Abstract: In this paper we study a new information-theoretically justified approach to missing data estimation for multivariate categorical data. The approach discussed is a model-based imputation procedure relative to a model class (i.e., a functional form for the probability distribution of the complete data matrix), which in our case is the set of multinomial models with some independence assumptions. Based on the given model class assumption an information-theoretic criterion can be derived to select between the different complete data matrices. Intuitively this general criterion, called stochastic complexity, represents the shortest code length needed for coding the complete data matrix relative to the model class chosen. Using this information-theoretic criteria, the missing data problem is reduced to a search problem, i.e., finding the data completion with minimal stochastic complexity. In the experimental part of the paper we present empirical results of the approach using two real data sets, and compare these results to those achived by commonly used techniques such as case deletion and imputating sample averages."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

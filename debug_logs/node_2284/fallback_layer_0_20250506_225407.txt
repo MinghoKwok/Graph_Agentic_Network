@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 2284 | Layer 0 | 20250506_225407:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_5] "Learning Evolving Concepts Using Partial-Memory Approach  Machine Learning and Inference Laboratory Abstract: This paper addresses the problem of lear..."
+2. [Label_2] "Word Perfect Corp. LIA: A Location-Independent Transformation for ASOCS Adaptive Algorithm 2 Abstract: Most Artificial Neural Networks (ANNs) have a f..."
+3. [Label_2] "MBP on T0: mixing floating- and fixed-point formats in BP learning Abstract: We examine the efficient implementation of back prop type algorithms on T..."
+4. [Label_5] "THE EXPANDABLE SPLIT WINDOW PARADIGM FOR EXPLOITING FINE-GRAIN PARALLELISM Abstract: We propose a new processing paradigm, called the Expandable Split..."
+5. [Label_2] "ce: [Tex89] <institution> Texas Instruments. </institution> <note> TMS320C30 C Compiler Reference Guide, 1989. Document Title: SPRU034A. </note> Abstr..."
+
+Text to classify:
+"Performance of On-Line Learning Methods in Predicting Multiprocessor Memory Access Patterns
+Abstract: Technical Report UMIACS-TR-96-59 and CS-TR-3676 Institute for Advanced Computer Studies University of Maryland College Park, MD 20742 Abstract Shared memory multiprocessors require reconfigurable interconnection networks (INs) for scalability. These INs are reconfigured by an IN control unit. However, these INs are often plagued by undesirable reconfiguration time that is primarily due to control latency, the amount of time delay that the control unit takes to decide on a desired new IN configuration. To reduce control latency, a trainable prediction unit (PU) was devised and added to the IN controller. The PUs job is to anticipate and reduce control configuration time, the major component of the control latency. Three different on-line prediction techniques were tested to learn and predict repetitive memory access patterns for three typical parallel processing applications, the 2-D relaxation algorithm, matrix multiply and Fast Fourier Transform. The predictions were then used by a routing control algorithm to reduce control latency by configuring the IN to provide needed memory access paths before they were requested. Three prediction techniques were used and tested: 1). a Markov predictor, 2). a linear predictor and 3). a time delay neural network (TDNN) predictor. As expected, different predictors performed best on different applications, however, the TDNN produced the best overall results."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

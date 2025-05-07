@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 2446 | Layer 0 | 20250506_230249:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_1] "A STUDY OF CROSSOVER OPERATORS IN GENETIC PROGRAMMING Abstract: Holland's analysis of the sources of power of genetic algorithms has served as guidanc..."
+2. [Label_1] "Growing neural networks Abstract: nan"
+3. [Label_1] "Incremental Co-evolution of Organisms: A New Approach for Optimization and Discovery of Strategies Abstract: In the field of optimization and machine ..."
+4. [Label_1] "Testing the Robustness of the Genetic Algorithm on the Floating Building Block Representation. Abstract: Recent studies on a floating building block r..."
+5. [Label_1] "The Application of a Parallel Genetic Algorithm to the n=m=P=C max Flowshop Problem Abstract: Hard combinatorial problems in sequencing and scheduling..."
+
+Text to classify:
+"nan
+Abstract: 1] R.K. Belew, J. McInerney, and N. Schraudolph, Evolving networks: using the genetic algorithm with connectionist learning, in Artificial Life II, SFI Studies in the Science of Complexity, C.G. Langton, C. Taylor, J.D. Farmer, S. Rasmussen Eds., vol. 10, Addison-Wesley, 1991. [2] M. McInerney, and A.P. Dhawan, Use of genetic algorithms with back propagation in training of feed-forward neural networks, in IEEE International Conference on Neural Networks, vol. 1, pp. 203-208, 1993. [3] F.Z. Brill, D.E. Brown, and W.N. Martin, Fast genetic selection of features for neural network classifiers, IEEE Transactions on Neural Networks, vol. 3, no. 2, pp. 324-328, 1992. [4] F. Dellaert, and J. Vandewalle, Automatic design of cellular neural networks by means of genetic algorithms: finding a feature detector, in The Third IEEE International Workshop on Cellular Neural Networks and Their Applications, IEEE, New Jersey, pp. 189-194, 1994. [5] D.E. Moriarty, and R. Miikkulainen, Efficient reinforcement learning through symbiotic evolution, Machine Learning, vol. 22, pp. 11-33, 1996. [6] L. Davis, Handbook of Genetic Algorithms, Van Nostrand Reinhold, New York, 1991. [7] D. Whitely, The GENITOR algorithm and selective pressure, in Proceedings of the Third Interanational Conference on Genetic Algorithms, J.D. Schaffer Ed., Morgan Kauffman, San Mateo, CA, 1989, pp. 116-121. [8] van Camp, D., T. Plate and G.E. Hinton (1992). The Xerion Neural Network Simulator and Documentation. Department of Computer Science, University of Toronto, Toronto."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

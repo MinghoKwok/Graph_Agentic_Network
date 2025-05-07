@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 112 | Layer 0 | 20250506_212556:
+```json
+[
+  {"action_type": "rag_query", "query": "Interpretable Neural Networks with BP-SOM", "top_k": 10}
+]
+```
+================================================================================

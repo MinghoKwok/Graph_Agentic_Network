@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 728 | Layer 0 | 20250506_215245:
+```json
+[
+  {"action_type": "rag_query", "query": "genetic algorithms uniform crossover", "top_k": 10}
+]
+```
+================================================================================

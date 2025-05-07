@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 676 | Layer 0 | 20250506_215001:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_1: 1 examples
+- Label_2: 8 examples
+- Label_5: 1 examples
+- Label_6: 1 examples
+
+Memory:
+1. [Label_2] "A Mixture of Experts Model Exhibiting Prosopagnosia Abstract: A considerable body of evidence from prosopagnosia, a deficit in face recognition dissoc..."
+2. [Label_2] "Separating hippocampal maps  Spatial Functions of the Hippocampal Formation and the Abstract: The place fields of hippocampal cells in old animals som..."
+3. [Label_2] "Theory of Correlations in Stochastic Neural Networks Abstract: One of the main experimental tools in probing the interactions between neurons has been..."
+4. [Label_2] "Modeling Cortical Plasticity Based on Adapting Lateral Interaction Abstract: A neural network model called LISSOM for the cooperative self-organizatio..."
+5. [Label_6] "Pac Learning, Noise, and Geometry Abstract: This paper describes the probably approximately correct model of concept learning, paying special attentio..."
+
+Text to classify:
+"A Model of Invariant Object Recognition in the Visual System
+Abstract: Neurons in the ventral stream of the primate visual system exhibit responses to the images of objects which are invariant with respect to natural transformations such as translation, size, and view. Anatomical and neurophysiological evidence suggests that this is achieved through a series of hierarchical processing areas. In an attempt to elucidate the manner in which such representations are established, we have constructed a model of cortical visual processing which seeks to parallel many features of this system, specifically the multi-stage hierarchy with its topologically constrained convergent connectivity. Each stage is constructed as a competitive network utilising a modified Hebb-like learning rule, called the trace rule, which incorporates previous as well as current neuronal activity. The trace rule enables neurons to learn about whatever is invariant over short time periods (e.g. 0.5 s) in the representation of objects as the objects transform in the real world. The trace rule enables neurons to learn the statistical invariances about objects during their transformations, by associating together representations which occur close together in time. We show that by using the trace rule training algorithm the model can indeed learn to produce transformation invariant responses to natural stimuli such as faces."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

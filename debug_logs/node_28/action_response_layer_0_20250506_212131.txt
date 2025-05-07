@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 28 | Layer 0 | 20250506_212131:
+```json
+[
+  {"action_type": "rag_query", "query": "NARX Neural Networks", "top_k": 10}
+]
+```
+================================================================================

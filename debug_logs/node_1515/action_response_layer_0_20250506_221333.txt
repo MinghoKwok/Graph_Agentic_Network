@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1515 | Layer 0 | 20250506_221333:
+```json
+[
+  {"action_type": "rag_query", "query": "Evolving Optimal Populations with XCS Classifier Systems", "top_k": 10}
+]
+```
+================================================================================

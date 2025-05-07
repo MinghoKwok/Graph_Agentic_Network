@@ -1,0 +1,52 @@
+📤 [DEBUG] Fallback Prompt for Node 410 | Layer 0 | 20250506_213552:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory Summary:
+- Label_0: 1 examples
+- Label_1: 1 examples
+- Label_2: 3 examples
+- Label_4: 9 examples
+
+Memory:
+1. [Label_4] "Truncating Temporal Differences: On the Efficient Implementation of TD() for Reinforcement Learning Abstract: Temporal difference (TD) methods constit..."
+2. [Label_1] "A Search Space Analysis of the Job Shop Scheduling Problem Abstract: A computational study for the Job Shop Scheduling Problem is presented. Thereby e..."
+3. [Label_4] "Reinforcement Learning with Modular Neural Networks for Control Abstract: Reinforcement learning methods can be applied to control problems with the o..."
+4. [Label_4] "Planning by Incremental Dynamic Programming Abstract: This paper presents the basic results and ideas of dynamic programming as they relate most direc..."
+5. [Label_4] "A Teaching Strategy for Memory-Based Control Abstract: Combining different machine learning algorithms in the same system can produce benefits above a..."
+
+Text to classify:
+"High-Performance Job-Shop Scheduling With A Time-Delay TD() Network
+Abstract: Job-shop scheduling is an important task for manufacturing industries. We are interested in the particular task of scheduling payload processing for NASA's space shuttle program. This paper summarizes our previous work on formulating this task for solution by the reinforcement learning algorithm T D(). A shortcoming of this previous work was its reliance on hand-engineered input features. This paper shows how to extend the time-delay neural network (TDNN) architecture to apply it to irregular-length schedules. Experimental tests show that this TDNN-T D() network can match the performance of our previous hand-engineered system. The tests also show that both neural network approaches significantly outperform the best previous (non-learning) solution to this problem in terms of the quality of the resulting schedules and the number of search steps required to construct them."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================

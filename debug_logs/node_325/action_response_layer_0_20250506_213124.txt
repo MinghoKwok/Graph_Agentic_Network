@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 325 | Layer 0 | 20250506_213124:
+```json
+[
+  {"action_type": "rag_query", "query": "Bayesian Model Selection in Social Research", "top_k": 10}
+]
+```
+================================================================================

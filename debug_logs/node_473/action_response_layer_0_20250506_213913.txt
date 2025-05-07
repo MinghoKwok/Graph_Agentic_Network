@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 473 | Layer 0 | 20250506_213913:
+```json
+[
+    {"action_type": "rag_query", "query": "dynamic programming policy iteration", "top_k": 10}
+]
+```
+================================================================================

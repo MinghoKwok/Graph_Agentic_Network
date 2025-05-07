@@ -1,0 +1,7 @@
+🔁 [DEBUG] Action Response for Node 1601 | Layer 0 | 20250506_223832:
+```json
+[
+  {"action_type": "rag_query", "query": "Learning the Past Tense of English Verbs", "top_k": 10}
+]
+```
+================================================================================

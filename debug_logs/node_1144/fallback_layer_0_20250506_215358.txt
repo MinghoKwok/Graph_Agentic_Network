@@ -1,0 +1,46 @@
+📤 [DEBUG] Fallback Prompt for Node 1144 | Layer 0 | 20250506_215358:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+Memory:
+1. [Label_2] "A Mixture of Experts Model Exhibiting Prosopagnosia Abstract: A considerable body of evidence from prosopagnosia, a deficit in face recognition dissoc..."
+2. [Label_3] "Bumptrees for Efficient Function, Constraint, and Classification Learning Abstract: A new class of data structures called bumptrees is described. Thes..."
+3. [Label_2] "The Canonical Distortion Measure in Feature Space and 1-NN Classification Abstract: We prove that the Canonical Distortion Measure (CDM) [2, 3] is the..."
+4. [Label_6] "Pac Learning, Noise, and Geometry Abstract: This paper describes the probably approximately correct model of concept learning, paying special attentio..."
+5. [Label_0] "Lazy Acquisition of Place Knowledge Abstract: In this paper we define the task of place learning and describe one approach to this problem. Our framew..."
+
+Text to classify:
+"VIEWNET ARCHITECTURES FOR INVARIANT 3-D OBJECT LEARNING AND RECOGNITION FROM MULTIPLE 2-D VIEWS
+Abstract: 3 The recognition of 3-D objects from sequences of their 2-D views is modeled by a family of self-organizing neural architectures, called VIEWNET, that use View Information Encoded With NETworks. VIEWNET incorporates a preprocessor that generates a compressed but 2-D invariant representation of an image, a supervised incremental learning system (Fuzzy ARTMAP) that classifies the preprocessed representations into 2-D view categories whose outputs are combined into 3-D invariant object categories, and a working memory that makes a 3-D object prediction by accumulating evidence over time from 3-D object category nodes as multiple 2-D views are experienced. VIEWNET was benchmarked on an MIT Lincoln Laboratory database of 128x128 2-D views of aircraft, including small frontal views, with and without additive noise. A recognition rate of up to 90% is achieved with one 2-D view and of up to 98.5% correct with three 2-D views. The properties of 2-D view and 3-D object category nodes are compared with those of cells in monkey inferotemporal cortex."
+
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
+
+================================================================================
