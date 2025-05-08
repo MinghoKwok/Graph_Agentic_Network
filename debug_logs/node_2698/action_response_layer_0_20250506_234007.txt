@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2698 | Layer 0 | 20250506_234007:
-```json
-[
-  {"action_type": "rag_query", "query": "Forecasting Glucose Concentration in Diabetic Patients using Ignorant Belief Networks", "top_k": 10}
-]
-```
-================================================================================

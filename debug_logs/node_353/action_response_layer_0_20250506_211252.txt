@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 353 | Layer 0 | 20250506_211252:
-```json
-[
-  {"action_type": "rag_query", "query": "Application of Neural Networks for the Classification of Diffuse Liver Disease by Quantitative Echography", "top_k": 5}
-]
-```
-================================================================================

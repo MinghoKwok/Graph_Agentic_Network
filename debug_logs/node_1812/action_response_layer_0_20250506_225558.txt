@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1812 | Layer 0 | 20250506_225558:
-```json
-[
-  {"action_type": "rag_query", "query": "backpropagation learning", "top_k": 10}
-]
-```
-================================================================================

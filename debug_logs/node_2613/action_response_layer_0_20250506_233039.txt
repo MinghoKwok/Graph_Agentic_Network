@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2613 | Layer 0 | 20250506_233039:
-```json
-[
-  {"action_type": "rag_query", "query": "Genetic Algorithms for Automated Tuning of Fuzzy Controllers", "top_k": 5}
-]
-```
-================================================================================

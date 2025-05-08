@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 777 | Layer 0 | 20250506_213427:
-```json
-[
-  {"action_type": "rag_query", "query": "Markov Chain Monte Carlo Bayesian Computation", "top_k": 10}
-]
-```
-================================================================================

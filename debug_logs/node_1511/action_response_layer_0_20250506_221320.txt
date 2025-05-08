@@ -1,8 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1511 | Layer 0 | 20250506_221320:
-```json
-[
-  {"action_type": "retrieve", "target_nodes": [1357], "info_type": "text"},
-  {"action_type": "rag_query", "query": "1511", "top_k": 10}
-]
-```
-================================================================================

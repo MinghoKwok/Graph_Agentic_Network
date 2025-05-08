@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1036 | Layer 0 | 20250506_220855:
-```json
-[
-  {"action_type": "rag_query", "query": "adaptive behavior in competing co-evolving species", "top_k": 10}
-]
-```
-================================================================================

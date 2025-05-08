@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1800 | Layer 0 | 20250506_222839:
-```json
-[
-  {"action_type": "rag_query", "query": "rational belief revision", "top_k": 10}
-]
-```
-================================================================================

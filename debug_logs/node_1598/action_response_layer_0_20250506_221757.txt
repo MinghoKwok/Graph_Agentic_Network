@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1598 | Layer 0 | 20250506_221757:
-```json
-[
-  {"action_type": "rag_query", "query": "mutation rates as adaptations", "top_k": 10}
-]
-```
-================================================================================

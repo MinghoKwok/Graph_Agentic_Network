@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2377 | Layer 0 | 20250506_232513:
-```json
-[
-  {"action_type": "rag_query", "query": "Adaptive Proposal for MCMC", "top_k": 10}
-]
-```
-================================================================================

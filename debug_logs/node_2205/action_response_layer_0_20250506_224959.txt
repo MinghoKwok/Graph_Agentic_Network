@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2205 | Layer 0 | 20250506_224959:
-```json
-[
-  {"action_type": "rag_query", "query": "Genetic Local Search Approach to the Quadratic Assignment Problem", "top_k": 10}
-]
-```
-================================================================================

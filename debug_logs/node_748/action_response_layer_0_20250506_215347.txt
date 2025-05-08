@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 748 | Layer 0 | 20250506_215347:
-```json
-[
-  {"action_type": "rag_query", "query": "Markov Chain Monte Carlo Methods", "top_k": 10}
-]
-```
-================================================================================

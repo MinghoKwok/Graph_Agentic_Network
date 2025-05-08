@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1926 | Layer 0 | 20250506_223520:
-```json
-[
-    {"action_type": "rag_query", "query": "Analysis of a Non-Reversible Markov Chain Sampler", "top_k": 5}
-]
-```
-================================================================================

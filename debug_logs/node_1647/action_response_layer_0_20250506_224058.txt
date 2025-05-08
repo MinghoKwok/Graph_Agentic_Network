@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1647 | Layer 0 | 20250506_224058:
-```json
-[
-  {"action_type": "rag_query", "query": "incremental meta-learning", "top_k": 10}
-]
-```
-================================================================================

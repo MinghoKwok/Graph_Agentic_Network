@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 836 | Layer 0 | 20250506_220413:
-```json
-[
-  {"action_type": "rag_query", "query": "unsupervised constructive learning", "top_k": 10}
-]
-```
-================================================================================

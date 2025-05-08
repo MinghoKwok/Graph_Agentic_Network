@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1881 | Layer 0 | 20250506_225317:
-```json
-[
-  {"action_type": "rag_query", "query": "ILP systems using Monte Carlo approach", "top_k": 10}
-]
-```
-================================================================================

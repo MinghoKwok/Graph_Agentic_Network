@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1592 | Layer 0 | 20250506_223803:
-```json
-[
-  {"action_type": "rag_query", "query": "finite state machine induction", "top_k": 10}
-]
-```
-================================================================================

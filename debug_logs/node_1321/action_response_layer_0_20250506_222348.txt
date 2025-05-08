@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1321 | Layer 0 | 20250506_222348:
-```json
-[
-  {"action_type": "rag_query", "query": "ASOCS Adaptive Self-Organizing Concurrent System", "top_k": 10}
-]
-```
-================================================================================

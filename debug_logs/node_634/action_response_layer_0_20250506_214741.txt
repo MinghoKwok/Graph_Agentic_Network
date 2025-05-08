@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 634 | Layer 0 | 20250506_214741:
-```json
-[
-  {"action_type": "rag_query", "query": "Oblivious Decision Trees and Abstract Cases", "top_k": 10}
-]
-```
-================================================================================

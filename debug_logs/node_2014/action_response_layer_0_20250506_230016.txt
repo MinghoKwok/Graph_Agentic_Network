@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2014 | Layer 0 | 20250506_230016:
-```json
-[
-  {"action_type": "rag_query", "query": "Nested Q-learning Reinforcement Learning", "top_k": 10}
-]
-```
-================================================================================

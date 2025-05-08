@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1587 | Layer 0 | 20250506_224356:
-```json
-[
-  {"action_type": "rag_query", "query": "decision tree machine learning", "top_k": 10}
-]
-```
-================================================================================

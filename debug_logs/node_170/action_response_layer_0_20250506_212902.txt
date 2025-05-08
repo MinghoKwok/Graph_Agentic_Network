@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 170 | Layer 0 | 20250506_212902:
-```json
-[
-  {"action_type": "rag_query", "query": "Large Deviation Methods for Approximate Probabilistic Inference", "top_k": 10}
-]
-```
-================================================================================

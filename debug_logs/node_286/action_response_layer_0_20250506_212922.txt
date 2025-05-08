@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 286 | Layer 0 | 20250506_212922:
-```json
-[
-  {"action_type": "rag_query", "query": "decision tree induction", "top_k": 10}
-]
-```
-================================================================================

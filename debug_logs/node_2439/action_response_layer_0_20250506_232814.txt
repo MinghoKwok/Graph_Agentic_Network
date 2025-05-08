@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2439 | Layer 0 | 20250506_232814:
-```json
-[
-  {"action_type": "rag_query", "query": "Analog Neural Nets with Gaussian or other Common Noise Distributions cannot Recognize Arbitrary Regular Languages", "top_k": 10}
-]
-```
-================================================================================

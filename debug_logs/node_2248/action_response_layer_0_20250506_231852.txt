@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2248 | Layer 0 | 20250506_231852:
-```json
-[
-  {"action_type": "rag_query", "query": "Heuristic for Improved Genetic Bin Packing", "top_k": 10}
-]
-```
-================================================================================

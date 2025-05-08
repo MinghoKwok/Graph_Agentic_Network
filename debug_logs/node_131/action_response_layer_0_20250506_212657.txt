@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 131 | Layer 0 | 20250506_212657:
-```json
-[
-  {"action_type": "rag_query", "query": "Expectation-Maximization Algorithm for MAP Estimation", "top_k": 10}
-]
-```
-================================================================================

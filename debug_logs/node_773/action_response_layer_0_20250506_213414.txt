@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 773 | Layer 0 | 20250506_213414:
-```json
-[
-  {"action_type": "rag_query", "query": "Reinforcement Learning with Imitation in Heterogeneous Multi-Agent Systems", "top_k": 10}
-]
-```
-================================================================================

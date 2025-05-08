@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 560 | Layer 0 | 20250506_212256:
-```json
-[
-  {"action_type": "rag_query", "query": "Bayesian Methods for Adaptive Models", "top_k": 10}
-]
-```
-================================================================================

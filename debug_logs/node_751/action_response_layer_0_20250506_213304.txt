@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 751 | Layer 0 | 20250506_213304:
-```json
-[
-  {"action_type": "rag_query", "query": "Dirichlet Mixtures", "top_k": 10}
-]
-```
-================================================================================

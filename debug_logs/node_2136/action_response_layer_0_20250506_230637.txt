@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2136 | Layer 0 | 20250506_230637:
-```json
-[
-  {"action_type": "rag_query", "query": "Bayesian Experimental Design", "top_k": 10}
-]
-```
-================================================================================

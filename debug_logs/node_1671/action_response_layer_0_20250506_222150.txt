@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1671 | Layer 0 | 20250506_222150:
-```json
-[
-  {"action_type": "rag_query", "query": "Computational Learning Theory", "top_k": 10}
-]
-```
-================================================================================

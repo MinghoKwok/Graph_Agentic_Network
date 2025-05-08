@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2494 | Layer 0 | 20250506_233055:
-```json
-[
-  {"action_type": "rag_query", "query": "Incremental Pruning for POMDPs", "top_k": 5}
-]
-```
-================================================================================

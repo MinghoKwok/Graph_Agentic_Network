@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 242 | Layer 0 | 20250506_213250:
-```json
-[
-  {"action_type": "rag_query", "query": "Learning Markov chains with variable memory length from noisy output", "top_k": 10}
-]
-```
-================================================================================

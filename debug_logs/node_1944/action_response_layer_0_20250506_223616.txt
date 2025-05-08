@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1944 | Layer 0 | 20250506_223616:
-```json
-[
-  {"action_type": "rag_query", "query": "Knowledge Acquisition with a Knowledge-Intensive Machine Learning System", "top_k": 10}
-]
-```
-================================================================================

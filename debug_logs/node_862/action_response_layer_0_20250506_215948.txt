@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 862 | Layer 0 | 20250506_215948:
-```json
-[
-  {"action_type": "rag_query", "query": "grapheme-to-phoneme conversion", "top_k": 10}
-]
-```
-================================================================================

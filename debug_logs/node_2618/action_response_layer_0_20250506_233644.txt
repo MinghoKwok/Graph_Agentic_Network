@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2618 | Layer 0 | 20250506_233644:
-```json
-[
-  {"action_type": "rag_query", "query": "Mistake-Driven_Learning_in_Text_Categorization", "top_k": 10}
-]
-```
-================================================================================

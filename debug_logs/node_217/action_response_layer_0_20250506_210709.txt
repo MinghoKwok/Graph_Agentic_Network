@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 217 | Layer 0 | 20250506_210709:
-```json
-[
-  {"action_type": "rag_query", "query": "performance prediction method for parallel neural network simulations", "top_k": 10}
-]
-```
-================================================================================

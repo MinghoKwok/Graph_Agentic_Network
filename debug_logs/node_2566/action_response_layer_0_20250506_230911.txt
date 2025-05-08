@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2566 | Layer 0 | 20250506_230911:
-```json
-[
-  {"action_type": "rag_query", "query": "Constraint-Based Approach to Preference Elicitation and Decision Making", "top_k": 10}
-]
-```
-================================================================================

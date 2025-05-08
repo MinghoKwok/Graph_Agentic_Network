@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1075 | Layer 0 | 20250506_221056:
-```json
-[
-  {"action_type": "rag_query", "query": "Bayesian Learning in Feed Forward Neural Networks", "top_k": 10}
-]
-```
-================================================================================

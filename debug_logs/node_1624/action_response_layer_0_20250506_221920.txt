@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1624 | Layer 0 | 20250506_221920:
-```json
-[
-  {"action_type": "rag_query", "query": "Causal_Discovery_via_MML", "top_k": 10}
-]
-```
-================================================================================

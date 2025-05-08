@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1265 | Layer 0 | 20250506_220021:
-```json
-[
-  {"action_type": "rag_query", "query": "differential theory of learning neural networks", "top_k": 10}
-]
-```
-================================================================================

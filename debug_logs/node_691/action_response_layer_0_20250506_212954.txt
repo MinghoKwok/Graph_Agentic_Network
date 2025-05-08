@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 691 | Layer 0 | 20250506_212954:
-```json
-[
-  {"action_type": "rag_query", "query": "Reinforcement Learning in the Multi-Robot Domain", "top_k": 10}
-]
-```
-================================================================================

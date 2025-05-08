@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1990 | Layer 0 | 20250506_225902:
-```json
-[
-  {"action_type": "rag_query", "query": "learning algorithm for fully recurrent networks", "top_k": 10}
-]
-```
-================================================================================

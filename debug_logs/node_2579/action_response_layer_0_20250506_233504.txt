@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2579 | Layer 0 | 20250506_233504:
-```json
-[
-  {"action_type": "rag_query", "query": "SPERT-II vector microprocessor neural network", "top_k": 10}
-]
-```
-================================================================================

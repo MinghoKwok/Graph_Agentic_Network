@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2704 | Layer 0 | 20250506_234023:
-```json
-[
-  {"action_type": "rag_query", "query": "Genetic Programming", "top_k": 10}
-]
-```
-================================================================================

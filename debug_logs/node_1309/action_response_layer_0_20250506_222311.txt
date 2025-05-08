@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1309 | Layer 0 | 20250506_222311:
-```json
-[
-  {"action_type": "rag_query", "query": "Explanation-Based Learning", "top_k": 10}
-]
-```
-================================================================================

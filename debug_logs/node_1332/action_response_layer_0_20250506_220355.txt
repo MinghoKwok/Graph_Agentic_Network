@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1332 | Layer 0 | 20250506_220355:
-```json
-[
-  {"action_type": "rag_query", "query": "Statistical Dynamics of the Royal Road Genetic Algorithm", "top_k": 10}
-]
-```
-================================================================================

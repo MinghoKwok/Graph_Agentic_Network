@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2435 | Layer 0 | 20250506_230214:
-```json
-[
-  {"action_type": "rag_query", "query": "system identification in H 1", "top_k": 10}
-]
-```
-================================================================================

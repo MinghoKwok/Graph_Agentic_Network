@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1964 | Layer 0 | 20250506_223719:
-```json
-[
-  {"action_type": "rag_query", "query": "constructing nominal attributes machine learning", "top_k": 10}
-]
-```
-================================================================================

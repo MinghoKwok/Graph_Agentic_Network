@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1212 | Layer 0 | 20250506_222404:
-```json
-[
-  {"action_type": "rag_query", "query": "case-based reasoning", "top_k": 10}
-]
-```
-================================================================================

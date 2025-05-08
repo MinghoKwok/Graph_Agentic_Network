@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 7 | Layer 0 | 20250506_212026:
-```json
-[
-  {"action_type": "rag_query", "query": "Optimal Alignments in Linear Space using Automaton-derived Cost Functions", "top_k": 5}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 690 | Layer 0 | 20250506_215045:
-```json
-[
-  {"action_type": "rag_query", "query": "instance pruning techniques", "top_k": 10}
-]
-```
-================================================================================

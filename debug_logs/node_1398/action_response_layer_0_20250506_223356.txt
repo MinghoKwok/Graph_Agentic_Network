@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1398 | Layer 0 | 20250506_223356:
-```json
-[
-  {"action_type": "rag_query", "query": "Self-Organizing Sets of Experts", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 144 | Layer 0 | 20250506_212153:
-```json
-[
-  {"action_type": "rag_query", "query": "The Observers Paradox: Apparent Computational Complexity in Physical Systems", "top_k": 10}
-]
-```
-================================================================================

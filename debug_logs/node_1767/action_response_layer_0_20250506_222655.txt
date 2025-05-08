@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1767 | Layer 0 | 20250506_222655:
-```json
-[
-  {"action_type": "rag_query", "query": "incremental evolution of complex behavior", "top_k": 10}
-]
-```
-================================================================================

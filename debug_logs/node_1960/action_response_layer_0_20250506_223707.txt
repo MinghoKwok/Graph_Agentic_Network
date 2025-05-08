@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1960 | Layer 0 | 20250506_223707:
-```json
-[
-  {"action_type": "rag_query", "query": "proximal point algorithm", "top_k": 10}
-]
-```
-================================================================================

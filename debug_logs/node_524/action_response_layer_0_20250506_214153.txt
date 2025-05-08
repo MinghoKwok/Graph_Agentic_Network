@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 524 | Layer 0 | 20250506_214153:
-```json
-[
-  {"action_type": "rag_query", "query": "Inductive Learning Approach to Prognostic Prediction", "top_k": 10}
-]
-```
-================================================================================

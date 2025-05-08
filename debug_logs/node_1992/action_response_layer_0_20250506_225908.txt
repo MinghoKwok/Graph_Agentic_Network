@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1992 | Layer 0 | 20250506_225908:
-```json
-[
-  {"action_type": "rag_query", "query": "Markov chain Monte Carlo", "top_k": 10}
-]
-```
-================================================================================

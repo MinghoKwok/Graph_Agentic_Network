@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1546 | Layer 0 | 20250506_223537:
-```json
-[
-  {"action_type": "rag_query", "query": "temporal difference learning", "top_k": 10}
-]
-```
-================================================================================

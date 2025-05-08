@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1925 | Layer 0 | 20250506_225537:
-```json
-[
-  {"action_type": "rag_query", "query": "Boolean Functions Fitness Spaces", "top_k": 10}
-]
-```
-================================================================================

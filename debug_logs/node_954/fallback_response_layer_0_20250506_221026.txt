@@ -1,3 +1,0 @@
-🔁 [DEBUG] Fallback Response for Node 954 | Layer 0 | 20250506_221026:
-{'action_type': 'update', 'predicted_label': 'Label_3'}
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2681 | Layer 0 | 20250506_233356:
-```json
-[
-  {"action_type": "rag_query", "query": "regression with input-dependent noise gaussian process", "top_k": 10}
-]
-```
-================================================================================

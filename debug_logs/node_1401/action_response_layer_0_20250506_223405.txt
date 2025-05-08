@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1401 | Layer 0 | 20250506_223405:
-```json
-[
-  {"action_type": "rag_query", "query": "Using Case-Based Reasoning as a Reinforcement Learning Framework for Optimization with Changing Criteria", "top_k": 5}
-]
-```
-================================================================================

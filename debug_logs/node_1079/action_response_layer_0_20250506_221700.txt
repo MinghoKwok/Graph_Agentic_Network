@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1079 | Layer 0 | 20250506_221700:
-```json
-[
-  {"action_type": "rag_query", "query": "Support Vector Machines in machine learning", "top_k": 10}
-]
-```
-================================================================================

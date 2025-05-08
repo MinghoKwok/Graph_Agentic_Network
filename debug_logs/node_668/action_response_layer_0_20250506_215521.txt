@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 668 | Layer 0 | 20250506_215521:
-```json
-[
-    {"action_type": "rag_query", "query": "Nonlinear gated experts for time series", "top_k": 10}
-]
-```
-================================================================================

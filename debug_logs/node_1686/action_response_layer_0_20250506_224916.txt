@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1686 | Layer 0 | 20250506_224916:
-```json
-[
-  {"action_type": "rag_query", "query": "abductive concept learning", "top_k": 10}
-]
-```
-================================================================================

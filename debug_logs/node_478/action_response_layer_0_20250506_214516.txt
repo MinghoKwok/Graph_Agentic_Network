@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 478 | Layer 0 | 20250506_214516:
-```json
-[
-  {"action_type": "rag_query", "query": "An Improved Algorithm for Incremental Induction of Decision Trees", "top_k": 10}
-]
-```
-================================================================================

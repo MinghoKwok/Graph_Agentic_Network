@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2300 | Layer 0 | 20250506_231514:
-```json
-[
-  {"action_type": "rag_query", "query": "Applying a Machine Learning Workbench: Experience with Agricultural Databases", "top_k": 10}
-]
-```
-================================================================================

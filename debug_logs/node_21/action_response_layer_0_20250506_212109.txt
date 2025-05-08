@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 21 | Layer 0 | 20250506_212109:
-```json
-[
-  {"action_type": "rag_query", "query": "decision tree reinforcement learning", "top_k": 10}
-]
-```
-================================================================================

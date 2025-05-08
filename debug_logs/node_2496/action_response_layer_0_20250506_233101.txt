@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2496 | Layer 0 | 20250506_233101:
-```json
-[
-  {"action_type": "rag_query", "query": "gene structure prediction", "top_k": 10}
-]
-```
-================================================================================

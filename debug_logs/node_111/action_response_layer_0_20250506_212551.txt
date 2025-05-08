@@ -1,8 +1,0 @@
-🔁 [DEBUG] Action Response for Node 111 | Layer 0 | 20250506_212551:
-```json
-[
-  {"action_type": "update", "predicted_label": "Neural_Networks"},
-  {"action_type": "broadcast", "target_nodes": [350], "message": "I am classified as Neural_Networks based on my text focusing on Tau Net, a neural network for modeling temporal variability in dynamic signals."}
-]
-```
-================================================================================

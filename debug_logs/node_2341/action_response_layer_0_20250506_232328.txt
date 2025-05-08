@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2341 | Layer 0 | 20250506_232328:
-```json
-[
-  {"action_type": "rag_query", "query": "Dynamic Belief Networks for Discrete Monitoring", "top_k": 10}
-]
-```
-================================================================================

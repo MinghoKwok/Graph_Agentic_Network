@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2271 | Layer 0 | 20250506_231341:
-```json
-[
-  {"action_type": "rag_query", "query": "fitness structure in genetic programming", "top_k": 10}
-]
-```
-================================================================================

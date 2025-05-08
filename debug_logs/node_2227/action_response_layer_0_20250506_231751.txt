@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2227 | Layer 0 | 20250506_231751:
-```json
-[
-  {"action_type": "rag_query", "query": "EM Algorithm for Mixtures of Factor Analyzers", "top_k": 10}
-]
-```
-================================================================================

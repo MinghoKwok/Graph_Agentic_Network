@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2412 | Layer 0 | 20250506_232655:
-```json
-[
-  {"action_type": "rag_query", "query": "On-Line Adaptation of a Signal Predistorter through Dual Reinforcement Learning", "top_k": 10}
-]
-```
-================================================================================

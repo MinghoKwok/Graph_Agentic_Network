@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 605 | Layer 0 | 20250506_215201:
-```json
-[
-  {"action_type": "rag_query", "query": "Learning Viewpoint Invariant Representations of Faces in an Attractor Network", "top_k": 10}
-]
-```
-================================================================================

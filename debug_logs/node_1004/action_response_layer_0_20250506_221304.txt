@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1004 | Layer 0 | 20250506_221304:
-```json
-[
-  {"action_type": "rag_query", "query": "read-once formulas", "top_k": 10}
-]
-```
-================================================================================

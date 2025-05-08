@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 474 | Layer 0 | 20250506_211830:
-```json
-[
-  {"action_type": "rag_query", "query": "protein structure prediction", "top_k": 10}
-]
-```
-================================================================================

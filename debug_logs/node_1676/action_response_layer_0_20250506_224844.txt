@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1676 | Layer 0 | 20250506_224844:
-```json
-[
-  {"action_type": "rag_query", "query": "TD Learning of Game Evaluation Functions with Hierarchical Neural Architectures", "top_k": 10}
-]
-```
-================================================================================

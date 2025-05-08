@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1164 | Layer 0 | 20250506_215501:
-```json
-[
-  {"action_type": "rag_query", "query": "similarity metrics machine learning", "top_k": 10}
-]
-```
-================================================================================

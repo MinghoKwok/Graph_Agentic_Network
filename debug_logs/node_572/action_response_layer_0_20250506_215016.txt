@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 572 | Layer 0 | 20250506_215016:
-```json
-[
-  {"action_type": "rag_query", "query": "Avoiding Overfitting with BP-SOM", "top_k": 10}
-]
-```
-================================================================================

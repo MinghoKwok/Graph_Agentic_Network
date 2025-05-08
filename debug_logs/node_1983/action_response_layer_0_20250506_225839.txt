@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1983 | Layer 0 | 20250506_225839:
-```json
-[
-  {"action_type": "rag_query", "query": "decision theoretic regression", "top_k": 10}
-]
-```
-================================================================================

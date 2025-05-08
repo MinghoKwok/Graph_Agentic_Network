@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2633 | Layer 0 | 20250506_231241:
-```json
-[
-  {"action_type": "rag_query", "query": "Learning Using Group Representations", "top_k": 10}
-]
-```
-================================================================================

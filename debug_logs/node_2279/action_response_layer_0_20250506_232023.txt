@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2279 | Layer 0 | 20250506_232023:
-```json
-[
-  {"action_type": "rag_query", "query": "Quicknet on MultiSpert: Fast Parallel Neural Network Training", "top_k": 10}
-]
-```
-================================================================================

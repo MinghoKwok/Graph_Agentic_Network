@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 519 | Layer 0 | 20250506_212044:
-```json
-[
-  {"action_type": "rag_query", "query": "Smoothing Spline ANOVA for Exponential Families", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1117 | Layer 0 | 20250506_215226:
-```json
-[
-  {"action_type": "rag_query", "query": "Coevolutionary Approach to Learning Sequential Decision Rules", "top_k": 10}
-]
-```
-================================================================================

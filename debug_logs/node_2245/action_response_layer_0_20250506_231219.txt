@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2245 | Layer 0 | 20250506_231219:
-```json
-[
-  {"action_type": "rag_query", "query": "heterogeneous inductive learning", "top_k": 10}
-]
-```
-================================================================================

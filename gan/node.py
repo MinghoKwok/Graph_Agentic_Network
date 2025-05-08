@@ -62,7 +62,8 @@ class NodeAgent:
                 
                 # 🔧 如果是 RAGAction，补充 memory 写入
                 if isinstance(action, RAGAction) and "results" in result:
-                    for node_id, node_info in result["results"].items():
+                    # reranked_results = self._rerank_rag_results(result["results"], self.state.text, top_k=5, max_per_label=2)
+                    for node_id, node_info in result["results"].items(): # for node_id, node_info in reranked_results.items():
                         if isinstance(node_info, dict) and "text" in node_info and node_info["text"] and "label" in node_info and node_info["label"] is not None:
                             memory_entry = {
                                 "layer": layer,
@@ -225,6 +226,7 @@ class NodeAgent:
         )[:top_k]
 
         prompt = "You are a label prediction agent.\n\n"
+        
         prompt += f"Text to classify:\n\"{node_text.strip()}\"\n\n"
         if sorted_memory:
             prompt += "Memory items:\n"
@@ -237,7 +239,23 @@ class NodeAgent:
         else:
             prompt += "Memory items: (No memory available)\n"
 
-        prompt += "\nPlease think step by step: First analyze memory examples and their labels, then compare them to the input text. Identify the most semantically similar memory items and explain why. Finally, decide which label best matches and explain your reasoning."
+        prompt += "\nPlease follow these steps in your analysis:\n"
+        prompt += "1. Analyze the Current Node Text:\n"
+        prompt += "   - Identify primary topics and application domain\n"
+        prompt += "   - Determine the specific problem being solved\n"
+        prompt += "   - Note core methodologies and algorithms\n"
+        prompt += "2. Analyze Memory Examples:\n"
+        prompt += "   - Understand application domains for each label\n"
+        prompt += "   - Identify types of problems addressed\n"
+        prompt += "   - Note underlying methodologies\n"
+        prompt += "3. Compare and Weigh Evidence:\n"
+        prompt += "   - Prioritize domain and problem alignment\n"
+        prompt += "   - Evaluate methodological congruence\n"
+        prompt += "   - Consider both domain-specific techniques and general paradigms\n"
+        prompt += "   - Ensure holistic coherence in your decision\n"
+        prompt += "4. Avoid over-reliance on isolated keywords\n\n"
+        
+        prompt += "Please think step by step: First analyze memory examples and their labels, then compare them to the input text. Identify the most semantically similar memory items and explain why. Finally, decide which label best matches and explain your reasoning."
         prompt += "\nRespond strictly in JSON format:\n{\"action_type\": \"update\", \"predicted_label\": \"label_string\"}\n"
         label_list = ", ".join(f'\"{v}\"' for v in inv_label_vocab.values())
         prompt += f"Allowed labels: [{label_list}]\n"
@@ -247,3 +265,30 @@ class NodeAgent:
 
     def _format_simple_fallback_action_prompt(self, context: Dict[str, Any]) -> str:
         return f"Based on context {context}, choose one action: retrieve, broadcast, update, or rag_query."
+
+
+    def _rerank_rag_results(self, results: Dict[int, Dict[str, Any]], node_text: str, top_k: int = 5, max_per_label: int = 2) -> Dict[int, Dict[str, Any]]:
+        from difflib import SequenceMatcher
+        from collections import defaultdict
+
+        def similarity(a: str, b: str) -> float:
+            return SequenceMatcher(None, a, b).ratio()
+
+        label_buckets = defaultdict(list)
+        for node_id, info in results.items():
+            if "text" not in info or not info["text"] or "label" not in info or info["label"] is None:
+                continue
+            score = similarity(node_text.lower(), info["text"].lower())
+            label_buckets[info["label"]].append((score, node_id, info))
+
+        reranked = {}
+        for label, scored_items in label_buckets.items():
+            # sort each label group by similarity descending
+            top_items = sorted(scored_items, reverse=True)[:max_per_label]
+            for score, nid, info in top_items:
+                reranked[nid] = info
+
+        # final global top_k cutoff
+        sorted_all = sorted([(similarity(node_text.lower(), v["text"].lower()), k, v) for k, v in reranked.items()], reverse=True)
+        reranked_topk = {nid: info for _, nid, info in sorted_all[:top_k]}
+        return reranked_topk

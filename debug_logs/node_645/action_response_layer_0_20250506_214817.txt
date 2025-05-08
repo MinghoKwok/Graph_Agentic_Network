@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 645 | Layer 0 | 20250506_214817:
-```json
-[
-    {"action_type": "rag_query", "query": "Graphical Markov models", "top_k": 10}
-]
-```
-================================================================================

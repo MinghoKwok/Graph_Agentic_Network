@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1924 | Layer 0 | 20250506_223513:
-```json
-[
-  {"action_type": "rag_query", "query": "Training Algorithms for Hidden Markov Models Using Entropy Based Distance Functions", "top_k": 5}
-]
-```
-================================================================================

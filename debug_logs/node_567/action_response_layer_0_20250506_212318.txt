@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 567 | Layer 0 | 20250506_212318:
-```json
-[
-  {"action_type": "rag_query", "query": "reinforcement learning sparse coarse coding", "top_k": 10}
-]
-```
-================================================================================

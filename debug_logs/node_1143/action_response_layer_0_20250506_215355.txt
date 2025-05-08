@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1143 | Layer 0 | 20250506_215355:
-```json
-[
-  {"action_type": "rag_query", "query": "Neural Networks in Artificial Life", "top_k": 10}
-]
-```
-================================================================================

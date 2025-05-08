@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1508 | Layer 0 | 20250506_223946:
-```json
-[
-  {"action_type": "rag_query", "query": "time series segmentation", "top_k": 10}
-]
-```
-================================================================================

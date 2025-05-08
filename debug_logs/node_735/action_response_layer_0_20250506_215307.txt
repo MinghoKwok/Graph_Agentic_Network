@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 735 | Layer 0 | 20250506_215307:
-```json
-[
-  {"action_type": "rag_query", "query": "limits of instruction level parallelism", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2516 | Layer 0 | 20250506_230632:
-```json
-[
-  {"action_type": "rag_query", "query": "local search algorithms", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1777 | Layer 0 | 20250506_222727:
-```json
-[
-  {"action_type": "rag_query", "query": "belief aggregation", "top_k": 10}
-]
-```
-================================================================================

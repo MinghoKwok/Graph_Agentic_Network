@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2554 | Layer 0 | 20250506_232748:
-```json
-[
-  {"action_type": "rag_query", "query": "Genetic Programming Estimates of Kolmogorov Complexity", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 673 | Layer 0 | 20250506_214952:
-```json
-[
-  {"action_type": "rag_query", "query": "DNA fragment assemblies", "top_k": 10}
-]
-```
-================================================================================

@@ -1,3 +1,0 @@
-🔁 [DEBUG] Fallback Response for Node 892 | Layer 0 | 20250506_220713:
-{'action_type': 'update', 'predicted_label': 'Label_3'}
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 485 | Layer 0 | 20250506_214539:
-```json
-[
-  {"action_type": "rag_query", "query": "Bayesian Case-Based Reasoning with Neural Networks", "top_k": 10}
-]
-```
-================================================================================

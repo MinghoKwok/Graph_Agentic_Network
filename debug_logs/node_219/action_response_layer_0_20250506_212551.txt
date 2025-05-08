@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 219 | Layer 0 | 20250506_212551:
-```json
-[
-  {"action_type": "rag_query", "query": "Evolutionary Robotics", "top_k": 10}
-]
-```
-================================================================================

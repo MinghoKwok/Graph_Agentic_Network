@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 669 | Layer 0 | 20250506_215524:
-```json
-[
-  {"action_type": "rag_query", "query": "drug design by machine learning", "top_k": 10}
-]
-```
-================================================================================

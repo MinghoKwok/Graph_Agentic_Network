@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 431 | Layer 0 | 20250506_213658:
-```json
-[
-  {"action_type": "rag_query", "query": "rule-based machine learning", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1116 | Layer 0 | 20250506_221858:
-```json
-[
-  {"action_type": "rag_query", "query": "hidden markov models", "top_k": 10}
-]
-```
-================================================================================

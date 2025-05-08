@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1568 | Layer 0 | 20250506_224256:
-```json
-[
-  {"action_type": "rag_query", "query": "feature weighting in nearest-neighbor algorithms", "top_k": 10}
-]
-```
-================================================================================

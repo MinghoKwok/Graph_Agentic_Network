@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2034 | Layer 0 | 20250506_230744:
-```json
-[
-  {"action_type": "rag_query", "query": "parameter estimation in Bayesian networks", "top_k": 10}
-]
-```
-================================================================================

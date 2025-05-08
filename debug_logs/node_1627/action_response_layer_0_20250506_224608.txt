@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1627 | Layer 0 | 20250506_224608:
-```json
-[
-  {"action_type": "rag_query", "query": "inductive learning characteristic concept descriptions", "top_k": 10}
-]
-```
-================================================================================

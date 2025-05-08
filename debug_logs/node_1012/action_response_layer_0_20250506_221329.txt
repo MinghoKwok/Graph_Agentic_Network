@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1012 | Layer 0 | 20250506_221329:
-```json
-[
-  {"action_type": "rag_query", "query": "TDLeaf() Temporal Difference learning game-tree search", "top_k": 10}
-]
-```
-================================================================================

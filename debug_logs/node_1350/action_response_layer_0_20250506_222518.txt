@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1350 | Layer 0 | 20250506_222518:
-```json
-[
-  {"action_type": "rag_query", "query": "IGLUE An Instance-based Learning System over Lattice Theory", "top_k": 10}
-]
-```
-================================================================================

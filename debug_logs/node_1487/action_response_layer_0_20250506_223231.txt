@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1487 | Layer 0 | 20250506_223231:
-```json
-[
-  {"action_type": "rag_query", "query": "Divide-and-Conquer Approach to Learning from Prior Knowledge", "top_k": 10}
-]
-```
-================================================================================

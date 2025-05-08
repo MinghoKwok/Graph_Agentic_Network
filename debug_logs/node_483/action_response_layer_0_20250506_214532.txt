@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 483 | Layer 0 | 20250506_214532:
-```json
-[
-  {"action_type": "rag_query", "query": "Parti-game Algorithm for Variable Resolution Reinforcement Learning", "top_k": 10}
-]
-```
-================================================================================

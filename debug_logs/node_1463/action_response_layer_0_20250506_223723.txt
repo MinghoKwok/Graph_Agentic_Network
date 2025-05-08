@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1463 | Layer 0 | 20250506_223723:
-```json
-[
-  {"action_type": "rag_query", "query": "bias variance prediction error classification", "top_k": 10}
-]
-```
-================================================================================

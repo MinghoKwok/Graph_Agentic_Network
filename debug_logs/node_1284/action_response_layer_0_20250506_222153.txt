@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1284 | Layer 0 | 20250506_222153:
-```json
-[
-  {"action_type": "rag_query", "query": "feature selection via mathematical programming", "top_k": 10}
-]
-```
-================================================================================

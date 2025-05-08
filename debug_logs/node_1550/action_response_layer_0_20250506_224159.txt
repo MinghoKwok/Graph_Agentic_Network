@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1550 | Layer 0 | 20250506_224159:
-```json
-[
-  {"action_type": "rag_query", "query": "Minimum Encoding Inference", "top_k": 10}
-]
-```
-================================================================================

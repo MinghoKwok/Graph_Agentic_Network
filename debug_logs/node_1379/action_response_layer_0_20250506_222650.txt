@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1379 | Layer 0 | 20250506_222650:
-```json
-[
-  {"action_type": "rag_query", "query": "Modeling Simple Genetic Algorithms for Permutation Problems", "top_k": 10}
-]
-```
-================================================================================

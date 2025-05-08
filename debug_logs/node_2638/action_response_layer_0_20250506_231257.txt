@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2638 | Layer 0 | 20250506_231257:
-```json
-[
-  {"action_type": "rag_query", "query": "Evolutionary Heuristic for the Minimum Vertex Cover Problem", "top_k": 10}
-]
-```
-================================================================================

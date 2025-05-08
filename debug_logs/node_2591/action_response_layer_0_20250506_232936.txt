@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2591 | Layer 0 | 20250506_232936:
-```json
-[
-  {"action_type": "rag_query", "query": "ILP systems improvement", "top_k": 10}
-]
-```
-================================================================================

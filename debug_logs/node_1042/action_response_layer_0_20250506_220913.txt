@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1042 | Layer 0 | 20250506_220913:
-```json
-[
-  {"action_type": "rag_query", "query": "Recurrent Neural Networks", "top_k": 10}
-]
-```
-================================================================================

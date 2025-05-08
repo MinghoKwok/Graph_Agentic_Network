@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1668 | Layer 0 | 20250506_224205:
-```json
-[
-  {"action_type": "rag_query", "query": "Space-Frequency Localized Basis Function Networks for Nonlinear System Estimation and Control", "top_k": 10}
-]
-```
-================================================================================

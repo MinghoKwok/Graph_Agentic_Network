@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 43 | Layer 0 | 20250506_212217:
-```json
-[
-  {"action_type": "rag_query", "query": "Competitive Anti-Hebbian Learning of Invariants", "top_k": 10}
-]
-```
-================================================================================

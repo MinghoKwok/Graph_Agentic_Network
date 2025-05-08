@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 864 | Layer 0 | 20250506_213904:
-```json
-[
-  {"action_type": "rag_query", "query": "Sparse Representation for Function Approximation", "top_k": 10}
-]
-```
-================================================================================

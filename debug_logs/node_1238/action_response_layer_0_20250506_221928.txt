@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1238 | Layer 0 | 20250506_221928:
-```json
-[
-  {"action_type": "rag_query", "query": "decision trees pruning averaging", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 563 | Layer 0 | 20250506_214947:
-```json
-[
-  {"action_type": "rag_query", "query": "Evolving Obstacle Avoidance Behavior in a Robot Arm", "top_k": 10}
-]
-```
-================================================================================

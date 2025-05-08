@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1337 | Layer 0 | 20250506_223043:
-```json
-[
-  {"action_type": "rag_query", "query": "MLC A Machine Learning Library in C", "top_k": 10}
-]
-```
-================================================================================

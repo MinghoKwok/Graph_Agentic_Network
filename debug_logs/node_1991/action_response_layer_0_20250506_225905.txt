@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1991 | Layer 0 | 20250506_225905:
-```json
-[
-  {"action_type": "rag_query", "query": "Cheeger's constant Markov chains", "top_k": 10}
-]
-```
-================================================================================

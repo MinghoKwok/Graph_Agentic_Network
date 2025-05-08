@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2625 | Layer 0 | 20250506_231216:
-```json
-[
-  {"action_type": "rag_query", "query": "digital neural networks", "top_k": 10}
-]
-```
-================================================================================

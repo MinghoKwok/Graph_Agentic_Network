@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 133 | Layer 0 | 20250506_210336:
-```json
-[
-  {"action_type": "rag_query", "query": "PRIOR KNOWLEDGE AND THE CREATION OF \"VIRTUAL\" EXAMPLES FOR RBF NETWORKS", "top_k": 10}
-]
-```
-================================================================================

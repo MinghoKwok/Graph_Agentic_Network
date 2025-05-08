@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1873 | Layer 0 | 20250506_225252:
-```json
-[
-  {"action_type": "rag_query", "query": "Achieving Super Computer Performance with a DSP Array Processor", "top_k": 10}
-]
-```
-================================================================================

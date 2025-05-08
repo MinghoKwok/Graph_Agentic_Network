@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1986 | Layer 0 | 20250506_225848:
-```json
-[
-  {"action_type": "rag_query", "query": "boosting and naive bayesian learning", "top_k": 10}
-]
-```
-================================================================================

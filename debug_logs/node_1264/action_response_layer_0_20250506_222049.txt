@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1264 | Layer 0 | 20250506_222049:
-```json
-[
-  {"action_type": "rag_query", "query": "Artificial Life Model for Investigating the Evolution of Modularity", "top_k": 5}
-]
-```
-================================================================================

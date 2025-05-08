@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2268 | Layer 0 | 20250506_231950:
-```json
-[
-  {"action_type": "rag_query", "query": "microprocessor for artificial neural network computations", "top_k": 10}
-]
-```
-================================================================================

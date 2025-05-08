@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1291 | Layer 0 | 20250506_222814:
-```json
-[
-  {"action_type": "rag_query", "query": "bits-back coding", "top_k": 10}
-]
-```
-================================================================================

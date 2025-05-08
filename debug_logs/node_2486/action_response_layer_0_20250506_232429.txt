@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2486 | Layer 0 | 20250506_232429:
-```json
-[
-  {"action_type": "rag_query", "query": "vector quantization and function approximation", "top_k": 10}
-]
-```
-================================================================================

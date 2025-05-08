@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1821 | Layer 0 | 20250506_222945:
-```json
-[
-  {"action_type": "rag_query", "query": "One-unit Learning Rules for Independent Component Analysis", "top_k": 10}
-]
-```
-================================================================================

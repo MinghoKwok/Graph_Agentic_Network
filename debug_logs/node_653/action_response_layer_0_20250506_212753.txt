@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 653 | Layer 0 | 20250506_212753:
-```json
-[
-  {"action_type": "rag_query", "query": "Learning Optimal Dialogue Strategies", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1417 | Layer 0 | 20250506_222848:
-```json
-[
-  {"action_type": "rag_query", "query": "Ridge Regression Learning Algorithm in Dual Variables", "top_k": 10}
-]
-```
-================================================================================

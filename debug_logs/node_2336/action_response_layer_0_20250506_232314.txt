@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2336 | Layer 0 | 20250506_232314:
-```json
-[
-  {"action_type": "rag_query", "query": "Kohonen Self-Organizing Feature Maps", "top_k": 10}
-]
-```
-================================================================================

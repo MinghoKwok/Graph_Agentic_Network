@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2234 | Layer 0 | 20250506_231811:
-```json
-[
-  {"action_type": "rag_query", "query": "Harris Recurrent Markov Chains", "top_k": 10}
-]
-```
-================================================================================

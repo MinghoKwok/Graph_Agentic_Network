@@ -1,3 +1,0 @@
-🔁 [DEBUG] Fallback Response for Node 2103 | Layer 0 | 20250506_231121:
-{'action_type': 'update', 'predicted_label': 'Label_1'}
-================================================================================

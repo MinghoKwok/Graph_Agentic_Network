@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2314 | Layer 0 | 20250506_231558:
-```json
-[
-  {"action_type": "rag_query", "query": "control-Lyapunov functions", "top_k": 10}
-]
-```
-================================================================================

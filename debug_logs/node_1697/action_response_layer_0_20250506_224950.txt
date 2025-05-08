@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1697 | Layer 0 | 20250506_224950:
-```json
-[
-  {"action_type": "rag_query", "query": "Neural Network Exploration Using Optimal Experiment Design", "top_k": 10}
-]
-```
-================================================================================

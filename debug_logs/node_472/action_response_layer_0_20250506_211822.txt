@@ -1,8 +1,0 @@
-🔁 [DEBUG] Action Response for Node 472 | Layer 0 | 20250506_211822:
-```json
-[
-  {"action_type": "update", "predicted_label": "Control_Navigation_and_Planning"},
-  {"action_type": "broadcast", "target_nodes": [552, 566, 650, 1006], "message": "My predicted label is Control_Navigation_and_Planning based on my text focusing on reinforcement learning and exploration techniques in partially observable domains."}
-]
-```
-================================================================================

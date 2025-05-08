@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2033 | Layer 0 | 20250506_230741:
-```json
-[
-  {"action_type": "rag_query", "query": "RBF Networks feature selection", "top_k": 10}
-]
-```
-================================================================================

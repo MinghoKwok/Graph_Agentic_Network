@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1858 | Layer 0 | 20250506_223142:
-```json
-[
-  {"action_type": "rag_query", "query": "NP-Completeness of Minimum Rule Sets", "top_k": 10}
-]
-```
-================================================================================

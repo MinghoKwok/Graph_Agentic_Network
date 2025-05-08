@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1248 | Layer 0 | 20250506_221959:
-```json
-[
-  {"action_type": "rag_query", "query": "Lazy Acquisition of Place Knowledge", "top_k": 10}
-]
-```
-================================================================================

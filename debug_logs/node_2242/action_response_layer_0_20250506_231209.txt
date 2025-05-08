@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2242 | Layer 0 | 20250506_231209:
-```json
-[
-  {"action_type": "rag_query", "query": "Density estimation by wavelet thresholding", "top_k": 10}
-]
-```
-================================================================================

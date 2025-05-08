@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1725 | Layer 0 | 20250506_225119:
-```json
-[
-  {"action_type": "rag_query", "query": "differentially generated neural network classifiers", "top_k": 10}
-]
-```
-================================================================================

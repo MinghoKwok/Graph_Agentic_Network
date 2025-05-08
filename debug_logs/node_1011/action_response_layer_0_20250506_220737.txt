@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1011 | Layer 0 | 20250506_220737:
-```json
-[
-  {"action_type": "rag_query", "query": "discretization of continuous attributes", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2373 | Layer 0 | 20250506_231855:
-```json
-[
-  {"action_type": "rag_query", "query": "Evaluating Neural Network Predictors by Bootstrapping", "top_k": 10}
-]
-```
-================================================================================

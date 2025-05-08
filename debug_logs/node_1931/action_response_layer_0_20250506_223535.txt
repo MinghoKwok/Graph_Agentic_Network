@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1931 | Layer 0 | 20250506_223535:
-```json
-[
-  {"action_type": "rag_query", "query": "automated topology and sizing of analog circuits", "top_k": 10}
-]
-```
-================================================================================

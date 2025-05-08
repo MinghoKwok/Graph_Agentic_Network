@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2290 | Layer 0 | 20250506_232055:
-```json
-[
-  {"action_type": "rag_query", "query": "pruning methods for relational concept learning", "top_k": 10}
-]
-```
-================================================================================

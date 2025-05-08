@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 441 | Layer 0 | 20250506_214317:
-```json
-[
-  {"action_type": "rag_query", "query": "discretization of continuously valued data", "top_k": 10}
-]
-```
-================================================================================

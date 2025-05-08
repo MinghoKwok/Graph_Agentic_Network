@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2251 | Layer 0 | 20250506_231237:
-```json
-[
-  {"action_type": "rag_query", "query": "Genetic Algorithm for Multiprocessor Scheduling", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2570 | Layer 0 | 20250506_233439:
-```json
-[
-  {"action_type": "rag_query", "query": "non-linear dimension reduction", "top_k": 10}
-]
-```
-================================================================================

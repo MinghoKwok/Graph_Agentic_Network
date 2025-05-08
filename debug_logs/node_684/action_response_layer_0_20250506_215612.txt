@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 684 | Layer 0 | 20250506_215612:
-```json
-[
-  {"action_type": "rag_query", "query": "mixture modelling minimum message length", "top_k": 10}
-]
-```
-================================================================================

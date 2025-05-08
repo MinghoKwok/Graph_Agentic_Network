@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 585 | Layer 0 | 20250506_214506:
-```json
-[
-  {"action_type": "rag_query", "query": "noise-tolerant relational concept learning", "top_k": 10}
-]
-```
-================================================================================

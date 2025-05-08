@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2701 | Layer 0 | 20250506_231617:
-```json
-[
-  {"action_type": "rag_query", "query": "Simple Synchrony Networks Learning to Parse Natural Language with Temporal Synchrony Variable Binding", "top_k": 5}
-]
-```
-================================================================================

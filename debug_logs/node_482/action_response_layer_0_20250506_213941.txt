@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 482 | Layer 0 | 20250506_213941:
-```json
-[
-  {"action_type": "rag_query", "query": "Simple Selection of Utile Control Rules in Speedup Learning", "top_k": 10}
-]
-```
-================================================================================

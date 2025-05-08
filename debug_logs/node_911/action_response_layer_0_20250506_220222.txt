@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 911 | Layer 0 | 20250506_220222:
-```json
-[
-  {"action_type": "rag_query", "query": "inductive learning", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1820 | Layer 0 | 20250506_225623:
-```json
-[
-  {"action_type": "rag_query", "query": "Gamma MLP for Speech Phoneme Recognition", "top_k": 10}
-]
-```
-================================================================================

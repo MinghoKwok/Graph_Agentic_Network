@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1544 | Layer 0 | 20250506_224140:
-```json
-[
-  {"action_type": "rag_query", "query": "embedded agents monitoring strategies", "top_k": 10}
-]
-```
-================================================================================

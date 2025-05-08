@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1339 | Layer 0 | 20250506_220417:
-```json
-[
-  {"action_type": "rag_query", "query": "Bayesian Classifiers", "top_k": 10}
-]
-```
-================================================================================

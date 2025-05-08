@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2448 | Layer 0 | 20250506_230255:
-```json
-[
-  {"action_type": "rag_query", "query": "smoothing spline projection pursuit", "top_k": 10}
-]
-```
-================================================================================

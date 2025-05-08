@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1967 | Layer 0 | 20250506_225749:
-```json
-[
-  {"action_type": "rag_query", "query": "separability in machine learning", "top_k": 10}
-]
-```
-================================================================================

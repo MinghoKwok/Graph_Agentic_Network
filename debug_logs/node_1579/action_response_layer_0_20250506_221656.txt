@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1579 | Layer 0 | 20250506_221656:
-```json
-[
-  {"action_type": "rag_query", "query": "Radial Basis Function Financial Time Series", "top_k": 10}
-]
-```
-================================================================================

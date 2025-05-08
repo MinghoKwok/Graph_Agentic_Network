@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1141 | Layer 0 | 20250506_222017:
-```json
-[
-  {"action_type": "rag_query", "query": "Bayesian Graphical Modeling", "top_k": 10}
-]
-```
-================================================================================

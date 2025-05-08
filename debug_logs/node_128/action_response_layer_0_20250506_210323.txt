@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 128 | Layer 0 | 20250506_210323:
-```json
-[
-  {"action_type": "rag_query", "query": "Optimal Attitude Control of Satellites by Artificial Neural Networks", "top_k": 10}
-]
-```
-================================================================================

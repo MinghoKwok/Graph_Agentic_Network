@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 344 | Layer 0 | 20250506_213812:
-```json
-[
-  {"action_type": "rag_query", "query": "Quinlan, 1990 Learning logical definitions from relations", "top_k": 10}
-]
-```
-================================================================================

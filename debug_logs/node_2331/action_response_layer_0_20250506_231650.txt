@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2331 | Layer 0 | 20250506_231650:
-```json
-[
-  {"action_type": "rag_query", "query": "Hoeffding bounds in machine learning", "top_k": 10}
-]
-```
-================================================================================

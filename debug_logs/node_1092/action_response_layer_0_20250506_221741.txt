@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1092 | Layer 0 | 20250506_221741:
-```json
-[
-  {"action_type": "rag_query", "query": "AdaBoost pruning ensemble learning", "top_k": 10}
-]
-```
-================================================================================

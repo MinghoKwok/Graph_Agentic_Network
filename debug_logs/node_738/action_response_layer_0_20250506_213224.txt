@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 738 | Layer 0 | 20250506_213224:
-```json
-[
-  {"action_type": "rag_query", "query": "convergence of stochastic iterative dynamic programming algorithms", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1066 | Layer 0 | 20250506_221028:
-```json
-[
-  {"action_type": "rag_query", "query": "rectified Gaussian distribution", "top_k": 10}
-]
-```
-================================================================================

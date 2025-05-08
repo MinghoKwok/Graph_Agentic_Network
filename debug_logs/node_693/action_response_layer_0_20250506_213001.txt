@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 693 | Layer 0 | 20250506_213001:
-```json
-[
-  {"action_type": "rag_query", "query": "input to state stabilization", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 401 | Layer 0 | 20250506_214113:
-```json
-[
-  {"action_type": "rag_query", "query": "Learning Limited Dependence Bayesian Classifiers", "top_k": 10}
-]
-```
-================================================================================

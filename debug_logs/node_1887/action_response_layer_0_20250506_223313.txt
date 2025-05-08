@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1887 | Layer 0 | 20250506_223313:
-```json
-[
-  {"action_type": "rag_query", "query": "Langevin Updating in Multilayer Perceptrons", "top_k": 10}
-]
-```
-================================================================================

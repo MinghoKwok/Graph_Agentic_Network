@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 86 | Layer 0 | 20250506_212433:
-```json
-[
-  {"action_type": "rag_query", "query": "Expandable Split Window Paradigm", "top_k": 10}
-]
-```
-================================================================================

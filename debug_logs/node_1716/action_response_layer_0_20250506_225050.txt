@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1716 | Layer 0 | 20250506_225050:
-```json
-[
-  {"action_type": "rag_query", "query": "Analysis of the Gibbs sampler for a model related to James-Stein estimators", "top_k": 5}
-]
-```
-================================================================================

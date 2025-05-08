@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 272 | Layer 0 | 20250506_213426:
-```json
-[
-  {"action_type": "rag_query", "query": "sparse connectionist networks", "top_k": 10}
-]
-```
-================================================================================

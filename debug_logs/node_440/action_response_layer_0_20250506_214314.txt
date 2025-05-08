@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 440 | Layer 0 | 20250506_214314:
-```json
-[
-  {"action_type": "rag_query", "query": "Hierarchical Explanation-Based Reinforcement Learning", "top_k": 10}
-]
-```
-================================================================================

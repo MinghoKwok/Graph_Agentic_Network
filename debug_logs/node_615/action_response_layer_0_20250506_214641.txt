@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 615 | Layer 0 | 20250506_214641:
-```json
-[
-  {"action_type": "rag_query", "query": "Efficient Algorithms for Learning to Play Repeated Games Against Computationally Bounded Adversaries", "top_k": 10}
-]
-```
-================================================================================

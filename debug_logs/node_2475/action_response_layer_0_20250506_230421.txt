@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2475 | Layer 0 | 20250506_230421:
-```json
-[
-  {"action_type": "rag_query", "query": "Learning polynomials with queries: The highly noisy case", "top_k": 10}
-]
-```
-================================================================================

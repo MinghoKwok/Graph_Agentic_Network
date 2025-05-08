@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 200 | Layer 0 | 20250506_212452:
-```json
-[
-  {"action_type": "rag_query", "query": "Sample Complexity for Learning Recurrent Perceptron Mappings", "top_k": 10}
-]
-```
-================================================================================

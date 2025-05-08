@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 874 | Layer 0 | 20250506_213936:
-```json
-[
-  {"action_type": "rag_query", "query": "neural network blind separation", "top_k": 10}
-]
-```
-================================================================================

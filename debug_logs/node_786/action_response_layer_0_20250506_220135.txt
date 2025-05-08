@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 786 | Layer 0 | 20250506_220135:
-```json
-[
-  {"action_type": "rag_query", "query": "Learning Boolean Read-Once Formulas over Generalized Bases", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 592 | Layer 0 | 20250506_214528:
-```json
-[
-  {"action_type": "rag_query", "query": "visual cortex figure-ground separation", "top_k": 10}
-]
-```
-================================================================================

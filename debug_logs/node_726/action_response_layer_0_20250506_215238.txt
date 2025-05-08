@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 726 | Layer 0 | 20250506_215238:
-```json
-[
-  {"action_type": "rag_query", "query": "natural image statistics and efficient coding", "top_k": 10}
-]
-```
-================================================================================

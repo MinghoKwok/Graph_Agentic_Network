@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2364 | Layer 0 | 20250506_232436:
-```json
-[
-  {"action_type": "rag_query", "query": "Machine Learning Phonetic Transcription", "top_k": 10}
-]
-```
-================================================================================

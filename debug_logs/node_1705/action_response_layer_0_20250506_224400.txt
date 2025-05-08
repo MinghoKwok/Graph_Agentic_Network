@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1705 | Layer 0 | 20250506_224400:
-```json
-[
-  {"action_type": "rag_query", "query": "Learning from Incomplete Boundary Queries Using Split Graphs and Hypergraphs", "top_k": 10}
-]
-```
-================================================================================

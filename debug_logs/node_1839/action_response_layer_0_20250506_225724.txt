@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1839 | Layer 0 | 20250506_225724:
-```json
-[
-  {"action_type": "rag_query", "query": "Genetic Programming crossover operators", "top_k": 10}
-]
-```
-================================================================================

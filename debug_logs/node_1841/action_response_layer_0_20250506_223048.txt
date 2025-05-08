@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1841 | Layer 0 | 20250506_223048:
-```json
-[
-  {"action_type": "rag_query", "query": "Learning Without State-Estimation in Partially Observable Markovian Decision Processes", "top_k": 5}
-]
-```
-================================================================================

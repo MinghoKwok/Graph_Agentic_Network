@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1401 | Layer 0 | 20250506_222759:
-```json
-[
-  {"action_type": "rag_query", "query": "Case-Based Reasoning Reinforcement Learning", "top_k": 10}
-]
-```
-================================================================================

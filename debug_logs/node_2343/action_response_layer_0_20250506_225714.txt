@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2343 | Layer 0 | 20250506_225714:
-```json
-[
-  {"action_type": "rag_query", "query": "feature subset selection machine learning", "top_k": 10}
-]
-```
-================================================================================

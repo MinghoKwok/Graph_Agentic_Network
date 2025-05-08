@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 532 | Layer 0 | 20250506_212126:
-```json
-[
-  {"action_type": "rag_query", "query": "Hierarchical Selection Models with Applications in Meta-Analysis", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2609 | Layer 0 | 20250506_231125:
-```json
-[
-  {"action_type": "rag_query", "query": "inductive logic programming", "top_k": 10}
-]
-```
-================================================================================

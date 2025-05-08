@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 601 | Layer 0 | 20250506_212507:
-```json
-[
-  {"action_type": "rag_query", "query": "Partially Observable Markov Decision Process", "top_k": 10}
-]
-```
-================================================================================

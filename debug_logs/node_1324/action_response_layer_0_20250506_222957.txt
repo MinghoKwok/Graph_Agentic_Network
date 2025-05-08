@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1324 | Layer 0 | 20250506_222957:
-```json
-[
-  {"action_type": "rag_query", "query": "Graphoids probabilistic inference", "top_k": 10}
-]
-```
-================================================================================

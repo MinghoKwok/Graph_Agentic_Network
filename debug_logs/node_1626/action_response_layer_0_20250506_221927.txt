@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1626 | Layer 0 | 20250506_221927:
-```json
-[
-  {"action_type": "rag_query", "query": "feature weighting methods for machine learning", "top_k": 10}
-]
-```
-================================================================================

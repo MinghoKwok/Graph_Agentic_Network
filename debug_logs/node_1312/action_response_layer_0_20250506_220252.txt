@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1312 | Layer 0 | 20250506_220252:
-```json
-[
-  {"action_type": "rag_query", "query": "Learning Trees and Rules with Set-valued Features", "top_k": 5}
-]
-```
-================================================================================

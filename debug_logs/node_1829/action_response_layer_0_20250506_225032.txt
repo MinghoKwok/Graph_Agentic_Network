@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1829 | Layer 0 | 20250506_225032:
-```json
-[
-  {"action_type": "rag_query", "query": "stochastic smoothing filtering estimation incomplete data", "top_k": 10}
-]
-```
-================================================================================

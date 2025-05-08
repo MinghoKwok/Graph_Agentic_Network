@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2505 | Layer 0 | 20250506_230557:
-```json
-[
-  {"action_type": "rag_query", "query": "Three-Dimensional Object Recognition Using an Unsupervised BCM Network", "top_k": 10}
-]
-```
-================================================================================

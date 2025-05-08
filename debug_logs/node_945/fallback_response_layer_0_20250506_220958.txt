@@ -1,3 +1,0 @@
-🔁 [DEBUG] Fallback Response for Node 945 | Layer 0 | 20250506_220958:
-{'action_type': 'update', 'predicted_label': 'Label_3'}
-================================================================================

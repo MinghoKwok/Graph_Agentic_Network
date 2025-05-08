@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2540 | Layer 0 | 20250506_233310:
-```json
-[
-  {"action_type": "rag_query", "query": "Gaussian Processes", "top_k": 10}
-]
-```
-================================================================================

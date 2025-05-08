@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 500 | Layer 0 | 20250506_211945:
-```json
-[
-  {"action_type": "rag_query", "query": "2-D Pole Balancing with Recurrent Evolutionary Networks", "top_k": 10}
-]
-```
-================================================================================

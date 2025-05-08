@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 936 | Layer 0 | 20250506_220340:
-```json
-[
-  {"action_type": "rag_query", "query": "XCS classifier system", "top_k": 10}
-]
-```
-================================================================================

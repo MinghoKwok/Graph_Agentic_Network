@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 389 | Layer 0 | 20250506_214036:
-```json
-[
-  {"action_type": "rag_query", "query": "robustness analysis bayesian networks", "top_k": 10}
-]
-```
-================================================================================

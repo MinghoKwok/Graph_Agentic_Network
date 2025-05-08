@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2225 | Layer 0 | 20250506_231745:
-```json
-[
-  {"action_type": "rag_query", "query": "error-correcting output coding machine learning", "top_k": 10}
-]
-```
-================================================================================

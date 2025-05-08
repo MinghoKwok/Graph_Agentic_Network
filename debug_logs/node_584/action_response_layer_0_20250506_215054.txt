@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 584 | Layer 0 | 20250506_215054:
-```json
-[
-  {"action_type": "rag_query", "query": "mean field learning algorithm for unsupervised neural networks", "top_k": 10}
-]
-```
-================================================================================

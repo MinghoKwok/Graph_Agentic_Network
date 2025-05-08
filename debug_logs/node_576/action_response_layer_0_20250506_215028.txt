@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 576 | Layer 0 | 20250506_215028:
-```json
-[
-    {"action_type": "rag_query", "query": "information-maximization blind separation", "top_k": 10}
-]
-```
-================================================================================

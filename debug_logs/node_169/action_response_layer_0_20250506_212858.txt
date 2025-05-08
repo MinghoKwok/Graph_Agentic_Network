@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 169 | Layer 0 | 20250506_212858:
-```json
-[
-  {"action_type": "rag_query", "query": "learning linear sparse codes", "top_k": 10}
-]
-```
-================================================================================

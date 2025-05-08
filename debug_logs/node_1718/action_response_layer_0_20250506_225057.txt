@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1718 | Layer 0 | 20250506_225057:
-```json
-[
-  {"action_type": "rag_query", "query": "connectionist networks", "top_k": 10}
-]
-```
-================================================================================

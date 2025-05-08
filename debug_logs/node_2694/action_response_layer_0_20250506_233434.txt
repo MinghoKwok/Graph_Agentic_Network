@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2694 | Layer 0 | 20250506_233434:
-```json
-[
-  {"action_type": "rag_query", "query": "Partition-Based Uniform Error Bounds", "top_k": 10}
-]
-```
-================================================================================

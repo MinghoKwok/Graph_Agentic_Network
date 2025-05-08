@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 174 | Layer 0 | 20250506_212330:
-```json
-[
-  {"action_type": "rag_query", "query": "Symbolic and Subsymbolic Learning for Vision", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 59 | Layer 0 | 20250506_211738:
-```json
-[
-  {"action_type": "rag_query", "query": "self-adaptive neural networks", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 636 | Layer 0 | 20250506_215339:
-```json
-[
-  {"action_type": "rag_query", "query": "Robot Shaping Reinforcement Learning", "top_k": 10}
-]
-```
-================================================================================

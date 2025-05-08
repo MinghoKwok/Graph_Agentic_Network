@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 90 | Layer 0 | 20250506_212445:
-```json
-[
-  {"action_type": "rag_query", "query": "wake-sleep algorithm unsupervised neural networks", "top_k": 10}
-]
-```
-================================================================================

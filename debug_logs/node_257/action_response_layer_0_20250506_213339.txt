@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 257 | Layer 0 | 20250506_213339:
-```json
-[
-  {"action_type": "rag_query", "query": "Factor Analysis Using Delta-Rule Wake-Sleep Learning", "top_k": 10}
-]
-```
-================================================================================

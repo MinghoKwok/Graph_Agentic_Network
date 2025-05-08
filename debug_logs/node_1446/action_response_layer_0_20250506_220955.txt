@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1446 | Layer 0 | 20250506_220955:
-```json
-[
-  {"action_type": "rag_query", "query": "stabilization with saturated actuators", "top_k": 10}
-]
-```
-================================================================================

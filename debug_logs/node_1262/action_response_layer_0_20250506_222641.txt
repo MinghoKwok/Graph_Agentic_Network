@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1262 | Layer 0 | 20250506_222641:
-```json
-[
-  {"action_type": "rag_query", "query": "Maximum A Posteriori Classification of DNA Structure from Sequence Information", "top_k": 10}
-]
-```
-================================================================================

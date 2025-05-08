@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1509 | Layer 0 | 20250506_223949:
-```json
-[
-  {"action_type": "rag_query", "query": "Synthetic Aperture Radar Processing", "top_k": 10}
-]
-```
-================================================================================

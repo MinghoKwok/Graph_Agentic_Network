@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 418 | Layer 0 | 20250506_211543:
-```json
-[
-  {"action_type": "rag_query", "query": "Heterogeneous Uncertainty Sampling for Supervised Learning", "top_k": 10}
-]
-```
-================================================================================

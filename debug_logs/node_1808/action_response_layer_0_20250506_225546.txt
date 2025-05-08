@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1808 | Layer 0 | 20250506_225546:
-```json
-[
-  {"action_type": "rag_query", "query": "Set Enumeration trees", "top_k": 10}
-]
-```
-================================================================================

@@ -1,3 +1,0 @@
-🔁 [DEBUG] Fallback Response for Node 350 | Layer 0 | 20250506_213831:
-{'action_type': 'update', 'predicted_label': 'Label_2'}
-================================================================================

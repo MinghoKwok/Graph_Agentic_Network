@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1835 | Layer 0 | 20250506_225051:
-```json
-[
-  {"action_type": "rag_query", "query": "Fourier transform algorithm implementation issues", "top_k": 10}
-]
-```
-================================================================================

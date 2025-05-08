@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2280 | Layer 0 | 20250506_231409:
-```json
-[
-  {"action_type": "rag_query", "query": "GENETIC ALGORITHM FOR FRAGMENT ALLOCATION IN A DISTRIBUTED DATABASE SYSTEM", "top_k": 10}
-]
-```
-================================================================================

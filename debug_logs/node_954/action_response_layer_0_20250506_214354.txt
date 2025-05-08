@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 954 | Layer 0 | 20250506_214354:
-```json
-[
-  {"action_type": "rag_query", "query": "unsupervised learning binary vectors", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2369 | Layer 0 | 20250506_231844:
-```json
-[
-  {"action_type": "rag_query", "query": "Case-Based_Sonogram_Classification", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1639 | Layer 0 | 20250506_222008:
-```json
-[
-  {"action_type": "rag_query", "query": "Dynamic Multilayer Perceptron Networks", "top_k": 10}
-]
-```
-================================================================================

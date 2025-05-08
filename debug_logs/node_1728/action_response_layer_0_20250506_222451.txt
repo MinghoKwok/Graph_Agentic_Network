@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1728 | Layer 0 | 20250506_222451:
-```json
-[
-  {"action_type": "rag_query", "query": "Dynamic Parameter Encoding for Genetic Algorithms", "top_k": 10}
-]
-```
-================================================================================

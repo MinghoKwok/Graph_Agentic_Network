@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2532 | Layer 0 | 20250506_232643:
-```json
-[
-  {"action_type": "rag_query", "query": "ensemble learning for hidden markov models", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1531 | Layer 0 | 20250506_223450:
-```json
-[
-  {"action_type": "rag_query", "query": "NACODAE Navy Conversational Decision Aids Environment", "top_k": 10}
-]
-```
-================================================================================

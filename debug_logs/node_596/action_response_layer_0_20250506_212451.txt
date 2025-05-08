@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 596 | Layer 0 | 20250506_212451:
-```json
-[
-  {"action_type": "rag_query", "query": "Disk-Covering Method for Tree Reconstruction", "top_k": 10}
-]
-```
-================================================================================

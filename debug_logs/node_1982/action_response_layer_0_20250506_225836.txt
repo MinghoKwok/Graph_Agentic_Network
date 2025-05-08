@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1982 | Layer 0 | 20250506_225836:
-```json
-[
-  {"action_type": "rag_query", "query": "theoretical rates of convergence for Markov chain Monte Carlo", "top_k": 10}
-]
-```
-================================================================================

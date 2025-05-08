@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 343 | Layer 0 | 20250506_213809:
-```json
-[
-  {"action_type": "rag_query", "query": "genetic algorithm job-shop scheduling", "top_k": 10}
-]
-```
-================================================================================

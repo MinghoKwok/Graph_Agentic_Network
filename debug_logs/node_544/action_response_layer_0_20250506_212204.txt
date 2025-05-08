@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 544 | Layer 0 | 20250506_212204:
-```json
-[
-  {"action_type": "rag_query", "query": "Statistical Decision Theory in Machine Learning", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1650 | Layer 0 | 20250506_224721:
-```json
-[
-  {"action_type": "rag_query", "query": "Genetic Algorithms For Vertex Splitting in DAGs", "top_k": 5}
-]
-```
-================================================================================

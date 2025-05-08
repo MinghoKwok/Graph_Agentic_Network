@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1287 | Layer 0 | 20250506_220134:
-```json
-[
-  {"action_type": "rag_query", "query": "Factorial Hidden Markov Models", "top_k": 10}
-]
-```
-================================================================================

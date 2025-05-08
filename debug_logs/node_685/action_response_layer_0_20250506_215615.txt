@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 685 | Layer 0 | 20250506_215615:
-```json
-[
-  {"action_type": "rag_query", "query": "performance prediction model for neural network simulations", "top_k": 10}
-]
-```
-================================================================================

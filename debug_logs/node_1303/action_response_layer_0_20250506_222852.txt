@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1303 | Layer 0 | 20250506_222852:
-```json
-[
-  {"action_type": "rag_query", "query": "stochastic hillclimbing genetic algorithms", "top_k": 10}
-]
-```
-================================================================================

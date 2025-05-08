@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1333 | Layer 0 | 20250506_223031:
-```json
-[
-  {"action_type": "rag_query", "query": "Genetic Algorithms for Supervised Concept Learning", "top_k": 10}
-]
-```
-================================================================================

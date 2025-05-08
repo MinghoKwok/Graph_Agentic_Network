@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1474 | Layer 0 | 20250506_223758:
-```json
-[
-  {"action_type": "rag_query", "query": "Incremental Co-evolution of Organisms", "top_k": 10}
-]
-```
-================================================================================

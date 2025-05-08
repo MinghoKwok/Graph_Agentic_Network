@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 249 | Layer 0 | 20250506_213313:
-```json
-[
-  {"action_type": "rag_query", "query": "control flow prediction", "top_k": 10}
-]
-```
-================================================================================

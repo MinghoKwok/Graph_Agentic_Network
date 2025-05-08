@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2659 | Layer 0 | 20250506_233829:
-```json
-[
-  {"action_type": "rag_query", "query": "Genetic Algorithms for Engineering Design Optimization", "top_k": 10}
-]
-```
-================================================================================

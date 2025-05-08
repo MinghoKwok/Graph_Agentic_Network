@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1952 | Layer 0 | 20250506_223642:
-```json
-[
-  {"action_type": "rag_query", "query": "constructive neural network learning algorithms", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1559 | Layer 0 | 20250506_223619:
-```json
-[
-  {"action_type": "rag_query", "query": "Active Learning with Statistical Models", "top_k": 10}
-]
-```
-================================================================================

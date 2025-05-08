@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 581 | Layer 0 | 20250506_214453:
-```json
-[
-  {"action_type": "rag_query", "query": "memory search introspection", "top_k": 10}
-]
-```
-================================================================================

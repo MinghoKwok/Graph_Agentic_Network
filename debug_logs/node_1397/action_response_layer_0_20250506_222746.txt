@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1397 | Layer 0 | 20250506_222746:
-```json
-[
-  {"action_type": "rag_query", "query": "Dynamic Bayesian Networks in Speech Recognition", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1822 | Layer 0 | 20250506_225630:
-```json
-[
-  {"action_type": "rag_query", "query": "connectionist modeling", "top_k": 10}
-]
-```
-================================================================================

@@ -1,3 +1,0 @@
-🔁 [DEBUG] Fallback Response for Node 508 | Layer 0 | 20250506_214652:
-{'action_type': 'update', 'predicted_label': 'Label_6'}
-================================================================================

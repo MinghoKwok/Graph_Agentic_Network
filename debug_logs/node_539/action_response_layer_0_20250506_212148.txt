@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 539 | Layer 0 | 20250506_212148:
-```json
-[
-  {"action_type": "rag_query", "query": "structural similarity case-based reasoning", "top_k": 10}
-]
-```
-================================================================================

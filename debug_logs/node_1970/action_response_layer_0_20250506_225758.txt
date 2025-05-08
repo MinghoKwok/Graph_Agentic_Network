@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1970 | Layer 0 | 20250506_225758:
-```json
-[
-  {"action_type": "rag_query", "query": "Canonical Distortion Measure in Feature Space and 1-NN Classification", "top_k": 5}
-]
-```
-================================================================================

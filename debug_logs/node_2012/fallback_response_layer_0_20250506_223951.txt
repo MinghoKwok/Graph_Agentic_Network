@@ -1,3 +1,0 @@
-🔁 [DEBUG] Fallback Response for Node 2012 | Layer 0 | 20250506_223951:
-{'action_type': 'update', 'predicted_label': 'Label_6'}
-================================================================================

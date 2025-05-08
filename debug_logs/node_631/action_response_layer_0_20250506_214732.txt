@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 631 | Layer 0 | 20250506_214732:
-```json
-[
-  {"action_type": "rag_query", "query": "extracting rules from neural networks", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1672 | Layer 0 | 20250506_224831:
-```json
-[
-  {"action_type": "rag_query", "query": "Learning Controllers for Industrial Robots", "top_k": 10}
-]
-```
-================================================================================

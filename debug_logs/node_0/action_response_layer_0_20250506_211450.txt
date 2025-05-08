@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 0 | Layer 0 | 20250506_211450:
-```json
-[
-  {"action_type": "rag_query", "query": "protein sequence pattern discovery", "top_k": 10}
-]
-```
-================================================================================

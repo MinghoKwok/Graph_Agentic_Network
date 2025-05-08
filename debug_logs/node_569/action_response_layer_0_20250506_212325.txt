@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 569 | Layer 0 | 20250506_212325:
-```json
-[
-  {"action_type": "rag_query", "query": "decision-theoretic learning", "top_k": 10}
-]
-```
-================================================================================

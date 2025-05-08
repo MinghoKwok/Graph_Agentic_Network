@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1545 | Layer 0 | 20250506_223534:
-```json
-[
-  {"action_type": "rag_query", "query": "Learning Goal Oriented Bayesian Networks for Telecommunications Risk Management", "top_k": 5}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 355 | Layer 0 | 20250506_213849:
-```json
-[
-  {"action_type": "rag_query", "query": "unsupervised category learning", "top_k": 10}
-]
-```
-================================================================================

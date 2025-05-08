@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2562 | Layer 0 | 20250506_233415:
-```json
-[
-  {"action_type": "rag_query", "query": "NONLINEAR TRADING MODELS THROUGH SHARPE RATIO MAXIMIZATION", "top_k": 10}
-]
-```
-================================================================================

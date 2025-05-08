@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2025 | Layer 0 | 20250506_230716:
-```json
-[
-  {"action_type": "rag_query", "query": "weak convergence and optimal scaling of random walk metropolis algorithms", "top_k": 10}
-]
-```
-================================================================================

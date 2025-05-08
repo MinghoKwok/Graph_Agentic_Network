@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 579 | Layer 0 | 20250506_212357:
-```json
-[
-  {"action_type": "rag_query", "query": "comparison of machine learning methods for ocr and speech classification", "top_k": 10}
-]
-```
-================================================================================

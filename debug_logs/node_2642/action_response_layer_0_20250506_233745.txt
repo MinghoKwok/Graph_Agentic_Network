@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2642 | Layer 0 | 20250506_233745:
-```json
-[
-  {"action_type": "rag_query", "query": "Learning to Play Games From Experience: An Application of Artificial Neural Networks and Temporal Difference Learning", "top_k": 10}
-]
-```
-================================================================================

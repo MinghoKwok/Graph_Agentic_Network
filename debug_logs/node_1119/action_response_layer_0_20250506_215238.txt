@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1119 | Layer 0 | 20250506_215238:
-```json
-[
-  {"action_type": "rag_query", "query": "Adaptive Parameter Pruning in Neural Networks", "top_k": 10}
-]
-```
-================================================================================

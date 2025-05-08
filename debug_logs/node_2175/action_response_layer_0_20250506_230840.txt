@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2175 | Layer 0 | 20250506_230840:
-```json
-[
-  {"action_type": "rag_query", "query": "Genetic Programming Building Block Hypothesis", "top_k": 10}
-]
-```
-================================================================================

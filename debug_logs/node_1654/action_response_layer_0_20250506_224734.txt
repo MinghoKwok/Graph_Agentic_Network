@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1654 | Layer 0 | 20250506_224734:
-```json
-[
-  {"action_type": "rag_query", "query": "Hyperparameter estimation in Dirichlet process mixture models", "top_k": 10}
-]
-```
-================================================================================

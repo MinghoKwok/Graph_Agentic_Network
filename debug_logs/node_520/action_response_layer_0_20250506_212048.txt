@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 520 | Layer 0 | 20250506_212048:
-```json
-[
-  {"action_type": "rag_query", "query": "CANCER DIAGNOSIS AND PROGNOSIS VIA LINEAR-PROGRAMMING-BASED MACHINE LEARNING", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 582 | Layer 0 | 20250506_212407:
-```json
-[
-  {"action_type": "rag_query", "query": "Machine Learning Multistrategy Approach", "top_k": 10}
-]
-```
-================================================================================

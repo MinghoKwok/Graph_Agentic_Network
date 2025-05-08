@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1399 | Layer 0 | 20250506_220726:
-```json
-[
-  {"action_type": "rag_query", "query": "parametric regression", "top_k": 10}
-]
-```
-================================================================================

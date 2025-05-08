@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 638 | Layer 0 | 20250506_212705:
-```json
-[
-  {"action_type": "rag_query", "query": "Learning a set of primitive actions with an Induction of decision trees", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 710 | Layer 0 | 20250506_213055:
-```json
-[
-  {"action_type": "rag_query", "query": "boosting techniques in machine learning", "top_k": 10}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2352 | Layer 0 | 20250506_225742:
-```json
-[
-  {"action_type": "rag_query", "query": "Power System Security Margin Prediction Using Radial Basis Function Networks", "top_k": 5}
-]
-```
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 115 | Layer 0 | 20250506_212606:
-```json
-[
-  {"action_type": "rag_query", "query": "Rate of Convergence of the Gibbs Sampler by Gaussian Approximation", "top_k": 10}
-]
-```
-================================================================================

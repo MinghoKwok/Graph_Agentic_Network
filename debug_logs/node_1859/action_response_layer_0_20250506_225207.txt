@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1859 | Layer 0 | 20250506_225207:
-```json
-[
-  {"action_type": "rag_query", "query": "Self-Improving Factory Simulation using Continuous-time Average-Reward Reinforcement Learning", "top_k": 10}
-]
-```
-================================================================================

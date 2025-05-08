@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 783 | Layer 0 | 20250506_213446:
-```json
-[
-  {"action_type": "rag_query", "query": "Memory-Based Learning", "top_k": 10}
-]
-```
-================================================================================

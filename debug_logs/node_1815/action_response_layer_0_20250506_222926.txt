@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1815 | Layer 0 | 20250506_222926:
-```json
-[
-  {"action_type": "rag_query", "query": "Neural Network Constructive Algorithms", "top_k": 10}
-]
-```
-================================================================================

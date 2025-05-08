@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1429 | Layer 0 | 20250506_222928:
-```json
-[
-  {"action_type": "rag_query", "query": "first-order learning", "top_k": 10}
-]
-```
-================================================================================

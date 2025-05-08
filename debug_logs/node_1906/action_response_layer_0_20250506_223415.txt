@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1906 | Layer 0 | 20250506_223415:
-```json
-[
-  {"action_type": "rag_query", "query": "Bayesian Estimation and Model Choice in Item Response Models", "top_k": 10}
-]
-```
-================================================================================

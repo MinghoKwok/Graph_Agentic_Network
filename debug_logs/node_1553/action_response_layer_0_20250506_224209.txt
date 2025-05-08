@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1553 | Layer 0 | 20250506_224209:
-```json
-[
-  {"action_type": "rag_query", "query": "Learning to Predict User Operations for Adaptive Scheduling", "top_k": 10}
-]
-```
-================================================================================

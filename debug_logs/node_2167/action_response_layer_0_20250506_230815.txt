@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2167 | Layer 0 | 20250506_230815:
-```json
-[
-  {"action_type": "rag_query", "query": "counterfactuals and policy analysis in structural models", "top_k": 10}
-]
-```
-================================================================================

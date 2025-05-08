@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 226 | Layer 0 | 20250506_213200:
-```json
-[
-  {"action_type": "rag_query", "query": "Neuro-Fuzzy Agglomerative Clustering", "top_k": 10}
-]
-```
-================================================================================

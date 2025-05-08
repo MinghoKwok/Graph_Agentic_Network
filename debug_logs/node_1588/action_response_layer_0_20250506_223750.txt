@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1588 | Layer 0 | 20250506_223750:
-```json
-[
-  {"action_type": "rag_query", "query": "automatic modularization by speciation", "top_k": 10}
-]
-```
-================================================================================

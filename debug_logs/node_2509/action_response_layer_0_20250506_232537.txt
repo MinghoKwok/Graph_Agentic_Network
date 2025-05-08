@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 2509 | Layer 0 | 20250506_232537:
-```json
-[
-  {"action_type": "rag_query", "query": "Winnow algorithm applications", "top_k": 10}
-]
-```
-================================================================================

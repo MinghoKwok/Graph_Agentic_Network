@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 687 | Layer 0 | 20250506_212942:
-```json
-[
-  {"action_type": "rag_query", "query": "self-organizing neural network", "top_k": 10}
-]
-```
-================================================================================

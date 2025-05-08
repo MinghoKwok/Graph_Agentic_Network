@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 1390 | Layer 0 | 20250506_220657:
-```json
-[
-  {"action_type": "rag_query", "query": "Learning Finite Automata Using Local Distinguishing Experiments", "top_k": 10}
-]
-```
-================================================================================

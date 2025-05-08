@@ -1,3 +1,0 @@
-🔁 [DEBUG] Fallback Response for Node 798 | Layer 0 | 20250506_215625:
-{'action_type': 'update', 'predicted_label': 'Label_6'}
-================================================================================

@@ -1,7 +1,0 @@
-🔁 [DEBUG] Action Response for Node 380 | Layer 0 | 20250506_214007:
-```json
-[
-  {"action_type": "rag_query", "query": "Fitness Landscapes and Difficulty in Genetic Programming", "top_k": 10}
-]
-```
-================================================================================
