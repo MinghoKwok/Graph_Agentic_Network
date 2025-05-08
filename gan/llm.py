@@ -32,8 +32,8 @@ class RemoteLLMInterface(BaseLLMInterface):
     def __init__(self, endpoint: str, model_name: str):
         self.endpoint = endpoint
         self.model_name = model_name
-        # 创建日志目录
-        os.makedirs("debug_logs", exist_ok=True)
+        self.debug_logs_dir = os.path.join(config.RESULTS_DIR, "debug_logs")
+        os.makedirs(self.debug_logs_dir, exist_ok=True)
 
     def generate_response(self, prompt: str) -> str:
         assert isinstance(prompt, str) and len(prompt.strip()) > 30, "Prompt seems too short or empty!"
@@ -64,7 +64,7 @@ class RemoteLLMInterface(BaseLLMInterface):
             
             # 记录响应到日志
             timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-            with open("debug_logs/llm_responses.txt", "a", encoding="utf-8") as log_file:
+            with open(os.path.join(self.debug_logs_dir, "llm_responses.txt"), "a", encoding="utf-8") as log_file:
                 log_file.write(f"\n\n🔁 [LLM Response] | {timestamp}:\n")
                 log_file.write(json.dumps(result, indent=2, ensure_ascii=False))
                 log_file.write("\n" + "=" * 80)
@@ -311,10 +311,10 @@ Here are the definitions of the labels, which are helpful for you to predict you
         
         # 记录 prompt 到日志
         timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        log_dir = f"debug_logs/node_{node_id}"
+        log_dir = os.path.join(self.debug_logs_dir, f"node_{node_id}")
         os.makedirs(log_dir, exist_ok=True)
         
-        with open(f"{log_dir}/layer_{layer}_{timestamp}.txt", "w", encoding="utf-8") as log_file:
+        with open(os.path.join(log_dir, f"layer_{layer}_{timestamp}.txt"), "w", encoding="utf-8") as log_file:
             log_file.write(f"📤 [DEBUG] Prompt for Node {node_id} | Layer {layer} | {timestamp}:\n")
             log_file.write(prompt)
             log_file.write("\n" + "=" * 80)

@@ -71,6 +71,10 @@ def load_cora(
 ) -> Dict[str, Any]:
     """
     Load Cora dataset using simplified JSONL + true citation edges.
+    Following the standard split from (Kipf & Welling, 2017):
+    - 20 nodes per class for training
+    - 500 nodes for validation
+    - 1000 nodes for testing
     
     Returns:
         Dictionary containing:
@@ -91,6 +95,7 @@ def load_cora(
     node_texts = {}
     paperid_to_nodeid = {}
     labels = {}
+    class_to_nodes = {}  # 用于按类别组织节点
 
     for line in lines:
         item = json.loads(line)
@@ -108,9 +113,14 @@ def load_cora(
         }
         # 然后在处理 label 时加：
         label_name = legacy_label_mapping.get(item["label"], item["label"])  # 先映射一遍
-
-        labels[nid] = label_vocab[label_name]
+        label_id = label_vocab[label_name]
+        labels[nid] = label_id
         paperid_to_nodeid[pid] = nid
+        
+        # 按类别组织节点
+        if label_id not in class_to_nodes:
+            class_to_nodes[label_id] = []
+        class_to_nodes[label_id].append(nid)
 
     num_nodes = len(node_texts)
     labels_tensor = torch.tensor([labels[i] for i in range(num_nodes)], dtype=torch.long)
@@ -129,17 +139,34 @@ def load_cora(
     # Step 3: 创建 GNN 输入特征（one-hot）
     node_features = torch.eye(num_nodes)
 
-    # Step 4: 划分 train/val/test
-    perm = torch.randperm(num_nodes)
-    train_size = int(0.6 * num_nodes)
-    val_size = int(0.2 * num_nodes)
-    train_idx = perm[:train_size]
-    val_idx = perm[train_size:train_size + val_size]
-    test_idx = perm[train_size + val_size:]
+    # Step 4: 按标准方式划分数据集
+    seed_everything()  # 确保可重复性
+    
+    # 训练集：每类 20 个节点
+    train_idx = []
+    for label_id, nodes in class_to_nodes.items():
+        # 随机打乱该类别的节点
+        perm = torch.randperm(len(nodes))
+        # 选择前 20 个节点作为训练集
+        train_idx.extend([nodes[i] for i in perm[:20]])
+    
+    # 从剩余节点中随机选择验证集和测试集
+    remaining_nodes = [n for n in range(num_nodes) if n not in train_idx]
+    perm = torch.randperm(len(remaining_nodes))
+    
+    # 验证集：500 个节点
+    val_idx = [remaining_nodes[i] for i in perm[:500]]
+    # 测试集：1000 个节点
+    test_idx = [remaining_nodes[i] for i in perm[500:1500]]
+    
+    # 转换为张量
+    train_idx = torch.tensor(train_idx)
+    val_idx = torch.tensor(val_idx)
+    test_idx = torch.tensor(test_idx)
 
     print(f"Loaded {num_nodes} nodes with {adj_matrix.sum().item()/2:.0f} edges")
     print(f"Feature dimension: {node_features.size(1)}")
-    print(f"Split sizes: Train={len(train_idx)}, Val={len(val_idx)}, Test={len(test_idx)}")
+    print(f"Split sizes: Train={len(train_idx)} (20 per class), Val={len(val_idx)}, Test={len(test_idx)}")
 
     return {
         'adj_matrix': adj_matrix,

@@ -1,9 +1,11 @@
 import torch
 from typing import Dict, List, Any, Optional
 from dataclasses import dataclass, field
+import os
+import datetime
 
 from gan.actions import Action, RetrieveAction, RAGAction, BroadcastAction, UpdateAction, NoOpAction
-from config import DEBUG_STEP_SUMMARY, DEBUG_MESSAGE_TRACE, NUM_LAYERS, DEBUG_FORCE_FALLBACK
+from config import DEBUG_STEP_SUMMARY, DEBUG_MESSAGE_TRACE, NUM_LAYERS, DEBUG_FORCE_FALLBACK, RESULTS_DIR
 from data.cora.label_vocab import label_vocab, inv_label_vocab
 from gan.utils import has_memory_entry
 
@@ -34,6 +36,10 @@ class NodeAgent:
         self.memory = {}
 
     def step(self, graph: 'AgenticGraph', layer: int):
+        # 获取当前实验结果目录
+        debug_logs_dir = os.path.join(RESULTS_DIR, "debug_logs")
+        os.makedirs(debug_logs_dir, exist_ok=True)
+        
         context = {
             "node_id": self.state.node_id,
             "text": self.state.text,
@@ -47,13 +53,40 @@ class NodeAgent:
         self.skip_update = hasattr(graph, "train_idx") and self.state.node_id in graph.train_idx
 
         action_prompt = self.llm._format_action_prompt(context)
+        
+        # 记录 action prompt
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        log_dir = os.path.join(debug_logs_dir, f"node_{self.state.node_id}")
+        os.makedirs(log_dir, exist_ok=True)
+        with open(os.path.join(log_dir, f"action_prompt_layer_{layer}_{timestamp}.txt"), "w", encoding="utf-8") as log_file:
+            log_file.write(f"\n📤 [DEBUG] Action Prompt for Node {self.state.node_id} | Layer {layer} | {timestamp}:\n")
+            log_file.write(action_prompt)
+            log_file.write("\n" + "=" * 80)
 
         try:
             response = self.llm.generate_response(action_prompt)
+            # 记录 action response
+            with open(os.path.join(log_dir, f"action_response_layer_{layer}_{timestamp}.txt"), "w", encoding="utf-8") as log_file:
+                log_file.write(f"🔁 [DEBUG] Action Response for Node {self.state.node_id} | Layer {layer} | {timestamp}:\n")
+                log_file.write(str(response))
+                log_file.write("\n" + "=" * 80)
+                
             action = self.llm.parse_action(response)
             if action is None:
                 fallback_prompt = self._format_simple_fallback_action_prompt(context)
+                # 记录 simple fallback prompt
+                with open(os.path.join(log_dir, f"simple_fallback_layer_{layer}_{timestamp}.txt"), "w", encoding="utf-8") as log_file:
+                    log_file.write(f"📤 [DEBUG] Simple Fallback Prompt for Node {self.state.node_id} | Layer {layer} | {timestamp}:\n")
+                    log_file.write(fallback_prompt)
+                    log_file.write("\n" + "=" * 80)
+                
                 fallback_response = self.llm.generate_response(fallback_prompt)
+                # 记录 simple fallback response
+                with open(os.path.join(log_dir, f"simple_fallback_response_layer_{layer}_{timestamp}.txt"), "w", encoding="utf-8") as log_file:
+                    log_file.write(f"🔁 [DEBUG] Simple Fallback Response for Node {self.state.node_id} | Layer {layer} | {timestamp}:\n")
+                    log_file.write(str(fallback_response))
+                    log_file.write("\n" + "=" * 80)
+                    
                 action = self.llm.parse_action(fallback_response)
             if isinstance(action, dict):
                 action = self._create_action(action, graph)
@@ -62,8 +95,7 @@ class NodeAgent:
                 
                 # 🔧 如果是 RAGAction，补充 memory 写入
                 if isinstance(action, RAGAction) and "results" in result:
-                    # reranked_results = self._rerank_rag_results(result["results"], self.state.text, top_k=5, max_per_label=2)
-                    for node_id, node_info in result["results"].items(): # for node_id, node_info in reranked_results.items():
+                    for node_id, node_info in result["results"].items():
                         if isinstance(node_info, dict) and "text" in node_info and node_info["text"] and "label" in node_info and node_info["label"] is not None:
                             memory_entry = {
                                 "layer": layer,
@@ -123,11 +155,11 @@ class NodeAgent:
         # Trigger fallback update if:
         # - in the last layer
         # - no update action occurred
-        # if layer == NUM_LAYERS - 1 and not any(m.get("action") == "update" for m in self.state.memory):
-        if layer >= 0:
+        if layer >= NUM_LAYERS - 2 and not any(m.get("action") == "update" for m in self.state.memory):
             # 检查是否执行过retrieve
             has_retrieved = any(m.get("action") == "retrieve" for m in self.state.memory)
-            if True:  ## 测试用 两次retrieve
+            # if not has_retrieved:
+            if True:    ## 测试用 两次retrieve
                 # 先执行一次retrieve
                 print(f"\n🔄 [Fallback Retrieve] Node {self.state.node_id} | Layer {layer}")
                 retrieve_action = RetrieveAction(
@@ -155,9 +187,22 @@ class NodeAgent:
             # 构造 fallback prompt 并推理
             fallback_prompt = self._format_fallback_label_prompt(self.state.text, self.state.memory)
             print(f"\n📦 [Fallback Prompt for Node {self.state.node_id}]:\n{fallback_prompt}")
+            
+            # 记录 fallback prompt
+            with open(os.path.join(log_dir, f"fallback_layer_{layer}_{timestamp}.txt"), "w", encoding="utf-8") as log_file:
+                log_file.write(f"📤 [DEBUG] Fallback Prompt for Node {self.state.node_id} | Layer {layer} | {timestamp}:\n")
+                log_file.write(fallback_prompt)
+                log_file.write("\n" + "=" * 80)
+            
             fallback_response = self.llm.generate_response(fallback_prompt)
             fallback_decision = self.llm.parse_action(fallback_response)
             print(f"🎯 [Fallback Result]: {fallback_decision}")
+            
+            # 记录 fallback 响应
+            with open(os.path.join(log_dir, f"fallback_response_layer_{layer}_{timestamp}.txt"), "w", encoding="utf-8") as log_file:
+                log_file.write(f"🔁 [DEBUG] Fallback Response for Node {self.state.node_id} | Layer {layer} | {timestamp}:\n")
+                log_file.write(str(fallback_decision))
+                log_file.write("\n" + "=" * 80)
 
             if isinstance(fallback_decision, dict) and fallback_decision.get("action_type") == "update":
                 fallback_action = self._create_action(fallback_decision, graph)
@@ -210,85 +255,75 @@ class NodeAgent:
                 return UpdateAction(updates)
         return NoOpAction()
 
-
-    def _format_fallback_label_prompt(self, node_text: str, memory: List[Dict[str, Any]], top_k: int = 5) -> str:
-        from difflib import SequenceMatcher
-
-        def similarity(a: str, b: str) -> float:
-            return SequenceMatcher(None, a, b).ratio()
-
-        labeled_memory = [m for m in memory if m.get("label") is not None and m.get("text")]
-        # 根据语义相似度排序 memory
-        sorted_memory = sorted(
-            labeled_memory,
-            key=lambda m: similarity(node_text.lower(), m["text"].lower()),
-            reverse=True
-        )[:top_k]
-
+    def _format_fallback_label_prompt(self, node_text: str, memory: List[Dict[str, Any]]) -> str:
         prompt = "You are a label prediction agent.\n\n"
-        
-        prompt += f"Text to classify:\n\"{node_text.strip()}\"\n\n"
-        if sorted_memory:
-            prompt += "Memory items:\n"
-            for m in sorted_memory:
-                label = m["label"]
-                label_str = inv_label_vocab.get(label, f"Label_{label}")
-                short_text = m["text"].strip().replace("\n", " ")
-                short_text = short_text[:60] + "..." if len(short_text) > 60 else short_text
-                prompt += f'- "{short_text}" — label: {label_str}\n'
-        else:
-            prompt += "Memory items: (No memory available)\n"
+        prompt += "You will be given a set of labeled memory items and a new node to classify.\n"
+        prompt += "Each example includes a few labeled texts as memory and a new text to classify.\n"
+        prompt += "Use the memory to predict the label for the current text.\n\n"
 
-        prompt += "\nPlease follow these steps in your analysis:\n"
-        prompt += "1. Analyze the Current Node Text:\n"
-        prompt += "   - Identify primary topics and application domain\n"
-        prompt += "   - Determine the specific problem being solved\n"
-        prompt += "   - Note core methodologies and algorithms\n"
-        prompt += "2. Analyze Memory Examples:\n"
-        prompt += "   - Understand application domains for each label\n"
-        prompt += "   - Identify types of problems addressed\n"
-        prompt += "   - Note underlying methodologies\n"
-        prompt += "3. Compare and Weigh Evidence:\n"
-        prompt += "   - Prioritize domain and problem alignment\n"
-        prompt += "   - Evaluate methodological congruence\n"
-        prompt += "   - Consider both domain-specific techniques and general paradigms\n"
-        prompt += "   - Ensure holistic coherence in your decision\n"
-        prompt += "4. Avoid over-reliance on isolated keywords\n\n"
-        
-        prompt += "Please think step by step: First analyze memory examples and their labels, then compare them to the input text. Identify the most semantically similar memory items and explain why. Finally, decide which label best matches and explain your reasoning."
-        prompt += "\nRespond strictly in JSON format:\n{\"action_type\": \"update\", \"predicted_label\": \"label_string\"}\n"
+        # === Instruction Tip ===
+        prompt += "Think step-by-step. Consider which label is best supported by both the semantic content of the node text and the examples in memory.\n"
+        prompt += "Do not rely on abstract or popular terms alone (like \"system\" or \"accuracy\") unless those match the label examples provided.\n\n"
+
+        # === Example 1 ===
+        prompt += "## Example 1:\n"
+        prompt += "Memory:\n"
+        prompt += '1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."\n'
+        prompt += '2. [Label_1] "Neural networks for text classification."\n'
+        prompt += '3. [Label_2] "Bayesian models for probabilistic inference."\n'
+        prompt += "Current Node Text:\n"
+        prompt += '"Markov models for speech sequence alignment."\n'
+        prompt += "Prediction: Label_2\n"
+        prompt += "Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.\n\n"
+
+        # === Example 2: 有标签冲突，靠语义推理 ===
+        prompt += "## Example 2:\n"
+        prompt += "Memory:\n"
+        prompt += '1. [Label_2] "Hidden Markov models for biological sequence alignment."\n'
+        prompt += '2. [Label_6] "Improving ensemble model selection with probabilistic voting."\n'
+        prompt += '3. [Label_2] "Bayesian inference for protein sequence homology detection."\n'
+        prompt += '4. [Label_6] "Boosted decision trees for structured data classification."\n'
+        prompt += '5. [Label_3] "Non-reversible Markov chains for MCMC sampling."\n'
+        prompt += "Current Node Text:\n"
+        prompt += '"Homology detection in genetic sequences using Bayesian Markov modeling."\n'
+        prompt += "Prediction: Label_2\n"
+        prompt += "Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.\n\n"
+
+        # === 当前推理任务 ===
+        prompt += "## Your Turn:\n"
+
+        # 添加 memory label summary
+        label_counts = {}
+        for m in memory:
+            label = m.get("label")
+            if label is not None:
+                label_counts[label] = label_counts.get(label, 0) + 1
+        if label_counts:
+            prompt += "Memory Summary:\n"
+            for label_id, count in sorted(label_counts.items()):
+                label_str = inv_label_vocab.get(label_id, f"Label_{label_id}")
+                prompt += f"- {label_str}: {count} examples\n"
+            prompt += "\n"
+
+        prompt += "Memory:\n"
+        labeled_memory = [m for m in memory if m.get("label") is not None]
+        for i, m in enumerate(labeled_memory[:5], 1):
+            label = m.get("label")
+            label_str = inv_label_vocab.get(label, f"Label_{label}")
+            text = m.get("text", "").replace("\n", " ").strip()
+            short_text = text[:150] + "..." if len(text) > 150 else text
+            prompt += f'{i}. [{label_str}] "{short_text}"\n'
+
+        prompt += "\nText to classify:\n"
+        prompt += f'"{node_text.strip()}"\n\n'
+
+        prompt += "Respond strictly in JSON:\n"
+        prompt += '{"action_type": "update", "predicted_label": "Label_X"}' + "\n"
         label_list = ", ".join(f'\"{v}\"' for v in inv_label_vocab.values())
         prompt += f"Allowed labels: [{label_list}]\n"
-        return prompt
 
+        return prompt
 
 
     def _format_simple_fallback_action_prompt(self, context: Dict[str, Any]) -> str:
         return f"Based on context {context}, choose one action: retrieve, broadcast, update, or rag_query."
-
-
-    def _rerank_rag_results(self, results: Dict[int, Dict[str, Any]], node_text: str, top_k: int = 5, max_per_label: int = 2) -> Dict[int, Dict[str, Any]]:
-        from difflib import SequenceMatcher
-        from collections import defaultdict
-
-        def similarity(a: str, b: str) -> float:
-            return SequenceMatcher(None, a, b).ratio()
-
-        label_buckets = defaultdict(list)
-        for node_id, info in results.items():
-            if "text" not in info or not info["text"] or "label" not in info or info["label"] is None:
-                continue
-            score = similarity(node_text.lower(), info["text"].lower())
-            label_buckets[info["label"]].append((score, node_id, info))
-
-        reranked = {}
-        for label, scored_items in label_buckets.items():
-            # sort each label group by similarity descending
-            top_items = sorted(scored_items, reverse=True)[:max_per_label]
-            for score, nid, info in top_items:
-                reranked[nid] = info
-
-        # final global top_k cutoff
-        sorted_all = sorted([(similarity(node_text.lower(), v["text"].lower()), k, v) for k, v in reranked.items()], reverse=True)
-        reranked_topk = {nid: info for _, nid, info in sorted_all[:top_k]}
-        return reranked_topk
