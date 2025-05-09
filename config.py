@@ -55,7 +55,7 @@ SAGE_WEIGHT_DECAY = 5e-4
 SAGE_EPOCHS = 200
 
 # Dataset settings
-DATASET_NAME = "cora"  # Default dataset
+DATASET_NAME = "chameleon"  # "cora"  # Default dataset
 
 # Task type
 TASK_TYPE = "node_classification"  # or "link_prediction"

@@ -20,7 +20,7 @@ from data.dataset import load_or_create_dataset
 from baselines.gcn import GCNBaseline
 from baselines.gat import GAT
 from baselines.graphsage import GraphSAGE
-
+import csv
 
 def run_node_classification(
     dataset_name: str = config.DATASET_NAME,
@@ -54,8 +54,10 @@ def run_node_classification(
     num_classes = dataset['num_classes']
 
     # 加载文本形式的节点描述
-    with open(f"../data/{dataset_name}/cora_text_graph_simplified.jsonl") as f:
-        node_texts = {int(json.loads(line)["node_id"]): json.loads(line)["text"] for line in f}
+    # with open(f"../data/{dataset_name}/cora_text_graph_simplified.jsonl") as f:
+    #     node_texts = {int(json.loads(line)["node_id"]): json.loads(line)["text"] for line in f}
+    node_texts = dataset['node_texts']
+    print(f"Loaded {len(node_texts)} node texts for GAN.")
 
     results = {
         'dataset': dataset_name,
@@ -66,6 +68,8 @@ def run_node_classification(
         from gan.llm import MockLLMInterface, RemoteLLMInterface
         config.LLM_BACKEND = "mock" if use_mock_llm else "remote"
         llm_interface = MockLLMInterface() if use_mock_llm else LLMInterface(model_name=config.LLM_MODEL)
+
+        print(f"⚙️  GAN config: LLM={config.LLM_MODEL}, Layers={num_layers}, Batch size={batch_size}, Backend={config.LLM_BACKEND}")
 
         print(f"Creating Graph Agentic Network with {num_layers} layers")
         gan = GraphAgenticNetwork(
@@ -192,6 +196,23 @@ def run_node_classification(
         with open(result_file, 'w') as f:
             json.dump(results, f, indent=2, default=lambda x: x.tolist() if isinstance(x, torch.Tensor) else x)
         print(f"Results saved to {result_file}")
+        csv_path = os.path.join(result_dir, "summary.csv")
+        with open(csv_path, 'w') as f:
+            writer = csv.writer(f)
+            writer.writerow(['model', 'split', 'accuracy', 'f1_micro', 'f1_macro'])
+            for model in ['gan'] + [m.lower() for m in config.BASELINE_TYPES]:
+                if model in results:
+                    for split in ['train', 'val', 'test']:
+                        m = results[model]['metrics'][split]
+                        writer.writerow([
+                            model,
+                            split,
+                            f"{m.get('accuracy', 0):.4f}",
+                            f"{m.get('f1_micro', 0):.4f}",
+                            f"{m.get('f1_macro', 0):.4f}"
+                        ])
+        print(f"Results CSV saved to {csv_path}")
+
 
     return results
 

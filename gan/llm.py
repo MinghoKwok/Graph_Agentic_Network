@@ -13,7 +13,10 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from gan.utils import get_labeled_examples, truncate_text
-from data.cora.label_vocab import inv_label_vocab
+if config.DATASET_NAME == "cora":
+    from data.cora.label_vocab import inv_label_vocab
+else:
+    from data.chameleon.label_vocab import inv_label_vocab
 
 
 
@@ -260,7 +263,7 @@ Here are the definitions of the labels, which are helpful for you to predict you
     ```json
     [
       {"action_type": "retrieve", "target_nodes": [1, 2, 3], "info_type": "text"},
-      {"action_type": "rag_query", "query": "machine learning", "top_k": 10}
+      {"action_type": "rag_query", "query": node_id, "top_k": 10}
     ]
     ```
     Invalid response:
@@ -329,21 +332,33 @@ Here are the definitions of the labels, which are helpful for you to predict you
             code_blocks = re.findall(r"```json\s*({.*?})\s*```", response, re.DOTALL)
             if not code_blocks:
                 code_blocks = re.findall(r"({.*?})", response, re.DOTALL)
+
             for block in code_blocks:
                 try:
                     cleaned = re.sub(r"//.*", "", block)
                     parsed = json.loads(cleaned)
+
                     if parsed.get("action_type") == "retrieve":
                         parsed["target_nodes"] = [
                             int(re.sub(r"[^\d]", "", str(nid)))
                             for nid in parsed.get("target_nodes", [])
                             if re.sub(r"[^\d]", "", str(nid)).isdigit()
                         ]
+
+                    elif parsed.get("action_type") == "rag_query":
+                        query_raw = parsed.get("query")
+                        if isinstance(query_raw, str):
+                            digits = re.sub(r"[^\d]", "", query_raw)
+                            if digits.isdigit():
+                                parsed["query"] = int(digits)
+
                     return parsed
                 except Exception:
                     continue
+
         except Exception as e:
             print(f"[RemoteLLMInterface] Failed to parse response: {e}")
+
         return {"action_type": "no_op"}
 
 

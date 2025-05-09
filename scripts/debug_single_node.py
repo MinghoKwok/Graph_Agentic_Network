@@ -26,6 +26,8 @@ def debug_single_node(node_id: int, layer: int, subgraph_size: int = 100):
     adj_matrix = dataset['adj_matrix']
     node_features = dataset['node_features']
     labels = dataset['labels']
+    node_texts = dataset['node_texts']
+    train_idx = dataset['train_idx']
 
     # Choose LLM backend
     if config.LLM_BACKEND == "mock":
@@ -41,9 +43,11 @@ def debug_single_node(node_id: int, layer: int, subgraph_size: int = 100):
     # Init GAN
     gan = GraphAgenticNetwork(
         adj_matrix=adj_matrix,
-        node_features=node_features,
-        labels=labels,
+        node_texts=node_texts,
         llm_interface=llm_interface,
+        labels=labels,
+        train_idx=train_idx,
+        node_features=node_features,
         num_layers=config.NUM_LAYERS
     )
 
@@ -51,13 +55,26 @@ def debug_single_node(node_id: int, layer: int, subgraph_size: int = 100):
     node = gan.graph.get_node(node_id)
     print(f"\nDebugging node {node_id}")
     print("-" * 60)
-    print(f"Initial features: {node.state.features[:10].tolist()} ...")
-    print(f"Initial hidden_state: {node.state.hidden_state[:10].tolist()} ...")
+    print(f"Initial features: {node.state.feature_vector[:10].tolist() if hasattr(node.state, 'feature_vector') and node.state.feature_vector is not None else 'None'} ...")
     print(f"Initial label: {node.state.label}")
     print(f"Initial predicted_label: {node.state.predicted_label}")
     print(f"Initial memory: {node.state.memory}")
     print(f"Initial message queue: {node.state.message_queue}")
     print(f"Total neighbors: {len(gan.graph.get_neighbors(node_id))}")
+
+    # Test RAG query
+    print("\nTesting RAG query:")
+    print("-" * 60)
+    results = gan.graph.rag_query(node_id, top_k=5)
+    if results:
+        print(f"Found {len(results)} similar nodes:")
+        for nid, info in results.items():
+            print(f"Node {nid}:")
+            print(f"  - Text: {info['text'][:100]}...")
+            print(f"  - Label: {info['label']}")
+            print(f"  - Similarity: {info['similarity_score']:.4f}")
+    else:
+        print("No similar nodes found")
 
     # Run step
     print(f"\n==> Running layer {layer} for node {node_id}...")
@@ -66,7 +83,6 @@ def debug_single_node(node_id: int, layer: int, subgraph_size: int = 100):
     # After step
     print("\nAfter step:")
     print("-" * 60)
-    print(f"Updated hidden_state: {node.state.hidden_state[:10].tolist()} ...")
     print(f"Predicted label: {node.state.predicted_label}")
     print(f"Memory size: {len(node.state.memory)}")
     if node.state.memory:
