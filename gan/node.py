@@ -34,6 +34,12 @@ class NodeAgent:
         self.memory = {}
 
     def step(self, graph: 'AgenticGraph', layer: int):
+        neighbors = graph.get_neighbors(self.state.node_id)
+        labeled_neighbors = []
+        for nid in neighbors:
+            neighbor = graph.get_node(nid)
+            if neighbor and neighbor.state.label is not None:
+                labeled_neighbors.append(nid)
         context = {
             "node_id": self.state.node_id,
             "text": self.state.text,
@@ -41,7 +47,8 @@ class NodeAgent:
             "layer": layer,
             "memory": self.state.memory,
             "neighbors": graph.get_neighbors(self.state.node_id),
-            "total_neighbors": len(graph.get_neighbors(self.state.node_id))
+            "total_neighbors": len(graph.get_neighbors(self.state.node_id)),
+            "labeled_neighbors": labeled_neighbors
         }
 
         self.skip_update = hasattr(graph, "train_idx") and self.state.node_id in graph.train_idx
@@ -234,7 +241,7 @@ class NodeAgent:
                 label = m["label"]
                 label_str = inv_label_vocab.get(label, f"Label_{label}")
                 short_text = m["text"].strip().replace("\n", " ")
-                short_text = short_text[:60] + "..." if len(short_text) > 60 else short_text
+                short_text = short_text[:100] + "..." if len(short_text) > 100 else short_text
                 prompt += f'- "{short_text}" — label: {label_str}\n'
         else:
             prompt += "Memory items: (No memory available)\n"
