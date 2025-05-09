@@ -131,8 +131,8 @@ def load_cora(
 
     # Step 4: 划分 train/val/test
     perm = torch.randperm(num_nodes)
-    train_size = int(0.6 * num_nodes)
-    val_size = int(0.2 * num_nodes)
+    train_size = int(0.79 * num_nodes)
+    val_size = int(0.01 * num_nodes)
     train_idx = perm[:train_size]
     val_idx = perm[train_size:train_size + val_size]
     test_idx = perm[train_size + val_size:]
