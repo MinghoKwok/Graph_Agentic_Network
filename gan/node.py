@@ -57,26 +57,34 @@ class NodeAgent:
                 action = self._create_action(action, graph)
             if action:
                 result = action.execute(self, graph)
-                if isinstance(action, RAGAction):
-                    rag_results = graph.rag_query(self.state.node_id, top_k=10)
-                    for node_id, node_info in rag_results.items():
-                        memory_entry = {
-                            "layer": layer,
-                            "action": "RetrieveExample",
-                            "text": str(node_info["text"]),
-                            "label": int(node_info["label"]),
-                            "label_text": inv_label_vocab.get(int(node_info["label"]), str(node_info["label"])),
-                            "source": int(node_id),
-                            "source_type": "rag"
-                        }
-                        if not has_memory_entry(self, memory_entry):
-                            self.state.memory.append(memory_entry)
+                if isinstance(action, RAGAction) and isinstance(result, dict) and "results" in result:
+                    print(f"\n🔍 Processing RAG results for node {self.state.node_id}:")
+                    print(f"Results: {result['results']}")
+                    for node_id, node_info in result["results"].items():
+                        print(f"\nProcessing node {node_id}:")
+                        print(f"Node info: {node_info}")
+                        if isinstance(node_info, dict):
+                            memory_entry = {
+                                "layer": layer,
+                                "action": "RAG",
+                                "text": str(node_info.get("text", "")),
+                                "label": int(node_info.get("label", -1)) if node_info.get("label") is not None else None,
+                                "label_text": inv_label_vocab.get(int(node_info.get("label", -1)), str(node_info.get("label", -1))) if node_info.get("label") is not None else None,
+                                "source": int(node_id),
+                                "source_type": "rag"
+                            }
+                            print(f"Memory entry: {memory_entry}")
+                            if not has_memory_entry(self, memory_entry):
+                                self.state.memory.append(memory_entry)
+                                print(f"✅ Added to memory")
+                            else:
+                                print(f"⚠️ Entry already exists in memory")
                 if isinstance(result, dict) and result.get("action_type") == "retrieve":
                     for node_id, node_info in result.get("results", {}).items():
                         if isinstance(node_info, dict) and node_info.get("text"):
                             memory_entry = {
                                 "layer": layer,
-                                "action": "RetrieveExample",
+                                "action": "Retrieve",
                                 "text": str(node_info['text']),
                                 "label": int(node_info.get('label')) if node_info.get('label') is not None else None,
                                 "label_text": inv_label_vocab.get(int(node_info.get('label')), str(node_info.get('label'))) if node_info.get('label') is not None else None,
@@ -88,14 +96,16 @@ class NodeAgent:
         except Exception as e:
             print(f"⚠️ Error in agent step: {e}")
 
-        retrieve_action = RetrieveAction(target_nodes=neighbors, info_type="all")
+        # Fallback 强制 Retrieve + RAG
+        ## 强制 Retrieve
+        retrieve_action = RetrieveAction(target_nodes=labeled_neighbors, info_type="all")
         retrieve_result = retrieve_action.execute(self, graph)
         if isinstance(retrieve_result, dict) and "results" in retrieve_result:
             for node_id, node_info in retrieve_result["results"].items():
                 if isinstance(node_info, dict) and node_info.get("text"):
                     memory_entry = {
                         "layer": layer,
-                        "action": "RetrieveExample",
+                        "action": "Retrieve",
                         "text": str(node_info['text']),
                         "label": int(node_info.get('label')) if node_info.get('label') is not None else None,
                         "label_text": inv_label_vocab.get(int(node_info.get('label')), str(node_info.get('label'))) if node_info.get('label') is not None else None,
@@ -104,6 +114,31 @@ class NodeAgent:
                     }
                     if not has_memory_entry(self, memory_entry):
                         self.state.memory.append(memory_entry)
+        ## 强制 RAG
+        rag_action = RAGAction(self.state.node_id, top_k=5)
+        rag_result = rag_action.execute(self, graph)
+        if isinstance(rag_result, dict) and "results" in rag_result:
+            print(f"\n🔍 Processing fallback RAG results for node {self.state.node_id}:")
+            print(f"Results: {rag_result['results']}")
+            for node_id, node_info in rag_result["results"].items():
+                print(f"\nProcessing node {node_id}:")
+                print(f"Node info: {node_info}")
+                if isinstance(node_info, dict):
+                    memory_entry = {
+                        "layer": layer,
+                        "action": "RAG",
+                        "text": str(node_info.get("text", "")),
+                        "label": int(node_info.get("label", -1)) if node_info.get("label") is not None else None,
+                        "label_text": inv_label_vocab.get(int(node_info.get("label", -1)), str(node_info.get("label", -1))) if node_info.get("label") is not None else None,
+                        "source": int(node_id),
+                        "source_type": "rag"
+                    }
+                    print(f"Memory entry: {memory_entry}")
+                    if not has_memory_entry(self, memory_entry):
+                        self.state.memory.append(memory_entry)
+                        print(f"✅ Added to memory")
+                    else:
+                        print(f"⚠️ Entry already exists in memory")
 
         fallback_prompt = self._format_fallback_label_prompt(self.state.text, self.state.memory)
         print(f"\n📦 [Fallback Prompt for Node {self.state.node_id}]:\n{fallback_prompt}")
@@ -134,10 +169,13 @@ class NodeAgent:
         from difflib import SequenceMatcher
         def similarity(a: str, b: str) -> float:
             return SequenceMatcher(None, a, b).ratio()
+        print(f"\n👀 Memory: {memory}")
         retrieved_memory = [m for m in memory if m.get("source_type") == "retrieved" and m.get("label") is not None and m.get("text")]
         rag_memory = [m for m in memory if m.get("source_type") == "rag" and m.get("label") is not None and m.get("text")]
-        retrieved_top = sorted(retrieved_memory, key=lambda m: similarity(node_text.lower(), m["text"].lower()), reverse=True)[:top_k]
-        rag_top = sorted(rag_memory, key=lambda m: similarity(node_text.lower(), m["text"].lower()), reverse=True)[:top_k]
+        print(f"\n👀 Retrieved memory: {retrieved_memory}")
+        print(f"\n👀 RAG memory: {rag_memory}")
+        retrieved_top = sorted(retrieved_memory, key=lambda m: similarity(node_text.lower(), m["text"].lower()), reverse=True)[:5]
+        rag_top = sorted(rag_memory, key=lambda m: similarity(node_text.lower(), m["text"].lower()), reverse=True)[:5]
         prompt = "You are a label prediction agent.\n\n"
         prompt += f"Text to classify:\n\"{node_text.strip()}\"\n\n"
         memory_combined = retrieved_top + rag_top

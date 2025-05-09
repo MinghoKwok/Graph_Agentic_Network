@@ -231,19 +231,26 @@ def has_memory_entry(agent_or_state, result: Dict[str, Any]) -> bool:
     new_source = result.get("source", None)
     new_action = result.get("action", result.get("action_type", ""))
 
+    print(f"\n🔍 Checking memory entry:")
+    print(f"New entry: text={new_text}, label={new_label}, source={new_source}, action={new_action}")
+
     for m in memory:
         # 基于 Broadcast、Retrieve、RAG 写入
-        if m.get("action") in {"RetrieveExample", "BroadcastLabel", "RAGResult"}:
+        if m.get("action") in {"Retrieve", "RetrieveExample", "Broadcast", "RAG", "RAGResult"}:
+            print(f"Comparing with memory entry: {m}")
             if (
                 m.get("text") == new_text and
-                m.get("label") == new_label and
-                m.get("source") == new_source
+                m.get("source") == new_source and
+                (m.get("label") == new_label or (m.get("label") is None and new_label is None))
             ):
+                print(f"✅ Found duplicate entry")
                 return True
 
         # 对于 update/fallback update 动作的结果也可以排重（可选）
         if m.get("action") == new_action and m.get("result") == result:
+            print(f"✅ Found duplicate action result")
             return True
 
+    print(f"❌ No duplicate found")
     return False
 
