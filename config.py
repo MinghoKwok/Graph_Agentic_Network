@@ -20,9 +20,11 @@ DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 MULTI_GPU = torch.cuda.device_count() > 1
 
 # LLM settings
+API_KEY = os.environ.get("DEEPSEEK_API_KEY")
 LLM_BACKEND = "remote"  # Options: "remote", "mock", "flan-local"
-LLM_MODEL = "Qwen2.5-14B-Instruct" # "Qwen2.5-14B-Instruct" # "Qwen2.5-14B-Instruct" # "llama-3.1-8b-instruct" or "google/flan-t5-xl"
-REMOTE_LLM_ENDPOINT = "http://localhost:8001/v1/chat/completions" #"http://localhost:8001/v1/completions"
+LLM_MODEL = "deepseek-chat" # "Qwen2.5-14B-Instruct" # "Qwen2.5-14B-Instruct" # "llama-3.1-8b-instruct" or "google/flan-t5-xl"
+REMOTE_LLM_ENDPOINT = "https://api.deepseek.com/v1/chat/completions" # "http://localhost:8001/v1/chat/completions" #"http://localhost:8001/v1/completions"
+TEMPERATURE = 0.2
 
 # Experiment settings
 RANDOM_SEED = 42
@@ -82,4 +84,3 @@ DEBUG_FORCE_FALLBACK = False  # 添加 DEBUG_FORCE_FALLBACK 变量
 MAX_MODEL_LEN = 4096
 MEMORY_MAX_WORDS = 80
 USE_TOKEN_TRUNCATE = not LLM_MODEL.lower().startswith("deepseek")
-

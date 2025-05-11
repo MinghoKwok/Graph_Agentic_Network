@@ -48,11 +48,14 @@ class RemoteLLMInterface(BaseLLMInterface):
         payload = {
             "model": self.model_name,
             "messages": [{"role": "user", "content": prompt}],
-            "temperature": 0.2,
+            "temperature": config.TEMPERATURE,
             "top_p": 0.95,
             "max_tokens": max_tokens,
         }
-        headers = {"Content-Type": "application/json"}
+        headers = {
+            "Authorization": f"Bearer {config.API_KEY}",
+            "Content-Type": "application/json"
+        }
 
         try:
             response = requests.post(self.endpoint, headers=headers, json=payload)
@@ -114,44 +117,44 @@ class RemoteLLMInterface(BaseLLMInterface):
         prompt += prompt_intro
 
         # 添加few-shot示例
-        prompt += """
+        few_shot_examples = """
     ## Few-shot Examples of Label Prediction:
 
     Example 1:
     Memory:
-    1. [Neural_Networks] "A novel deep learning approach for image classification..."
-    2. [Reinforcement_Learning] "Q-learning based algorithm for game playing..."
-    3. [Neural_Networks] "Convolutional neural networks for computer vision tasks..."
+    1. [Label_2] "A novel deep learning approach for image classification..."
+    2. [Label_3] "Q-learning based algorithm for game playing..."
+    3. [Label_2] "Convolutional neural networks for computer vision tasks..."
 
     Current Node Text:
     "Deep learning models for visual recognition tasks..."
 
-    Prediction: Neural_Networks
-    Reasoning: The current text focuses on deep learning and visual recognition, which closely matches the Neural_Networks examples in memory.
+    Prediction: Label_2
+    Reasoning: The current text focuses on deep learning and visual recognition, which closely matches the Label_2 examples in memory.
 
     Example 2:
     Memory:
-    1. [Probabilistic_Methods] "Bayesian networks for uncertainty modeling..."
-    2. [Neural_Networks] "Recurrent neural networks for sequence prediction..."
-    3. [Probabilistic_Methods] "Markov models for time series analysis..."
+    1. [Label_4] "Bayesian networks for uncertainty modeling..."
+    2. [Label_2] "Recurrent neural networks for sequence prediction..."
+    3. [Label_4] "Markov models for time series analysis..."
 
     Current Node Text:
     "Hidden Markov models for speech recognition..."
 
-    Prediction: Probabilistic_Methods
-    Reasoning: The text discusses Markov models, which is a probabilistic method, matching the Probabilistic_Methods examples in memory.
+    Prediction: Label_4
+    Reasoning: The text discusses Markov models, which is a probabilistic method, matching the Label_4 examples in memory.
 
     Example 3:
     Memory:
-    1. [Neural_Networks] "Deep learning architectures for natural language processing..."
-    2. [Theory] "Theoretical analysis of algorithm complexity..."
-    3. [Neural_Networks] "Transformer models for sequence modeling..."
+    1. [Label_2] "Deep learning architectures for natural language processing..."
+    2. [Label_6] "Theoretical analysis of algorithm complexity..."
+    3. [Label_2] "Transformer models for sequence modeling..."
 
     Current Node Text:
     "Attention mechanisms in deep learning models for text understanding..."
 
-    Prediction: Neural_Networks
-    Reasoning: Although the text mentions theoretical concepts like attention mechanisms, the focus is on deep learning models and their application to text understanding, which closely matches the Neural_Networks examples in memory.
+    Prediction: Label_2
+    Reasoning: Although the text mentions theoretical concepts like attention mechanisms, the focus is on deep learning models and their application to text understanding, which closely matches the Label_2 examples in memory.
     """
 
         prompt_node_state = f"""
@@ -180,49 +183,49 @@ class RemoteLLMInterface(BaseLLMInterface):
         label_definition = """
 Here are the definitions of the labels, which are helpful for you to predict your label:
 
-[label=Theory]
+[label=Label_6]
 - Focuses on foundational models and algorithms underlying machine learning.
 - Explores formal frameworks like PAC learning, VC dimension, and computational complexity.
 - Addresses theoretical limitations and generalization guarantees.
 - Includes studies on learnability and approximation strategies.
 - Emphasizes conceptual clarity and rigorous analysis.
 
-[label=Neural_Networks]
+[label=Label_2]
 - Investigates layered architectures for pattern recognition and learning.
 - Covers models like CNNs, RNNs, and feedforward networks.
 - Learns via backpropagation and activation tuning.
 - Applied in tasks such as vision, sequence modeling, and signal processing.
 - Inspired by biological systems and deep representations.
 
-[label=Case_Based]
+[label=Label_1]
 - Solves problems by referencing past similar examples.
 - Stores and retrieves previous cases for reasoning.
 - Adapts old solutions to new problems.
 - Applies to diagnosis, design support, and decision-making.
 - Emphasizes example-driven and explainable inference.
 
-[label=Genetic_Algorithms]
+[label=Label_0]
 - Uses evolution-inspired methods to optimize solutions.
 - Operates with selection, crossover, and mutation.
 - Evolves rule sets, classifiers, or architectures over time.
 - Excels in complex search spaces with rugged landscapes.
 - Highlights robustness and adaptive search behavior.
 
-[label=Probabilistic_Methods]
+[label=Label_3]
 - Models uncertainty through probability and Bayesian reasoning.
 - Includes graphical models, sampling, and inference.
 - Handles noisy or incomplete data in decision-making.
 - Applied in diagnosis, prediction, and structured reasoning.
 - Combines interpretability with statistical rigor.
 
-[label=Reinforcement_Learning]
+[label=Label_4]
 - Learns from interactions with environment via rewards.
 - Balances exploration and exploitation to find optimal policies.
 - Formalized as MDPs with agents and states.
 - Used in robotics, control, and game-playing systems.
 - Focuses on long-term decision-making under uncertainty.
 
-[label=Rule_Learning]
+[label=Label_5]
 - Extracts symbolic rules like "if-then" from training data.
 - Produces interpretable and compact decision logic.
 - Applies logical reasoning for classification tasks.
@@ -253,7 +256,7 @@ Here are the definitions of the labels, which are helpful for you to predict you
     Example of a valid response:
     ```json
     [
-      {"action_type": "update", "predicted_label": "Neural_Networks"},
+      {"action_type": "update", "predicted_label": "Label_2"},
       {"action_type": "broadcast"}
     ]
     ```
@@ -265,7 +268,7 @@ Here are the definitions of the labels, which are helpful for you to predict you
     ```
     Invalid response:
     ```json
-    {"action_type": "update", "predicted_label": "Neural_Networks"}
+    {"action_type": "update", "predicted_label": "Label_2"}
     ```
 
     ### Available Actions:
