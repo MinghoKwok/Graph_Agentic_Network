@@ -1,0 +1,28 @@
+# Python bytecode
+__pycache__/
+*.py[cod]
+
+# Dataset files
+data/ogbn-arxiv/ogbn_arxiv/raw/
+data/ogbn-arxiv/ogbn_arxiv/processed/
+*.pt
+*.csv.gz
+
+# Model weights and checkpoints
+models/*
+!models/.gitkeep   # 如果你想保留空目录，可以放个占位符
+
+# Results and logs
+results/
+logs/
+
+# IDE / OS junk
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+data/products/*.npy
+data/products/*.csv
+data/arxiv*/*.npy
+data/arxiv*/*.jsonl
+data/arxiv*/*.csv

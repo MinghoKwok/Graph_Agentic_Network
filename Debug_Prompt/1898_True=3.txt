@@ -1,0 +1,55 @@
+📤 [DEBUG] Fallback Prompt for Node 1898 | Layer 0 | 20250507_023301:
+You are a label prediction agent.
+
+You will be given a set of labeled memory items and a new node to classify.
+Each example includes a few labeled texts as memory and a new text to classify.
+Use the memory to predict the label for the current text.
+
+Think step-by-step:
+1.  **Analyze the Current Node Text:** Identify its primary topics, application domain, problem being solved, and critically, **any explicitly stated core methodologies, algorithms, or theoretical frameworks presented as a central part of the work.**
+2.  **Analyze Memory Examples:** For each label, understand the themes, keywords, application areas, and any underlying methodologies suggested by its examples.
+3.  **Compare and Weigh Evidence:**
+    * Consider how well the primary topics and application domain of the current text align with the examples for each label.
+    * **Pay special attention if the current text explicitly introduces or heavily relies on a specific methodology (e.g., "a novel Bayesian framework," "a new deep learning architecture," "an algorithm for reinforcement learning"). If a label in memory has examples centered on that same broad methodology (e.g., Label_X examples include "Bayesian inference for Z," "Deep learning for Q"), this shared methodological focus is a strong indicator for that label, potentially carrying more weight than a partial match in the application domain alone.**
+    * However, evaluate the overall coherence. The chosen label should be the one most holistically supported by both the methodological aspects (if prominent) and the general semantic content.
+4.  **Avoid Over-reliance:** Do not rely solely on isolated keywords (like "system" or "accuracy," or even specific methodological terms if used superficially). The primary contribution, focus, and depth of discussion regarding any methodology in the current text are key to determining its significance for classification.
+
+
+## Example 1:
+Memory:
+1. [Label_2] "Hidden Markov models for sequence modeling and pattern discovery."
+2. [Label_1] "Neural networks for text classification."
+3. [Label_2] "Bayesian models for probabilistic inference."
+Current Node Text:
+"Markov models for speech sequence alignment."
+Prediction: Label_2
+Reasoning: The text discusses Markov models and speech alignment, which closely match Label_2 examples in memory.
+
+## Example 2:
+Memory:
+1. [Label_2] "Hidden Markov models for biological sequence alignment."
+2. [Label_6] "Improving ensemble model selection with probabilistic voting."
+3. [Label_2] "Bayesian inference for protein sequence homology detection."
+4. [Label_6] "Boosted decision trees for structured data classification."
+5. [Label_3] "Non-reversible Markov chains for MCMC sampling."
+Current Node Text:
+"Homology detection in genetic sequences using Bayesian Markov modeling."
+Prediction: Label_2
+Reasoning: Although both Label_2 and Label_6 are well represented in memory, the current node text focuses on homology detection and Bayesian modeling, which strongly aligns with Label_2 examples related to biological sequences and probabilistic inference, rather than ensemble or structured classifiers.
+
+## Your Turn:
+
+Memory:
+1. [Label_4] "Category: Control, Navigation and Planning. Key words: Reinforcement learning, Exploration, Hidden state. Prefer oral presentation. Abstract: This pap...Reinforcement Learning Algorithm for Partially Observable Markov Decision Problems Abstract: Increasing attention has been paid to reinforcement learn..."
+2. [Label_0] "Modeling Case-based Planning for Repairing Reasoning Failures Abstract: One application of models of reasoning behavior is to allow a reasoner to intr...Observation and Generalisation in a Simulated Robot World Abstract: This paper describes a program which observes the behaviour of actors in a simulat..."
+3. [Label_3] "Discovering Structure in Continuous Variables Using Bayesian Networks Abstract: We study Bayesian networks for continuous variables using nonlinear co...Discovering Structure in Continuous Variables Using Bayesian Networks Abstract: We study Bayesian networks for continuous variables using nonlinear co..."
+
+Text to classify:
+"Accounting for Context in Plan Recognition, with Application to Traffic Monitoring
+Abstract: Typical approaches to plan recognition start from a representation of an agent's possible plans, and reason evidentially from observations of the agent's actions to assess the plausibility of the various candidates. A more expansive view of the task (consistent with some prior work) accounts for the context in which the plan was generated, the mental state and planning process of the agent, and consequences of the agent's actions in the world. We present a general Bayesian framework encompassing this view, and focus on how context can be exploited in plan recognition. We demonstrate the approach on a problem in traffic monitoring, where the objective is to induce the plan of the driver from observation of vehicle movements. Starting from a model of how the driver generates plans, we show how the highway context can appropriately influence the recognizer's interpretation of observed driver behavior."
+
+Please think step by step: First analyze memory examples and their labels, then compare them to the input text. Identify the most semantically similar memory items and explain why. Finally, decide which label best matches and explain your reasoning.
+⚠️ Don't decide the label based on the amount of labels in memory simply!
+Respond strictly in JSON:
+{"action_type": "update", "predicted_label": "Label_X"}
+Allowed labels: ["Label_0", "Label_1", "Label_2", "Label_3", "Label_4", "Label_5", "Label_6"]
