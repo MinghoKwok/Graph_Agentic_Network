@@ -26,3 +26,9 @@ data/products/*.csv
 data/arxiv*/*.npy
 data/arxiv*/*.jsonl
 data/arxiv*/*.csv
+# Large files
+data/products/*.npy
+data/products/*.csv
+data/arxiv/*.npy
+data/arxiv/*.jsonl
+data/arxiv/*.csv
