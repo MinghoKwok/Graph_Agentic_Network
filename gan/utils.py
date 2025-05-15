@@ -231,13 +231,13 @@ def has_memory_entry(agent_or_state, result: Dict[str, Any]) -> bool:
     new_source = result.get("source", None)
     new_action = result.get("action", result.get("action_type", ""))
 
-    print(f"\n🔍 Checking memory entry:")
-    print(f"New entry: text={new_text}, label={new_label}, source={new_source}, action={new_action}")
+    # print(f"\n🔍 Checking memory entry:")
+    # print(f"New entry: text={new_text}, label={new_label}, source={new_source}, action={new_action}")
 
     for m in memory:
         # 基于 Broadcast、Retrieve、RAG 写入
         if m.get("action") in {"Retrieve", "RetrieveExample", "Broadcast", "RAG", "RAGResult"}:
-            print(f"Comparing with memory entry: {m}")
+            # print(f"Comparing with memory entry: {m}")
             if (
                 m.get("text") == new_text and
                 m.get("source") == new_source and

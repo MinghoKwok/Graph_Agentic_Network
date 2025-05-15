@@ -53,7 +53,7 @@ SAGE_DROPOUT = 0.5
 SAGE_LEARNING_RATE = 0.01
 SAGE_WEIGHT_DECAY = 5e-4
 SAGE_EPOCHS = 200
-DATASET_NAME = "arxiv"  # Default dataset
+DATASET_NAME = "cora"  # Default dataset
 SUPPORTED_DATASETS = ["cora", "citeseer", "pubmed", "arxiv"]  # Supported datasets
 DATASET_CONFIGS = {
     "cora": {

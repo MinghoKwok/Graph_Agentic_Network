@@ -6,6 +6,7 @@ import importlib
 from gan.actions import Action, RetrieveAction, RAGAction, BroadcastAction, UpdateAction, NoOpAction
 from config import DEBUG_STEP_SUMMARY, DEBUG_MESSAGE_TRACE, NUM_LAYERS, DEBUG_FORCE_FALLBACK, DATASET_NAME
 from gan.utils import has_memory_entry
+import config
 
 def get_label_vocab(dataset_name: str):
     """动态导入指定数据集的 label_vocab"""
@@ -43,7 +44,7 @@ class NodeAgent:
     def step(self, graph: 'AgenticGraph', layer: int):
         neighbors = graph.get_neighbors(self.state.node_id)
         labeled_neighbors = [nid for nid in neighbors if graph.get_node(nid).state.label is not None]
-        import pdb; pdb.set_trace()
+        # import pdb; pdb.set_trace()
         context = {
             "node_id": self.state.node_id,
             "text": self.state.text,
@@ -183,7 +184,10 @@ class NodeAgent:
         print(f"\n👀 Retrieved memory: {retrieved_memory}")
         print(f"\n👀 RAG memory: {rag_memory}")
         retrieved_top = sorted(retrieved_memory, key=lambda m: similarity(node_text.lower(), m["text"].lower()), reverse=True)[:5]
-        rag_top = sorted(rag_memory, key=lambda m: similarity(node_text.lower(), m["text"].lower()), reverse=True)[:5]
+        if retrieved_top:
+            rag_top = sorted(rag_memory, key=lambda m: similarity(node_text.lower(), m["text"].lower()), reverse=True)[:5]
+        else:
+            rag_top = sorted(rag_memory, key=lambda m: similarity(node_text.lower(), m["text"].lower()), reverse=True)[:5]
         prompt = "You are a label prediction agent.\n\n"
         prompt += f"Text to classify:\n\"{node_text.strip()}\"\n\n"
         memory_combined = retrieved_top + rag_top
@@ -196,12 +200,59 @@ class NodeAgent:
                 prompt += f'- "{short_text}" — label: {label_str}\n'
         else:
             prompt += "Memory items: (No memory available)\n"
-        prompt += "\nPlease follow these steps in your analysis:\n"
-        prompt += "1. Analyze the Current Node Text:\n   - Identify primary topics and application domain\n   - Determine the specific problem being solved\n   - Note core methodologies and algorithms\n"
-        prompt += "2. Analyze Memory Examples:\n   - Understand application domains for each label\n   - Identify types of problems addressed\n   - Note underlying methodologies\n"
-        prompt += "3. Compare and Weigh Evidence:\n   - Prioritize domain and problem alignment\n   - Evaluate methodological congruence\n   - Consider both domain-specific techniques and general paradigms\n   - Ensure holistic coherence in your decision\n"
-        prompt += "4. Avoid over-reliance on isolated keywords\n\n"
-        prompt += "Please think step by step: First analyze memory examples and their labels, then compare them to the input text. Identify the most semantically similar memory items and explain why. Finally, decide which label best matches and explain your reasoning."
+        
+        if config.DATASET_NAME == "citeseer" or config.DATASET_NAME == "Cora":
+            prompt += "========================\n"
+            prompt += "✅ Classification Rules (Follow Strictly):\n"
+            prompt += "🔵 Rule 1: Majority Label Rule\n"
+            prompt += "If one label appears more times than any other, you must assign that label.\n"
+            prompt += "Even if another label looks slightly more semantically similar, DO NOT override.\n"
+
+            prompt += "Example:\n"
+            prompt += "Label_2 appears 5 times\n"
+            prompt += "→ You must return Label_2\n"
+
+            prompt += "🟡 Rule 2: Override Exception (Rare)\n"
+            prompt += "You may override the majority ONLY IF ALL the following conditions are met:\n"
+            prompt += "The current text is clearly incompatible with the majority label group;\n"
+            prompt += "There is another label with at least 2 memory items;\n"
+            prompt += "You provide this exact 3-part justification:\n"
+            prompt += "State the majority label;\n"
+            prompt += "Explain why the current text does not match it;\n"
+            prompt += "Explain why the new label has better support from memory.\n"
+
+            prompt += "⚠️ If you override without this format, your prediction is INVALID.\n"
+
+            prompt += "🔴 Rule 3: No Overfitting / No Guessing\n"
+            prompt += "Do NOT rely on vague words like “agent”, “system”, “architecture”.\n"
+
+            prompt += "Match based on task, method, and topic.\n"
+
+            prompt += "When unsure: prefer the majority label, or the lower-numbered label among ties.\n"
+
+            prompt += "🧾 Final Output Format (JSON only):\n"
+            prompt += "json\n"
+            prompt += "Copy\n"
+            prompt += "Edit\n"
+            prompt += "{\n"
+            prompt += "  \"action_type\": \"update\",\n"
+            prompt += "  \"predicted_label\": \"Label_X\",\n"
+            prompt += "  \"justification\": \"...\" \n"
+            prompt += "}\n"
+            prompt += "⚠️ DO NOT IGNORE THIS\n"
+            prompt += "You are NOT doing freeform semantic matching.\n"
+            prompt += "You are executing a rule-based classification protocol.\n"
+            prompt += "Disregarding the majority label without structured override is a critical failure.\n"
+
+            prompt += "✅ When the current text has some relevance to both groups, always prefer the majority label — even if it feels less “semantically elegant”."
+        else:
+            prompt += "\nPlease follow these steps in your analysis:\n"
+            prompt += "1. Analyze the Current Node Text:\n   - Identify primary topics and application domain\n   - Determine the specific problem being solved\n   - Note core methodologies and algorithms\n"
+            prompt += "2. Analyze Memory Examples:\n   - Understand application domains for each label\n   - Identify types of problems addressed\n   - Note underlying methodologies\n"
+            prompt += "3. Compare and Weigh Evidence:\n   - Prioritize domain and problem alignment\n   - Evaluate methodological congruence\n   - Consider both domain-specific techniques and general paradigms\n   - Ensure holistic coherence in your decision\n"
+            prompt += "4. Avoid over-reliance on isolated keywords\n\n"
+            prompt += "Please think step by step: First analyze memory examples and their labels, then compare them to the input text. Identify the most semantically similar memory items and explain why. Finally, decide which label best matches and explain your reasoning."
+        
         prompt += "\nRespond strictly in JSON format:\n{\"action_type\": \"update\", \"predicted_label\": \"label_string\"}\n"
         label_list = ", ".join(f'\"{v}\"' for v in self.inv_label_vocab.values())
         prompt += f"Allowed labels: [{label_list}]\n"
