@@ -5,7 +5,7 @@ import importlib
 
 from gan.actions import Action, RetrieveAction, RAGAction, BroadcastAction, UpdateAction, NoOpAction
 from config import DEBUG_STEP_SUMMARY, DEBUG_MESSAGE_TRACE, NUM_LAYERS, DEBUG_FORCE_FALLBACK, DATASET_NAME
-from gan.utils import has_memory_entry
+from gan.utils import has_memory_entry, retrieve_labeled_from_neighbor_memory
 import config
 
 def get_label_vocab(dataset_name: str):
@@ -123,6 +123,10 @@ class NodeAgent:
                     }
                     if not has_memory_entry(self, memory_entry):
                         self.state.memory.append(memory_entry)
+        # 从邻居的 memory 中筛选 source_type == "retrieved" 的 labeled 条目，
+        # 写入当前节点自己的 memory，作为 multi-hop memory 传播。
+        retrieve_labeled_from_neighbor_memory(self, graph, layer)
+        
         ## 强制 RAG
         rag_action = RAGAction(self.state.node_id, top_k=5)
         rag_result = rag_action.execute(self, graph)
@@ -185,7 +189,7 @@ class NodeAgent:
         print(f"\n👀 RAG memory: {rag_memory}")
         retrieved_top = sorted(retrieved_memory, key=lambda m: similarity(node_text.lower(), m["text"].lower()), reverse=True)[:5]
         if retrieved_top:
-            rag_top = sorted(rag_memory, key=lambda m: similarity(node_text.lower(), m["text"].lower()), reverse=True)[:8]
+            rag_top = sorted(rag_memory, key=lambda m: similarity(node_text.lower(), m["text"].lower()), reverse=True)[:0]
         else:
             rag_top = sorted(rag_memory, key=lambda m: similarity(node_text.lower(), m["text"].lower()), reverse=True)[:5]
         prompt = "You are a label prediction agent.\n\n"

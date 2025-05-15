@@ -254,3 +254,30 @@ def has_memory_entry(agent_or_state, result: Dict[str, Any]) -> bool:
     print(f"❌ No duplicate found")
     return False
 
+def retrieve_labeled_from_neighbor_memory(agent: 'NodeAgent', graph: 'AgenticGraph', layer: int):
+    """
+    从所有邻居的 memory 中筛选 source_type == "retrieved" 的 labeled 条目，
+    写入当前节点自己的 memory，作为 multi-hop memory 传播。
+    """
+    node_id = agent.state.node_id
+    neighbors = graph.get_neighbors(node_id)
+
+    for neighbor_id in neighbors:
+        neighbor = graph.get_node(neighbor_id)
+        for mem in neighbor.state.memory:
+            if (
+                mem.get("label") is not None
+                and mem.get("text")
+                and mem.get("source_type") == "retrieved"
+            ):
+                memory_entry = {
+                    "layer": layer,
+                    "action": "Retrieve",
+                    "text": str(mem["text"]),
+                    "label": int(mem["label"]),
+                    "label_text": agent.inv_label_vocab.get(int(mem["label"]), str(mem["label"])),
+                    "source": int(neighbor_id),
+                    "source_type": "retrieved-hops"
+                }
+                if not has_memory_entry(agent, memory_entry):
+                    agent.state.memory.append(memory_entry)

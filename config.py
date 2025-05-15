@@ -26,7 +26,7 @@ REMOTE_LLM_ENDPOINT = "http://localhost:8001/v1/chat/completions" #"http://local
 
 # Experiment settings
 RANDOM_SEED = 42
-NUM_LAYERS = 1  # Number of GAN layers to run
+NUM_LAYERS = 2  # Number of GAN layers to run
 BATCH_SIZE = 16  # Batch size for processing nodes
 MAX_NEIGHBORS = 30  # Maximum number of neighbors to consider
 
@@ -53,7 +53,7 @@ SAGE_DROPOUT = 0.5
 SAGE_LEARNING_RATE = 0.01
 SAGE_WEIGHT_DECAY = 5e-4
 SAGE_EPOCHS = 200
-DATASET_NAME = "cora"  # Default dataset
+DATASET_NAME = "citeseer"  # Default dataset
 SUPPORTED_DATASETS = ["cora", "citeseer", "pubmed", "arxiv"]  # Supported datasets
 DATASET_CONFIGS = {
     "cora": {
