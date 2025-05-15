@@ -6,8 +6,8 @@ import json
 from tqdm import tqdm
 
 INPUT_PATH = "cora_text_graph_complete.jsonl"
-OUTPUT_PATH = "cora_text_embeddings.npy"
-MODEL_NAME = "all-MiniLM-L6-v2"
+OUTPUT_PATH = "cora_text_embeddings_msmarco-MiniLM-L6-cos-v5.npy"
+MODEL_NAME = "msmarco-MiniLM-L6-cos-v5" # "all-MiniLM-L6-v2"
 
 def main():
     # 加载模型

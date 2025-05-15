@@ -185,7 +185,7 @@ class NodeAgent:
         print(f"\n👀 RAG memory: {rag_memory}")
         retrieved_top = sorted(retrieved_memory, key=lambda m: similarity(node_text.lower(), m["text"].lower()), reverse=True)[:5]
         if retrieved_top:
-            rag_top = sorted(rag_memory, key=lambda m: similarity(node_text.lower(), m["text"].lower()), reverse=True)[:5]
+            rag_top = sorted(rag_memory, key=lambda m: similarity(node_text.lower(), m["text"].lower()), reverse=True)[:8]
         else:
             rag_top = sorted(rag_memory, key=lambda m: similarity(node_text.lower(), m["text"].lower()), reverse=True)[:5]
         prompt = "You are a label prediction agent.\n\n"

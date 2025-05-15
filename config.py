@@ -59,12 +59,12 @@ DATASET_CONFIGS = {
     "cora": {
         "text_graph_file": "cora_text_graph_simplified.jsonl",
         "edge_file": "cora.cites",
-        "embeddings_file": "cora_text_embeddings.npy"
+        "embeddings_file": "cora_text_embeddings_msmarco-MiniLM-L6-cos-v5.npy"
     },
     "citeseer": {
         "text_graph_file": "citeseer_text_graph_simplified.jsonl",
         "edge_file": "citeseer.cites",
-        "embeddings_file": "citeseer_text_embeddings.npy"
+        "embeddings_file": "citeseer_text_embeddings_msmarco-MiniLM-L6-cos-v5.npy"
     },
     "pubmed": {
         "text_graph_file": "pubmed_text_graph_simplified.jsonl",
