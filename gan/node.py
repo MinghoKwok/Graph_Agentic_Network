@@ -205,7 +205,7 @@ class NodeAgent:
         else:
             prompt += "Memory items: (No memory available)\n"
         
-        if config.DATASET_NAME == "citeseer" or config.DATASET_NAME == "Cora":
+        if config.DATASET_NAME == "citeseer" or config.DATASET_NAME == "Cora" or config.DATASET_NAME == "chameleon":
             prompt += "========================\n"
             prompt += "✅ Classification Rules (Follow Strictly):\n"
             prompt += "🔵 Rule 1: Majority Label Rule\n"

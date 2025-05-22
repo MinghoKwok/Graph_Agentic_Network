@@ -235,8 +235,8 @@ def load_arxiv(
 
     # Step 4: 划分 train/val/test
     perm = torch.randperm(num_nodes)
-    train_size = int(0.79 * num_nodes)
-    val_size = int(0.01 * num_nodes)
+    train_size = int(0.6 * num_nodes)
+    val_size = int(0.2 * num_nodes)
     train_idx = perm[:train_size]
     val_idx = perm[train_size:train_size + val_size]
     test_idx = perm[train_size + val_size:]
@@ -256,6 +256,89 @@ def load_arxiv(
         'num_classes': labels_tensor.max().item() + 1,      
         'num_nodes': num_nodes
     }
+
+
+def load_chameleon(
+    jsonl_path: str = os.path.join("../data/chameleon", "chameleon_text_graph_simplified.jsonl"),
+    edge_path: str = os.path.join("../data/chameleon", "chameleon.cites")
+) -> Dict[str, Any]:
+    """
+    Load Chameleon dataset using simplified JSONL + true citation edges.
+    
+    Returns:
+        Dictionary containing:
+        - adj_matrix: Adjacency matrix for graph structure
+        - node_features: One-hot node features for GNN
+        - node_texts: Node text descriptions for GAN
+        - labels: Node labels
+        - train_idx, val_idx, test_idx: Dataset splits
+        - num_classes: Number of label classes
+        - num_nodes: Total number of nodes
+    """
+    print(f"🔄 Loading Chameleon dataset from {jsonl_path} and {edge_path}")
+
+    # Step 1: 加载节点信息
+    with open(jsonl_path, 'r') as f:
+        lines = f.readlines()
+
+    node_texts = {}
+    paperid_to_nodeid = {}
+    labels = {}
+
+    for line in lines:
+        item = json.loads(line)
+        nid = int(item["node_id"])
+        pid = int(item["paper_id"])
+        node_texts[nid] = item["text"]
+        # 然后在处理 label 时加：
+        label_name = legacy_label_mapping.get(item["label"], item["label"])  # 先映射一遍
+        labels[nid] = label_vocab[label_name]
+        paperid_to_nodeid[pid] = nid
+
+    print("labels keys:", list(labels.keys())[:10])
+    print("num_nodes:", len(node_texts))
+
+    num_nodes = len(node_texts)
+    labels_tensor = torch.tensor([labels[i] for i in range(num_nodes)], dtype=torch.long)
+
+    # Step 2: 构建邻接矩阵（真实边）
+    adj_matrix = torch.zeros((num_nodes, num_nodes))
+    with open(edge_path, "r") as f:
+        for line in f:
+            src_pid, tgt_pid = map(int, line.strip().split())
+            if src_pid in paperid_to_nodeid and tgt_pid in paperid_to_nodeid:
+                src = paperid_to_nodeid[src_pid]
+                tgt = paperid_to_nodeid[tgt_pid]
+                adj_matrix[src, tgt] = 1
+                adj_matrix[tgt, src] = 1  # 无向边
+
+    # Step 3: 创建 GNN 输入特征（one-hot）
+    node_features = torch.eye(num_nodes)
+
+    # Step 4: 划分 train/val/test
+    perm = torch.randperm(num_nodes)
+    train_size = int(0.79 * num_nodes)
+    val_size = int(0.01 * num_nodes)
+    train_idx = perm[:train_size]
+    val_idx = perm[train_size:train_size + val_size]
+    test_idx = perm[train_size + val_size:]
+
+    print(f"Loaded {num_nodes} nodes with {adj_matrix.sum().item()/2:.0f} edges")
+    print(f"Feature dimension: {node_features.size(1)}")
+    print(f"Split sizes: Train={len(train_idx)}, Val={len(val_idx)}, Test={len(test_idx)}")
+
+    return {
+        'adj_matrix': adj_matrix,
+        'node_features': node_features,  # GNN 输入
+        'node_texts': node_texts,        # GAN 输入
+        'labels': labels_tensor,
+        'train_idx': train_idx,
+        'val_idx': val_idx,
+        'test_idx': test_idx,
+        'num_classes': labels_tensor.max().item() + 1,
+        'num_nodes': num_nodes
+    }
+
 
 def create_subgraph(adj_matrix: torch.Tensor, node_features: torch.Tensor, 
                    labels: torch.Tensor, subset_size: int = 1000) -> Dict[str, Any]:
@@ -363,6 +446,8 @@ def load_or_create_dataset(name: str = config.DATASET_NAME,
         dataset = load_citeseer()
     elif name == 'arxiv':
         dataset = load_arxiv()
+    elif name == 'chameleon':
+        dataset = load_chameleon()
     else:
         raise ValueError(f"Unknown dataset: {name}")
     
