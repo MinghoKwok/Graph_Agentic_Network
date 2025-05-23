@@ -1,98 +1,108 @@
 # Graph Agentic Network (GAN)
 
-Node is Agent!
+**Node is Agent!**  
+A novel graph learning paradigm where each node acts as an autonomous agent, powered by a frozen Large Language Model (LLM). This replaces traditional GNN message passing with agentic, self-decided behavior: retrieve, update, broadcast, or no-op.
 
-A novel approach to graph learning where each node functions as an autonomous agent, powered by large language models for decision-making. This framework replaces traditional message passing in graph neural networks with agent-based decision making.
+---
 
-## Features
+## 🚀 Features
 
-- 🧠 **LLM-powered node agents**: Each node uses an LLM to make decisions based on its current state
-- 🔄 **Flexible communication patterns**: Nodes can choose which neighbors to interact with
-- 🤔 **Autonomous decision-making**: Nodes decide when to retrieve information, broadcast messages, or update their state
-- 📊 **Support for graph ML tasks**: Node classification, link prediction, and more
+- **LLM-powered agents** — Nodes use a frozen LLM to make local decisions.
+- **Global semantic retrieval** — Nodes access far-away context via RAG.
+- **Per-node planning** — Each node independently chooses its action per layer.
+- **Support for node classification** — Works on datasets like Cora, Citeseer, Pubmed.
+- **Debuggable & interpretable** — Memory, prompts, responses, and actions are all logged.
 
-## Setup
+---
 
-1. Clone this repository:
+## 📦 Installation
+
 ```bash
-git clone https://github.com/yourusername/graph-agentic-network.git
-cd graph-agentic-network
+git clone https://github.com/MinghoKwok/Graph_Agentic_Network.git
+cd Graph_Agentic_Network
+pip install -r requirements.txt
 ```
 
-2. Set up the environment:
-```bash
-bash setup.sh
-conda activate gan
-```
+---
 
-3. Download the datasets:
-```bash
-bash download_data.sh
-```
+## 🔧 Quick Start
 
-## Quick Start
-
-Run a node classification experiment on the OGB-Arxiv dataset:
+### Run node classification
 
 ```bash
 python experiments/run_node_classification.py
 ```
+
+### Run with specific GPU
+
 ```bash
-CUDA_VISIBLE_DEVICES=4 python experiments/run_node_classification.py
+CUDA_VISIBLE_DEVICES=0 python experiments/run_node_classification.py
 ```
 
+### Debug a single node
 
 ```bash
 python scripts/debug_single_node.py --node_id 100 --layer 0 --subgraph_size 10000
 ```
 
+---
 
-## vLLM
+## ⚡ Run LLM Inference Server (vLLM)
+
 ```bash
 conda activate vllm_env
 python3 -m vllm.entrypoints.openai.api_server \
-  --model /common/home/mg1998/Graph/GAN/Graph_Agentic_Network/models/llama-3.1-8b-instruct \
-  --tokenizer /common/home/mg1998/Graph/GAN/Graph_Agentic_Network/models/llama-3.1-8b-instruct \
+  --model ./models/llama-3.1-8b-instruct \
+  --tokenizer ./models/llama-3.1-8b-instruct \
   --port 8001 \
   --dtype auto \
   --max-model-len 1024 \
-  --gpu-memory-utilization 0.95 \
-  --served-model-name llama-3.1-8b-instruct
+  --gpu-memory-utilization 0.95
 ```
 
+---
+
+## 📁 Project Structure
+
+```text
+gan/                # Core logic for agents, actions, graph, and LLM
+  ├── node.py       # NodeAgent class
+  ├── actions.py    # Action definitions
+  ├── graph.py      # AgenticGraph class
+  ├── llm.py        # RemoteLLM and fallback logic
+  └── utils.py      # Prompt builders, deduplication, etc.
+experiments/        # Run scripts and visualization tools
+data/               # Dataset and label vocab
+config.py           # Central config file
 ```
-CUDA_VISIBLE_DEVICES=3 python -m vllm.entrypoints.openai.api_server     --model Qwen2.5-14B-Instruct     --tokenizer /common/users/mg1998/models/Qwen2.5-14B-Instruct     --port 8001     --gpu-memory-utilization 0.9
-```
 
-## Project Structure
+---
 
-- `gan/`: Core framework components
-  - `actions.py`: Action classes for node agents
-  - `node.py`: Node agent implementation
-  - `graph.py`: Graph and network implementation
-  - `llm.py`: LLM interface
-- `data/`: Data handling utilities
-- `baselines/`: Baseline implementations (e.g., GCN)
-- `experiments/`: Experiment scripts
+## ⚙️ Configuration
 
-## Configuration
+Edit `config.py` to configure:
 
-Edit `config.py` to adjust experiment parameters and model settings.
+- Dataset (Cora / Citeseer / Pubmed)
+- Number of layers
+- LLM mode (`mock` or `remote`)
+- Prompt strategy and retrieval options
 
-## Citation
+---
 
-If you use this code in your research, please cite our work:
-```
+## 📚 Citation
+
+```bibtex
 @misc{graph-agentic-network,
-  author = {Your Name},
+  author = {Minghao Guo},
   title = {Graph Agentic Network: LLM-powered Decision Making for Graph Learning},
   year = {2025},
   publisher = {GitHub},
-  journal = {GitHub repository},
-  howpublished = {\url{https://github.com/yourusername/graph-agentic-network}}
+  howpublished = {\url{https://github.com/MinghoKwok/Graph_Agentic_Network}}
 }
 ```
 
-## License
+---
+
+## 🪪 License
 
 MIT License
